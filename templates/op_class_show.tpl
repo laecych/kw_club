@@ -155,6 +155,10 @@
 
 <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser }>
     <div class="alert alert-success text-center">
+        <a href="club.php" class="btn btn-primary" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <{$smarty.const._MD_KWCLUB_ADD_CLUB}>
+        </a>
         <{if $smarty.session.isclubAdmin || $uid == $class_uid }>
             <{if $class_regnum == 0}>
                 <a href="javascript:delete_class_func(<{$class_id}>);" class="btn btn-danger">
@@ -166,11 +170,12 @@
                 <i class="fa fa-pencil-square" aria-hidden="true"></i>
                 <{$smarty.const._MD_KWCLUB_MODIFY_CLUB}>
             </a>
+
+            <{if $smarty.session.isclubAdmin}>
+                <a href="index.php?op=reg_form&class_id=<{$class_id}>" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                <{$smarty.const._MD_KWCLUB_SIGNUP_FOR_STU}></a>
+            <{/if}>
         <{/if}>
-        <a href="club.php" class="btn btn-primary" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <{$smarty.const._MD_KWCLUB_ADD_CLUB}>
-        </a>
     </div>
 <{/if}>
 

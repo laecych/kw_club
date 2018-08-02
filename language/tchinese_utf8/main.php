@@ -259,3 +259,4 @@ define('_MD_KWCLUB_EDIT_PLACE_NOTE', '欲修改上課地點，請至<a href="con
 define('_MD_KWCLUB_SIGNUP_STATUS', '報名於 %s，從 %s，報名編號：%s');
 // <{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>
 define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間即停止報名及修改');
+define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');

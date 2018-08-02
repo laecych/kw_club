@@ -114,8 +114,10 @@ function insert_reg()
 
     $club_info = get_club_info($club_year);
 
-    //檢查報名是否可行
-    chk_time('',false, $club_info['club_start_date'], $club_info['club_end_date']);
+    //檢查報名是否可行（但管理員不在此限）
+    if (!$_SESSION['isclubAdmin']) {
+        chk_time('', false, $club_info['club_start_date'], $club_info['club_end_date']);
+    }
 
     //是否報名額滿
     $is_full = false;
@@ -268,6 +270,9 @@ function myclass($reg_uid = "", $club_year = "")
 
     $xoopsTpl->assign('total', $total);
     $xoopsTpl->assign('reg_uid', $reg_uid);
+    
+    //超過報名截止時間即停止報名及修改
+    $xoopsTpl->assign('can_operate', chk_time('return', true));
 }
 
 //顯示某一個社團
@@ -465,7 +470,6 @@ function class_list($club_year = '')
     $xoopsTpl->assign('chk_time', chk_time('return'));
     //超過報名截止時間即停止報名及修改
     $xoopsTpl->assign('can_operate', chk_time('return', true));
-    
 
     //已有設定社團期別
     if (!empty($club_year)) {
