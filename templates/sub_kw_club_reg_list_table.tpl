@@ -91,6 +91,7 @@
     </tbody>
 </table>
 
-<div class="text-right">
+<div class="text-right" style="font-size:0.9em;margin: 2px auto 30px;color:rgb(97, 29, 63);">
+    <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
     <{$smarty.const._MD_KWCLUB_CLICK_TO_EDIT_DESC}>
 </div>

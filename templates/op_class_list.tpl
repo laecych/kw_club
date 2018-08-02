@@ -30,11 +30,12 @@
             </h4>
         </div>
         <div class="col-sm-2" style="padding-top: 40px;">
-            <{if $chk_time}>
-                <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser}>
-                    <a href="club.php" class="btn btn-primary btn-block"><{$smarty.const._MD_KWCLUB_ADD_CLUB}></a>
-                <{/if}>
+            
+            <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser}>
+                <a href="club.php" class="btn btn-primary btn-block" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-plus" aria-hidden="true"></i>
+                    <{$smarty.const._MD_KWCLUB_ADD_CLUB}></a>
             <{/if}>
+            
         </div>
     </div>
 
@@ -163,10 +164,10 @@
 
                         <td class="text-center">
                             <{if $smarty.session.isclubAdmin || $uid == $data.class_uid}>
-                                <a href="club.php?class_id=<{$data.class_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
+                                <a href="club.php?class_id=<{$data.class_id}>" class="btn btn-xs btn-warning" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><{$smarty.const._TAD_EDIT}></a>
                                 <{if $data.class_regnum == 0}>
                                     <div>
-                                        <a href="javascript:delete_class_func(<{$data.class_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
+                                        <a href="javascript:delete_class_func(<{$data.class_id}>);" class="btn btn-xs btn-danger" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><{$smarty.const._TAD_DEL}></a>
                                     </div>
                                 <{/if}>
                             <{else}>

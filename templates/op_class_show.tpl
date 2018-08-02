@@ -162,13 +162,13 @@
                 </a>
             <{/if}>
 
-            <a href="club.php?class_id=<{$class_id}>" class="btn btn-warning">
+            <a href="club.php?class_id=<{$class_id}>" class="btn btn-warning" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
                 <i class="fa fa-pencil-square" aria-hidden="true"></i>
                 <{$smarty.const._MD_KWCLUB_MODIFY_CLUB}>
             </a>
         <{/if}>
-        <a href="club.php" class="btn btn-primary">
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
+        <a href="club.php" class="btn btn-primary" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
+            <i class="fa fa-plus" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_ADD_CLUB}>
         </a>
     </div>
