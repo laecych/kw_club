@@ -61,7 +61,7 @@ function full_copy($source = "", $target = "")
 function rm_group($name)
 {
     $member_handler = xoops_gethandler('member');
-    $group          = $member_handler->   createGroup();
+    $group          = $member_handler->createGroup();
     $group->setVar("name", $name);
     $member_handler->insertGroup($group);
 }

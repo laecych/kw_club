@@ -1,32 +1,28 @@
 <?php
 
-// function xoops_module_update_kw_club(&$module, $old_version)
-// {
-//     global $xoopsDB;
+function xoops_module_update_kw_club(&$module, $old_version)
+{
+    global $xoopsDB;
 
-//     mk_group("社團管理");
-//     // if (!chk_chk1()) {
-//     //     go_update1();
-//     // }
+    mk_group(_MI_KWCLUB_ADMIN_GROUP, _MI_KWCLUB_ADMIN_GROUP . _MI_KWCLUB_GROUP_NOTE);
+    mk_group(_MI_KWCLUB_TEACHER_GROUP, _MI_KWCLUB_TEACHER_GROUP . _MI_KWCLUB_GROUP_NOTE);
 
-//     return true;
-// }
-// function mk_group($name = "")
-// {
-//     global $xoopsDB;
-//     $sql           = "select groupid from " . $xoopsDB->prefix("groups") . " where `name`='$name'";
-//     $result        = $xoopsDB->query($sql) or web_error($sql);
-//     list($groupid) = $xoopsDB->fetchRow($result);
-
-//     if (empty($groupid)) {
-//         $sql = "insert into " . $xoopsDB->prefix("groups") . " (`name`) values('{$name}')";
-//         $xoopsDB->queryF($sql) or web_error($sql);
-
-//         //取得最後新增資料的流水編號
-//         $groupid = $xoopsDB->getInsertId();
-//     }
-//     return $groupid;
-// }
+    return true;
+}
+function mk_group($name = "", $description = "")
+{
+    global $xoopsDB;
+    $sql           = "select groupid from " . $xoopsDB->prefix("groups") . " where `name`='$name'";
+    $result        = $xoopsDB->query($sql) or web_error($sql);
+    list($groupid) = $xoopsDB->fetchRow($result);
+    if (empty($groupid)) {
+        $sql = "insert into " . $xoopsDB->prefix("groups") . " (`name`, `description`) values('{$name}','{$description}')";
+        $xoopsDB->queryF($sql) or web_error($sql);
+        //取得最後新增資料的流水編號
+        $groupid = $xoopsDB->getInsertId();
+    }
+    return $groupid;
+}
 
 //檢查某欄位是否存在
 // function chk_chk1()

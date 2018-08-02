@@ -1,100 +1,115 @@
-<{if $uid}>
-<center>
-<select name="select_year" onChange="location.href=this.options[this.selectedIndex].value;">
-        <{if $arr_year}>
-         <{foreach from=$arr_year item=arr_year}>
-         <{if $arr_year==$year}>
-          <option value="<{$action}>?op=myclass&uid=<{$uid}>&year=<{$arr_year}>" selected><{$arr_year}></option>
-          <{else}>
-          <option value="<{$action}>?op=myclass&uid=<{$uid}>&year=<{$arr_year}>"><{$arr_year}></option>
-          <{/if}>
-         <{/foreach}>
-         <{else}>
-             <option value="">目前沒有任何社團期別</option>
-         <{/if}>
+<h2><{$smarty.const._MD_KWCLUB_MYCLASS}></h2>
+
+<form action="index.php" method="post" id="myForm" class="myForm form-horizontal" role="form" style="margin: 20px auto 50px;">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></span>
+        <select name="club_year" class="form-control">
+            <{if $arr_year}>
+                <{foreach from=$arr_year key=year item=year_txt}>
+                    <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year_txt}></option>
+                <{/foreach}>
+            <{else}>
+                <option value=""><{$smarty.const._MD_KWCLUB_EMPTY_YEAR}></option>
+            <{/if}>
         </select>
-</center>
-<h2><{$reg_name}>的社團列表<small>（共 <{$reg_num}> 筆）</small></h2>
+        <span class="input-group-addon" id="basic-addon3"><{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_UID}></span>
+        <input type="text" name="reg_uid" class="form-control" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_UID}>" value="<{$reg_uid}>">
+        <span class="input-group-btn">
+            <input type="hidden" name="op" value="myclass">
+            <button class="btn btn-primary" type="submit"><{$smarty.const._TAD_SEARCH}></button>
+        </span>
+    </div>
+</form>
 
-<div id="kw_club_class_save_msg"></div>
+<{if $reg_uid}>
+    <{if $reg_name}>
+        <h3>
+            <span style="color: rgb(124, 58, 58);"><{$reg_name}></span><span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_MY_ALL_CLASS}>
+            <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
+        </h3>
 
-<table class="table table-bordered table-hover table-striped">
-  <thead>
-    <tr class="">
-    <th>社團年度</th>
-    <th>社團名稱</th>
-    <th>上課時間</th>
-    <th>社團學費</th>
-    <th>報名日期</th>
-    <th>是否後補</th>
-    <th>是否繳費</th>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="success">
+                    <th class="text-center"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></th>
+                    <th class="text-center"><{$smarty.const._MD_KWCLUB_CLASS_TIME}></th>
+                    <th class="text-center"><{$smarty.const._MD_KWCLUB_CLASS_MONEY}></th>
+                    <th class="text-center"><{$smarty.const._MD_KWCLUB_REG_DATETIME}></th>
+                    <th class="text-center"><{$smarty.const._MD_KWCLUB_REG_ISREG}></th>
+                    <th class="text-center"><{$smarty.const._TAD_FUNCTION}></th>
+                </tr>
+            </thead>
+            <tbody>
+                <{foreach from=$arr_reg key=sn item=data}>
+                    <tr>
+                        <td>
+                            <a href="index.php?class_id=<{$data.class_id}>"><{$data.class_title}></a>
+                        </td>
+                        <td nowrap>
+                            <div>
+                                <span class="number_b">
+                                    <{$data.class_date_open|date_format:"%Y/%m/%d"}>
+                                </span>
+                                <{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}>
+                                <span class="number_b">
+                                    <{$data.class_date_close|date_format:"%Y/%m/%d"}>
+                                </span>
+                            </div>
+                            <div>
+                                <{if $data.class_week==$smarty.const._MD_KWCLUB_ALL_WEEK}>
+                                    <{$smarty.const._MD_KWCLUB_1_5}>
+                                <{else}>
+                                    <{$smarty.const._MD_KWCLUB_W|sprintf:$data.class_week}>
+                                <{/if}>
+                                <span class="number_o">
+                                    <{$data.class_time_start|date_format:"%H:%M"}>
+                                </span>
+                                <{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}>
+                                <span class="number_o">
+                                    <{$data.class_time_end|date_format:"%H:%M"}>
+                                </span>
+                            </div>
+                        </td>
 
+                        <!-- 學費 -->
+                        <td nowrap class="text-center">
+                            <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>>
+                                <{$data.class_pay}> <{$smarty.const._MD_KWCLUB_DOLLAR}>
+                            </span>
+                            （<{ if $data.reg_isfee==1}><span style='color: green'><{$smarty.const._MD_KWCLUB_PAID}></span> <{else}><span style='color: red'><{$smarty.const._MD_KWCLUB_NOT_PAY}></span><{/if}>）
+                        </td>
 
-    <{if $isAdmin}>
-    <th>社團編號</th>
-    <th>報名IP</th>
+                        <!--報名時間-->
+                        <td class="text-center">
+                            <{$data.reg_datetime}>
+                        </td>
+
+                        <!-- 是否後補 -->
+                        <td nowrap class="text-center">
+                            <{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}>
+                                <span style='color: rgb(6, 2, 238)'><{$data.reg_isreg}></span>
+                            <{else}>
+                                <span style='color: rgb(35, 97, 35)'><{$data.reg_isreg}></span>
+                            <{/if}>
+                        </td>
+                        <td class="text-center">
+                            <{if $today < $data.end_date }>
+                                <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-xs"><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
+                            <{/if}>
+                        </td>
+                    </tr>
+                <{/foreach}>
+                <tr>
+                    <td colspan="2" align='center'><{$smarty.const._MD_KWCLUB_PAY_TOTAL}></td>
+                    <td  colspan="6" align='right'>
+                        <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$money:$in_money:$un_money}>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    <{else}>
+        <div class="alert alert-danger">
+            <span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_NOT_FOUND|sprintf:$reg_uid}></div>
     <{/if}>
-    <th>取消報名</th>
-    </tr>
-    </thead>
-    <tbody id="kw_club_class_sort">
-    <{foreach from=$arr_reg key=sn item=data}>
-    <tr id="tr_<{$data.class_id}>">         
-    <td>
-    <!--社團年度-->
-            <{$data.reg_year}>
-    </td>
-    <td><a href="index.php?class_id=<{$data.class_id}>">(<{$data.0}>)<{$data.class_title}></a></td>
-    <td><{$data.1}>~~<{$data.2}>，每周<{$data.5}><br>
-        <{$data.3}>~~<{$data.4}>
-    </td><!--上課時間-->
-    <td><{$data.6}>(額外費用<{$data.7}>)</td><!--學費-->
-    <td><{$data.reg_datetime}></td><!--報名時間-->
-    <td>
-        <{ if $data.reg_isreg==0}>
-            正取
-        <{else}>
-            備取
-        <{/if}>
-    </td>
-    <td>
-        <{ if $data.reg_isfee==1}>
-            <font color='green'>已繳費</font>    
-        <{else}>
-            <font color='red'>未繳費</font>
-        <{/if}>    
-    </td>
-    <{if $isAdmin}>
-        <td><{$data.class_id}></td>
-        <td><{$data.reg_ip}></td>
-    <{/if}>
-    <td>
-        <{$no_del }>
-        <{if !($today > $end_day) }>
-        <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger" >取消報名</a>
-       <{/if}>
-    </td>
-    </tr>
-    <{foreachelse}>
-        <tr>
-            <td colspan=4>你目前沒有報名的社團!!</td>
-        </tr>
-    <{/foreach}>
-    <tr>
-        <td colspan="2" align='center'>總繳費金額</td>
-        <td  colspan="6" align='right'>總共<{$money}>元，已繳<font color='green'><{$in_money}></font>元，未繳<font color='red'><{$un_money}></font>元</td></tr>
-    </tbody>
-</table>
-<{else}>
-    <h2>我的社團列表<small></small></h2>
-    <form action="<{$action}>" method="post">
-        請輸入你的身分證字號<input type='text' name='uid' class="">
-        <input type='hidden' name='op' value='<{$op}>'>
-        <input type='submit' name='send' class="" value="查詢">
-    </form>
-<{/if}>
-
-
-<{if isAdmin}>
-
 <{/if}>

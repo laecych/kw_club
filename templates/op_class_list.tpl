@@ -1,225 +1,211 @@
-<div align="center">請選擇社團期別
-    <select name="select_year" onChange="location.href=this.options[this.selectedIndex].value;">
-    <{if $arr_year}>
-     <{foreach from=$arr_year item=arr_year}>
-     <{if $arr_year==$year}>
-      <option value="<{$action}>?year=<{$arr_year}>" selected><{$arr_year}></option>
-      <{else}>
-      <option value="<{$action}>?year=<{$arr_year}>"><{$arr_year}></option>
-      <{/if}>
-     <{/foreach}>
-     <{else}>
-       <option value="">目前沒有期別</option>
-     <{/if}>
-    </select>
-  </div>
+<h1><{$smarty.const._MD_KWCLUB}></h1>
 
-
-
-<{if $year}>
-<h2><font color='blue'><{$year}></font>
-期社團列表<small>（共 <{$total}> 筆活動）</small> </h2>
-報名期間：<font color='red'><{$reg_start}>~<{$reg_end}></font>
-
-<{if $all_content}>
-<table class="table table-bordered table-hover table-striped">
-  <thead>
-    <tr class="">
-        <th>
-          <!--社團編號-->
-          <{$smarty.const._MD_KWCLUB_CLASS_NUM}>
-        </th>
-        <th>
-          <!--社團名稱-->
-          <{$smarty.const._MD_KWCLUB_CLASS_TITLE}>
-        </th>
-        <th>
-            <!--社團類型-->
-            <{$smarty.const._MD_KWCLUB_CATE_ID}>
-          </th>
-        <th>
-          <!--開課教師-->
-          <{$smarty.const._MD_KWCLUB_TEACHER_ID}>
-        </th>
-        <th>
-            <!--上課地點-->
-            <{$smarty.const._MD_KWCLUB_PLACE_ID}>
-          </th>
-        <th>
-          <!--上課星期-->
-          <{$smarty.const._MD_KWCLUB_CLASS_WEEK}>
-        </th>
-        <th>
-            <!--招收對象-->
-            <{$smarty.const._MD_KWCLUB_CLASS_GRADE}>
-          </th>
-        <th>
-          <!--上課日期-->
-          <{$smarty.const._MD_KWCLUB_CLASS_DATE}>
-        </th>
-        <th>
-            <!--上課時間-->
-            <{$smarty.const._MD_KWCLUB_CLASS_TIME}>
-          </th>
-       
-        <th>
-          <!--社團學費-->
-          <{$smarty.const._MD_KWCLUB_CLASS_MONEY}>
-        </th>
-        <th>
-          <!--額外費用-->
-          <{$smarty.const._MD_KWCLUB_CLASS_FEE}>
-        </th>
-        <th>
-            <!--招收人數-->
-            <{$smarty.const._MD_KWCLUB_CLASS_MENBER}>
-          </th>
-        <th>
-            <!--已報名人數-->
-            <{$smarty.const._MD_KWCLUB_CLASS_REGNUM}>
-          </th>
-          <th>
-              <!--社團備註-->
-              <{$smarty.const._MD_KWCLUB_CLASS_NOTE}>
-            </th>
-          <th><!--社團期別-->
-          <{$smarty.const._MD_KWCLUB_CLASS_YEAR}>
-          </th>
-           
-          <{if $isAdmin || $isUser }>
-           <th colspan =3>
-            管理
-          </th>
-        <{/if}>
-     
-    </tr>
-  </thead>
-
-
-
-<tbody id="kw_club_class_sort">
-    <{foreach from=$all_content item=data}>
-      <tr id="tr_<{$data.class_id}>">
-          
-          <td>
-            <!--社團編號-->
-            <{$data.class_num}>
-          </td>
-          <td>
-            <!--社團名稱-->
-            <a href="<{$action}>?class_id=<{$data.class_id}>"><{$data.class_title}></a>
-          </td>
-          <td>
-              <!--社團類型-->
-              <{$data.cate_id}>
-            </td>
-          <td>
-            <!--開課教師-->
-            <{$data.teacher_id}>
-          </td>
-          <td>
-              <!--上課地點-->
-              <{$data.place_id}>
-            </td>
-          <td>
-            <!--上課星期-->
-            <{$data.class_week}>
-          </td>
-          <td>
-              <!--招收對象-->
-              <{$data.class_grade}>
-            </td>
-          <td>
-            <!--上課起始日-->
-            <{$data.class_date_open}>~<br>
-            <!--上課終止日-->
-            <{$data.class_date_close}>
-          </td>
-          <td>
-            <!--起始時間-->
-            <{$data.class_time_start}>~<br>
-            <!--終止時間-->
-            <{$data.class_time_end}>
-          </td>
-         
-
-          <td>
-            <!--社團學費-->
-            <{$data.class_money}>
-          </td>
-
-          <td>
-            <!--額外費用-->
-            <{$data.class_fee}>
-          </td>
-
-          <td>
-              <!--招收人數-->
-              <{$data.class_menber}>
-            </td>
-          <td>
-              <!--已報名人數-->
-              <{$data.class_regnum}>
-              <{if $data.class_regnum >= $data.class_menber}>
-                <font color='red'>滿</font> 
-              <{/if}>
-          </td>
-          <td>
-              <{if $data.class_regnum >= $data.class_menber}>
-              <font color='red'>後補報名中..</font> 
-              <{/if}>
-              <!--社團備註-->
-              <{$data.class_note}>
-            </td>
-  <td>
-            <!--社團期別--><!--ID-->
-            <{$data.class_year}>
-            (<{$data.class_id}>)
-          </td>
-          <{if $isAdmin || $uid == $data.class_uid}>
-         
-          <td>
-            <!--是否啟用-->
-            <{$data.class_isopen}>
-          </td>
-          <td>
-              <!--UID-->
-              <{$data.class_uid}>
-              <{$data.class_uidname}>
-              
-            </td>
-          <td>
-              
-            <a href="<{$xoops_url}>/modules/kw_club/main.php?op=class_form&class_id=<{$data.class_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
-            <{if $data.class_regnum == 0}>
-            <a href="javascript:delete_class_func(<{$data.class_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
-            <{/if}>
-          </td>
-        <{/if}>
-      </tr>
-    <{/foreach}>
-  </tbody>
-</table>
-<{$bar}>
+<!-- 社團期別下拉選單 -->
+<{if $arr_year}>
+    <div class="alert alert-info" style="margin: 10px auto;"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}>
+        <select name="club_year" onChange="location.href='index.php?club_year='+this.value">
+            <!-- <option value=""><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></option> -->
+            <{foreach from=$arr_year key=year item=year_txt}>
+                <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year_txt}></option>
+            <{/foreach}>
+        </select>
+    </div>
 <{else}>
-    <p>此期尚未新增社團!!</p>
+    <div class="alert alert-danger">
+        <{$smarty.const._MD_KWCLUB_NEED_CONFIG}>
+    </div>
 <{/if}>
 
-    <{if $isAdmin}>
-   
-    <div class="jumbotron text-center">
-      <a href="<{$xoops_url}>/modules/kw_club/main.php?op=class_form&class_id=<{$class_id}>" class="btn btn-info"><{$smarty.const._TAD_ADD}></a>
+
+<{if $club_year}>
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>
+                <span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_LIST}>
+                <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
+            </h2>
+            <h4>
+                <{$smarty.const._MD_KWCLUB_APPLY_DATE}><{$smarty.const._TAD_FOR}>
+                <span style="color:rgb(190, 63, 4);"><{$club_info.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$club_info.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
+            </h4>
+        </div>
+        <div class="col-sm-2" style="padding-top: 40px;">
+            <{if $chk_time}>
+                <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser}>
+                    <a href="club.php" class="btn btn-primary btn-block"><{$smarty.const._MD_KWCLUB_ADD_CLUB}></a>
+                <{/if}>
+            <{/if}>
+        </div>
     </div>
 
+    <{if $all_class_content}>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="success">
+                    <!--社團編號-->
+                    <th class="text-center">
+                        <{$smarty.const._MD_KWCLUB_CLASS_NUM}>
+                    </th>
 
+                    <!--社團名稱-->
+                    <th class="text-center">
+                        <{$smarty.const._MD_KWCLUB_CLASS_TITLE}>
+                    </th>
+
+                    <!--上課日期-->
+                    <th class="text-center">
+                        <{$smarty.const._MD_KWCLUB_CLASS_DATE}>
+                    </th>
+
+                    <!--招收對象-->
+                    <th class="text-center">
+                        <{$smarty.const._MD_KWCLUB_CLASS_GRADE}>
+                    </th>
+
+                    <!--社團學費-->
+                    <th nowrap class="text-center">
+                        <{$smarty.const._MD_KWCLUB_CLASS_MONEY}>
+                    </th>
+
+                    <!--招收人數-->
+                    <th nowrap class="text-center">
+                        <{$smarty.const._MD_KWCLUB_NUMBER_OF_RECRUITED}>
+                    </th>
+
+                    <!--已報名人數-->
+                    <th nowrap class="text-center">
+                        <{$smarty.const._MD_KWCLUB_NUMBER_OF_APPLICANTS}>
+                    </th>
+
+                    <th class="text-center">
+                        <{$smarty.const._TAD_FUNCTION}>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="kw_club_class_sort">
+                <{foreach from=$all_class_content item=data}>
+                    <tr id="tr_<{$data.class_id}>">
+                        <td title="<{$data.class_id}>" class="text-center" <{if $data.class_note or $data.class_regnum >= $data.class_member}>rowspan="2"<{/if}>>
+                            <!--社團編號-->
+                            <{$data.class_num}>
+                            <div>
+                                <span class="label label-info"><{$data.cate_id}></span>
+                            </div>
+                        </td>
+
+                        <!--社團名稱-->
+                        <td>
+                            <!--是否啟用-->
+                            <{$data.class_isopen}>
+                            <a href="index.php?class_id=<{$data.class_id}>"><{$data.class_title}></a>
+                            <div style="font-size: 0.9em;">
+                                <i class="fa fa-user-circle-o" aria-hidden="true" title="<{$smarty.const._MD_KWCLUB_TEACHER_ID}>"></i>
+                                <{$data.teacher_id}>
+                                <i class="fa fa-map-marker" aria-hidden="true" title="<{$smarty.const._MD_KWCLUB_PLACE_ID}>"></i>
+                                <{$data.place_id}>
+                            </div>
+                        </td>
+
+
+                        <!--上課日-->
+                        <td nowrap>
+                            <span class="number_b">
+                                <{$data.class_date_open|date_format:"%Y/%m/%d"}>
+                            </span>
+                            <{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}>
+                            <span class="number_b">
+                                <{$data.class_date_close|date_format:"%Y/%m/%d"}>
+                            </span>
+                            <!--起始時間-->
+                            <div>
+                                <!--上課星期-->
+                                <{if $data.class_week==_MD_KWCLUB_ALL_WEEK}>
+                                    <{$smarty.const._MD_KWCLUB_1_5}>
+                                <{else}>
+                                    <{$smarty.const._MD_KWCLUB_W|sprintf:$data.class_week}>
+                                <{/if}>
+                                <span class="number_o">
+                                    <{$data.class_time_start|date_format:"%H:%M"}>
+                                </span>
+                                <{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}>
+                                <span class="number_o">
+                                    <{$data.class_time_end|date_format:"%H:%M"}>
+                                </span>
+                            </div>
+                        </td>
+
+                        <!--招收對象-->
+                        <td>
+                            <{$data.class_grade}>
+                        </td>
+
+                        <!--社團學費-->
+                        <td class="text-center">
+                            <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>>
+                                <{$data.class_pay}>
+                            </span>
+                            <{$smarty.const._MD_KWCLUB_DOLLAR}>
+                        </td>
+
+                        <!--招收人數-->
+                        <td class="text-center">
+                            <{$data.class_member}>
+                        </td>
+
+                        <!--已報名人數-->
+                        <td class="text-center">
+                            <{if $data.class_regnum >= $data.class_member}>
+                                <span class="circle" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_NUMBER_OF_APPLICANTS}> <{$data.class_regnum}> <{$smarty.const._MD_KWCLUB_PEOPLE}>"><{$smarty.const._MD_KWCLUB_FULL}></span>
+                            <{else}>
+                                <{$data.class_regnum}>
+                            <{/if}>
+                        </td>
+
+                        <td class="text-center">
+                            <{if $smarty.session.isclubAdmin || $uid == $data.class_uid}>
+                                <a href="club.php?class_id=<{$data.class_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
+                                <{if $data.class_regnum == 0}>
+                                    <div>
+                                        <a href="javascript:delete_class_func(<{$data.class_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
+                                    </div>
+                                <{/if}>
+                            <{else}>
+                                <{if $data.is_full}>
+                                    <a href="#" class="btn btn-danger btn-xs disabled" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_NUMBER_OF_APPLICANTS}> <{$data.class_regnum}> <{$smarty.const._MD_KWCLUB_PEOPLE}>"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <{$smarty.const._MD_KWCLUB_FULL_REGISTRATION}></a>
+                                <{elseif $data.class_regnum >= $data.class_member}>
+                                    <a href="index.php?op=reg_form&class_id=<{$data.class_id}>&is_full=1" class="btn btn-warning btn-xs"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <{$smarty.const._MD_KWCLUB_SIGNUP_TO_MAKE_UP}></a>
+                                <{elseif $chk_time}>
+                                    <a href="index.php?op=reg_form&class_id=<{$data.class_id}>" class="btn btn-primary btn-xs"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <{$smarty.const._MD_KWCLUB_SIGNUP}></a>
+                                <{else}>
+                                    <a href="#" class="btn btn-danger btn-xs disabled"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <{$smarty.const._MD_KWCLUB_NON_REGISTRATION_TIME}></a>
+                                <{/if}>
+                            <{/if}>
+                        </td>
+                    </tr>
+                    <!--社團備註-->
+                    <{if $data.class_note or $data.class_regnum >= $data.class_member}>
+                        <tr>
+                            <td colspan=11 style="font-size: 0.9em; color: rgb(151, 3, 107)">
+                                <i class="fa fa-commenting" aria-hidden="true"></i>
+                                <{$data.class_note}>
+                                <{if $data.class_regnum >= $data.class_member}>
+                                    <span style="color:red;"><{$smarty.const._MD_KWCLUB_AFTER_REGISTRATION}></span>
+                                <{/if}>
+                            </td>
+                        </tr>
+                    <{/if}>
+                <{/foreach}>
+            </tbody>
+        </table>
+
+        <{$bar}>
+    <{else}>
+        <div class="alert alert-warning">
+            <{$smarty.const._MD_KWCLUB_EMPTY_CLUB}>
+        </div>
     <{/if}>
-<{else}>
-<p>尚未設定社團期別， 請先到管理介面進行每期社團資訊設定後，再新增課程!</p>
 <{/if}>
-
-
-
-
-
-
-
