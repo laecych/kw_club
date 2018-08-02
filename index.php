@@ -132,6 +132,9 @@ function insert_reg()
     }
 
     $reg_uid   = $myts->addSlashes($_POST['reg_uid']);
+    if(!pid_check($reg_uid)){
+        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_PID_WRONG);
+    }
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
     $reg_grade = $myts->addSlashes($_POST['reg_grade']);
     $reg_class = $myts->addSlashes($_POST['reg_class']);
@@ -270,7 +273,7 @@ function myclass($reg_uid = "", $club_year = "")
 
     $xoopsTpl->assign('total', $total);
     $xoopsTpl->assign('reg_uid', $reg_uid);
-    
+
     //超過報名截止時間即停止報名及修改
     $xoopsTpl->assign('can_operate', chk_time('return', true));
 }
@@ -544,4 +547,20 @@ function teacher_list($club_year = "")
     global $xoopsTpl;
     $teachers = get_teacher_all();
     $xoopsTpl->assign('teachers', $teachers);
+}
+
+function pid_check($pid)
+{
+    $iPidLen = strlen($pid);
+    if (!preg_match('/^[A-Za-z][1-2][0-9]{8}$/', $pid) && $iPidLen != 10) {
+        return false;
+    }
+    $head = array('A' => 1, 'B' => 0, 'C' => 9, 'D' => 8, 'E' => 7, 'F' => 6, 'G' => 5, 'H' => 4, 'I' => 9, 'J' => 3, 'K' => 2, 'M' => 1, 'N' => 0, 'O' => 8, 'P' => 9, 'Q' => 8, 'T' => 5, 'U' => 4, 'V' => 3, 'W' => 1, 'X' => 3, 'Z' => 0, 'L' => 2, 'R' => 7, 'S' => 6, 'Y' => 2);
+    $pid  = strtoupper($pid);
+    $iSum = 0;
+    for ($i = 0; $i < $iPidLen; $i++) {
+        $sIndex = substr($pid, $i, 1);
+        $iSum += (empty($i)) ? $head[$sIndex] : intval($sIndex) * abs(9 - base_convert($i, 10, 9));
+    }
+    return ($iSum % 10 == 0) ? true : false;
 }
