@@ -6,11 +6,15 @@ include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op     = system_CleanVars($_REQUEST, 'op', '', 'string');
 $keyman = system_CleanVars($_REQUEST, 'keyman', '', 'string');
 $reg_sn = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
-$reg_sn = system_CleanVars($_POST, 'reg_sn', '', 'int');
+$uid    = system_CleanVars($_REQUEST, 'uid', '', 'int');
 $id     = system_CleanVars($_POST, 'id', '', 'string');
 $value  = system_CleanVars($_POST, 'value', '', 'string');
 
 switch ($op) {
+    //更新教師簡介
+    case "update_bio":
+        die(update_bio($value, $uid));
+
     //更新註冊資訊
     case "update_reg":
         die(update_reg($id, $value, $reg_sn));
@@ -20,11 +24,25 @@ switch ($op) {
         die(keyman($keyman));
 }
 
+function update_bio($value, $uid)
+{
+    global $xoopsDB;
+    if (!$_SESSION['isclubAdmin']) {
+        die(_MD_KWCLUB_FORBBIDEN);
+    }
+
+    $myts = MyTextSanitizer::getInstance();
+    $val  = $myts->htmlSpecialChars($value);
+    $sql  = "update " . $xoopsDB->prefix("users") . " set `bio`='{$val}' where `uid`='{$uid}'";
+    $xoopsDB->queryF($sql);
+    return nl2br($value);
+}
+
 function update_reg($id, $value, $reg_sn)
 {
     global $xoopsDB;
     if (!$_SESSION['isclubAdmin']) {
-        return '無修改權限';
+        die(_MD_KWCLUB_FORBBIDEN);
     }
     if (strpos($id, 'reg_name') !== false) {
         $col = 'reg_name';

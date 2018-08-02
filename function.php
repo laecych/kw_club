@@ -216,14 +216,15 @@ function get_teacher_all()
     //開課教師
     $groupid = group_id_from_name(_MD_KWCLUB_TEACHER_GROUP);
     $sql     = "select b.* from `" . $xoopsDB->prefix("groups_users_link") . "` as a
-   join " . $xoopsDB->prefix("users") . " as b on a.`uid`=b.`uid`
-   where a.`groupid`='{$groupid}' order by b.`name`";
+    join " . $xoopsDB->prefix("users") . " as b on a.`uid`=b.`uid`
+    where a.`groupid`='{$groupid}' order by b.`name`";
     $result      = $xoopsDB->query($sql) or web_error($sql);
     $arr_teacher = array();
     while ($teacher = $xoopsDB->fetchArray($result)) {
         $uid            = $teacher['uid'];
         $user           = $member_handler->getUser($uid);
         $user_avatar    = $user->user_avatar();
+        $teacher['bio'] = nl2br($teacher['bio']);
         $teacher['pic'] = ($user_avatar != 'blank.gif') ? XOOPS_URL . "/uploads/" . $user_avatar : XOOPS_URL . "/uploads/avatars/blank.gif";
 
         $arr_teacher[$uid] = $teacher;
@@ -473,13 +474,13 @@ function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_en
     $club_start_date_ts = empty($club_start_date) ? $_SESSION['club_start_date_ts'] : strtotime($club_start_date);
     $club_end_date_ts   = empty($club_end_date) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
 
-    if($only_end and $club_end_date_ts < $today){
+    if ($only_end and $club_end_date_ts < $today) {
         if ($mode == 'return') {
             return false;
         } else {
-            redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME );
+            redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
         }
-    }elseif ($club_start_date_ts > $today || $club_end_date_ts < $today) {
+    } elseif ($club_start_date_ts > $today || $club_end_date_ts < $today) {
         if ($mode == 'return') {
             return false;
         } else {

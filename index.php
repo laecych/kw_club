@@ -131,8 +131,8 @@ function insert_reg()
         redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_SAME_TIME);
     }
 
-    $reg_uid   = $myts->addSlashes($_POST['reg_uid']);
-    if(!pid_check($reg_uid)){
+    $reg_uid = $myts->addSlashes($_POST['reg_uid']);
+    if (!pid_check($reg_uid)) {
         redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_PID_WRONG);
     }
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
@@ -547,6 +547,18 @@ function teacher_list($club_year = "")
     global $xoopsTpl;
     $teachers = get_teacher_all();
     $xoopsTpl->assign('teachers', $teachers);
+    if ($_SESSION['isclubAdmin']) {
+        include_once XOOPS_ROOT_PATH . "/modules/tadtools/jeditable.php";
+        $file      = "save.php";
+        $jeditable = new jeditable();
+        //此處加入欲直接點擊編輯的欄位設定
+        $file = "ajax.php";
+        //大量文字框
+        foreach ($teachers as $uid => $teacher) {
+            $jeditable->setTextAreaCol("#bio_{$uid}", $file, '470px', '80px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
+        }
+        $jeditable->render();
+    }
 }
 
 function pid_check($pid)
