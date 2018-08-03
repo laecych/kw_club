@@ -544,9 +544,21 @@ function class_list($club_year = '')
 //教師列表
 function teacher_list($club_year = "")
 {
-    global $xoopsTpl;
+    global $xoopsTpl, $xoopsDB;
     $teachers = get_teacher_all();
     $xoopsTpl->assign('teachers', $teachers);
+
+    $sql = "select * from `" . $xoopsDB->prefix("kw_club_class") . "`
+    where `class_isopen`='1' order by club_year desc";
+    $result    = $xoopsDB->query($sql) or web_error($sql);
+    $tea_class = array();
+    while ($class = $xoopsDB->fetchArray($result)) {
+        $uid                        = $class['teacher_id'];
+        $class_id                   = $class['class_id'];
+        $tea_class[$uid][$class_id] = $class;
+    }
+    $xoopsTpl->assign('tea_class', $tea_class);
+
     if ($_SESSION['isclubAdmin']) {
         include_once XOOPS_ROOT_PATH . "/modules/tadtools/jeditable.php";
         $file      = "save.php";
@@ -555,7 +567,7 @@ function teacher_list($club_year = "")
         $file = "ajax.php";
         //大量文字框
         foreach ($teachers as $uid => $teacher) {
-            $jeditable->setTextAreaCol("#bio_{$uid}", $file, '470px', '80px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
+            $jeditable->setTextAreaCol("#bio_{$uid}", $file, '450px', '80px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
         }
         $jeditable->render();
     }

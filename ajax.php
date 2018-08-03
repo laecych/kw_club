@@ -33,9 +33,10 @@ function update_bio($value, $uid)
 
     $myts = MyTextSanitizer::getInstance();
     $val  = $myts->htmlSpecialChars($value);
-    $sql  = "update " . $xoopsDB->prefix("users") . " set `bio`='{$val}' where `uid`='{$uid}'";
+    // $val = strip_tags($value);
+    $sql = "update " . $xoopsDB->prefix("users") . " set `bio`='{$val}' where `uid`='{$uid}'";
     $xoopsDB->queryF($sql);
-    return nl2br($value);
+    return $value;
 }
 
 function update_reg($id, $value, $reg_sn)

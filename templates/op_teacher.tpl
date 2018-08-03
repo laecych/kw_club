@@ -6,17 +6,27 @@
         <tr class="success">
             <th nowrap><{$smarty.const._MD_KWCLUB_TEACHER_ID}></th>
             <th nowrap><{$smarty.const._MD_KWCLUB_TEACHER_NAME}></th>
-            <th nowrap><{$smarty.const._MD_KWCLUB_TEACHER_EMAIL}></th>
             <th nowrap><{$smarty.const._MD_KWCLUB_CATE_DESC}></th>
+            <th nowrap><{$smarty.const._MD_KWCLUB_TEACHER_CLASS}></th>
         </tr>
     </thead>
     <tbody>
         <{foreach from=$teachers key=uid item=tea}>
             <tr>
                 <td class="text-center"><img src="<{$tea.pic}>" alt="<{$tea.name}>" style="width: 72px;"></td>
-                <td class="text-center"><{$tea.name}></td>
-                <td class="text-center"><{$tea.email}></td>
-                <td><div id="bio_<{$uid}>"><{$tea.bio}></div></td>
+                <td class="text-center">
+                    <{$tea.name}>
+                </td>
+                <td>
+                    <pre style="white-space: pre-wrap; background: transparent; border: none; padding: 2px;" id="bio_<{$uid}>"><{$tea.bio}></pre>
+                </td>
+                <td nowrap>
+                    <ul>
+                        <{foreach from=$tea_class.$uid key=class_id item=class}>
+                            <li style="font-size: 0.9em; list-style-position: inside;"><{$class.club_year}> <a href="index.php?class_id=<{$class_id}>"><{$class.class_title}></a></li>
+                        <{/foreach}>
+                    </ul>
+                </td>
             </tr>
         <{/foreach}>
     </tbody>

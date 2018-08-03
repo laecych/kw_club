@@ -224,7 +224,7 @@ function get_teacher_all()
         $uid            = $teacher['uid'];
         $user           = $member_handler->getUser($uid);
         $user_avatar    = $user->user_avatar();
-        $teacher['bio'] = nl2br($teacher['bio']);
+        $teacher['bio'] = $teacher['bio'];
         $teacher['pic'] = ($user_avatar != 'blank.gif') ? XOOPS_URL . "/uploads/" . $user_avatar : XOOPS_URL . "/uploads/avatars/blank.gif";
 
         $arr_teacher[$uid] = $teacher;
