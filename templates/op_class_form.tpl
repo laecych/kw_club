@@ -1,7 +1,7 @@
 <{if $class_id==""}>
     <h2><{$smarty.const._MD_KWCLUB_ADD_CLUB}><small> <span class="club_year_text"><{$club_year_text}></span> (<span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>)</small></h2>
 <{else}>
-    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}> <{$class_id}><small> <span class="club_year_text"><{$club_year_text}></span></small></h2>
+    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}><small> <span class="club_year_text"><{$club_year_text}></span></small></h2>
 <{/if}>
 
 <form class="form-horizontal" name="classform" id="classform" action="club.php" method="post" enctype = "multipart/form-data">
@@ -41,8 +41,8 @@
         <label for="teacher_id" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_TEACHER_NAME}><span class="caption-required">*</span></label>
         <div class="col-sm-5">
             <select class="form-control validate[required]" size="1" name="teacher_id" id="teacher_id" title="<{$smarty.const._MD_KWCLUB_TEACHER_NAME}>">
-                <{foreach from=$arr_teacher key="teacher_id" item="teacher" }>
-                    <option value="<{$teacher_id}>" <{if $teacher_id==$uid}>selected<{/if}>><{$teacher.name}> (<{$teacher.email}>)</option>
+                <{foreach from=$arr_teacher key="tid" item="teacher" }>
+                    <option value="<{$tid}>" <{if ($tid==$uid and $class_id=='') or ($tid==$teacher_id and $class_id!='')}>selected<{/if}>><{$teacher.name}> (<{$teacher.email}>)</option>
                 <{/foreach}>
             </select>
         </div>
