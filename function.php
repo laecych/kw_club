@@ -474,25 +474,20 @@ function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_en
     $club_start_date_ts = empty($club_start_date) ? $_SESSION['club_start_date_ts'] : strtotime($club_start_date);
     $club_end_date_ts   = empty($club_end_date) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
 
-    if ($only_end and $club_end_date_ts < $today) {
+    if (($only_end and $club_end_date_ts < $today) or ($club_start_date_ts > $today || $club_end_date_ts < $today)) {
         if ($mode == 'return') {
             return false;
         } else {
+            if($only_end){
             redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
+            }else{
+                redirect_header("index.php", 5, _MD_KWCLUB_NOT_REG_TIME . " {$club_start_date} ~ {$club_end_date}");
+            }
         }
     }else{
         return true;
     }
 
-    if ($club_start_date_ts > $today || $club_end_date_ts < $today) {
-        if ($mode == 'return') {
-            return false;
-        } else {
-            redirect_header("index.php", 5, _MD_KWCLUB_NOT_REG_TIME . " {$club_start_date} ~ {$club_end_date}");
-        }
-    }else{
-        return true;
-    }
 }
 
 //將期別編號轉為文字
