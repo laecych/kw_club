@@ -35,7 +35,7 @@
                 <{$smarty.const._MD_KWCLUB_TEACHER_ID}>
             </label>
             <div class="col-sm-9">
-                <{$teacher_id_title}>
+                    <a href="index.php?op=teacher#<{$teacher_id}>"><{$teacher_id_title}></a>
             </div>
         </div>
 

@@ -109,7 +109,7 @@
                             <a href="index.php?class_id=<{$data.class_id}>"><{$data.class_title}></a>
                             <div style="font-size: 0.9em;">
                                 <i class="fa fa-user-circle-o" aria-hidden="true" title="<{$smarty.const._MD_KWCLUB_TEACHER_ID}>"></i>
-                                <{$data.teacher_id}>
+                                <a href="index.php?op=teacher#<{$data.teacher_id}>"><{$data.teacher_id_title}></a>
                                 <i class="fa fa-map-marker" aria-hidden="true" title="<{$smarty.const._MD_KWCLUB_PLACE_ID}>"></i>
                                 <{$data.place_id}>
                             </div>

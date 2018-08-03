@@ -511,8 +511,8 @@ function class_list($club_year = '')
             }
 
             $all_class_content[$i]['class_id']         = (int) $class_id;
-            $all_class_content[$i]['club_year']        = $club_year;
-            $all_class_content[$i]['class_num']        = $class_num;
+            $all_class_content[$i]['club_year']        = (int) $club_year;
+            $all_class_content[$i]['class_num']        = (int) $class_num;
             $all_class_content[$i]['class_title']      = $myts->htmlSpecialChars($class_title);
             $all_class_content[$i]['class_week']       = $myts->htmlSpecialChars($class_week);
             $all_class_content[$i]['class_grade']      = $myts->htmlSpecialChars($class_grade);
@@ -521,7 +521,8 @@ function class_list($club_year = '')
             $all_class_content[$i]['class_time_start'] = $myts->htmlSpecialChars($class_time_start);
             $all_class_content[$i]['class_time_end']   = $myts->htmlSpecialChars($class_time_end);
             $all_class_content[$i]['cate_id']          = $myts->htmlSpecialChars($all_cate_arr[$cate_id]['cate_title']);
-            $all_class_content[$i]['teacher_id']       = $myts->htmlSpecialChars($all_teacher_arr[$teacher_id]['name']);
+            $all_class_content[$i]['teacher_id']       = (int) $teacher_id;
+            $all_class_content[$i]['teacher_id_title'] = $myts->htmlSpecialChars($all_teacher_arr[$teacher_id]['name']);
             $all_class_content[$i]['place_id']         = $myts->htmlSpecialChars($all_place_arr[$place_id]['place_title']);
             $all_class_content[$i]['class_member']     = (int) $class_member;
             $all_class_content[$i]['class_money']      = (int) $class_money;
@@ -582,7 +583,7 @@ function teacher_list($club_year = "")
         $file = "ajax.php";
         //大量文字框
         foreach ($teachers as $uid => $teacher) {
-            $jeditable->setTextAreaCol("#bio_{$uid}", $file, '450px', '80px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
+            $jeditable->setTextAreaCol("#bio_{$uid}", $file, '390px', '70px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
         }
         $jeditable->render();
     }

@@ -164,7 +164,7 @@ define('_MD_KWCLUB_GRADE', '年級');
 define('_MD_KWCLUB_G', '年');
 define('_MD_KWCLUB_CLICK_TO_EDIT', '點擊編輯');
 define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', '上表中有標<span class="editable">藍色底線</span>者，可直接點擊編輯修改');
-define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', '簡介可直接點擊編輯修改');
+define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', '管理員可直接點擊簡介進行修改');
 
 define('_MD_KWCLUB_APPLY_EXCEL', '社團報名統計表');
 define('_MD_KWCLUB_TOTAL', '共');
@@ -272,3 +272,5 @@ define('_MD_KWCLUB_TXTLOCK', '鎖定中，滑動解鎖後才能執行送出');
 define('_MD_KWCLUB_TXTUNLOCK', '已可執行送出');
 define('_MD_KWCLUB_CAPTCHA_ERROR', '未通過驗證，無法儲存。');
 define('_MD_KWCLUB_CAPTCHA', '拉動驗證');
+
+define('_MD_KWCLUB_TEACHER_DESC', "<a href='" . XOOPS_URL . "/edituser.php?op=avatarform'>點此可上傳照片</a>，<a href='" . XOOPS_URL . "/edituser.php'>點此可編輯「個人介紹」</a>。");
