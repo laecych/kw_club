@@ -63,7 +63,15 @@ function reg_list($club_year = '', $review = 'reg_sn')
 
     $xoopsTpl->assign('review', $review);
 
-    $order = ($review == 'grade') ? 'ORDER BY a.`reg_grade`, a.`reg_class`' : 'ORDER BY a.`reg_grade` DESC';
+    if ($review == 'grade') {
+        $order = 'ORDER BY a.`reg_grade`, a.`reg_class`';
+    } elseif ($review == 'class_id') {
+        $order = 'ORDER BY b.`class_id`, a.`reg_grade`,a.`reg_class`';
+    } elseif ($review == 'reg_uid') {
+        $order = 'ORDER BY a.`reg_uid`, b.`class_id`';
+    } else {
+        $order = 'ORDER BY a.`reg_sn`';
+    }
 
     //取得報名資料
     $all_reg = get_class_reg($club_year, '', $order, true);
