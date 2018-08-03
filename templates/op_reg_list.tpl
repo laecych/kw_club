@@ -25,8 +25,10 @@
 <div align="right">
     <a href="register.php?op=reg_uid&club_year=<{$club_year}>" class="btn btn-primary"><i class="fa fa-money" aria-hidden="true"></i>
         <{$smarty.const._MD_KWCLUB_PAY_MODE}></a>
-    <a href="excel.php?club_year=<{$club_year}>&review=<{$review}>" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+    <a href="excel.php?club_year=<{$club_year}>&review=<{$review}>" class="btn btn-default"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
         <{$smarty.const._MD_KWCLUB_EXPORT_EXCEL}></a>
+    <a href="pdf.php?club_year=<{$smarty.session.club_year}>" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        <{$smarty.const._MD_KWCLUB_EXPORT_PDF}></a>
 </div>
 
 

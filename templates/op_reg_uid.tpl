@@ -20,7 +20,9 @@
     <div align="right">
         <a href="register.php" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_LIST_MODE}></a>
-        <a href="pdf.php?club_year=<{$smarty.session.club_year}>" class="btn btn-success"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        <a href="excel.php?club_year=<{$club_year}>&review=<{$review}>" class="btn btn-default"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+            <{$smarty.const._MD_KWCLUB_EXPORT_EXCEL}></a>
+        <a href="pdf.php?club_year=<{$smarty.session.club_year}>" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_EXPORT_PDF}></a>
     </div>
 
@@ -62,7 +64,7 @@
 
                         <!--學費-->
                         <td>
-                            <{$data.class_money}>(<{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}>)
+                            <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
                         </td>
 
                         <!--報名時間-->

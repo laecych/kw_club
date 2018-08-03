@@ -73,9 +73,7 @@
 
                         <!-- 學費 -->
                         <td nowrap class="text-center">
-                            <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>>
-                                <{$data.class_pay}> <{$smarty.const._MD_KWCLUB_DOLLAR}>
-                            </span>
+                            <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
                             （<{ if $data.reg_isfee==1}><span style='color: green'><{$smarty.const._MD_KWCLUB_PAID}></span> <{else}><span style='color: red'><{$smarty.const._MD_KWCLUB_NOT_PAY}></span><{/if}>）
                         </td>
 

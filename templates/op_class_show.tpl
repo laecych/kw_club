@@ -95,7 +95,7 @@
             <div class="col-sm-9">
                 <{$class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}>
                 <{if $class_fee}>
-                    <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>
+                    (<{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>)
                 <{/if}>
             </div>
         </div>

@@ -70,7 +70,7 @@
                     <td class="text-center">
                         <a href="register.php?op=update_reg_isfee&amp;reg_isfee=<{if $data.reg_isfee==1}>0<{else}>1<{/if}>&amp;reg_sn=<{$data.reg_sn}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.reg_isfee==1}><{$smarty.const._MD_KWCLUB_NOT_PAY}><{else}><{$smarty.const._MD_KWCLUB_PAID}><{/if}>"><{$data.reg_isfee_pic}></a>
 
-                        <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_pay}> <{$smarty.const._MD_KWCLUB_DOLLAR}></span>
+                        <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
                     </td>
 
                     <td class="text-center">

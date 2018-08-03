@@ -162,6 +162,7 @@ define('_MD_KWCLUB_GRADE', '年級');
 define('_MD_KWCLUB_G', '年');
 define('_MD_KWCLUB_CLICK_TO_EDIT', '點擊編輯');
 define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', '上表中有標<span class="editable">藍色底線</span>者，可直接點擊編輯修改');
+define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', '簡介可直接點擊編輯修改');
 
 define('_MD_KWCLUB_APPLY_EXCEL', '社團報名統計表');
 define('_MD_KWCLUB_TOTAL', '共');
@@ -240,6 +241,8 @@ define('_MD_KWCLUB_NOT_FOUND', '中，查無任何 %s 的報名資料）');
 define('_MD_KWCLUB_CLASS_ENABLE', '開班');
 define('_MD_KWCLUB_CLASS_UNABLE', '不開班');
 define('_MD_KWCLUB_CLASS_UNDONE', '尚未報名完成');
+define('_MD_KWCLUB_CLASS_ENABLE_DESC', '點擊按鈕後，狀態變成正式開班');
+define('_MD_KWCLUB_CLASS_UNABLE_DESC', '點擊按鈕後，狀態改成不開班');
 
 define('_MD_KWCLUB_FULL_REGISTRATION', '報名額滿');
 define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名後補');
@@ -259,3 +262,12 @@ define('_MD_KWCLUB_EDIT_PLACE_NOTE', '欲修改上課地點，請至<a href="con
 define('_MD_KWCLUB_SIGNUP_STATUS', '報名於 %s，從 %s，報名編號：%s');
 // <{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>
 define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間即停止報名及修改');
+define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
+define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
+
+define('_MD_KWCLUB_TEACHER_CLASS', '開課紀錄');
+define('_MD_KWCLUB_END', '已結束報名');
+define('_MD_KWCLUB_TXTLOCK', '鎖定中，滑動解鎖後才能執行送出');
+define('_MD_KWCLUB_TXTUNLOCK', '已可執行送出');
+define('_MD_KWCLUB_CAPTCHA_ERROR', '未通過驗證，無法儲存。');
+define('_MD_KWCLUB_CAPTCHA', '拉動驗證');
