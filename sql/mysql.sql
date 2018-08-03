@@ -1,6 +1,6 @@
 CREATE TABLE `kw_club_info` (
   `club_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水號',
-  `club_year` tinyint(3) unsigned NOT NULL COMMENT '社團年度',
+  `club_year` smallint(6) unsigned NOT NULL COMMENT '社團年度',
   `club_start_date` datetime NOT NULL COMMENT '報名起始日',
   `club_end_date` datetime NOT NULL COMMENT '報名終止日',
   `club_isfree` enum('1','0') NOT NULL DEFAULT '0' COMMENT '報名方式',
@@ -21,6 +21,13 @@ CREATE TABLE `kw_club_cate` (
   `cate_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
 PRIMARY KEY  (`cate_id`)
 ) ENGINE=MyISAM;
+INSERT INTO `kw_club_cate` (`cate_id`, `cate_title`, `cate_desc`, `cate_sort`, `cate_enable`) VALUES
+(1,	'科學',	'',	2,	'1'),
+(2,	'綜合',	'',	3,	'1'),
+(3,	'表演',	'',	4,	'1'),
+(4,	'數學',	'',	1,	'1'),
+(5,	'體育',	'',	5,	'1'),
+(6,	'文學',	'',	6,	'1');
 
 CREATE TABLE `kw_club_place` (
   `place_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '地點編號',
@@ -30,6 +37,10 @@ CREATE TABLE `kw_club_place` (
   `place_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
 PRIMARY KEY  (`place_id`)
 ) ENGINE=MyISAM;
+INSERT INTO `kw_club_place` (`place_id`, `place_title`, `place_desc`, `place_sort`, `place_enable`) VALUES
+(1,	'圖書館',	'',	0,	'1'),
+(2,	'視聽教室',	'',	3,	'1'),
+(3,	'操場',	'',	1,	'1');
 
 
 CREATE TABLE `kw_club_class` (

@@ -35,6 +35,11 @@ switch ($op) {
         kw_club_info_form($club_id);
         break;
 
+    case "delete_kw_club_info":
+        delete_kw_club_info($club_id);
+        header("location: {$_SERVER['PHP_SELF']}");
+        break;
+
     case "save_club_teacher":
         save_club_teacher($users_uid);
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
@@ -613,7 +618,6 @@ function save_club_teacher($users_uid)
     }
 
 }
-
 
 //改變啟用狀態
 function update_enable($club_id, $club_enable)
