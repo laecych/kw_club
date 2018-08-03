@@ -231,7 +231,7 @@ function myclass($reg_uid = "", $club_year = "")
     //查詢年度
     $club_year = (empty($club_year) && isset($_SESSION['club_year'])) ? $_SESSION['club_year'] : $club_year;
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
@@ -412,7 +412,7 @@ function class_show($class_id = '')
 
     $xoopsTpl->assign('class_id', $class_id);
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
     $xoopsTpl->assign('class_num', $class_num);
     $xoopsTpl->assign('cate_id', $cate_id);
     $xoopsTpl->assign('cate_id_title', $cate_arr['cate_title']);
@@ -483,7 +483,7 @@ function class_list($club_year = '')
 
     $club_year = empty($club_year) ? $_SESSION['club_year'] : $club_year;
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //檢查報名是否可行
     $xoopsTpl->assign('chk_time', chk_time('return'));

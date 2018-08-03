@@ -73,7 +73,7 @@ foreach ($reg_all as $reg_uid => $reg) {
     $i++;
 }
 
-$club_year_text = club_year_to_text($club_year);
+$club_year_text = club_year_text($club_year);
 $title          = iconv('utf-8', 'big5', $club_year_text . _MD_KWCLUB_PAY_PDF);
 //PDF內容設定
 $pdf->Output($title . '.pdf', 'D');

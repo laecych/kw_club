@@ -56,7 +56,7 @@ function reg_list($club_year = '', $review = 'reg_sn')
         redirect_header('index.php', 3, _MD_KWCLUB_NEED_CLUB_YEAR);
     }
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
@@ -84,7 +84,7 @@ function reg_uid($club_year = "")
     }
 
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());

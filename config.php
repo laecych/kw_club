@@ -136,6 +136,7 @@ function kw_club_info_list()
         $club_backup_num = $myts->htmlSpecialChars($club_backup_num);
 
         $all_kw_club_info[$i]['club_year']        = $club_year;
+        $all_kw_club_info[$i]['club_year_text']   = club_year_text($club_year);
         $all_kw_club_info[$i]['club_start_date']  = $club_start_date;
         $all_kw_club_info[$i]['club_end_date']    = $club_end_date;
         $all_kw_club_info[$i]['club_isfree_text'] = $club_isfree_text;
@@ -191,7 +192,7 @@ function kw_club_info_form($club_id = '')
     //設定 club_year 欄位的預設值
     $club_year = !isset($DBV['club_year']) ? '' : $DBV['club_year'];
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_to_text($club_year));
+    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
     if ($club_year) {
         $xoopsTpl->assign('club_year_txt', $club_year_text);
     }

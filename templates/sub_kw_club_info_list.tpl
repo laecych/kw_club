@@ -46,7 +46,7 @@
 
                     <!--社團年度-->
                     <td>
-                        <{$data.club_year}>
+                        <{$data.club_year_text}>
                     </td>
 
                     <!--報名起始日-->

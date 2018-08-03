@@ -262,7 +262,7 @@ function get_all_year($only_enable = true)
     $result     = $xoopsDB->query($sql) or web_error($sql);
     $arr_year   = array();
     while (list($club_year) = $xoopsDB->fetchRow($result)) {
-        $club_year_text       = club_year_to_text($club_year);
+        $club_year_text       = club_year_text($club_year);
         $arr_year[$club_year] = $club_year_text;
     }
     return $arr_year;
@@ -491,7 +491,7 @@ function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_en
 }
 
 //將期別編號轉為文字
-function club_year_to_text($club_year = '')
+function club_year_text($club_year = '')
 {
     global $semester_name_arr;
     $year          = substr($club_year, 0, 3);

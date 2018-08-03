@@ -4,7 +4,7 @@ require_once TADTOOLS_PATH . '/PHPExcel.php'; //引入 PHPExcel 物件庫
 require_once TADTOOLS_PATH . '/PHPExcel/IOFactory.php'; //引入 PHPExcel_IOFactory 物件庫
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $club_year      = system_CleanVars($_REQUEST, 'club_year', '', 'int');
-$club_year_text = club_year_to_text($club_year);
+$club_year_text = club_year_text($club_year);
 
 $objPHPExcel = new PHPExcel(); //實體化Excel
 
