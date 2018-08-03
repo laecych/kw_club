@@ -51,7 +51,7 @@ CREATE TABLE `kw_club_class` (
   `class_fee` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '額外費用',
   `class_regnum` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '報名人數',
   `class_note` varchar(255) NOT NULL COMMENT '社團備註',
-  `class_ischecked` enum('1','0') NOT NULL COMMENT '是否開班',
+  `class_ischecked` enum('1','0') NOT NULL DEFAULT '0' COMMENT '是否開班',
   `class_isopen` enum('1','0') NOT NULL DEFAULT '1' COMMENT '是否啟用',
   `class_desc` text NOT NULL COMMENT '社團簡介',
   `class_uid` mediumint(9) unsigned NOT NULL COMMENT '發佈者',
@@ -94,4 +94,3 @@ CREATE TABLE `kw_club_files_center` (
   `sub_dir` varchar(255) NOT NULL default '' COMMENT '檔案子路徑',
   PRIMARY KEY (`files_sn`)
 ) ENGINE=MyISAM;
-

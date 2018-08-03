@@ -416,9 +416,9 @@ function cate_list($type)
 function delete_reg()
 {
     global $xoopsDB;
-    if (!$_SESSION['isclubAdmin'] and !$_SESSION['isclubUser']) {
-        redirect_header($_SERVER['PHP_SELF'], 3, _TAD_PERMISSION_DENIED);
-    }
+    // if (!$_SESSION['isclubAdmin'] and !$_SESSION['isclubUser']) {
+    //     redirect_header($_SERVER['PHP_SELF'], 3, _TAD_PERMISSION_DENIED);
+    // }
     $reg_sn   = system_CleanVars($_REQUEST, 'reg_sn', '0', 'int');
     $class_id = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
     $uid      = system_CleanVars($_REQUEST, 'uid', '0', 'string');

@@ -87,6 +87,14 @@ function reg_form($class_id = "")
         $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
         $xoopsTpl->assign('reg_token', $token->render());
 
+        //套用formValidator驗證機制
+        if (!file_exists(TADTOOLS_PATH . "/formValidator.php")) {
+            redirect_header("index.php", 3, _TAD_NEED_TADTOOLS);
+        }
+        include_once TADTOOLS_PATH . "/formValidator.php";
+        $formValidator = new formValidator("#regForm", true);
+        $formValidator->render();
+
     }
 }
 
@@ -117,13 +125,14 @@ function insert_reg()
     //檢查報名是否可行（但管理員不在此限）
     if (!$_SESSION['isclubAdmin']) {
         chk_time('', false, $club_info['club_start_date'], $club_info['club_end_date']);
-    }
 
-    //是否報名額滿
-    $is_full = false;
-    if (($class['class_member'] + $club_info['club_backup_num']) <= $class['class_regnum']) {
-        $is_full = true;
-        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
+
+        //是否報名額滿
+        $is_full = false;
+        if (($class['class_member'] + $club_info['club_backup_num']) <= $class['class_regnum']) {
+            $is_full = true;
+            redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
+        }
     }
 
     //檢查是否衝堂
@@ -138,7 +147,7 @@ function insert_reg()
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
     $reg_grade = $myts->addSlashes($_POST['reg_grade']);
     $reg_class = $myts->addSlashes($_POST['reg_class']);
-    $reg_isreg = $class['class_member'] < $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
+    $reg_isreg = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
     $reg_ip    = get_ip();
 
     $sql = "INSERT INTO `" . $xoopsDB->prefix("kw_club_reg") . "` (
@@ -266,7 +275,7 @@ function myclass($reg_uid = "", $club_year = "")
         if ($_SESSION['isclubAdmin']) {
             $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
         } else {
-            $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&uid={$reg_uid}&reg_sn=", 'reg_sn', _MD_KWCLUB_SURE_CANCEL_APPLY, _MD_KWCLUB_CANCEL, _MD_KWCLUB_CANCEL_APPLY);
+            $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&club_year={$club_year}&reg_uid={$reg_uid}&reg_sn=", 'reg_sn', _MD_KWCLUB_SURE_CANCEL_APPLY, _MD_KWCLUB_CANCEL, _MD_KWCLUB_CANCEL_APPLY);
         }
 
     }

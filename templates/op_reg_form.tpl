@@ -3,7 +3,7 @@
 
 
 <!--套用formValidator驗證機制-->
-<form action="index.php" method="post" id="cateForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
+<form action="index.php" method="post" id="regForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
 
     <!--身分證字號-->
     <div class="form-group">
@@ -32,7 +32,7 @@
             <{foreach from = $class_grade_arr key=v item=gname}>
                 <label class="radio-inline">
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
                     <{else}>
                         <input type='radio' name='reg_grade' id="reg_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>
                     <{/if}>
@@ -49,7 +49,7 @@
         <div class="col-sm-10">
             <{foreach from = $school_class key=v item=cname}>
                 <label class="radio-inline">
-                    <input type='radio' name='reg_class' id="reg_class<{$v}>" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked="checked"<{/if}>><{$cname}>
+                    <input type='radio' name='reg_class' id="reg_class<{$v}>" class="validate[required]" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked="checked"<{/if}>><{$cname}>
                 </label>
             <{/foreach}>
         </div>

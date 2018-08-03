@@ -27,15 +27,17 @@
             <h4>
                 <{$smarty.const._MD_KWCLUB_APPLY_DATE}><{$smarty.const._TAD_FOR}>
                 <span style="color:rgb(190, 63, 4);"><{$club_info.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$club_info.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
+                <{if !$chk_time}>
+                    <span class="label label-danger"><{$smarty.const._MD_KWCLUB_END}></span>
+                <{/if}>
             </h4>
         </div>
         <div class="col-sm-2" style="padding-top: 40px;">
-            
             <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser}>
                 <a href="club.php" class="btn btn-primary btn-block" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-plus" aria-hidden="true"></i>
                     <{$smarty.const._MD_KWCLUB_ADD_CLUB}></a>
             <{/if}>
-            
+
         </div>
     </div>
 
@@ -97,7 +99,13 @@
                         <!--社團名稱-->
                         <td>
                             <!--是否啟用-->
-                            <{$data.class_isopen}>
+                            <{if !$can_operate and $data.class_ischecked==1}>
+                                <span class="badge"><{$smarty.const._MD_KWCLUB_CLASS_ENABLE}></span>
+                            <{elseif !$can_operate and $data.class_ischecked!=0}>
+                                <span class="badge"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></span>
+                            <{else}>
+                                <{$data.class_isopen}>
+                            <{/if}>
                             <a href="index.php?class_id=<{$data.class_id}>"><{$data.class_title}></a>
                             <div style="font-size: 0.9em;">
                                 <i class="fa fa-user-circle-o" aria-hidden="true" title="<{$smarty.const._MD_KWCLUB_TEACHER_ID}>"></i>
@@ -163,6 +171,14 @@
                         </td>
 
                         <td class="text-center">
+                            <{if $smarty.session.isclubAdmin and !$can_operate}>
+                                <{if $data.class_ischecked!=1}>
+                                    <a href="club.php?op=class_enable&class_id=<{$data.class_id}>" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_ENABLE_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_ENABLE}></a>
+                                <{else}>
+                                    <a href="club.php?op=class_unable&class_id=<{$data.class_id}>" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_UNABLE_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></a>
+                                <{/if}>
+                            <{/if}>
+
                             <{if $smarty.session.isclubAdmin || $uid == $data.class_uid}>
                                 <a href="club.php?class_id=<{$data.class_id}>" class="btn btn-xs btn-warning" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><{$smarty.const._TAD_EDIT}></a>
                                 <{if $data.class_regnum == 0}>

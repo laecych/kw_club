@@ -241,6 +241,8 @@ define('_MD_KWCLUB_NOT_FOUND', '中，查無任何 %s 的報名資料）');
 define('_MD_KWCLUB_CLASS_ENABLE', '開班');
 define('_MD_KWCLUB_CLASS_UNABLE', '不開班');
 define('_MD_KWCLUB_CLASS_UNDONE', '尚未報名完成');
+define('_MD_KWCLUB_CLASS_ENABLE_DESC', '點擊按鈕後，狀態變成正式開班');
+define('_MD_KWCLUB_CLASS_UNABLE_DESC', '點擊按鈕後，狀態改成不開班');
 
 define('_MD_KWCLUB_FULL_REGISTRATION', '報名額滿');
 define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名後補');
@@ -264,3 +266,4 @@ define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
 define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
 
 define('_MD_KWCLUB_TEACHER_CLASS', '開課紀錄');
+define('_MD_KWCLUB_END', '已結束報名');

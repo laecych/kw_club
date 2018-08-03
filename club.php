@@ -33,6 +33,16 @@ switch ($op) {
         header("location: index.php");
         exit;
 
+    case "class_enable":
+        class_ischecked($class_id, 1);
+        header("location: index.php");
+        exit;
+
+    case "class_unable":
+        class_ischecked($class_id, 0);
+        header("location: index.php");
+        exit;
+
     default:
         if (!empty($class_id)) {
             class_form($class_id);
@@ -459,4 +469,31 @@ function delete_class($class_id)
         $sql = "delete from `" . $xoopsDB->prefix('kw_club_class') . "` where `class_id`='{$class_id}' {$and_uid}";
         $xoopsDB->queryF($sql) or web_error($sql);
     }
+}
+
+function class_ischecked($class_id, $ischecked)
+{
+
+    global $xoopsDB;
+
+    //檢查權限
+    if (!$_SESSION['isclubAdmin']) {
+        redirect_header("index.php", 3, _MD_KWCLUB_FORBBIDEN);
+    }
+
+    //檢查班別
+    if (!isset($class_id)) {
+        redirect_header("index.php", 3, _MD_KWCLUB_NEED_CLASS_ID);
+    }
+
+    $myts = MyTextSanitizer::getInstance();
+
+    $sql = "update `" . $xoopsDB->prefix("kw_club_class") . "` set
+    `class_ischecked` = '{$ischecked}'
+    where `class_id` = '$class_id'";
+    $xoopsDB->queryF($sql) or web_error($sql);
+
+    //紀錄課程編號資訊
+    mk_json($class_id);
+    return $class_id;
 }
