@@ -126,7 +126,6 @@ function insert_reg()
     if (!$_SESSION['isclubAdmin']) {
         chk_time('', false, $club_info['club_start_date'], $club_info['club_end_date']);
 
-
         //是否報名額滿
         $is_full = false;
         if (($class['class_member'] + $club_info['club_backup_num']) <= $class['class_regnum']) {

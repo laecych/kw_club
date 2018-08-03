@@ -480,14 +480,19 @@ function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_en
         } else {
             redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
         }
-    } elseif ($club_start_date_ts > $today || $club_end_date_ts < $today) {
+    }else{
+        return true;
+    }
+
+    if ($club_start_date_ts > $today || $club_end_date_ts < $today) {
         if ($mode == 'return') {
             return false;
         } else {
             redirect_header("index.php", 5, _MD_KWCLUB_NOT_REG_TIME . " {$club_start_date} ~ {$club_end_date}");
         }
+    }else{
+        return true;
     }
-    return true;
 }
 
 //將期別編號轉為文字
@@ -559,7 +564,7 @@ function get_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = 
     while ($all = $xoopsDB->fetchArray($result)) {
 
         //將是/否選項轉換為圖示
-        $all['reg_isfee_pic'] = $all['reg_isfee'] == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+        $all['reg_isfee_pic'] = $all['reg_isfee'] == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_PAID . '" title="' . _MD_KWCLUB_PAID . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _MD_KWCLUB_NOT_PAY . '" title="' . _MD_KWCLUB_NOT_PAY . '">';
         $all['class_pay']     = $all['class_money'] + $all['class_fee'];
 
         $all_reg[] = $all;

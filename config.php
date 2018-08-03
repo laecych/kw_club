@@ -9,12 +9,13 @@ include_once XOOPS_ROOT_PATH . "/header.php";
 
 /*-----------執行動作判斷區----------*/
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op        = system_CleanVars($_REQUEST, 'op', '', 'string');
-$type      = system_CleanVars($_REQUEST, 'type', '', 'string');
-$club_id   = system_CleanVars($_REQUEST, 'club_id', '', 'int');
-$cate_id   = system_CleanVars($_REQUEST, 'cate_id', '', 'int');
-$place_id  = system_CleanVars($_REQUEST, 'place_id', '', 'int');
-$users_uid = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
+$op          = system_CleanVars($_REQUEST, 'op', '', 'string');
+$type        = system_CleanVars($_REQUEST, 'type', '', 'string');
+$club_id     = system_CleanVars($_REQUEST, 'club_id', '', 'int');
+$cate_id     = system_CleanVars($_REQUEST, 'cate_id', '', 'int');
+$place_id    = system_CleanVars($_REQUEST, 'place_id', '', 'int');
+$users_uid   = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
+$club_enable = system_CleanVars($_REQUEST, 'club_enable', '', 'int');
 
 switch ($op) {
 
@@ -71,6 +72,11 @@ switch ($op) {
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab4");
         exit;
 
+    case "update_enable":
+        update_enable($club_id, $club_enable);
+        header("location: {$_SERVER['PHP_SELF']}");
+        exit;
+
     default:
         kw_club_info_list();
         get_club_teacher();
@@ -124,7 +130,7 @@ function kw_club_info_list()
         }
 
         //將是/否選項轉換為圖示
-        $club_enable_pic = $club_enable == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+        $club_enable_pic = $club_enable == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_ENABLE_1 . '" title="' . _MD_KWCLUB_ENABLE_1 . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _MD_KWCLUB_ENABLE_0 . '" title="' . _MD_KWCLUB_ENABLE_0 . '">';
 
         //將是/否選項轉換為圖示
         $club_isfree_text = $club_isfree == 1 ? _MD_KWCLUB_FREE_APPLY : _MD_KWCLUB_LOGIN_APPLY;
@@ -606,4 +612,16 @@ function save_club_teacher($users_uid)
         }
     }
 
+}
+
+
+//改變啟用狀態
+function update_enable($club_id, $club_enable)
+{
+    global $xoopsDB;
+
+    $sql = "update `" . $xoopsDB->prefix("kw_club_info") . "` set
+    `club_enable` = '{$club_enable}'
+    where `club_id` = '$club_id'";
+    $xoopsDB->queryF($sql) or web_error($sql);
 }

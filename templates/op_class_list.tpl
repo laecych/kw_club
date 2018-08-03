@@ -28,7 +28,7 @@
                 <{$smarty.const._MD_KWCLUB_APPLY_DATE}><{$smarty.const._TAD_FOR}>
                 <span style="color:rgb(190, 63, 4);"><{$club_info.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$club_info.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
                 <{if !$chk_time}>
-                    <span class="label label-danger"><{$smarty.const._MD_KWCLUB_END}></span>
+                    <span class="label label-danger"><{$smarty.const._MD_KWCLUB_NON_REGISTRATION_TIME}></span>
                 <{/if}>
             </h4>
         </div>

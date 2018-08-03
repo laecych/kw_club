@@ -89,6 +89,8 @@ define('_MD_KWCLUB_ISFREE', '報名方式');
 define('_MD_KWCLUB_UID', '設定者');
 define('_MD_KWCLUB_DATETIME', '設定時間');
 define('_MD_KWCLUB_ENABLE', '是否啟用');
+define('_MD_KWCLUB_ENABLE_1', '啟用');
+define('_MD_KWCLUB_ENABLE_0', '關閉');
 
 define('_MD_KWCLUB_ID', '流水號');
 define('_MD_KWCLUB_Y', '期');
@@ -266,7 +268,6 @@ define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
 define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
 
 define('_MD_KWCLUB_TEACHER_CLASS', '開課紀錄');
-define('_MD_KWCLUB_END', '已結束報名');
 define('_MD_KWCLUB_TXTLOCK', '鎖定中，滑動解鎖後才能執行送出');
 define('_MD_KWCLUB_TXTUNLOCK', '已可執行送出');
 define('_MD_KWCLUB_CAPTCHA_ERROR', '未通過驗證，無法儲存。');

@@ -46,33 +46,33 @@
 
                     <!--社團年度-->
                     <td>
-                        <{$data.club_year_text}>
+                        <span data-toggle="tooltip" data-placement="bottom" title="<{$data.club_year}>"><{$data.club_year_text}></span>
                     </td>
 
                     <!--報名起始日-->
-                    <td>
-                        <{$data.club_start_date}>
+                    <td class="text-center">
+                        <span style="color:rgb(190, 63, 4);"><{$data.club_start_date|date_format:"%Y/%m/%d %H:%M"}></span>
                     </td>
 
                     <!--報名終止日-->
-                    <td>
-                        <{$data.club_end_date}>
+                    <td class="text-center">
+                        <span style="color:rgb(190, 63, 4);"><{$data.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
                     </td>
 
                     <!--報名方式-->
-                    <td>
+                    <td class="text-center">
                         <{$data.club_isfree_text}>
                     </td>
 
                     <!--候補人數-->
-                    <td>
+                    <td class="text-center">
                         <{$data.club_backup_num}>
                     </td>
 
 
                     <!--是否啟用-->
-                    <td>
-                        <{$data.club_enable_pic}>
+                    <td class="text-center">
+                        <a href="config.php?op=update_enable&club_enable=<{if $data.club_enable==1}>0<{else}>1<{/if}>&club_id=<{$data.club_id}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.club_enable==1}><{$smarty.const._MD_KWCLUB_ENABLE_0}><{else}><{$smarty.const._MD_KWCLUB_ENABLE_1}><{/if}>"><{$data.club_enable_pic}></a>
                     </td>
 
                     <{if $smarty.session.isclubAdmin}>
