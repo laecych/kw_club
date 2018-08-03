@@ -133,6 +133,13 @@ function insert_reg()
             $is_full = true;
             redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
         }
+
+        //驗正是否通過
+        if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
+
+        } else {
+            redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
+        }
     }
 
     //檢查是否衝堂

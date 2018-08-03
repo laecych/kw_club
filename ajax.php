@@ -3,14 +3,20 @@ include_once "header.php";
 
 /*-----------執行動作判斷區----------*/
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op     = system_CleanVars($_REQUEST, 'op', '', 'string');
-$keyman = system_CleanVars($_REQUEST, 'keyman', '', 'string');
-$reg_sn = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
-$uid    = system_CleanVars($_REQUEST, 'uid', '', 'int');
-$id     = system_CleanVars($_POST, 'id', '', 'string');
-$value  = system_CleanVars($_POST, 'value', '', 'string');
+$op      = system_CleanVars($_REQUEST, 'op', '', 'string');
+$keyman  = system_CleanVars($_REQUEST, 'keyman', '', 'string');
+$reg_sn  = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
+$uid     = system_CleanVars($_REQUEST, 'uid', '', 'int');
+$id      = system_CleanVars($_POST, 'id', '', 'string');
+$value   = system_CleanVars($_POST, 'value', '', 'string');
+$reg_uid = system_CleanVars($_POST, 'reg_uid', '', 'string');
 
 switch ($op) {
+
+    //更新教師簡介
+    case "search_reg_uid":
+        die(search_reg_uid($reg_uid));
+
     //更新教師簡介
     case "update_bio":
         die(update_bio($value, $uid));
@@ -22,6 +28,20 @@ switch ($op) {
     //篩選使用者
     case "keyman":
         die(keyman($keyman));
+}
+
+//以身份證號自動取得姓名
+function search_reg_uid($reg_uid)
+{
+    global $xoopsDB;
+
+    $myts = MyTextSanitizer::getInstance();
+
+    $sql            = "select `reg_name` from " . $xoopsDB->prefix("kw_club_reg") . " where `reg_uid`='{$reg_uid}' order by reg_datetime desc limit 0,1";
+    $result         = $xoopsDB->query($sql) or die($sql);
+    list($reg_name) = $xoopsDB->fetchRow($result);
+    $reg_name       = $myts->htmlSpecialChars($reg_name);
+    return $reg_name;
 }
 
 function update_bio($value, $uid)

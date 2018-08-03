@@ -1,3 +1,19 @@
+<link rel='stylesheet' type='text/css' href='class/Qaptcha_v3.0/jquery/QapTcha.jquery.css' media='screen'>
+<script type='text/javascript' src='class/Qaptcha_v3.0/jquery/jquery.ui.touch.js'></script>
+<script type='text/javascript' src='class/Qaptcha_v3.0/jquery/QapTcha.jquery.js'></script>
+
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $('.QapTcha').QapTcha({
+            disabledSubmit:true ,
+            autoRevert:true ,
+            PHPfile:'class/Qaptcha_v3.0/php/Qaptcha.jquery.php',
+            txtLock:'<{$smarty.const._MD_KWCLUB_TXTLOCK}>' ,
+            txtUnlock:'<{$smarty.const._MD_KWCLUB_TXTUNLOCK}>'
+            });
+    });
+</script>
+
 <h2><{$smarty.const._MD_KWCLUB_APPLY_CLASS|sprintf:$class.class_title}></h2>
 <p><{$smarty.const._MD_KWCLUB_APPLY_NOTE}></p>
 
@@ -55,6 +71,17 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            <{$smarty.const._MD_KWCLUB_CAPTCHA}>
+        </label>
+        <div class="col-sm-10">
+            <div class='QapTcha'></div>
+        </div>
+    </div>
+
+
+
     <div class="text-center">
 
         <{$reg_token}>
@@ -65,3 +92,15 @@
         <button type="submit" class="btn btn-primary"><{$smarty.const._MD_KWCLUB_CHECK_OK}></button>
     </div>
 </form>
+
+
+<script>
+    $(document).ready(function(){
+        $('#reg_uid').change(function(){
+            $.post('ajax.php', { reg_uid: $('#reg_uid').val(), op: "search_reg_uid" },
+            function(data) {
+                $('#reg_name').val(data);
+            });
+        });
+    });
+</script>

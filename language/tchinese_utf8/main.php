@@ -267,3 +267,7 @@ define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
 
 define('_MD_KWCLUB_TEACHER_CLASS', '開課紀錄');
 define('_MD_KWCLUB_END', '已結束報名');
+define('_MD_KWCLUB_TXTLOCK', '鎖定中，滑動解鎖後才能執行送出');
+define('_MD_KWCLUB_TXTUNLOCK', '已可執行送出');
+define('_MD_KWCLUB_CAPTCHA_ERROR', '未通過驗證，無法儲存。');
+define('_MD_KWCLUB_CAPTCHA', '拉動驗證');
