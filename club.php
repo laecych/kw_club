@@ -363,7 +363,7 @@ function insert_class()
     //取得最後新增資料的流水編號
     $class_id = $xoopsDB->getInsertId();
 
-    mk_json($class_id);
+    mk_club_json($class_id);
     return $class_id;
 }
 
@@ -440,7 +440,7 @@ function update_class($class_id = '')
     $xoopsDB->queryF($sql) or web_error($sql);
 
     //紀錄課程編號資訊
-    mk_json($class_id);
+    mk_club_json($class_id);
     return $class_id;
 }
 
@@ -494,6 +494,6 @@ function class_ischecked($class_id, $ischecked)
     $xoopsDB->queryF($sql) or web_error($sql);
 
     //紀錄課程編號資訊
-    mk_json($class_id);
+    mk_club_json($class_id);
     return $class_id;
 }

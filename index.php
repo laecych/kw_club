@@ -298,7 +298,7 @@ function class_showjson($class_id = '')
 {
     global $xoopsTpl, $today;
     if (!file_exists(XOOPS_ROOT_PATH . "/uploads/kw_club/{$class_id}.json")) {
-        $json = mk_json($class_id);
+        $json = mk_club_json($class_id);
     } else {
         $json = file_get_contents(XOOPS_URL . "/uploads/kw_club/{$class_id}.json");
     }

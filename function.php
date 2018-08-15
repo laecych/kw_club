@@ -346,7 +346,7 @@ function get_ip()
     return $ip;
 }
 
-function mk_json($class_id)
+function mk_club_json($class_id)
 {
     global $xoopsDB, $TadUpFiles;
     if (empty($class_id)) {
