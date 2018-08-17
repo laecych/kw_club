@@ -114,7 +114,7 @@ function get_reg_uid_all($club_year)
 }
 
 //取得期別的所有社團編號
-function get_class_num()
+function get_club_class_num()
 {
     global $xoopsDB;
     //確認期別
@@ -233,7 +233,7 @@ function get_teacher_all()
 }
 
 //取得所有社團資料陣列
-function get_class_all()
+function get_club_class_all()
 {
     global $xoopsDB;
 
@@ -501,7 +501,7 @@ function club_year_text($club_year = '')
 }
 
 //取得報名資料
-function get_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
+function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
 

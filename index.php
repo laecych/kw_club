@@ -441,7 +441,7 @@ function class_show($class_id = '')
     //已有人報名 報名列表
     if ($class_regnum > 0) {
         //取得報名資料
-        $all_reg = get_class_reg($club_year, $class_id);
+        $all_reg = get_club_class_reg($club_year, $class_id);
         $xoopsTpl->assign('all_reg', $all_reg);
         $xoopsTpl->assign('total', sizeof($all_reg));
     }

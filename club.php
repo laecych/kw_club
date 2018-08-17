@@ -89,7 +89,7 @@ function class_form($class_id = '')
     $class_num = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
     //取得此期已有的class_num
-    $arr_num = get_class_num();
+    $arr_num = get_club_class_num();
 
     //判斷修改or新增(取預設值)
     if (!empty($class_id)) {

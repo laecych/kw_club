@@ -74,7 +74,7 @@ function reg_list($club_year = '', $review = 'reg_sn')
     }
 
     //取得報名資料
-    $all_reg = get_class_reg($club_year, '', $order, true);
+    $all_reg = get_club_class_reg($club_year, '', $order, true);
 
     $xoopsTpl->assign('all_reg', $all_reg);
     $xoopsTpl->assign('today', date("Y-m-d"));
