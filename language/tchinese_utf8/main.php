@@ -162,6 +162,7 @@ define('_MD_KWCLUB_KG', '幼');
 
 define('_MD_KWCLUB_GRADE', '年級');
 define('_MD_KWCLUB_G', '年');
+define('_MD_KWCLUB_CLASS', '班級');
 define('_MD_KWCLUB_CLICK_TO_EDIT', '點擊編輯');
 define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', '上表中有標<span class="editable">藍色底線</span>者，可直接點擊編輯修改');
 define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', '管理員可直接點擊簡介進行修改');
