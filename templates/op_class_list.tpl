@@ -85,12 +85,11 @@
                         <span class="badge alert-info"><{$data.class_num}></span>
 
                         <!--是否啟用-->
-                        <{if $chk_time}>
-                            <{if $data.class_ischecked==1}>
-                                <span class="badge alert-success"><{$smarty.const._MD_KWCLUB_CLASS_ENABLE}></span>
-                            <{else}>
-                                <span class="badge alert-danger"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></span>
-                            <{/if}>
+                        <{if $data.class_ischecked==''}>
+                        <{elseif $data.class_ischecked==1}>
+                            <span class="badge alert-success"><{$smarty.const._MD_KWCLUB_CLASS_ENABLE}></span>
+                        <{elseif $data.class_ischecked==0}>
+                            <span class="badge alert-danger"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></span>
                         <{/if}>
 
                         <{if $smarty.session.isclubAdmin}>

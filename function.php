@@ -159,10 +159,10 @@ function check_class_reg($class_id = '')
     if (empty($class_id)) {
         return;
     }
-    $sql    = "select * from `" . $xoopsDB->prefix("kw_club_reg") . "`  where `class_id` = '{$class_id}'";
+    $sql    = "select count(*) from `" . $xoopsDB->prefix("kw_club_reg") . "`  where `class_id` = '{$class_id}'";
     $result = $xoopsDB->query($sql) or web_error($sql);
-    $data   = $xoopsDB->fetchArray($result);
-    return true;
+    list($count)   = $xoopsDB->fetchRow($result);
+    return $count;
 }
 
 //以流水號取得某筆kw_club_reg報名資料

@@ -42,7 +42,7 @@
         <div class="col-sm-5">
             <select class="form-control validate[required]" size="1" name="teacher_id" id="teacher_id" title="<{$smarty.const._MD_KWCLUB_TEACHER_NAME}>">
                 <{foreach from=$arr_teacher key="tid" item="teacher" }>
-                    <option value="<{$tid}>" <{if ($tid==$uid and $class_id=='') or ($tid==$teacher_id and $class_id!='')}>selected<{/if}>><{$teacher.name}> (<{$teacher.email}>)</option>
+                    <option value="<{$tid}>" <{if ($tid==$uid and $class_id=='') or ($tid==$teacher_id and $class_id=='' and $class_num!='')}>selected<{/if}>><{$teacher.name}> (<{$teacher.email}>)<{$tid}>=<{$uid}>=<{$teacher_id}>=<{$class_num}>=<{$class_id}></option>
                 <{/foreach}>
             </select>
         </div>

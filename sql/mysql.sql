@@ -38,9 +38,10 @@ CREATE TABLE `kw_club_place` (
 PRIMARY KEY  (`place_id`)
 ) ENGINE=MyISAM;
 INSERT INTO `kw_club_place` (`place_id`, `place_title`, `place_desc`, `place_sort`, `place_enable`) VALUES
-(1,	'圖書館',	'',	0,	'1'),
+(1,	'圖書室',	'',	0,	'1'),
 (2,	'視聽教室',	'',	3,	'1'),
-(3,	'操場',	'',	1,	'1');
+(3,	'電腦教室',	'',	1,	'1'),
+(4,	'操場',	'',	1,	'1');
 
 
 CREATE TABLE `kw_club_class` (
@@ -62,7 +63,7 @@ CREATE TABLE `kw_club_class` (
   `class_fee` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '額外費用',
   `class_regnum` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '報名人數',
   `class_note` varchar(255) NOT NULL COMMENT '社團備註',
-  `class_ischecked` enum('1','0') NOT NULL DEFAULT '0' COMMENT '是否開班',
+  `class_ischecked` enum('1','0') NOT NULL COMMENT '是否開班',
   `class_isopen` enum('1','0') NOT NULL DEFAULT '1' COMMENT '是否啟用',
   `class_desc` text NOT NULL COMMENT '社團簡介',
   `class_uid` mediumint(9) unsigned NOT NULL COMMENT '發佈者',

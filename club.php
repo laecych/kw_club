@@ -95,22 +95,19 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     //判斷修改or新增(取預設值)
     if (!empty($class_id)) {
         $DBV = get_club_class($class_id);
-        //設定 class_id 欄位的預設值
-
         $class_num = $DBV['class_num'];
 
-    } else if (!empty($class_num)) {
+    } elseif (!empty($class_num)) {
         $DBV = js_class($class_num);
-        if ($club_year) {
-            $DBV['club_year']       = $club_year;
-            $DBV['class_date_open'] = $DBV['class_date_close'] = '';
-        }
-        $class_id = "";
+
+        $DBV['club_year']       = $club_year;
+        $DBV['class_date_open'] = $DBV['class_date_close'] = $DBV['class_ischecked'] = $class_id = '';
+
     } else {
         $DBV       = array();
-        $class_id  = "";
-        $class_num = "";
+        $class_id  = $class_num = "";
     }
+
     $xoopsTpl->assign('class_id', $class_id);
     $xoopsTpl->assign('class_num', $class_num);
 
@@ -219,8 +216,8 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $xoopsTpl->assign('class_date_end', $class_date_end);
 
     //設定 class_ischecked 欄位的預設值
-    $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
-    $xoopsTpl->assign('class_ischecked', $class_ischecked);
+    // $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
+    // $xoopsTpl->assign('class_ischecked', $class_ischecked);
 
     //設定 class_isopen 欄位的預設值
     $class_isopen = !isset($DBV['class_isopen']) ? "1" : $DBV['class_isopen'];
@@ -336,6 +333,7 @@ function insert_class()
         `class_fee`,
         `class_note`,
         `class_isopen`,
+        `class_ischecked`,
         `class_desc`,
         `class_uid`,
         `class_datetime`,
@@ -358,6 +356,7 @@ function insert_class()
         '{$class_fee}',
         '{$class_note}',
         '{$class_isopen}',
+        '',
         '{$class_desc}',
         '{$uid}',
         '{$today}',
@@ -464,8 +463,9 @@ function delete_class($class_id)
     } else if (check_class_reg($class_id)) {
         redirect_header("club.php", 3, _MD_KWCLUB_NOT_EMPTY_CLASS);
     } else {
-        $and_uid = '';
-        if ($_SESSION['isclubUser']) {
+        if ($_SESSION['isclubAdmin']) {
+            $and_uid = '';
+        } elseif ($_SESSION['isclubUser']) {
             // 只能刪除自己的
             $uid     = $xoopsUser->uid();
             $and_uid = "and `class_uid = '{$uid}'";
