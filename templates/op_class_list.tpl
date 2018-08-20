@@ -203,7 +203,6 @@
             <{/foreach}>
         </div>
 
-        <{$bar}>
     <{else}>
         <div class="alert alert-warning">
             <{$smarty.const._MD_KWCLUB_EMPTY_CLUB}>

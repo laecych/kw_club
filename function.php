@@ -6,41 +6,12 @@ if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
 }
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
-$semester_name_arr = array('00' => _MD_KWCLUB_YEAR_TEXT_00, '01' => _MD_KWCLUB_YEAR_TEXT_01, '11' => _MD_KWCLUB_YEAR_TEXT_11, '02' => _MD_KWCLUB_YEAR_TEXT_02);
-$grade_name_arr    = array(_MD_KWCLUB_GRADE0, _MD_KWCLUB_GRADE1, _MD_KWCLUB_GRADE2, _MD_KWCLUB_GRADE3, _MD_KWCLUB_GRADE4, _MD_KWCLUB_GRADE5, _MD_KWCLUB_GRADE6, _MD_KWCLUB_GRADE7, _MD_KWCLUB_GRADE8, _MD_KWCLUB_GRADE9);
+
 
 //其他自訂的共同的函數
+include_once "function_block.php";
 
-//從json中取得社團期別資料（會在header.php中讀取）
-function get_club_info($club_year = "")
-{
-    global $xoopsDB, $xoopsTpl;
-    if (empty($_SESSION['club_year']) or $club_year != $_SESSION['club_year']) {
-        if ($club_year) {
-            $sql = "select * from `" . $xoopsDB->prefix("kw_club_info") . "` where `club_enable`='1' and `club_year`='{$club_year}'";
-        } else {
-            $sql = "select * from `" . $xoopsDB->prefix("kw_club_info") . "` where `club_enable`='1' order by club_start_date desc limit 0,1";
-        }
-        // die($sql);
-        $result    = $xoopsDB->query($sql) or web_error($sql);
-        $club_info = $xoopsDB->fetchArray($result);
 
-        $_SESSION['club_year']          = $club_info['club_year'];
-        $_SESSION['club_start_date']    = $club_info['club_start_date'];
-        $_SESSION['club_start_date_ts'] = strtotime($club_info['club_start_date']);
-        $_SESSION['club_end_date']      = $club_info['club_end_date'];
-        $_SESSION['club_end_date_ts']   = strtotime($club_info['club_end_date']);
-        $_SESSION['club_isfree']        = $club_info['club_isfree'];
-        $_SESSION['club_backup_num']    = $club_info['club_backup_num'];
-    } else {
-        $club_info['club_year']       = $_SESSION['club_year'];
-        $club_info['club_start_date'] = $_SESSION['club_start_date'];
-        $club_info['club_end_date']   = $_SESSION['club_end_date'];
-        $club_info['club_isfree']     = $_SESSION['club_isfree'];
-        $club_info['club_backup_num'] = $_SESSION['club_backup_num'];
-    }
-    return $club_info;
-}
 
 //以流水號取得某筆資料
 function get_cate($cate_id, $type)
@@ -180,58 +151,6 @@ function get_reg($reg_sn = '')
     return $data;
 }
 
-//取得所有社團類型陣列
-function get_cate_all()
-{
-    global $xoopsDB;
-    $sql      = "select * from `" . $xoopsDB->prefix("kw_club_cate") . "`";
-    $result   = $xoopsDB->query($sql) or web_error($sql);
-    $data_arr = array();
-    while ($data = $xoopsDB->fetchArray($result)) {
-        $cate_id            = $data['cate_id'];
-        $data_arr[$cate_id] = $data;
-    }
-    return $data_arr;
-}
-
-//取得所有社團地點陣列
-function get_place_all()
-{
-    global $xoopsDB;
-    $sql      = "select * from `" . $xoopsDB->prefix("kw_club_place") . "`";
-    $result   = $xoopsDB->query($sql) or web_error($sql);
-    $data_arr = array();
-    while ($data = $xoopsDB->fetchArray($result)) {
-        $cate_id            = $data['place_id'];
-        $data_arr[$cate_id] = $data;
-    }
-    return $data_arr;
-}
-
-//取得所有社團老師陣列
-function get_teacher_all()
-{
-    global $xoopsDB;
-    $member_handler = xoops_gethandler('member');
-    //開課教師
-    $groupid = group_id_from_name(_MD_KWCLUB_TEACHER_GROUP);
-    $sql     = "select b.* from `" . $xoopsDB->prefix("groups_users_link") . "` as a
-    join " . $xoopsDB->prefix("users") . " as b on a.`uid`=b.`uid`
-    where a.`groupid`='{$groupid}' order by b.`name`";
-    $result      = $xoopsDB->query($sql) or web_error($sql);
-    $arr_teacher = array();
-    while ($teacher = $xoopsDB->fetchArray($result)) {
-        $uid            = $teacher['uid'];
-        $user           = $member_handler->getUser($uid);
-        $user_avatar    = $user->user_avatar();
-        $teacher['bio'] = $teacher['bio'];
-        $teacher['pic'] = ($user_avatar != 'blank.gif') ? XOOPS_URL . "/uploads/" . $user_avatar : XOOPS_URL . "/uploads/avatars/blank.gif";
-
-        $arr_teacher[$uid] = $teacher;
-    }
-    return $arr_teacher;
-}
-
 //取得所有社團資料陣列
 function get_club_class_all()
 {
@@ -251,21 +170,6 @@ function get_club_class_all()
     } else {
         return _MD_KWCLUB_NEED_CLUB_YEAR;
     }
-}
-
-//取得社團開課所有期別
-function get_all_year($only_enable = true)
-{
-    global $xoopsDB;
-    $and_enable = $only_enable ? "and club_enable='1'" : '';
-    $sql        = "select club_year from `" . $xoopsDB->prefix("kw_club_info") . "` where 1 $and_enable order by `club_year` desc";
-    $result     = $xoopsDB->query($sql) or web_error($sql);
-    $arr_year   = array();
-    while (list($club_year) = $xoopsDB->fetchRow($result)) {
-        $club_year_text       = club_year_text($club_year);
-        $arr_year[$club_year] = $club_year_text;
-    }
-    return $arr_year;
 }
 
 //取得學期
@@ -439,15 +343,6 @@ function delete_reg()
     return $class_id;
 }
 
-//根據名稱找群組編號
-function group_id_from_name($group_name = "")
-{
-    global $xoopsDB;
-    $sql           = "select groupid from " . $xoopsDB->prefix("groups") . " where `name`='{$group_name}'";
-    $result        = $xoopsDB->queryF($sql) or web_error($sql);
-    list($groupid) = $xoopsDB->fetchRow($result);
-    return $groupid;
-}
 
 //判斷身份
 function isclub($group_name = '')
@@ -467,38 +362,6 @@ function isclub($group_name = '')
     return false;
 }
 
-//檢查是否為報名時間
-function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_end_date = '')
-{
-    $today              = time();
-    $club_start_date_ts = empty($club_start_date) ? $_SESSION['club_start_date_ts'] : strtotime($club_start_date);
-    $club_end_date_ts   = empty($club_end_date) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
-
-    if (($only_end and $club_end_date_ts < $today) or ($club_start_date_ts > $today || $club_end_date_ts < $today)) {
-        if ($mode == 'return') {
-            return false;
-        } else {
-            if ($only_end) {
-                redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
-            } else {
-                redirect_header("index.php", 5, _MD_KWCLUB_NOT_REG_TIME . " {$club_start_date} ~ {$club_end_date}");
-            }
-        }
-    } else {
-        return true;
-    }
-
-}
-
-//將期別編號轉為文字
-function club_year_text($club_year = '')
-{
-    global $semester_name_arr;
-    $year          = substr($club_year, 0, 3);
-    $st            = substr($club_year, -2);
-    $club_year_text = $year . _MD_KWCLUB_SCHOOL_YEAR . $semester_name_arr[$st];
-    return $club_year_text;
-}
 
 //取得報名資料
 function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
