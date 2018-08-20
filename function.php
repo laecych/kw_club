@@ -478,13 +478,13 @@ function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_en
         if ($mode == 'return') {
             return false;
         } else {
-            if($only_end){
-            redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
-            }else{
+            if ($only_end) {
+                redirect_header("index.php", 5, _MD_KWCLUB_OVER_END_TIME);
+            } else {
                 redirect_header("index.php", 5, _MD_KWCLUB_NOT_REG_TIME . " {$club_start_date} ~ {$club_end_date}");
             }
         }
-    }else{
+    } else {
         return true;
     }
 
@@ -561,6 +561,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
         //將是/否選項轉換為圖示
         $all['reg_isfee_pic'] = $all['reg_isfee'] == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_PAID . '" title="' . _MD_KWCLUB_PAID . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _MD_KWCLUB_NOT_PAY . '" title="' . _MD_KWCLUB_NOT_PAY . '">';
         $all['class_pay']     = $all['class_money'] + $all['class_fee'];
+        $all['reg_part_name'] = substr_replace($all['reg_name'], "○", 3, 3);
 
         $all_reg[] = $all;
 

@@ -1,97 +1,120 @@
 
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-        <tr class="info">
+<{if $all_reg}>
+    <div class="vtable">
+        <ul class="vhead">
             <!--社團名稱-->
             <{if !$class_id}>
-                <th class="text-center">
+                <li class="w2">
                     <{$smarty.const._MD_KWCLUB_CLASS_TITLE}>
-                </th>
+                </li>
             <{/if}>
             <!--報名者姓名-->
-            <th class="text-center">
+            <li class="w1">
                 <{$smarty.const._MD_KWCLUB_REG_NAME}>
-            </th>
+            </li>
             <!--報名者班級-->
-            <th class="text-center">
+            <li class="w1">
                 <{$smarty.const._MD_KWCLUB_REG_CLASS}>
-            </th>
+            </li>
 
-            <{if $smarty.session.isclubAdmin}>
-                <!--是否後補-->
-                <th class="text-center">
-                    <{$smarty.const._MD_KWCLUB_REG_ISREG}>
-                </th>
+            <!--是否候補-->
+            <li class="w1">
+                <{$smarty.const._MD_KWCLUB_REG_ISREG}>
+            </li>
+
+            <{if $smarty.session.isclubAdmin || $uid == $class_uid }>
                 <!--是否繳費-->
-                <th class="text-center">
+                <li>
                     <{$smarty.const._MD_KWCLUB_REG_ISFEE}>
-                </th>
+                </li>
                 <!--報名者ID-->
-                <th class="text-center">
+                <li class="w1">
                     <{$smarty.const._MD_KWCLUB_REG_UID}>
-                </th>
-                <th class="text-center">
+                </li>
+                <li class="w1">
                     <{$smarty.const._TAD_FUNCTION}>
-                </th>
+                </li>
             <{/if}>
-        </tr>
-    </thead>
-    <tbody>
+        </ul>
+
         <{foreach from=$all_reg item=data}>
-            <tr>
+            <ul>
                 <!--社團名稱-->
                 <{if !$class_id}>
-                    <td>
+                    <li class="vcell"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></li>
+                    <li class="vm w2">
                         <a href="index.php?class_id=<{$data.class_id}>" data-toggle="tooltip" data-placement="bottom" title="<{$data.class_id}>"><{$data.class_title}></a>
-                    </td>
+                    </li>
                 <{/if}>
 
-                <td class="text-center">
-                    <span class="editable" id="reg_name_<{$data.reg_sn}>"><{$data.reg_name}></span>
-                </td>
-
-                <td class="text-center">
-                    <{if $data.reg_grade==$smarty.const._MD_KWCLUB_KG}>
-                        <span class="editable" id="reg_grade_<{$data.reg_sn}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></span><span class="editable" id="reg_class_<{$data.reg_sn}>"><{$data.reg_class}></span>
+                <!--報名者姓名-->
+                <li class="vcell text-center"><{$smarty.const._MD_KWCLUB_REG_NAME}></li>
+                <li class="vm w1 text-center">
+                    <{if $smarty.session.isclubAdmin || $uid == $class_uid }>
+                        <span class="editable" id="reg_name_<{$data.reg_sn}>"><{$data.reg_name}></span>
                     <{else}>
-                        <span class="editable" id="reg_grade_<{$data.reg_sn}>"><{$data.reg_grade}><{$smarty.const._MD_KWCLUB_G}></span><span class="editable" id="reg_class_<{$data.reg_sn}>"><{$data.reg_class}></span>
+                        <span><{$data.reg_part_name}></span>
                     <{/if}>
-                </td>
+                </li>
 
-                <{if $smarty.session.isclubAdmin}>
-                    <td class="text-center">
-                        <{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}>
-                            <span class="editable" id="reg_isreg_<{$data.reg_sn}>" style='color: rgb(6, 2, 238)'><{$data.reg_isreg}></span>
+                <!--報名者班級-->
+                <li class="vm w1 text-center">
+                    <{if $data.reg_grade==$smarty.const._MD_KWCLUB_KG}>
+                        <span <{if $smarty.session.isclubAdmin || $uid == $class_uid }>class="editable" id="reg_grade_<{$data.reg_sn}><{/if}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></span><span class="editable" id="reg_class_<{$data.reg_sn}>"><{$data.reg_class}></span>
+                    <{else}>
+                        <span <{if $smarty.session.isclubAdmin || $uid == $class_uid }>class="editable" id="reg_grade_<{$data.reg_sn}><{/if}>"><{$data.reg_grade}><{$smarty.const._MD_KWCLUB_G}></span><span <{if $smarty.session.isclubAdmin || $uid == $class_uid }>class="editable" id="reg_class_<{$data.reg_sn}>"<{/if}>><{$data.reg_class}></span>
+                    <{/if}>
+                </li>
+
+                <!--是否候補-->
+                <li class="vm w1 text-center">
+                    <{if $smarty.session.isclubAdmin || $uid == $class_uid}>
+                        <span class="editable" id="reg_isreg_<{$data.reg_sn}>" style='color:<{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}> rgb(6, 2, 238)<{else}>rgb(35, 97, 35)<{/if}>'><{$data.reg_isreg}></span>
+                    <{else}>
+                        <{if $chk_time}>
+                            <{if $data.reg_isfee==1}>
+                                <{$smarty.const._MD_KWCLUB_PAID}>
+                            <{else}>
+                                <{$smarty.const._MD_KWCLUB_NOT_PAY}>
+                            <{/if}>
                         <{else}>
-                            <span class="editable" id="reg_isreg_<{$data.reg_sn}>" style='color: rgb(35, 97, 35)'><{$data.reg_isreg}></span>
+                            <span style='color:<{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}> rgb(6, 2, 238)<{else}>rgb(35, 97, 35)<{/if}>'><{$data.reg_isreg}></span>
                         <{/if}>
-                    </td>
+                    <{/if}>
 
-                    <td class="text-center">
+                </li>
+
+                <{if $smarty.session.isclubAdmin || $uid == $class_uid }>
+                    <!--是否繳費-->
+                    <li class="vm text-center">
                         <a href="register.php?op=update_reg_isfee&amp;reg_isfee=<{if $data.reg_isfee==1}>0<{else}>1<{/if}>&amp;reg_sn=<{$data.reg_sn}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.reg_isfee==1}><{$smarty.const._MD_KWCLUB_NOT_PAY}><{else}><{$smarty.const._MD_KWCLUB_PAID}><{/if}>"><{$data.reg_isfee_pic}></a>
 
                         <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
-                    </td>
+                    </li>
 
-                    <td class="text-center">
+                    <!--報名者ID-->
+                    <li class="vm w1 text-center">
                         <span class="editable" id="reg_uid_<{$data.reg_sn}>"><{$data.reg_uid}></span>
-                    </td>
+                    </li>
 
-                    <td class="text-center">
+                    <!--功能-->
+                    <li class="vm w1 text-center">
                         <a href="index.php?reg_uid=<{$data.reg_uid}>&op=myclass" class="btn btn-xs btn-info"  data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>"><{$smarty.const._MD_KWCLUB_DETIAL}></a>
                         <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
-                    </td>
+                    </li>
                 <{/if}>
-            </tr>
-        <{foreachelse}>
-            <tr>
-                <td colspan=7><{$smarty.const._MD_KWCLUB_EMAPY_REGISTER}></td>
-            </tr>
+            </ul>
         <{/foreach}>
-    </tbody>
-</table>
+    </div>
 
-<div class="text-right" style="font-size:0.9em;margin: 2px auto 30px;color:rgb(97, 29, 63);">
-    <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-    <{$smarty.const._MD_KWCLUB_CLICK_TO_EDIT_DESC}>
-</div>
+    <{if $smarty.session.isclubAdmin || $uid == $class_uid }>
+        <div class="text-right" style="font-size:0.9em;margin: 2px auto 30px;color:rgb(97, 29, 63);">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <{$smarty.const._MD_KWCLUB_CLICK_TO_EDIT_DESC}>
+        </div>
+    <{/if}>
+<{else}>
+    <div class="alert alert-danger">
+        <{$smarty.const._MD_KWCLUB_EMAPY_REGISTER}>
+    </div>
+<{/if}>

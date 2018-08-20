@@ -15,7 +15,7 @@
     <{/if}>
 
     <p class="text-center" style="font-size: 0.6em; margin: 30px auto 5px; padding:20px; border-top: 1px dashed #5f8aca;">
-        <span class="club_year_text"><{$club_year_text}></span>
+        <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year_text}></a>
         <{$smarty.const._MD_KWCLUB_APPLY_DATE}><{$smarty.const._TAD_FOR}><span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
     </p>
 </h2>
@@ -155,7 +155,7 @@
 
 <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser }>
     <div class="alert alert-success text-center">
-        <a href="club.php" class="btn btn-primary" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
+        <a href="club.php?club_year=<{$club_year}>" class="btn btn-primary" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>>
             <i class="fa fa-plus" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_ADD_CLUB}>
         </a>
@@ -181,14 +181,11 @@
 
 <br>
 
-<{if $smarty.session.isclubAdmin || $uid == $class_uid }>
-    <h3>
-        <span class="club_year_text"><{$club_year_text}></span>
-        <span style="color:green"><{$class_title}></span>
-        <{$smarty.const._MD_KWCLUB_REGISTERED_LIST}>
-        <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
-    </h3>
+<h3>
+    <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year_text}></a>
+    <span style="color:green"><{$class_title}></span>
+    <{$smarty.const._MD_KWCLUB_REGISTERED_LIST}>
+    <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
+</h3>
 
-    <{includeq file="$xoops_rootpath/modules/kw_club/templates/sub_kw_club_reg_list_table.tpl"}>
-
-<{/if}>
+<{includeq file="$xoops_rootpath/modules/kw_club/templates/sub_kw_club_reg_list_table.tpl"}>

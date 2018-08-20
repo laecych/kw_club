@@ -13,6 +13,8 @@ $class_id   = system_CleanVars($_REQUEST, 'class_id', '', 'int');
 $place_id   = system_CleanVars($_REQUEST, 'place_id', '', 'int');
 $teacher_id = system_CleanVars($_REQUEST, 'teacher_id', '', 'int');
 $year       = system_CleanVars($_REQUEST, 'year', '', 'int');
+$club_year  = system_CleanVars($_REQUEST, 'club_year', '', 'int');
+$class_num  = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
 switch ($op) {
 
@@ -35,19 +37,19 @@ switch ($op) {
 
     case "class_enable":
         class_ischecked($class_id, 1);
-        header("location: index.php");
+        header("location: {$_SERVER['HTTP_REFERER']}");
         exit;
 
     case "class_unable":
         class_ischecked($class_id, 0);
-        header("location: index.php");
+        header("location: {$_SERVER['HTTP_REFERER']}");
         exit;
 
     default:
         if (!empty($class_id)) {
-            class_form($class_id);
+            class_form($class_id, $club_year, $class_num);
         } else {
-            class_form();
+            class_form('', $club_year, $class_num);
         }
         $op = 'class_form';
 
@@ -59,11 +61,12 @@ switch ($op) {
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 include_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/
 
-function class_form($class_id = '')
+function class_form($class_id = '', $club_year = '', $class_num = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $xoopsModuleConfig, $grade_name_arr;
 
@@ -81,12 +84,10 @@ function class_form($class_id = '')
         redirect_header("index.php", 3, _MD_KWCLUB_FORBBIDEN);
     }
 
-    $club_info = get_club_info();
+    $club_info = get_club_info($club_year);
     if (!isset($club_info['club_year'])) {
         redirect_header("index.php", 3, _MD_KWCLUB_NEED_CONFIG);
     }
-
-    $class_num = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
     //取得此期已有的class_num
     $arr_num = get_club_class_num();
@@ -99,7 +100,11 @@ function class_form($class_id = '')
         $class_num = $DBV['class_num'];
 
     } else if (!empty($class_num)) {
-        $DBV      = js_class($class_num);
+        $DBV = js_class($class_num);
+        if ($club_year) {
+            $DBV['club_year']       = $club_year;
+            $DBV['class_date_open'] = $DBV['class_date_close'] = '';
+        }
         $class_id = "";
     } else {
         $DBV       = array();

@@ -43,6 +43,7 @@ switch ($op) {
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 include_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/

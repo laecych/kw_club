@@ -58,6 +58,7 @@ switch ($op) {
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 include_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
@@ -290,7 +291,8 @@ function myclass($reg_uid = "", $club_year = "")
     $xoopsTpl->assign('reg_uid', $reg_uid);
 
     //超過報名截止時間即停止報名及修改
-    $xoopsTpl->assign('can_operate', chk_time('return', true));
+    // $xoopsTpl->assign('can_operate', chk_time('return', true));
+    $xoopsTpl->assign('can_operate', true);
 }
 
 //顯示某一個社團
@@ -370,7 +372,8 @@ function class_show($class_id = '')
     //檢查報名是否可行
     $xoopsTpl->assign('chk_time', chk_time('return'));
     //超過報名截止時間即停止報名及修改
-    $xoopsTpl->assign('can_operate', chk_time('return', true));
+    // $xoopsTpl->assign('can_operate', chk_time('return', true));
+    $xoopsTpl->assign('can_operate', true);
 
     $is_full = false;
     if (($all['class_member'] + $_SESSION['club_backup_num']) <= $all['class_regnum']) {
@@ -487,13 +490,15 @@ function class_list($club_year = '')
     //檢查報名是否可行
     $xoopsTpl->assign('chk_time', chk_time('return'));
     //超過報名截止時間即停止報名及修改
-    $xoopsTpl->assign('can_operate', chk_time('return', true));
+    // $xoopsTpl->assign('can_operate', chk_time('return', true));
+    $xoopsTpl->assign('can_operate', true);
 
     //已有設定社團期別
     if (!empty($club_year)) {
         //社團列表
+        $and_enable=$_SESSION['isclubAdmin']?'':"and class_isopen='1'";
         $myts   = MyTextSanitizer::getInstance();
-        $sql    = "select * from `" . $xoopsDB->prefix("kw_club_class") . "` where `club_year`= '{$club_year}' order by class_num ";
+        $sql    = "select * from `" . $xoopsDB->prefix("kw_club_class") . "` where `club_year`= '{$club_year}' $and_enable order by class_num ";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $total  = $xoopsDB->getRowsNum($result);
         $xoopsTpl->assign('total', $total);

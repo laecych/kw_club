@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="class_num" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_PICK_CLUB}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
-            <select class="form-control" size="1" name="class_num" id="class_num" title="<{$smarty.const._MD_KWCLUB_CLASS_NUM}>" onChange="location.href='club.php?class_num='+this.value">
+            <select class="form-control" size="1" name="class_num" id="class_num" title="<{$smarty.const._MD_KWCLUB_CLASS_NUM}>" onChange="location.href='club.php?club_year=<{$club_year}>&class_num='+this.value">
                 <{if $class_id==""}>
                     <option value="<{$num}>"><{$smarty.const._MD_KWCLUB_ADD_CLASS}></option>
                     <{foreach from=$js_class key=id item=arr_n }>
@@ -173,17 +173,21 @@
     </div>
 
     <!-- 是否啟用 -->
-    <div class="form-group">
-        <label for="class_isopen" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_CLASS_ISOPEN}><span class="caption-required">*</span></label>
-        <div class="col-sm-10">
-            <label class="radio-inline">
-                <input type='radio' name='class_isopen' id='class_isopen1' title='<{$smarty.const._YES}>' value='1' <{if $class_isopen=='1'}>checked<{/if}>><{$smarty.const._YES}>
-            </label>
-            <label class="radio-inline">
-                <input type='radio' name='class_isopen' id='class_isopen2' title='<{$smarty.const._NO}>' value='0' <{if $class_isopen!='1'}>checked<{/if}>><{$smarty.const._NO}>
-            </label>
+    <{if $smarty.session.isclubAdmin}>
+        <div class="form-group">
+            <label for="class_isopen" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_CLASS_ISOPEN}><span class="caption-required">*</span></label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type='radio' name='class_isopen' id='class_isopen1' title='<{$smarty.const._YES}>' value='1' <{if $class_isopen!='0'}>checked<{/if}>><{$smarty.const._YES}>
+                </label>
+                <label class="radio-inline">
+                    <input type='radio' name='class_isopen' id='class_isopen2' title='<{$smarty.const._NO}>' value='0' <{if $class_isopen=='0'}>checked<{/if}>><{$smarty.const._NO}>
+                </label>
+            </div>
         </div>
-    </div>
+    <{else}>
+        <input type="hidden" name="class_isopen" id="class_isopen" value="<{$class_isopen}>">
+    <{/if}>
 
     <!-- 社團簡介 -->
     <div class="form-group">

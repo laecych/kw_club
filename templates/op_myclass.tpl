@@ -88,7 +88,7 @@
                             <{$data.reg_datetime}>
                         </td>
 
-                        <!-- 是否後補 -->
+                        <!-- 是否候補 -->
                         <td nowrap class="text-center">
                             <{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}>
                                 <span style='color: rgb(6, 2, 238)'><{$data.reg_isreg}></span>
@@ -103,8 +103,8 @@
                     </tr>
                 <{/foreach}>
                 <tr>
-                    <td colspan="2" align='center'><{$smarty.const._MD_KWCLUB_PAY_TOTAL}></td>
-                    <td  colspan="6" align='right'>
+                    <td colspan="2" align="center"><{$smarty.const._MD_KWCLUB_PAY_TOTAL}></td>
+                    <td  colspan="6" align="right">
                         <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$money:$in_money:$un_money}>
                     </td>
                 </tr>

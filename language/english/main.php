@@ -247,15 +247,15 @@ define('_MD_KWCLUB_CLASS_ENABLE_DESC', '點擊按鈕後，狀態變成正式開�
 define('_MD_KWCLUB_CLASS_UNABLE_DESC', '點擊按鈕後，狀態改成不開班');
 
 define('_MD_KWCLUB_FULL_REGISTRATION', '報名額滿');
-define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名後補');
+define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名候補');
 define('_MD_KWCLUB_SIGNUP', '我要報名');
-define('_MD_KWCLUB_NON_REGISTRATION_TIME', '非報名時間');
+define('_MD_KWCLUB_NON_REGISTRATION_TIME', '現在非報名時間');
 define('_MD_KWCLUB_REGISTERED_LIST', '已報名名單');
 
 define('_MD_KWCLUB_NUMBER_OF_RECRUITED', '招收');
 define('_MD_KWCLUB_NUMBER_OF_APPLICANTS', '已報');
 define('_MD_KWCLUB_FULL', '滿');
-define('_MD_KWCLUB_AFTER_REGISTRATION', '後補報名中...');
+define('_MD_KWCLUB_AFTER_REGISTRATION', '候補報名中...');
 define('_MD_KWCLUB_EDIT_TAECHER_NOTE', '欲修改教師名單，請至<a href="config.php#setupTab2" target="_blank">社團老師設定</a>頁面設定');
 
 define('_MD_KWCLUB_EDIT_CATE_NOTE', '欲修改社團類型，請至<a href="config.php#setupTab3" target="_blank">社團類型設定</a>頁面設定');
