@@ -173,8 +173,9 @@
                             <{if $data.class_ischecked!=1}>
                                 <a href="club.php?op=class_enable&class_id=<{$data.class_id}>" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_ENABLE_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_ENABLE}></a>
                             <{else}>
-                                <a href="club.php?op=class_unable&class_id=<{$data.class_id}>" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_UNABLE_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></a>
+                                <a href="club.php?op=class_unable&class_id=<{$data.class_id}>" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_UNABLE_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_UNABLE}></a>
                             <{/if}>
+                            <a href="club.php?op=class_blank&class_id=<{$data.class_id}>" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_CLASS_BLANK_DESC}>"><{$smarty.const._MD_KWCLUB_CLASS_BLANK}></a>
                         <{/if}>
 
                         <{if $smarty.session.isclubAdmin || $uid == $data.class_uid}>

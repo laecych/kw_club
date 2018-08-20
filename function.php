@@ -570,6 +570,8 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
         $jeditable->setSelectCol("#reg_grade_{$all['reg_sn']}", $file, "{ $grade_opt , 'selected':'{$all['reg_grade']}'}", "{reg_sn: {$all['reg_sn']} ,op : 'update_reg'}", _MD_KWCLUB_CLICK_TO_EDIT);
         $jeditable->setSelectCol("#reg_class_{$all['reg_sn']}", $file, "{ $class_opt , 'selected':'{$all['reg_grade']}'}", "{reg_sn: {$all['reg_sn']} ,op : 'update_reg'}", _MD_KWCLUB_CLICK_TO_EDIT);
         $jeditable->setTextCol("#reg_uid_{$all['reg_sn']}", $file, '100px', '1em', "{reg_sn: {$all['reg_sn']} ,op : 'update_reg'}", _MD_KWCLUB_CLICK_TO_EDIT);
+        $jeditable->setTextCol("#reg_parent_{$all['reg_sn']}", $file, '80px', '1em', "{reg_sn: {$all['reg_sn']} ,op : 'update_reg'}", _MD_KWCLUB_CLICK_TO_EDIT);
+        $jeditable->setTextCol("#reg_tel_{$all['reg_sn']}", $file, '100px', '1em', "{reg_sn: {$all['reg_sn']} ,op : 'update_reg'}", _MD_KWCLUB_CLICK_TO_EDIT);
     }
     $jeditable->render();
 

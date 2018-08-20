@@ -245,6 +245,8 @@ define('_MD_KWCLUB_CLASS_UNABLE', '不開班');
 define('_MD_KWCLUB_CLASS_UNDONE', '尚未報名完成');
 define('_MD_KWCLUB_CLASS_ENABLE_DESC', '點擊按鈕後，狀態變成正式開班');
 define('_MD_KWCLUB_CLASS_UNABLE_DESC', '點擊按鈕後，狀態改成不開班');
+define('_MD_KWCLUB_CLASS_BLANK', '未定');
+define('_MD_KWCLUB_CLASS_BLANK_DESC', '點擊按鈕後，狀態改成空白');
 
 define('_MD_KWCLUB_FULL_REGISTRATION', '報名額滿');
 define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名候補');
@@ -274,3 +276,6 @@ define('_MD_KWCLUB_CAPTCHA_ERROR', '未通過驗證，無法儲存。');
 define('_MD_KWCLUB_CAPTCHA', '拉動驗證');
 
 define('_MD_KWCLUB_TEACHER_DESC', "<a href='" . XOOPS_URL . "/edituser.php?op=avatarform'>點此可上傳照片</a>，<a href='" . XOOPS_URL . "/edituser.php'>點此可編輯「個人介紹」</a>。");
+
+define('_MD_KWCLUB_REG_PARENT', '家長姓名');
+define('_MD_KWCLUB_REG_TEL', '家長聯絡電話');

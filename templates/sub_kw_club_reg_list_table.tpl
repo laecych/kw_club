@@ -1,6 +1,6 @@
 
 <{if $all_reg}>
-    <div class="vtable">
+    <div class="vtable" style="margin:10px auto 30px;">
         <ul class="vhead">
             <!--社團名稱-->
             <{if !$class_id}>
@@ -30,6 +30,14 @@
                 <!--報名者ID-->
                 <li class="w1">
                     <{$smarty.const._MD_KWCLUB_REG_UID}>
+                </li>
+                <!--家長-->
+                <li class="w1">
+                    <{$smarty.const._MD_KWCLUB_REG_PARENT}>
+                </li>
+                <!--電話-->
+                <li class="w1">
+                    <{$smarty.const._MD_KWCLUB_REG_TEL}>
                 </li>
                 <li class="w1">
                     <{$smarty.const._TAD_FUNCTION}>
@@ -95,6 +103,14 @@
                     <!--報名者ID-->
                     <li class="vm w1 text-center">
                         <span class="editable" id="reg_uid_<{$data.reg_sn}>"><{$data.reg_uid}></span>
+                    </li>
+                    <!--家長-->
+                    <li class="vm w1 text-center">
+                        <span class="editable" id="reg_parent_<{$data.reg_sn}>"><{$data.reg_parent}></span>
+                    </li>
+                    <!--電話-->
+                    <li class="vm w1 text-center">
+                        <span class="editable" id="reg_tel_<{$data.reg_sn}>"><{$data.reg_tel}></span>
                     </li>
 
                     <!--功能-->

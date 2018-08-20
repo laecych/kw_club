@@ -45,6 +45,11 @@ switch ($op) {
         header("location: {$_SERVER['HTTP_REFERER']}");
         exit;
 
+    case "class_blank":
+        class_ischecked($class_id, '');
+        header("location: {$_SERVER['HTTP_REFERER']}");
+        exit;
+
     default:
         if (!empty($class_id)) {
             class_form($class_id, $club_year, $class_num);
@@ -94,7 +99,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
 
     //判斷修改or新增(取預設值)
     if (!empty($class_id)) {
-        $DBV = get_club_class($class_id);
+        $DBV       = get_club_class($class_id);
         $class_num = $DBV['class_num'];
 
     } elseif (!empty($class_num)) {
@@ -104,8 +109,8 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
         $DBV['class_date_open'] = $DBV['class_date_close'] = $DBV['class_ischecked'] = $class_id = '';
 
     } else {
-        $DBV       = array();
-        $class_id  = $class_num = "";
+        $DBV      = array();
+        $class_id = $class_num = "";
     }
 
     $xoopsTpl->assign('class_id', $class_id);
@@ -476,7 +481,7 @@ function delete_class($class_id)
     }
 }
 
-function class_ischecked($class_id, $ischecked)
+function class_ischecked($class_id, $ischecked='')
 {
 
     global $xoopsDB;

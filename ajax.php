@@ -75,6 +75,10 @@ function update_reg($id, $value, $reg_sn)
         $col = 'reg_class';
     } elseif (strpos($id, 'reg_uid') !== false) {
         $col = 'reg_uid';
+    } elseif (strpos($id, 'reg_parent') !== false) {
+        $col = 'reg_parent';
+    } elseif (strpos($id, 'reg_tel') !== false) {
+        $col = 'reg_tel';
     } else {
         return;
     }

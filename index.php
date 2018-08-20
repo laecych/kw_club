@@ -70,7 +70,7 @@ function reg_form($class_id = "")
 
     if (empty($class_id)) {
         redirect_header($_SERVER['PHP_SELF'], 3, _MD_KWCLUB_NEED_CLASS_ID);
-    } elseif ($_SESSION['club_isfree'] == '0') {
+    } elseif ($_SESSION['club_isfree'] == '1') {
         $class = get_club_class($class_id);
         $xoopsTpl->assign('class', $class);
         $class_grade_arr = explode("、", $class['class_grade']);
@@ -154,17 +154,21 @@ function insert_reg()
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
     $reg_grade = $myts->addSlashes($_POST['reg_grade']);
     $reg_class = $myts->addSlashes($_POST['reg_class']);
+    $reg_parent = $myts->addSlashes($_POST['reg_parent']);
+    $reg_tel = $myts->addSlashes($_POST['reg_tel']);
     $reg_isreg = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
     $reg_ip    = get_ip();
 
     $sql = "INSERT INTO `" . $xoopsDB->prefix("kw_club_reg") . "` (
-        `class_id`,`reg_uid`, `reg_name`, `reg_grade`, `reg_class`, `reg_isreg`, `reg_datetime`,  `reg_ip`) VALUES
+        `class_id`,`reg_uid`, `reg_name`, `reg_grade`, `reg_class`, `reg_parent`, `reg_tel`, `reg_isreg`, `reg_datetime`,  `reg_ip`) VALUES
         (
             '{$class_id}',
             '{$reg_uid}',
             '{$reg_name}',
             '{$reg_grade}',
             '{$reg_class}',
+            '{$reg_parent}',
+            '{$reg_tel}',
             '{$reg_isreg}',
             NOW(),
             '{$reg_ip}'
