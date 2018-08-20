@@ -16,7 +16,7 @@
             <li class="vcell"><{$smarty.const._MD_KWCLUB_TEACHER_ID}></li>
             <li class="vm w1 text-center">
                 <a name="<{$uid}>">
-                    <img src="<{$tea.pic}>" alt="<{$tea.name}>" style="width: 72px;">
+                    <img src="<{$tea.pic}>" alt="<{$tea.name}>" class="img-responsive">
                 </a>
             </li>
             <li class="vm w1 text-center">

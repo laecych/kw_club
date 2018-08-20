@@ -31,77 +31,65 @@
         <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
     </h3>
 
-    <table class="table table-bordered table-hover table-condensed">
-        <thead>
-            <tr class="success">
-                <th><{$smarty.const._MD_KWCLUB_CLASS_YEAR}></th>
-                <th><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></th>
-                <th><{$smarty.const._MD_KWCLUB_CLASS_MONEY}></th>
-                <th><{$smarty.const._MD_KWCLUB_REG_DATETIME}></th>
-                <th><{$smarty.const._MD_KWCLUB_REG_ISREG}></th>
-                <th><{$smarty.const._MD_KWCLUB_REG_ISFEE}></th>
-                <th><{$smarty.const._TAD_FUNCTION}></th>
-            </tr>
-        </thead>
+
         <{foreach from=$reg_all key=reg_uid item=reg}>
-            <tbody>
-                <tr>
-                    <th colspan=7>
-                        <span style="color:blue"><{$reg.name}></span><{$smarty.const._MD_KWCLUB_APPLY_RESULT}><small> (<{$reg_uid}>) </small>
-                    </th>
-                </tr>
 
+            <h3><span style="color:blue"><{$reg.name}></span><{$smarty.const._MD_KWCLUB_APPLY_RESULT}><small> (<{$reg_uid}>) </small></h3>
+
+            <div class="vtable">
+                <ul class="vhead">
+                    <li class="w3"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></li>
+                    <li class="w2"><{$smarty.const._MD_KWCLUB_CLASS_MONEY}></li>
+                    <li class="w2"><{$smarty.const._MD_KWCLUB_REG_DATETIME}></li>
+                    <li class="w1"><{$smarty.const._MD_KWCLUB_REG_ISREG}></li>
+                    <li class="w1"><{$smarty.const._MD_KWCLUB_REG_ISFEE}></li>
+                    <li class="w1"><{$smarty.const._TAD_FUNCTION}></li>
+                </ul>
                 <{foreach from=$reg.data key=class_id item=data}>
-                    <tr>
-                        <!--社團年度-->
-                        <td>
-                            <{$data.club_year}>
-                        </td>
-
-                        <td>
+                    <ul>
+                        <li class="vcell"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></li>
+                        <li class="vm w3"">
                             <a href="index.php?class_id=<{$data.class_id}>"> <{$data.class_title}></a>
-                        </td>
+                        </li>
 
                         <!--學費-->
-                        <td>
+                        <li class="vm w2 text-center">
                             <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
-                        </td>
+                        </li>
 
                         <!--報名時間-->
-                        <td>
+                        <li class="vm w2 text-center">
                             <{$data.reg_datetime}>
-                        </td>
+                        </li>
 
-                        <td>
+                        <li class="vm w1 text-center">
                             <{ if $data.reg_isreg==$smarty.const._MD_KWCLUB_OFFICIALLY_ENROLL}>
                                 <span style='color: rgb(6, 2, 238)'><{$data.reg_isreg}></span>
                             <{else}>
                                 <span style='color: rgb(35, 97, 35)'><{$data.reg_isreg}></span>
                             <{/if}>
-                        </td>
+                        </li>
 
-                        <td>
+                        <li class="vm w1 text-center">
                             <{ if $data.reg_isfee==1}>
                                 <span style='color: green'><{$smarty.const._MD_KWCLUB_PAID}></span>
                             <{else}>
                                 <span style='color: red'><{$smarty.const._MD_KWCLUB_NOT_PAY}></span>
                             <{/if}>
-                        </td>
+                        </li>
 
-                        <td>
+                        <li class="vm w1 text-center">
                             <{if !($today > $end_day) }>
                                 <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                             <{/if}>
-                        </td>
-                    </tr>
+                        </li>
+                    </ul>
                 <{/foreach}>
-                <tr>
-                    <td colspan="7" align='right'>
-                        <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$reg.money:$reg.in_money:$reg.un_money}>
-                    </td>
-                </tr>
-            </tbody>
+            </div>
+                <div class="text-right">
+                    <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$reg.money:$reg.in_money:$reg.un_money}>
+                </div>
+
         <{/foreach}>
-    </table>
 <{/if}>
