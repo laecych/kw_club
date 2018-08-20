@@ -82,6 +82,8 @@ CREATE TABLE `kw_club_reg` (
   `reg_name` varchar(255) NOT NULL  COMMENT '報名者姓名',
   `reg_grade` varchar(255) NOT NULL COMMENT '報名者年級',
   `reg_class` varchar(255) NOT NULL COMMENT '報名者班級',
+  `reg_parent` varchar(255) NOT NULL COMMENT '報名者家長',
+  `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話',
   `reg_datetime` datetime NOT NULL COMMENT '報名日期',
   `reg_isreg` enum('正取','備取') NOT NULL  DEFAULT '正取' COMMENT '是否候補',
   `reg_isfee` enum('1','0') NOT NULL  DEFAULT '0' COMMENT '是否繳費',

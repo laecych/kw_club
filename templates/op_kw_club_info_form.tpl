@@ -6,7 +6,7 @@
         <div class="col-sm-4">
             <{if $club_year}>
                 <div class="form-control-static">
-                    <{$club_year_txt}>
+                    <{$club_year_text}>
                     <input type="hidden" name="club_year" id="club_year" value="<{$club_year}>">
                 </div>
             <{else}>
@@ -47,21 +47,21 @@
 
     <!--
     <div class="form-group">
-        <label for="class_isopen" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_ISFREE}></label>
+        <label for="club_isfree" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_ISFREE}></label>
         <div class="col-sm-10">
             <label class="radio-inline">
-                <input type='radio' name='club_isfree' id='class_isopen1' title='<{$smarty.const._MD_KWCLUB_FREE_APPLY}>' value='0' <{if $club_isfree!=1}>checked<{/if}>>
+                <input type='radio' name='club_isfree' id='club_isfree1' title='<{$smarty.const._MD_KWCLUB_FREE_APPLY}>' value='0' <{if $club_isfree!=1}>checked<{/if}>>
                 <{$smarty.const._MD_KWCLUB_FREE_APPLY}><{$smarty.const._MD_KWCLUB_FREE_APPLY_DESC}>
             </label>
             <label class="radio-inline">
-                <input type='radio' name='club_isfree' id='class_isopen2' title='<{$smarty.const._MD_KWCLUB_LOGIN_APPLY}>' value='1' <{if $club_isfree==1}>checked<{/if}>>
+                <input type='radio' name='club_isfree' id='club_isfree2' title='<{$smarty.const._MD_KWCLUB_LOGIN_APPLY}>' value='1' <{if $club_isfree==1}>checked<{/if}>>
                 <{$smarty.const._MD_KWCLUB_LOGIN_APPLY}><{$smarty.const._MD_KWCLUB_LOGIN_APPLY_DESC}>
             </label>
         </div>
     </div>
     -->
     <!-- 報名方式：暫定為自由報名 -->
-    <input type='hidden' name='club_isfree' value='0'>
+    <input type='hidden' name='club_isfree' value='1'>
 
 
     <div class="form-group">

@@ -6,6 +6,9 @@ function xoops_module_update_kw_club(&$module, $old_version)
 
     mk_group(_MI_KWCLUB_ADMIN_GROUP, _MI_KWCLUB_ADMIN_GROUP . _MI_KWCLUB_GROUP_NOTE);
     mk_group(_MI_KWCLUB_TEACHER_GROUP, _MI_KWCLUB_TEACHER_GROUP . _MI_KWCLUB_GROUP_NOTE);
+    if (chk_chk1()) {
+        go_update1();
+    }
 
     return true;
 }
@@ -25,27 +28,28 @@ function mk_group($name = "", $description = "")
 }
 
 //檢查某欄位是否存在
-// function chk_chk1()
-// {
-//     global $xoopsDB;
-//     $sql    = "select count(`欄位`) from " . $xoopsDB->prefix("資料表");
-//     $result = $xoopsDB->query($sql);
-//     if (empty($result)) {
-//         return false;
-//     }
+function chk_chk1()
+{
+    global $xoopsDB;
+    $sql    = "select count(`reg_parent`) from " . $xoopsDB->prefix("kw_club_reg");
+    $result = $xoopsDB->query($sql);
+    if (empty($result)) {
+        return true;
+    }
 
-//     return true;
-// }
+    return false;
+}
 
 // //執行更新
-// function go_update1()
-// {
-//     global $xoopsDB;
-//     $sql = "ALTER TABLE " . $xoopsDB->prefix("資料表") . " ADD `欄位` smallint(5) NOT NULL";
-//     $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, mysql_error());
+function go_update1()
+{
+    global $xoopsDB;
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_reg") . " ADD `reg_parent` varchar(255) NOT NULL  COMMENT '報名者家長' after `reg_class`,
+    ADD `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話' after `reg_parent`";
+    $xoopsDB->queryF($sql) or web_error($sql);
 
-//     return true;
-// }
+    return true;
+}
 
 //建立目錄
 // function mk_dir($dir = "")

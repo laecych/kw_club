@@ -496,8 +496,8 @@ function club_year_text($club_year = '')
     global $semester_name_arr;
     $year          = substr($club_year, 0, 3);
     $st            = substr($club_year, -2);
-    $club_year_txt = $year . _MD_KWCLUB_SCHOOL_YEAR . $semester_name_arr[$st];
-    return $club_year_txt;
+    $club_year_text = $year . _MD_KWCLUB_SCHOOL_YEAR . $semester_name_arr[$st];
+    return $club_year_text;
 }
 
 //取得報名資料

@@ -126,8 +126,6 @@ function kw_club_info_list()
             $$k = $v;
         }
 
-        //將是/否選項轉換為圖示
-        $club_isfree_pic = $club_isfree == 1 ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
         //將 uid 編號轉換成使用者姓名（或帳號）
         $uid_name = XoopsUser::getUnameFromId($club_uid, 1);
@@ -205,9 +203,6 @@ function kw_club_info_form($club_id = '')
     $club_year = !isset($DBV['club_year']) ? '' : $DBV['club_year'];
     $xoopsTpl->assign('club_year', $club_year);
     $xoopsTpl->assign('club_year_text', club_year_text($club_year));
-    if ($club_year) {
-        $xoopsTpl->assign('club_year_txt', $club_year_text);
-    }
 
     //設定 club_start_date 欄位的預設值
     $club_start_date = !isset($DBV['club_start_date']) ? date("Y-m-d 08:00") : $DBV['club_start_date'];
