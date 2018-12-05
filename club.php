@@ -13,7 +13,7 @@ $class_id   = system_CleanVars($_REQUEST, 'class_id', '', 'int');
 $place_id   = system_CleanVars($_REQUEST, 'place_id', '', 'int');
 $teacher_id = system_CleanVars($_REQUEST, 'teacher_id', '', 'int');
 $year       = system_CleanVars($_REQUEST, 'year', '', 'int');
-$club_year  = system_CleanVars($_REQUEST, 'club_year', '', 'int');
+$club_year  = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $class_num  = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
 switch ($op) {
@@ -296,7 +296,7 @@ function insert_class()
     $myts = MyTextSanitizer::getInstance();
 
     $class_id         = (int) $_POST['class_id'];
-    $club_year        = (int) $_POST['club_year'];
+    $club_year        = $myts->addSlashes($_POST['club_year']);
     $class_num        = (int) $_POST['class_num'];
     $class_title      = $myts->addSlashes($_POST['class_title']);
     $cate_id          = (int) $_POST['cate_id'];
@@ -400,7 +400,7 @@ function update_class($class_id = '')
     $myts = MyTextSanitizer::getInstance();
 
     $class_id         = (int) $_POST['class_id'];
-    $club_year        = (int) $_POST['club_year'];
+    $club_year        = $myts->addSlashes($_POST['club_year']);
     $class_num        = (int) $_POST['class_num'];
     $class_title      = $myts->addSlashes($_POST['class_title']);
     $cate_id          = (int) $_POST['cate_id'];
@@ -481,7 +481,7 @@ function delete_class($class_id)
     }
 }
 
-function class_ischecked($class_id, $ischecked='')
+function class_ischecked($class_id, $ischecked = '')
 {
 
     global $xoopsDB;

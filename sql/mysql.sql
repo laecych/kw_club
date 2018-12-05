@@ -1,6 +1,6 @@
 CREATE TABLE `kw_club_info` (
   `club_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水號',
-  `club_year` smallint(6) unsigned NOT NULL COMMENT '社團年度',
+  `club_year` varchar(20) NOT NULL  default '' COMMENT '社團年度',
   `club_start_date` datetime NOT NULL COMMENT '報名起始日',
   `club_end_date` datetime NOT NULL COMMENT '報名終止日',
   `club_isfree` enum('1','0') NOT NULL DEFAULT '0' COMMENT '報名方式',
@@ -43,10 +43,21 @@ INSERT INTO `kw_club_place` (`place_id`, `place_title`, `place_desc`, `place_sor
 (3,	'電腦教室',	'',	1,	'1'),
 (4,	'操場',	'',	1,	'1');
 
+CREATE TABLE `kw_club_teacher` (
+  `teacher_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '教師編號',
+  `teacher_title` varchar(255) NOT NULL default '' COMMENT '教師標題',
+  `teacher_desc` varchar(255) NOT NULL default '' COMMENT '教師簡介',
+  `teacher_sort` smallint(6) unsigned NOT NULL default '0' COMMENT '教師排序',
+  `teacher_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
+PRIMARY KEY  (`teacher_id`)
+) ENGINE=MyISAM;
+INSERT INTO `kw_club_teacher` (`teacher_id`, `teacher_title`, `teacher_desc`, `teacher_sort`, `teacher_enable`) VALUES
+(1,	'張老師',	'電腦教學',	0,	'1');
+
 
 CREATE TABLE `kw_club_class` (
   `class_id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水號',
-  `club_year` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '社團年度',
+  `club_year` varchar(20) NOT NULL DEFAULT '' COMMENT '社團年度',
   `class_num` smallint(10) unsigned NOT NULL DEFAULT '0' COMMENT '社團編號',
   `cate_id` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '社團類型',
   `class_title` varchar(255) NOT NULL DEFAULT '' COMMENT '社團名稱',
@@ -72,7 +83,6 @@ CREATE TABLE `kw_club_class` (
   PRIMARY KEY (`class_id`),
   UNIQUE KEY `club_year_class_num` (`club_year`,`class_num`)
 ) ENGINE=MyISAM;
-
 
 
 CREATE TABLE `kw_club_reg` (

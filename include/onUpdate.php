@@ -9,6 +9,7 @@ function xoops_module_update_kw_club(&$module, $old_version)
     if (chk_chk1()) {
         go_update1();
     }
+    go_update2();
 
     return true;
 }
@@ -40,15 +41,49 @@ function chk_chk1()
     return false;
 }
 
+// function chk_chk2()
+// {
+//     global $xoopsDB;
+//     $sql    = "select count(`club_year`) from " . $xoopsDB->prefix("kw_club_info");
+//     $result = $xoopsDB->query($sql);
+//     if (empty($result)) {
+//         return true;
+//     }
+
+//     return false;
+// }
+
 // //執行更新
 function go_update1()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_reg") . " ADD `reg_parent` varchar(255) NOT NULL  COMMENT '報名者家長' after `reg_class`,
-    ADD `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話' after `reg_parent`";
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_reg") . " ADD `reg_parent` varchar(255) NOT NULL  COMMENT '報名者家長' after `reg_class`,  ADD `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話' after `reg_parent`";
     $xoopsDB->queryF($sql) or web_error($sql);
 
     return true;
+}
+
+function go_update2()
+{
+    global $xoopsDB;
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_info") . " CHANGE `club_year` `club_year` varchar(20) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `club_id`;";
+    $xoopsDB->queryF($sql) or web_error($sql);
+
+    $sql = " CREATE TABLE " . $xoopsDB->prefix("kw_club_teacher") . " (
+            `teacher_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '教師編號',
+            `teacher_title` varchar(255) NOT NULL default '' COMMENT '教師標題',
+            `teacher_desc` varchar(255) NOT NULL default '' COMMENT '教師簡介',
+            `teacher_sort` smallint(6) unsigned NOT NULL default '0' COMMENT '教師排序',
+            `teacher_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
+            PRIMARY KEY  (`teacher_id`)) ENGINE=MyISAM;";
+
+    $xoopsDB->queryF($sql) or web_error($sql);
+
+    $sql = "INSERT INTO `" . $xoopsDB->prefix("kw_club_teacher") . "` (`teacher_id`, `teacher_title`, `teacher_desc`, `teacher_sort`, `teacher_enable`) VALUES  (1,	'張老師',	'電腦教學',	0,	'1');";
+    $xoopsDB->queryF($sql) or web_error($sql);
+
+    return true;
+
 }
 
 //建立目錄

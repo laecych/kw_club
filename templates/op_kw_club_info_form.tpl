@@ -6,15 +6,19 @@
         <div class="col-sm-4">
             <{if $club_year}>
                 <div class="form-control-static">
-                    <{$club_year_text}>
+                    <{$club_year}>
                     <input type="hidden" name="club_year" id="club_year" value="<{$club_year}>">
                 </div>
             <{else}>
-                <select class="form-control validate[required]" name="club_year" id="club_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
+                    <input class='form-control validate[required]' type='text' name="club_year" id="club_year" title="
+                    <{$smarty.const._MD_KWCLUB_YEAR}>" value='<{$club_year}>' placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_YEAR}>">
+
+            <!--<select class="form-control validate[required]" name="club_year" id="club_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
                     <{foreach from=$arr_semester key=semester item=semester_opt}>
                         <option value="<{$semester}>" <{if $semester==$club_year}>selected<{/if}> <{if $semester_opt.disabled}>disabled<{/if}>><{$semester_opt.opt}></option>
                     <{/foreach}>
-                </select>
+                </select> 
+            vicky-->
             <{/if}>
         </div>
 
@@ -71,12 +75,16 @@
             <{$smarty.const._MD_KWCLUB_BACKUP_NUM}>
         </label>
         <div class="col-sm-4">
-            <select class="form-control validate[required]" size="1" class = 'form-control col-sm-6' name="club_backup_num" id="club_backup_num" title="<{$smarty.const._MD_KWCLUB_BACKUP_NUM}>">
+            <input class='form-control validate[required]' type='text' name="club_backup_num" id="club_backup_num" title="
+                    <{$smarty.const._MD_KWCLUB_BACKUP_NUM}>" value='<{$club_backup_num}>' placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_BACKUP_NUM}>">
+
+            <!-- <select class="form-control validate[required]" size="1" class = 'form-control col-sm-6' name="club_backup_num" id="club_backup_num" title="<{$smarty.const._MD_KWCLUB_BACKUP_NUM}>">
                 <{foreach from=$arr_num item=num}>
                     <option value="<{$num}>" <{if $club_backup_num==$num}>selected<{/if}>><{$num}>
                         <{$smarty.const._MD_KWCLUB_PEOPLE}></option>
                 <{/foreach}>
-            </select>
+            </select> 
+             vicky-->
         </div>
 
         <div class="col-sm-6">

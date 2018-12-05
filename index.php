@@ -8,9 +8,10 @@ include_once XOOPS_ROOT_PATH . "/header.php";
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op        = system_CleanVars($_REQUEST, 'op', '', 'string');
 $class_id  = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
+$class_enable = system_CleanVars($_REQUEST, 'class_enable', '', 'int');
 $cate_id   = system_CleanVars($_REQUEST, 'cate_id', '0', 'int');
 $uid       = system_CleanVars($_REQUEST, 'uid', '', 'string');
-$club_year = system_CleanVars($_REQUEST, 'club_year', '', 'int');
+$club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
 $reg_uid   = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
 
@@ -41,6 +42,11 @@ switch ($op) {
             header("location: {$_SERVER['PHP_SELF']}?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}");
         }
         exit;
+    
+    case "update_enable":
+        update_class_enable($class_id, $class_enable);
+        header("location: {$_SERVER['PHP_SELF']}");
+        exit;
 
     default:
         if ($class_id) {
@@ -70,7 +76,7 @@ function reg_form($class_id = "")
 
     if (empty($class_id)) {
         redirect_header($_SERVER['PHP_SELF'], 3, _MD_KWCLUB_NEED_CLASS_ID);
-    } elseif ($_SESSION['club_isfree'] == '1') {
+    } elseif ($_SESSION['club_isfree'] == '1') { //自由報名
         $class = get_club_class($class_id);
         $xoopsTpl->assign('class', $class);
         $class_grade_arr = explode("、", $class['class_grade']);
@@ -147,10 +153,16 @@ function insert_reg()
         redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_SAME_TIME);
     }
 
+    //檢查身分證字號或居留證
     $reg_uid = $myts->addSlashes($_POST['reg_uid']);
     if (!pid_check($reg_uid)) {
         redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_PID_WRONG);
     }
+    //檢查其他班級或年級資料値
+    if (empty($_POST['reg_grade']) &&  empty($_POST['reg_class'])) {
+        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_GC_WRONG);
+    }
+
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
     $reg_grade = $myts->addSlashes($_POST['reg_grade']);
     $reg_class = $myts->addSlashes($_POST['reg_class']);
@@ -249,7 +261,7 @@ function myclass($reg_uid = "", $club_year = "")
         $sql  = "select a.*, b.*, c.`club_end_date` from `" . $xoopsDB->prefix("kw_club_reg") . "` as a
         join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
         join `" . $xoopsDB->prefix("kw_club_info") . "` as c on b.`club_year` = c.`club_year`
-        where a.`reg_uid` = '{$reg_uid}'  and b.`club_year`={$club_year}";
+        where a.`reg_uid` = '{$reg_uid}'  and b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $total  = $xoopsDB->getRowsNum($result);
 
@@ -400,7 +412,7 @@ function class_show($class_id = '')
     $place_arr   = get_cate($place_id, 'place');
 
     //將是/否選項轉換為圖示
-    $class_isopen = ($class_isopen == 1) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+    $class_isopen_pic = ($class_isopen == 1) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
     //過濾讀出的變數值
     $class_num   = $myts->htmlSpecialChars($class_num);
@@ -442,6 +454,7 @@ function class_show($class_id = '')
     $xoopsTpl->assign('class_date_end', $class_date_end);
     $xoopsTpl->assign('class_ischecked', $class_ischecked);
     $xoopsTpl->assign('class_isopen', $class_isopen);
+    $xoopsTpl->assign('class_isopen_pic', $class_isopen_pic);
     $xoopsTpl->assign('class_desc', $class_desc);
     $xoopsTpl->assign('class_uid', $class_uid);
 
@@ -505,18 +518,102 @@ function teacher_list($club_year = "")
     }
 }
 
-function pid_check($pid)
+
+function pid_check($cardid)
 {
-    $iPidLen = strlen($pid);
-    if (!preg_match('/^[A-Za-z][1-2][0-9]{8}$/', $pid) && $iPidLen != 10) {
+    //先將字母數字存成陣列
+    $alphabet =['A'=>'10','B'=>'11','C'=>'12','D'=>'13','E'=>'14','F'=>'15','G'=>'16','H'=>'17','I'=>'34',
+                'J'=>'18','K'=>'19','L'=>'20','M'=>'21','N'=>'22','O'=>'35','P'=>'23','Q'=>'24','R'=>'25',
+                'S'=>'26','T'=>'27','U'=>'28','V'=>'29','W'=>'32','X'=>'30','Y'=>'31','Z'=>'33'];
+    //檢查字元長度
+    if(strlen(trim($cardid)) !=10 ){
         return false;
+    }//長度不對
+
+    //驗證英文字母正確性
+    $alpha = substr($cardid,0,1);//英文字母
+    $alpha = strtoupper($alpha);//若輸入英文字母為小寫則轉大寫
+    if(!preg_match("/[A-Za-z]/",$alpha)){
+        return false;
+
+    }else{
+            //計算字母總和
+            $nx = $alphabet[$alpha];
+            $ns = $nx[0]+$nx[1]*9;//十位數+個位數x9
     }
-    $head = array('A' => 1, 'B' => 0, 'C' => 9, 'D' => 8, 'E' => 7, 'F' => 6, 'G' => 5, 'H' => 4, 'I' => 9, 'J' => 3, 'K' => 2, 'M' => 1, 'N' => 0, 'O' => 8, 'P' => 9, 'Q' => 8, 'T' => 5, 'U' => 4, 'V' => 3, 'W' => 1, 'X' => 3, 'Z' => 0, 'L' => 2, 'R' => 7, 'S' => 6, 'Y' => 2);
-    $pid  = strtoupper($pid);
-    $iSum = 0;
-    for ($i = 0; $i < $iPidLen; $i++) {
-        $sIndex = substr($pid, $i, 1);
-        $iSum += (empty($i)) ? $head[$sIndex] : intval($sIndex) * abs(9 - base_convert($i, 10, 9));
-    }
-    return ($iSum % 10 == 0) ? true : false;
+
+    //驗證男女性別
+    $gender = substr($cardid,1,1);//取性別位置
+    if($gender !='1' && $gender !='2' && $gender !='A' && $gender !='B' && $gender !='C' && $gender !='D')
+    {
+        return false;
+    }//驗證性別
+
+    //N2x8+N3x7+N4x6+N5x5+N6x4+N7x3+N8x2+N9+N10
+    if($err ==''){
+        $i = 8;
+        $j = 1;
+        $ms =0;
+        //先算 N2x8 + N3x7 + N4x6 + N5x5 + N6x4 + N7x3 + N8x2
+        while($i >= 2){
+            if($j==1){   
+                $g = substr($cardid, $j, 1);
+                switch ($g) {
+                case 'A': $mx = 0;
+                    break;
+                case 'B': $mx = 1;
+                    break;
+                case 'C': $mx = 2;
+                    break;
+                case 'D':$mx = 3;
+                    break;
+                default: $mx = $g;
+                    break;
+                }
+            }else{
+                $mx = substr($cardid, $j, 1); //由第j筆每次取一個數字
+            }
+            
+            $my = $mx * $i;//N*$i
+            $ms += $my;//ms為加總
+            $j++;
+            $i--;	
+        }
+        //最後再加上 N9 及 N10
+        $ms = $ms + substr($cardid,8,1) + substr($cardid,9,1);
+        //最後驗證除10
+        $total = $ns + $ms;//上方的英文數字總和 + N2~N10總和
+        
+        return ($total % 10 == 0) ? true : false;
+        }
 }
+
+
+// function pid_check($pid)
+// {
+//     $iPidLen = strlen(trim($pid));
+//     if (!preg_match('/^[A-Za-z][1-2][0-9]{8}$/', $pid) && $iPidLen != 10) {
+//         return false;
+//     }
+//     $head = array('A' => 1, 'B' => 0, 'C' => 9, 'D' => 8, 'E' => 7, 'F' => 6, 'G' => 5, 'H' => 4, 'I' => 9, 'J' => 3, 'K' => 2, 'M' => 1, 'N' => 0, 'O' => 8, 'P' => 9, 'Q' => 8, 'T' => 5, 'U' => 4, 'V' => 3, 'W' => 1, 'X' => 3, 'Z' => 0, 'L' => 2, 'R' => 7, 'S' => 6, 'Y' => 2);
+//     $pid  = strtoupper($pid);
+//     $iSum = 0;
+//     for ($i = 0; $i < $iPidLen; $i++) {
+//         $sIndex = substr($pid, $i, 1);
+//         $iSum += (empty($i)) ? $head[$sIndex] : intval($sIndex) * abs(9 - base_convert($i, 10, 9));
+//     }
+// return ($iSum % 10 == 0) ? true : false;
+// }
+
+
+//改變啟用狀態
+function update_class_enable($class_id, $class_enable)
+{
+    global $xoopsDB;
+
+    $sql = "update `" . $xoopsDB->prefix("kw_club_class") . "` set
+    `class_isopen` = '{$class_enable}'
+    where `class_id` = '$class_id'";
+    $xoopsDB->queryF($sql) or web_error($sql);
+}
+

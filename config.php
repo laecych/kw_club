@@ -14,6 +14,7 @@ $type        = system_CleanVars($_REQUEST, 'type', '', 'string');
 $club_id     = system_CleanVars($_REQUEST, 'club_id', '', 'int');
 $cate_id     = system_CleanVars($_REQUEST, 'cate_id', '', 'int');
 $place_id    = system_CleanVars($_REQUEST, 'place_id', '', 'int');
+$teacher_id = system_CleanVars($_REQUEST, 'teacher_id', '', 'int');
 $users_uid   = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
 $club_enable = system_CleanVars($_REQUEST, 'club_enable', '', 'int');
 
@@ -30,20 +31,26 @@ switch ($op) {
         header("location: {$_SERVER['PHP_SELF']}?club_id=$club_id");
         exit;
 
-    //更新資料
+    //期別表單
     case "kw_club_info_form":
         kw_club_info_form($club_id);
         break;
-
+    //刪除期別
     case "delete_kw_club_info":
         delete_kw_club_info($club_id);
         header("location: {$_SERVER['PHP_SELF']}");
         break;
 
-    case "save_club_teacher":
-        save_club_teacher($users_uid);
-        header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
-        exit;
+    //複製期別
+    case "copy_kw_club_info":
+        copy_kw_club_info($club_id);
+        header("location: {$_SERVER['PHP_SELF']}");
+        break;
+
+    // case "save_club_teacher":
+    //     save_club_teacher($users_uid);
+    //     header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
+    //     exit;
 
     //新增資料
     case "insert_cate":
@@ -54,6 +61,11 @@ switch ($op) {
     case "insert_place":
         insert_cate($type);
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab4");
+        exit;
+    //新增教師
+    case "insert_teacher":
+        insert_cate($type);
+        header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
         exit;
 
     //更新資料
@@ -67,6 +79,11 @@ switch ($op) {
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab4");
         exit;
 
+  case "update_teacher":
+        update_cate($type, $teacher_id);
+        header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
+        exit;
+
     case "delete_cate":
         delete_cate($type, $cate_id);
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab3");
@@ -76,6 +93,11 @@ switch ($op) {
         delete_cate($type, $place_id);
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab4");
         exit;
+    
+    case "delete_teacher":
+        delete_cate($type, $teacher_id);
+        header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
+        exit;
 
     case "update_enable":
         update_enable($club_id, $club_enable);
@@ -84,7 +106,9 @@ switch ($op) {
 
     default:
         kw_club_info_list();
-        get_club_teacher();
+        // get_club_teacher();
+        cate_list('teacher');
+        cate_form('teacher', $teacher_id);
         cate_list('cate');
         cate_form('cate', $cate_id);
         cate_list('place');
@@ -280,7 +304,7 @@ function insert_kw_club_info()
 
     $myts = MyTextSanitizer::getInstance();
 
-    $club_year       = (int) $_POST['club_year'];
+    $club_year       = $_POST['club_year'];
     $club_start_date = $myts->addSlashes($_POST['club_start_date']);
     $club_end_date   = $myts->addSlashes($_POST['club_end_date']);
     $club_isfree     = (int) $_POST['club_isfree'];
@@ -340,7 +364,7 @@ function update_kw_club_info($club_id = '')
     $myts = MyTextSanitizer::getInstance();
 
     $club_id         = (int) $_POST['club_id'];
-    $club_year       = (int) $_POST['club_year'];
+    $club_year       = $myts->addSlashes($_POST['club_year']);
     $club_start_date = $myts->addSlashes($_POST['club_start_date']);
     $club_end_date   = $myts->addSlashes($_POST['club_end_date']);
     $club_isfree     = (int) $_POST['club_isfree'];
@@ -386,6 +410,12 @@ function delete_kw_club_info($club_id = '')
     $sql = "delete from `" . $xoopsDB->prefix("kw_club_info") . "`
     where `club_id` = '{$club_id}'";
     $xoopsDB->queryF($sql) or web_error($sql);
+
+}
+
+//複製kw_club_info整的期別和社團內容
+function copy_kw_club_info($club_id = '')
+{
 
 }
 

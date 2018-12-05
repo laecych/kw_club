@@ -1,7 +1,7 @@
 <{if $class_id==""}>
-    <h2><{$smarty.const._MD_KWCLUB_ADD_CLUB}><small> <span class="club_year_text"><{$club_year_text}></span> (<span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>)</small></h2>
+    <h2><{$smarty.const._MD_KWCLUB_ADD_CLUB}><small> <span class="club_year"><{$club_year}></span> (<span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>)</small></h2>
 <{else}>
-    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}><small> <span class="club_year_text"><{$club_year_text}></span></small></h2>
+    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}><small> <span class="club_year"><{$club_year}></span></small></h2>
 <{/if}>
 
 <form class="form-horizontal" name="classform" id="classform" action="club.php" method="post" enctype = "multipart/form-data">

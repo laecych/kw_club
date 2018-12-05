@@ -21,7 +21,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_KWCLUB_NAME;
-$modversion['version']     = '1.1';
+$modversion['version']     = '1.2';
 $modversion['description'] = _MI_KWCLUB_DESC;
 $modversion['author']      = _MI_KWCLUB_AUTHOR;
 $modversion['credits']     = _MI_KWCLUB_CREDITS;

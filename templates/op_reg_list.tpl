@@ -33,7 +33,7 @@
 
 
 <h3>
-    <{if $club_year_text}><span class="club_year_text"><{$club_year_text}></span><{/if}><{$smarty.const._MD_KWCLUB_REGISTER_LIST}>
+    <{if $club_year_text}><span class="club_year_text"><{$club_year}></span><{/if}><{$smarty.const._MD_KWCLUB_REGISTER_LIST}>
     <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
 </h3>
 

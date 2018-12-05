@@ -35,7 +35,7 @@ if (!function_exists('club_class_list')) {
                 }
 
                 $all_class_content[$i]['class_id']         = (int) $class_id;
-                $all_class_content[$i]['club_year']        = (int) $club_year;
+                $all_class_content[$i]['club_year']        = $myts->htmlSpecialChars($club_year);
                 $all_class_content[$i]['class_num']        = (int) $class_num;
                 $all_class_content[$i]['class_title']      = $myts->htmlSpecialChars($class_title);
                 $all_class_content[$i]['class_week']       = $myts->htmlSpecialChars($class_week);
@@ -57,7 +57,8 @@ if (!function_exists('club_class_list')) {
                 $all_class_content[$i]['class_date_start'] = $myts->htmlSpecialChars($class_date_start);
                 $all_class_content[$i]['class_date_end']   = $myts->htmlSpecialChars($class_date_end);
                 $all_class_content[$i]['class_ischecked']  = (int) $class_ischecked;
-                $all_class_content[$i]['class_isopen']     = $class_isopen ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+                $all_class_content[$i]['class_isopen']     = (int) $class_isopen;
+                $all_class_content[$i]['class_isopen_pic'] = $class_isopen ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
                 $all_class_content[$i]['class_desc']       = $myts->displayTarea($class_desc, 1, 1, 0, 1, 0);
                 $all_class_content[$i]['class_uid']        = (int) $class_uid;
                 //是否報名額滿
@@ -83,10 +84,10 @@ if (!function_exists('club_class_list')) {
         }
 
         if ($mode == "return") {
-            $block['arr_year']          = $arr_year;
-            $block['club_info']         = $club_info;
-            $block['club_year']         = $club_year;
-            $block['club_year_text']    = $club_year_text;
+            $block['arr_year']  = $arr_year;
+            $block['club_info'] = $club_info;
+            $block['club_year'] = $club_year;
+            // $block['club_year_text']    = $club_year_text;
             $block['chk_time']          = $chk_time;
             $block['can_operate']       = true;
             $block['all_class_content'] = $all_class_content;
@@ -100,7 +101,7 @@ if (!function_exists('club_class_list')) {
             $xoopsTpl->assign('arr_year', $arr_year);
             $xoopsTpl->assign('club_info', $club_info);
             $xoopsTpl->assign('club_year', $club_year);
-            $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+            // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
             //檢查報名是否可行
             $xoopsTpl->assign('chk_time', $chk_time);
 
@@ -132,12 +133,12 @@ if (!function_exists('get_all_year')) {
     {
         global $xoopsDB;
         $and_enable = $only_enable ? "and club_enable='1'" : '';
-        $sql        = "select club_year from `" . $xoopsDB->prefix("kw_club_info") . "` where 1 $and_enable order by `club_year` desc";
+        $sql        = "select club_year from `" . $xoopsDB->prefix("kw_club_info") . "` where 1 $and_enable order by `club_id` desc";
         $result     = $xoopsDB->query($sql) or web_error($sql);
         $arr_year   = array();
         while (list($club_year) = $xoopsDB->fetchRow($result)) {
-            $club_year_text       = club_year_text($club_year);
-            $arr_year[$club_year] = $club_year_text;
+            // $club_year_text       = club_year_text($club_year);
+            $arr_year[$club_year] = $club_year;
         }
         return $arr_year;
     }

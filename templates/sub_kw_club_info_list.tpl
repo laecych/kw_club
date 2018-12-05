@@ -41,7 +41,7 @@
                 <li class="vcell"><{$smarty.const._MD_KWCLUB_YEAR}></li>
                 <li class="vm w2">
                     <a href="config.php?op=update_enable&club_enable=<{if $data.club_enable==1}>0<{else}>1<{/if}>&club_id=<{$data.club_id}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.club_enable==1}><{$smarty.const._MD_KWCLUB_ENABLE_0}><{else}><{$smarty.const._MD_KWCLUB_ENABLE_1}><{/if}>"><{$data.club_enable_pic}></a>
-                    <span data-toggle="tooltip" data-placement="bottom" title="<{$data.club_year}>"><{$data.club_year_text}></span>
+                    <span data-toggle="tooltip" data-placement="bottom" title="<{$data.club_year}>"><{$data.club_year}></span>
                 </li>
 
                 <!--報名起始日-->
@@ -74,6 +74,9 @@
                     <li class="vm w1 text-center">
                         <a href="javascript:delete_kw_club_info_func(<{$data.club_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
                         <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form&club_id=<{$data.club_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
+                        <a href="<{$xoops_url}>/modules/kw_club/config.php?op=copy_kw_club_info&club_id=<{$data.club_id}>" class="btn btn-xs btn-success">
+                            <{$smarty.const._MD_KWCLUB_COPY}>
+                        </a>
                     </li>
                 <{/if}>
             </ul>

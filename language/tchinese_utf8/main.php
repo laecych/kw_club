@@ -3,6 +3,7 @@ include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['langua
 
 //前後台語系
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');
+
 define('_MD_KWCLUB_CLASS_YEAR', '社團年度');
 define('_MD_KWCLUB_CLASS_TITLE', '社團名稱');
 define('_MD_KWCLUB_CLASS_NUM', '編號');
@@ -34,6 +35,7 @@ define('_MD_KWCLUB_CLASS_DESC', '社團簡介');
 define('_MD_KWCLUB_CLASS_UID', 'UID');
 define('_MD_KWCLUB_DOLLAR', '元');
 define('_MD_KWCLUB_PEOPLE', '人');
+define('_MD_KWCLUB_COPY', '複製期別');
 
 //前台選單
 define('_MD_KWCLUB_INDEX_MYCLASS', '我的社團');
@@ -53,7 +55,7 @@ define('_MD_KWCLUB_REG_NAME', '報名者姓名');
 define('_MD_KWCLUB_REG_GRADE', '報名者年級');
 define('_MD_KWCLUB_REG_CLASS', '報名者班級');
 define('_MD_KWCLUB_REG_SN', '報名編號');
-define('_MD_KWCLUB_REG_UID', '身分證號');
+define('_MD_KWCLUB_REG_UID', '身分證號或居留證號');
 define('_MD_KWCLUB_REG_DATETIME', '報名日期');
 define('_MD_KWCLUB_REG_ISREG', '結果');
 define('_MD_KWCLUB_REG_ISFEE', '是否繳費');
@@ -82,7 +84,6 @@ define('_MD_KWCLUB_STATISTICS', '報名統計');
 define('_MD_KWCLUB_ADD_CLUB', '新增社團');
 define('_MD_KWCLUB_ADD_CLUB_INFO', '新增社團期別');
 define('_MD_KWCLUB_NEED_CLUB_YEAR', '錯誤！未指定社團期數');
-
 define('_MD_KWCLUB_START_DATE', '報名起始日');
 define('_MD_KWCLUB_END_DATE', '報名終止日');
 define('_MD_KWCLUB_ISFREE', '報名方式');
@@ -214,6 +215,9 @@ define('_MD_KWCLUB_CLUB_YEAR_LIST', '期別列表');
 define('_MD_KWCLUB_CATE_SETUP', '社團類型設定');
 define('_MD_KWCLUB_CATE_LIST', '社團類型列表');
 
+define('_MD_KWCLUB_TEACHER_SETUP', '教師設定');
+define('_MD_KWCLUB_TEACHER_LIST', '教師列表');
+
 define('_MD_KWCLUB_LIST_MODE', '報名列表模式');
 define('_MD_KWCLUB_EXPORT_PDF', '匯出PDF繳費單');
 define('_MD_KWCLUB_PAID_LIST', '所有報名繳費列表');
@@ -269,6 +273,7 @@ define('_MD_KWCLUB_SIGNUP_STATUS', '報名於 %s，從 %s，報名編號：%s');
 define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間即停止報名及修改');
 define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
 define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
+define('_MD_KWCLUB_GC_WRONG', '錯誤的年級和班級');
 
 define('_MD_KWCLUB_TEACHER_CLASS', '開課紀錄');
 define('_MD_KWCLUB_TXTLOCK', '鎖定中，滑動解鎖後才能執行送出');

@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-sm-10">
             <h2>
-                <span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_LIST}>
+                <span class="club_year_text"><{$club_year}></span><{$smarty.const._MD_KWCLUB_LIST}>
                 <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
             </h2>
             <h4>
@@ -37,7 +37,6 @@
                 <a href="club.php?club_year=<{$club_year}>" class="btn btn-primary btn-block" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-plus" aria-hidden="true"></i>
                     <{$smarty.const._MD_KWCLUB_ADD_CLUB}></a>
             <{/if}>
-
         </div>
     </div>
 
@@ -85,7 +84,9 @@
                         <span class="badge alert-info"><{$data.class_num}></span>
 
                         <{if $smarty.session.isclubAdmin}>
-                            <{$data.class_isopen}>
+                            <a href="index.php?op=update_enable&class_enable=<{if $data.class_isopen==1}>0<{else}>1<{/if}>&class_id=<{$data.class_id}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.class_isopen==1}><{$smarty.const._MD_KWCLUB_ENABLE_0}><{else}><{$smarty.const._MD_KWCLUB_ENABLE_1}><{/if}>">
+                                <{$data.class_isopen_pic}>
+                            </a>
                         <{/if}>
                         <a href="index.php?class_id=<{$data.class_id}>"><{$data.class_title}></a>
                         <div style="font-size: 0.9em;">

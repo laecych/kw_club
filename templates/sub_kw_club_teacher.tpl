@@ -1,18 +1,45 @@
-<h2><{$smarty.const._MD_KWCLUB_SETUP_TEACHER}></h2>
-<form action="config.php" method="post" id="teacherForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
-    <div class="form-group">
-        <label class="sr-only control-label">
-            <{$smarty.const._MD_KWCLUB_SETUP_TEACHER}>
-        </label>
-        <div class="col-sm-12">
-            <{includeq file="$xoops_rootpath/modules/kw_club/templates/sub_kw_club_user_picker.tpl"}>
-        </div>
+<div class="row">
+    <div class="col-sm-6">
+        <h2>
+            <{$smarty.const._MD_KWCLUB_TEACHER_SETUP}>
+        </h2>
+        <{includeq file="$xoops_rootpath/modules/kw_club/templates/sub_kw_club_teacher_form.tpl" }>
     </div>
-    <div class="text-center">
-        
-        <{$teacher_token}>
-
-        <input type="hidden" name="op" value="save_club_teacher">
-        <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
+    <div class="col-sm-6">
+        <h2>
+            <{$smarty.const._MD_KWCLUB_TEACHER_LIST}>
+        </h2>
+        <{if $all_teacher_content}>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#kw_club_teacher_sort").sortable({
+                        opacity: 0.6, cursor: "move", update: function () {
+                            var order = $(this).sortable("serialize");
+                            $.post("<{$xoops_url}>/modules/kw_club/save_sort.php", order + "&op=update_kw_club_teacher_sort", function (theResponse) {
+                                $("#kw_club_teacher_save_msg").html(theResponse);
+                            });
+                        }
+                    });
+                });
+            </script>
+            <div id="kw_club_teacher_save_msg"></div>
+            <ul class="list-group" id="kw_club_teacher_sort">
+                <{foreach from=$all_place_content item=data}>
+                    <li id="teacherli_<{$data.teacher_id}>" class="list-group-item">
+                        <{$data.teacher_title}>
+                            <{if $smarty.session.isclubAdmin}>
+                                <img src="<{$xoops_url}>/modules/tadtools/treeTable/images/updown_s.png" style="cursor: s-resize;margin:0px 4px;" alt="<{$smarty.const._TAD_SORTABLE}>"
+                                    title="<{$smarty.const._TAD_SORTABLE}>">
+                                <a href="javascript:delete_teacher_func(<{$data.teacher_id}>);" class="btn btn-xs btn-danger">
+                                    <{$smarty.const._TAD_DEL}>
+                                </a>
+                                <a href="<{$xoops_url}>/modules/kw_club/config.php?type=teacher&teacher_id=<{$data.teacher_id}>#setupTab2" class="btn btn-xs btn-warning">
+                                    <{$smarty.const._TAD_EDIT}>
+                                </a>
+                                <{/if}>
+                    </li>
+                    <{/foreach}>
+            </ul>
+            <{/if}>
     </div>
-</form>
+</div>
