@@ -13,7 +13,7 @@ $op        = system_CleanVars($_REQUEST, 'op', '', 'string');
 $class_id  = system_CleanVars($_REQUEST, 'class_id', '', 'int');
 $reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
 $review    = system_CleanVars($_REQUEST, 'review', 'reg_sn', 'string');
-$club_year = system_CleanVars($_REQUEST, 'club_year', $_SESSION['club_year'], 'int');
+$club_year = system_CleanVars($_REQUEST, 'club_year', $_SESSION['club_year'], 'string');
 $reg_isfee = system_CleanVars($_REQUEST, 'reg_isfee', '', 'int');
 
 switch ($op) {

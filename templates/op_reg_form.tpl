@@ -12,7 +12,93 @@
             txtUnlock:'<{$smarty.const._MD_KWCLUB_TXTUNLOCK}>'
             });
     });
+
+    function studIdNumberIdentify(nationality, idNumber) {
+
+            studIdNumber = idNumber.toUpperCase();
+            //本國人
+            if (nationality == 0) {
+                //驗證填入身分證字號長度及格式
+                if (studIdNumber.length != 10) {
+                    alert("長度不足");
+                    return false;
+                }
+                //格式，用正則表示式比對第一個字母是否為英文字母
+                if (isNaN(studIdNumber.substr(1, 9)) ||
+                    (!/^[A-Z]$/.test(studIdNumber.substr(0, 1)))) {
+                    alert("格式錯誤");
+                    return false;
+                }
+                var idHeader = "ABCDEFGHJKLMNPQRSTUVXYWZIO"; //按照轉換後權數的大小進行排序
+                //這邊把身分證字號轉換成準備要對應的
+                studIdNumber = (idHeader.indexOf(studIdNumber.substring(0, 1)) + 10) + '' + studIdNumber.substr(1, 9);
+                //開始進行身分證數字的相乘與累加，依照順序乘上1987654321
+                s = parseInt(studIdNumber.substr(0, 1)) +
+                    parseInt(studIdNumber.substr(1, 1)) * 9 +
+                    parseInt(studIdNumber.substr(2, 1)) * 8 +
+                    parseInt(studIdNumber.substr(3, 1)) * 7 +
+                    parseInt(studIdNumber.substr(4, 1)) * 6 +
+                    parseInt(studIdNumber.substr(5, 1)) * 5 +
+                    parseInt(studIdNumber.substr(6, 1)) * 4 +
+                    parseInt(studIdNumber.substr(7, 1)) * 3 +
+                    parseInt(studIdNumber.substr(8, 1)) * 2 +
+                    parseInt(studIdNumber.substr(9, 1));
+                checkNum = parseInt(studIdNumber.substr(10, 1));
+                //模數 - 總和/模數(10)之餘數若等於第九碼的檢查碼，則驗證成功
+                //若餘數為0，檢查碼就是0
+                if ((s % 10) == 0 || (10 - s % 10) == checkNum) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            //外籍生，居留證號規則跟身分證號差不多，只是第二碼也是英文字母代表性別，跟第一碼轉換二位數字規則相同，但只取餘數
+            else {
+                //驗證填入身分證字號長度及格式
+                if (studIdNumber.length != 10) {
+                    alert("長度不足");
+                    return false;
+                }
+                //格式，用正則表示式比對第一個字母是否為英文字母
+                if (isNaN(studIdNumber.substr(2, 8)) ||
+                    (!/^[A-Z]$/.test(studIdNumber.substr(0, 1))) ||
+                    (!/^[A-Z]$/.test(studIdNumber.substr(1, 1)))) {
+                    alert("格式錯誤");
+                    return false;
+                }
+                var idHeader = "ABCDEFGHJKLMNPQRSTUVXYWZIO"; //按照轉換後權數的大小進行排序
+                //這邊把身分證字號轉換成準備要對應的
+                studIdNumber = (idHeader.indexOf(studIdNumber.substring(0, 1)) + 10) +
+                    '' + ((idHeader.indexOf(studIdNumber.substr(1, 1)) + 10) % 10) + '' + studIdNumber.substr(2, 8);
+                //開始進行身分證數字的相乘與累加，依照順序乘上1987654321
+
+                s = parseInt(studIdNumber.substr(0, 1)) +
+                    parseInt(studIdNumber.substr(1, 1)) * 9 +
+                    parseInt(studIdNumber.substr(2, 1)) * 8 +
+                    parseInt(studIdNumber.substr(3, 1)) * 7 +
+                    parseInt(studIdNumber.substr(4, 1)) * 6 +
+                    parseInt(studIdNumber.substr(5, 1)) * 5 +
+                    parseInt(studIdNumber.substr(6, 1)) * 4 +
+                    parseInt(studIdNumber.substr(7, 1)) * 3 +
+                    parseInt(studIdNumber.substr(8, 1)) * 2 +
+                    parseInt(studIdNumber.substr(9, 1));
+
+                //檢查號碼 = 10 - 相乘後個位數相加總和之尾數。
+                checkNum = parseInt(studIdNumber.substr(10, 1));
+                //模數 - 總和/模數(10)之餘數若等於第九碼的檢查碼，則驗證成功
+                ///若餘數為0，檢查碼就是0
+                if ((s % 10) == 0 || (10 - s % 10) == checkNum) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
 </script>
+
+
 
 <h2><{$smarty.const._MD_KWCLUB_APPLY_CLASS|sprintf:$class.class_title}></h2>
 <p><{$smarty.const._MD_KWCLUB_APPLY_NOTE}></p>
@@ -70,16 +156,18 @@
         </div>
     </div>
 
-    <!--家長姓名-->
+  
     <div class="form-group">
+        <!--家長姓名-->
         <label class="col-sm-2 control-label">
             <{$smarty.const._MD_KWCLUB_REG_PARENT}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
             <input type="text" name="reg_parent" id="reg_parent" class="form-control validate[required]" value="<{$reg_parent}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_PARENT}>">
         </div>
+        <!--連絡電話-->
         <label class="col-sm-2 control-label">
-            <{$smarty.const._MD_KWCLUB_REG_TEL}>
+            <{$smarty.const._MD_KWCLUB_REG_TEL}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
             <input type="text" name="reg_tel" id="reg_tel" class="form-control validate[required]" value="<{$reg_tel}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_TEL}>">

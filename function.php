@@ -6,12 +6,8 @@ if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
 }
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
-
-
 //其他自訂的共同的函數
 include_once "function_block.php";
-
-
 
 //以流水號取得某筆資料
 function get_cate($cate_id, $type)
@@ -130,9 +126,9 @@ function check_class_reg($class_id = '')
     if (empty($class_id)) {
         return;
     }
-    $sql    = "select count(*) from `" . $xoopsDB->prefix("kw_club_reg") . "`  where `class_id` = '{$class_id}'";
-    $result = $xoopsDB->query($sql) or web_error($sql);
-    list($count)   = $xoopsDB->fetchRow($result);
+    $sql         = "select count(*) from `" . $xoopsDB->prefix("kw_club_reg") . "`  where `class_id` = '{$class_id}'";
+    $result      = $xoopsDB->query($sql) or web_error($sql);
+    list($count) = $xoopsDB->fetchRow($result);
     return $count;
 }
 
@@ -235,20 +231,42 @@ function get_semester()
 
 }
 
+
 function get_ip()
 {
-
-    if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-        $ip = $_SERVER["HTTP_CLIENT_IP"];
-    } elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-    } elseif (!empty($_SERVER["REMOTE_ADDR"])) {
-        $ip = $_SERVER["REMOTE_ADDR"];
-    } else {
-        $ip = "noip";
-    }
-    return $ip;
+ $ip="";
+ if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+  $ip = $_SERVER["HTTP_CLIENT_IP"];
+ }
+ if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+  $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+  if($ip){
+   array_unshift($ips, $ip); $ip = FALSE;
+  }
+  for($i = 0; $i < count($ips); $i++){
+   if (!eregi ("^(10|172\.16|192\.168)\.", $ips[$i])){
+    $ip = $ips[$i];
+    break;
+   }
+  }
+ }
+ return($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
+
+// function get_ip()
+// {
+
+//     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+//         $ip = $_SERVER["HTTP_CLIENT_IP"];
+//     } elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+//         $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+//     } elseif (!empty($_SERVER["REMOTE_ADDR"])) {
+//         $ip = $_SERVER["REMOTE_ADDR"];
+//     } else {
+//         $ip = "noip";
+//     }
+//     return $ip;
+// }
 
 function mk_club_json($class_id)
 {
@@ -343,7 +361,6 @@ function delete_reg()
     return $class_id;
 }
 
-
 //判斷身份
 function isclub($group_name = '')
 {
@@ -362,7 +379,6 @@ function isclub($group_name = '')
     return false;
 }
 
-
 //取得報名資料
 function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
 {
@@ -374,7 +390,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
 
     $sql = "select a.*,b.* from `" . $xoopsDB->prefix("kw_club_reg") . "` as a
     join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
-    where b.`club_year`={$club_year} {$and_class_id} {$order}";
+    where b.`club_year`='{$club_year}' {$and_class_id} {$order}";
 
     if ($show_PageBar) {
         //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
