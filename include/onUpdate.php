@@ -67,10 +67,10 @@ function go_update1()
 function go_update2()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_info") . " CHANGE `club_year` `club_year` varchar(20) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `club_id`;";
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_info") . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `club_id`;";
     $xoopsDB->queryF($sql) or web_error($sql);
 
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_class") . " CHANGE `club_year` `club_year` varchar(20) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `class_id`;";
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_class") . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `class_id`;";
     $xoopsDB->queryF($sql) or web_error($sql);
 
     return true;
