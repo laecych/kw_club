@@ -231,8 +231,10 @@ function get_semester()
 
 }
 
+
 function get_ip()
 {
+<<<<<<< HEAD
     $ip = "";
     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -251,6 +253,25 @@ function get_ip()
         }
     }
     return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
+=======
+ $ip="";
+ if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+  $ip = $_SERVER["HTTP_CLIENT_IP"];
+ }
+ if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+  $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+  if($ip){
+   array_unshift($ips, $ip); $ip = FALSE;
+  }
+  for($i = 0; $i < count($ips); $i++){
+   if (!eregi ("^(10|172\.16|192\.168)\.", $ips[$i])){
+    $ip = $ips[$i];
+    break;
+   }
+  }
+ }
+ return($ip ? $ip : $_SERVER['REMOTE_ADDR']);
+>>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
 }
 
 // function get_ip()

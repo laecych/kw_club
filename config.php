@@ -42,10 +42,17 @@ switch ($op) {
         break;
 
     //複製期別
+<<<<<<< HEAD
     // case "copy_kw_club_info":
     //     copy_kw_club_info($club_id);
     //     header("location: {$_SERVER['PHP_SELF']}");
     //     break;
+=======
+    case "copy_kw_club_info":
+        copy_kw_club_info($club_id);
+        header("location: {$_SERVER['PHP_SELF']}");
+        break;
+>>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
 
     // case "save_club_teacher":
     //     save_club_teacher($users_uid);
@@ -305,7 +312,11 @@ function insert_kw_club_info($type = '')
 
     $myts = MyTextSanitizer::getInstance();
 
+<<<<<<< HEAD
     $club_year       = $myts->addSlashes($_POST['club_year']);
+=======
+    $club_year       = $_POST['club_year'];
+>>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
     $club_start_date = $myts->addSlashes($_POST['club_start_date']);
     $club_end_date   = $myts->addSlashes($_POST['club_end_date']);
     $club_isfree     = (int) $_POST['club_isfree'];
@@ -507,7 +518,15 @@ function delete_kw_club_info($club_id = '')
 
 }
 
+<<<<<<< HEAD
 
+=======
+//複製kw_club_info整的期別和社團內容
+function copy_kw_club_info($club_id = '')
+{
+
+}
+>>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
 
 //以流水號取得某筆kw_club_info資料
 function get_kw_club_info($club_id = '')

@@ -220,7 +220,11 @@ define('_MD_KWCLUB_CLUB_YEAR_LIST', '期別列表');
 define('_MD_KWCLUB_CATE_SETUP', '社團類型設定');
 define('_MD_KWCLUB_CATE_LIST', '社團類型列表');
 
+<<<<<<< HEAD
 define('_MD_KWCLUB_TEACHER_SETUP', '開課教師設定');
+=======
+define('_MD_KWCLUB_TEACHER_SETUP', '教師設定');
+>>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
 define('_MD_KWCLUB_TEACHER_LIST', '教師列表');
 
 define('_MD_KWCLUB_LIST_MODE', '報名列表模式');
