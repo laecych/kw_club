@@ -57,13 +57,13 @@ function reg_list($club_year = '', $review = 'reg_sn')
         redirect_header('index.php', 3, _MD_KWCLUB_NEED_CLUB_YEAR);
     }
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
-
     $xoopsTpl->assign('review', $review);
 
+    //取得排序語法
     if ($review == 'grade') {
         $order = 'ORDER BY a.`reg_grade`, a.`reg_class`';
     } elseif ($review == 'class_id') {
@@ -79,7 +79,6 @@ function reg_list($club_year = '', $review = 'reg_sn')
 
     $xoopsTpl->assign('all_reg', $all_reg);
     $xoopsTpl->assign('today', date("Y-m-d"));
-
 }
 
 //列出繳費模式
@@ -93,7 +92,7 @@ function reg_uid($club_year = "")
     }
 
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
@@ -102,7 +101,6 @@ function reg_uid($club_year = "")
     // die(var_dump($reg_all));
     $xoopsTpl->assign('reg_all', $reg_all);
     $xoopsTpl->assign('total', sizeof($reg_all));
-
 }
 
 //改變繳費狀態

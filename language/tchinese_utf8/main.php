@@ -109,7 +109,7 @@ define('_MD_KWCLUB_PLACE_SORT', '排序');
 define('_MD_KWCLUB_PLACE_ENABLE', '狀態');
 
 define('_MD_KWCLUB_TEACHER_TITLE', '社團教師');
-define('_MD_KWCLUB_TEACHER_DESC', '教師簡介');
+define('_MD_KWCLUB_TEACHER_DESCS', '教師簡介');
 define('_MD_KWCLUB_TEACHER_SORT', '排序');
 define('_MD_KWCLUB_TEACHER_ENABLE', '狀態');
 
@@ -220,11 +220,7 @@ define('_MD_KWCLUB_CLUB_YEAR_LIST', '期別列表');
 define('_MD_KWCLUB_CATE_SETUP', '社團類型設定');
 define('_MD_KWCLUB_CATE_LIST', '社團類型列表');
 
-<<<<<<< HEAD
 define('_MD_KWCLUB_TEACHER_SETUP', '開課教師設定');
-=======
-define('_MD_KWCLUB_TEACHER_SETUP', '教師設定');
->>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
 define('_MD_KWCLUB_TEACHER_LIST', '教師列表');
 
 define('_MD_KWCLUB_LIST_MODE', '報名列表模式');
@@ -279,7 +275,7 @@ define('_MD_KWCLUB_EDIT_PLACE_NOTE', '欲修改上課地點，請至<a href="con
 
 define('_MD_KWCLUB_SIGNUP_STATUS', '報名於 %s，從 %s，報名編號：%s');
 // <{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>
-define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間即停止報名及修改');
+define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間或已繳費即停止報名及修改');
 define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
 define('_MD_KWCLUB_PID_WRONG', '無效的身份證號');
 define('_MD_KWCLUB_GC_WRONG', '錯誤的年級和班級');

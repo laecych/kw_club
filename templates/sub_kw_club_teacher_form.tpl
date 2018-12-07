@@ -14,10 +14,10 @@
     <!--類型說明-->
     <div class="form-group">
         <label class="col-sm-2 control-label">
-            <{$smarty.const._MD_KWCLUB_TEACHER_DESC}>
+            <{$smarty.const._MD_KWCLUB_TEACHER_DESCS}>
         </label>
         <div class="col-sm-10">
-            <input type="text" name="teacher_desc" id="teacher_desc" class="form-control " value="<{$teacher_desc}>" placeholder="<{$smarty.const._MD_KWCLUB_TEACHER_DESC}>">
+            <input type="text" name="teacher_desc" id="teacher_desc" class="form-control " value="<{$teacher_desc}>" placeholder="<{$smarty.const._MD_KWCLUB_TEACHER_DESCS}>">
         </div>
     
     </div>

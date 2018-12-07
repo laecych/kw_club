@@ -79,9 +79,12 @@
                         </li>
 
                         <li class="vm w1 text-center">
-                            <{if !($today > $end_day) }>
+                            <{if !($today > $end_day) && !$data.reg_isfee}>
                                 <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
+                             <{else}>
+                                    <a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                        <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                             <{/if}>
                         </li>
                     </ul>
@@ -93,3 +96,4 @@
 
         <{/foreach}>
 <{/if}>
+

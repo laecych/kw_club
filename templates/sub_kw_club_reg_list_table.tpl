@@ -116,7 +116,9 @@
                     <!--功能-->
                     <li class="vm w1 text-center">
                         <a href="index.php?reg_uid=<{$data.reg_uid}>&op=myclass" class="btn btn-xs btn-info"  data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>"><{$smarty.const._MD_KWCLUB_DETIAL}></a>
+                        <{if !$data.reg_isfee}>
                         <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
+                        <{/if}>
                     </li>
                 <{/if}>
             </ul>
