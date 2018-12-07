@@ -51,11 +51,11 @@ define('_MD_KWCLUB_CATE_SORT', '排序');
 define('_MD_KWCLUB_CATE_ENABLE', '狀態');
 
 define('_MD_KWCLUB_REG_YEAR', '報名年度');
-define('_MD_KWCLUB_REG_NAME', '報名者姓名');
-define('_MD_KWCLUB_REG_GRADE', '報名者年級');
-define('_MD_KWCLUB_REG_CLASS', '報名者班級');
+define('_MD_KWCLUB_REG_NAME', '學生姓名');
+define('_MD_KWCLUB_REG_GRADE', '學生年級');
+define('_MD_KWCLUB_REG_CLASS', '學生班級');
 define('_MD_KWCLUB_REG_SN', '報名編號');
-define('_MD_KWCLUB_REG_UID', '身分證號或居留證號');
+define('_MD_KWCLUB_REG_UID', '請輸入學生身分證號或居留證號');
 define('_MD_KWCLUB_REG_DATETIME', '報名日期');
 define('_MD_KWCLUB_REG_ISREG', '結果');
 define('_MD_KWCLUB_REG_ISFEE', '是否繳費');
