@@ -61,6 +61,7 @@ $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][]         = "kw_club_info";
 $modversion['tables'][]         = "kw_club_cate";
 $modversion['tables'][]         = "kw_club_place";
+$modversion['tables'][]         = "kw_club_teacher";
 $modversion['tables'][]         = "kw_club_class";
 $modversion['tables'][]         = "kw_club_reg";
 $modversion['tables'][]         = "kw_club_files_center";

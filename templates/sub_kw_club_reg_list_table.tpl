@@ -8,6 +8,11 @@
                     <{$smarty.const._MD_KWCLUB_CLASS_TITLE}>
                 </li>
             <{/if}>
+            <!--報名者ID-->
+            <li class="w1">
+                <{$smarty.const._MD_KWCLUB_REG_UID}>
+            </li>
+            
             <!--報名者姓名-->
             <li class="w1">
                 <{$smarty.const._MD_KWCLUB_REG_NAME}>
@@ -27,10 +32,7 @@
                 <li>
                     <{$smarty.const._MD_KWCLUB_REG_ISFEE}>
                 </li>
-                <!--報名者ID-->
-                <li class="w1">
-                    <{$smarty.const._MD_KWCLUB_REG_UID}>
-                </li>
+              
                 <!--家長-->
                 <li class="w1">
                     <{$smarty.const._MD_KWCLUB_REG_PARENT}>
@@ -54,7 +56,10 @@
                         <a href="index.php?class_id=<{$data.class_id}>" data-toggle="tooltip" data-placement="bottom" title="<{$data.class_id}>"><{$data.class_title}></a>
                     </li>
                 <{/if}>
-
+                <!--報名者ID-->
+                <li class="vm w1 text-center">
+                     <span class="editable" id="reg_uid_<{$data.reg_sn}>"><{$data.reg_uid}></span>
+                </li>
                 <!--報名者姓名-->
                 <li class="vcell text-center"><{$smarty.const._MD_KWCLUB_REG_NAME}></li>
                 <li class="vm w1 text-center">
@@ -100,10 +105,7 @@
                         <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
                     </li>
 
-                    <!--報名者ID-->
-                    <li class="vm w1 text-center">
-                        <span class="editable" id="reg_uid_<{$data.reg_sn}>"><{$data.reg_uid}></span>
-                    </li>
+                
                     <!--家長-->
                     <li class="vm w1 text-center">
                         <span class="editable" id="reg_parent_<{$data.reg_sn}>"><{$data.reg_parent}></span>

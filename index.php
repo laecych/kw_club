@@ -247,7 +247,7 @@ function myclass($reg_uid = "", $club_year = "")
     //查詢年度
     $club_year = (empty($club_year) && isset($_SESSION['club_year'])) ? $_SESSION['club_year'] : $club_year;
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
@@ -430,7 +430,7 @@ function class_show($class_id = '')
 
     $xoopsTpl->assign('class_id', $class_id);
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
     $xoopsTpl->assign('class_num', $class_num);
     $xoopsTpl->assign('cate_id', $cate_id);
     $xoopsTpl->assign('cate_id_title', $cate_arr['cate_title']);
@@ -479,8 +479,7 @@ function class_show($class_id = '')
 
         //刪除報名
         $sweet_alert_obj = new sweet_alert();
-        $sweet_alert_obj->render('delete_reg_func',
-            "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", "reg_sn");
+        $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", "reg_sn");
     }
 
 }

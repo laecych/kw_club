@@ -170,7 +170,7 @@ function kw_club_info_list()
         $club_backup_num = $myts->htmlSpecialChars($club_backup_num);
 
         $all_kw_club_info[$i]['club_year']        = $club_year;
-        $all_kw_club_info[$i]['club_year_text']   = club_year_text($club_year);
+        // $all_kw_club_info[$i]['club_year_text']   = club_year_text($club_year);
         $all_kw_club_info[$i]['club_start_date']  = $club_start_date;
         $all_kw_club_info[$i]['club_end_date']    = $club_end_date;
         $all_kw_club_info[$i]['club_isfree_text'] = $club_isfree_text;

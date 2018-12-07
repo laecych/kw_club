@@ -150,7 +150,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     //設定 club_year 欄位的預設值
     $club_year = !isset($DBV['club_year']) ? $club_info['club_year'] : $DBV['club_year'];
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //設定 class_title 欄位的預設值
     $class_title = !isset($DBV['class_title']) ? "" : $DBV['class_title'];

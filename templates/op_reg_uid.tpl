@@ -34,7 +34,11 @@
 
         <{foreach from=$reg_all key=reg_uid item=reg}>
 
-            <h3><span style="color:blue"><{$reg.name}></span><{$smarty.const._MD_KWCLUB_APPLY_RESULT}><small> (<{$reg_uid}>) </small></h3>
+            <h4>
+                <span style="color:blue"><{$reg.class}></span>
+                <span style="color:blue"><{$reg.name}></span>
+                <{$smarty.const._MD_KWCLUB_APPLY_RESULT}><small> (<{$reg_uid}>) </small>
+            </h4>
 
             <div class="vtable">
                 <ul class="vhead">
@@ -79,7 +83,7 @@
                         </li>
 
                         <li class="vm w1 text-center">
-                            <{if !($today > $end_day) && !$data.reg_isfee}>
+                            <{if  !$data.reg_isfee}>
                                 <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                              <{else}>
