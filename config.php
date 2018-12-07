@@ -21,7 +21,7 @@ $club_enable = system_CleanVars($_REQUEST, 'club_enable', '', 'int');
 switch ($op) {
 
     case "insert_kw_club_info":
-        $club_id = insert_kw_club_info();
+        $club_id = insert_kw_club_info($type);
         header("location: {$_SERVER['PHP_SELF']}?club_id=$club_id");
         exit;
 
@@ -42,10 +42,10 @@ switch ($op) {
         break;
 
     //複製期別
-    case "copy_kw_club_info":
-        copy_kw_club_info($club_id);
-        header("location: {$_SERVER['PHP_SELF']}");
-        break;
+    // case "copy_kw_club_info":
+    //     copy_kw_club_info($club_id);
+    //     header("location: {$_SERVER['PHP_SELF']}");
+    //     break;
 
     // case "save_club_teacher":
     //     save_club_teacher($users_uid);
@@ -226,7 +226,7 @@ function kw_club_info_form($club_id = '')
     //設定 club_year 欄位的預設值
     $club_year = !isset($DBV['club_year']) ? '' : $DBV['club_year'];
     $xoopsTpl->assign('club_year', $club_year);
-    $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //設定 club_start_date 欄位的預設值
     $club_start_date = !isset($DBV['club_start_date']) ? date("Y-m-d 08:00") : $DBV['club_start_date'];
@@ -271,28 +271,29 @@ function kw_club_info_form($club_id = '')
     include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
     $token      = new XoopsFormHiddenToken();
     $token_form = $token->render();
+    $xoopsTpl->assign('type', $_REQUEST['type']);
     $xoopsTpl->assign("token_form", $token_form);
     $xoopsTpl->assign('action', $_SERVER["PHP_SELF"]);
     $xoopsTpl->assign('next_op', $op);
-
+    $xoopsTpl->assign('arr_year', get_all_year());
     //引入日期
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/cal.php";
     $cal = new My97DatePicker();
     $cal->render();
 
-    $arr_num = array();
-    for ($i = 0; $i <= 10; $i++) {
-        $arr_num[$i] = $i;
-    }
-    $xoopsTpl->assign('arr_num', $arr_num);
+    // $arr_num = array();
+    // for ($i = 0; $i <= 10; $i++) {
+    //     $arr_num[$i] = $i;
+    // }
+    // $xoopsTpl->assign('arr_num', $arr_num);
 
-    $arr_semester = get_semester();
-    $xoopsTpl->assign('arr_semester', $arr_semester);
+    // $arr_semester = get_semester();
+    // $xoopsTpl->assign('arr_semester', $arr_semester);
 
 }
 
 //新增資料到kw_club_info中
-function insert_kw_club_info()
+function insert_kw_club_info($type = '')
 {
     global $xoopsDB, $xoopsUser;
 
@@ -304,7 +305,7 @@ function insert_kw_club_info()
 
     $myts = MyTextSanitizer::getInstance();
 
-    $club_year       = $_POST['club_year'];
+    $club_year       = $myts->addSlashes($_POST['club_year']);
     $club_start_date = $myts->addSlashes($_POST['club_start_date']);
     $club_end_date   = $myts->addSlashes($_POST['club_end_date']);
     $club_isfree     = (int) $_POST['club_isfree'];
@@ -347,8 +348,94 @@ function insert_kw_club_info()
     $_SESSION['club_isfree']        = $club_isfree;
     $_SESSION['club_backup_num']    = $club_backup_num;
 
+
+    //複製期別的所有社團
+    $copy_year = $myts->addSlashes($_POST['copy_year']);
+
+    if ($type == "copy" && !empty($club_year) && !empty($copy_year)) {
+        kw_club_info_copy($club_year , $copy_year);
+    } 
+
     return $club_id;
 }
+
+//複製kw_club_info整的期別和社團內容
+function kw_club_info_copy($club_year = '', $copy_year = '')
+{
+    global $xoopsDB, $xoopsUser;
+
+    if(empty($club_year) || empty( $copy_year))
+    {
+        redirect_header("index.php", 3, _TAD_NEED_TADTOOLS);
+    }
+
+    $uid   = $xoopsUser->uid();
+    $today = date("Y-m-d H:i:s");
+    $ip    = get_ip();
+
+    //檢查kw_club_class where club_year = $copy_year;
+    $sql        = "select * from `" . $xoopsDB->prefix("kw_club_class") . "` where `club_year`='$copy_year' order by `class_id` ";
+    $result     = $xoopsDB->query($sql) or web_error($sql);
+    $arr  = array();
+    while ($arr = $xoopsDB->fetchArray($result)) {
+
+        $sql_copy = "insert into `" . $xoopsDB->prefix("kw_club_class") . "` (
+        `club_year`,
+        `class_num`,
+        `cate_id`,
+        `class_title`,
+        `teacher_id`,
+        `class_week`,
+        `class_grade`,
+        `class_date_open`,
+        `class_date_close`,
+        `class_time_start`,
+        `class_time_end`,
+        `place_id`,
+        `class_member`,
+        `class_money`,
+        `class_fee`,
+        `class_note`,
+        `class_isopen`,
+        `class_ischecked`,
+        `class_desc`,
+        `class_uid`,
+        `class_datetime`,
+        `class_ip`
+    ) values(
+        '{$club_year}',
+        '{$arr['class_num']}',
+        '{$arr['cate_id']}',
+        '{$arr['class_title']}',
+        '{$arr['teacher_id']}',
+        '{$arr['class_week']}',
+        '{$arr['class_grade']}',
+        '{$arr['class_date_open']}',
+        '{$arr['class_date_close']}',
+        '{$arr['class_time_start']}',
+        '{$arr['class_time_end']}',
+        '{$arr['place_id']}',
+        '{$arr['class_member']}',
+        '{$arr['class_money']}',
+        '{$arr['class_fee']}',
+        '{$arr['class_note']}',
+        '{$arr['class_isopen']}',
+        '',
+        '{$arr['class_desc']}',
+        '{$uid}',
+        '{$today}',
+        '{$ip}'
+    )";
+    $xoopsDB->query($sql_copy) or web_error($sql_copy);
+
+    }
+    return $arr_year;
+
+    //複製kw_club_class 設定club_year = $club_year
+
+}
+
+
 
 //更新kw_club_info某一筆資料
 function update_kw_club_info($club_id = '')
@@ -406,18 +493,21 @@ function delete_kw_club_info($club_id = '')
     if (empty($club_id)) {
         return;
     }
+    $arr_club= get_kw_club_info($club_id);
 
+    //刪除期別社團
+    $sql = "delete from `" . $xoopsDB->prefix("kw_club_class") . "`
+    where `club_year` = '{$arr_club['club_year']}'";
+    $xoopsDB->queryF($sql) or web_error($sql);
+
+    //刪除期別
     $sql = "delete from `" . $xoopsDB->prefix("kw_club_info") . "`
     where `club_id` = '{$club_id}'";
     $xoopsDB->queryF($sql) or web_error($sql);
 
 }
 
-//複製kw_club_info整的期別和社團內容
-function copy_kw_club_info($club_id = '')
-{
 
-}
 
 //以流水號取得某筆kw_club_info資料
 function get_kw_club_info($club_id = '')

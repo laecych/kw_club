@@ -4,7 +4,7 @@
 
 <div class="vtable">
     <ul class="vhead">
-        <li class="w1"><{$smarty.const._MD_KWCLUB_TEACHER_ID}></li>
+        <!-- <li class="w1"><{$smarty.const._MD_KWCLUB_TEACHER_ID}></li> -->
         <li class="w1"><{$smarty.const._MD_KWCLUB_TEACHER_NAME}></li>
         <li class="w4"><{$smarty.const._MD_KWCLUB_TEACHER_CLASS}></li>
         <li class="w4"><{$smarty.const._MD_KWCLUB_CATE_DESC}></li>
@@ -14,24 +14,26 @@
     <{foreach from=$teachers key=uid item=tea}>
         <ul>
             <li class="vcell"><{$smarty.const._MD_KWCLUB_TEACHER_ID}></li>
-            <li class="vm w1 text-center">
-                <a name="<{$uid}>">
-                    <img src="<{$tea.pic}>" alt="<{$tea.name}>" class="img-responsive">
+            <!-- <li class="vm w1 text-center">
+                <a name="<{$tea.teacher_title}>">
+                    <img src="<{$tea.pic}>" alt="<{$tea.teacher_title}>" class="img-responsive">
                 </a>
-            </li>
+            </li> -->
             <li class="vm w1 text-center">
-                <{$tea.name}>
+                <{$tea.teacher_title}>
             </li>
             <li class="vm w4">
                 <{foreach from=$tea_class.$uid key=class_id item=class}>
                     <div style="font-size: 0.9em; list-style-position: inside;"><{$class.club_year}> <a href="index.php?class_id=<{$class_id}>"><{$class.class_title}></a></div>
                 <{/foreach}>
             </li>
+
             <li class="vm w4">
-                <pre style="white-space: pre-wrap; background: transparent; border: none; padding: 2px;" id="bio_<{$uid}>"><{$tea.bio}></pre>
+                <pre style="white-space: pre-wrap; background: transparent; border: none; padding: 2px;" id="bio_<{$uid}>"><{$tea.teacher_desc}><{$uid.bio}></pre>
             </li>
+    
         </ul>
-    <{/foreach}>
+<{/foreach}>
 </div>
 
 <{if $smarty.session.isclubAdmin || $smarty.session.isclubUser}>

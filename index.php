@@ -436,7 +436,7 @@ function class_show($class_id = '')
     $xoopsTpl->assign('cate_id_title', $cate_arr['cate_title']);
     $xoopsTpl->assign('class_title', $class_title);
     $xoopsTpl->assign('teacher_id', $teacher_id);
-    $xoopsTpl->assign('teacher_id_title', $teacher_arr[$teacher_id]['name']);
+    $xoopsTpl->assign('teacher_id_title', $teacher_arr[$teacher_id]);
     $xoopsTpl->assign('class_week', $class_week);
     $xoopsTpl->assign('class_grade', $class_grade);
     $xoopsTpl->assign('class_date_open', $class_date_open);
@@ -490,8 +490,16 @@ function class_show($class_id = '')
 function teacher_list($club_year = "")
 {
     global $xoopsTpl, $xoopsDB;
-    $teachers = get_teacher_all();
-    $xoopsTpl->assign('teachers', $teachers);
+ 
+    $sql    = "select * from `" . $xoopsDB->prefix("kw_club_teacher") . "` where `teacher_enable`='1' order by `teacher_sort`";
+    $result = $xoopsDB->query($sql) or web_error($sql);
+    $teachers_arr = array();
+    while ($data = $xoopsDB->fetchArray($result)) {
+        $id            = $data['teacher_id'];
+        $teachers_arr[$id] = $data;
+    }
+    $xoopsTpl->assign('teachers', $teachers_arr);
+
 
     $sql = "select * from `" . $xoopsDB->prefix("kw_club_class") . "`
     where `class_isopen`='1' order by club_year desc";
@@ -511,7 +519,7 @@ function teacher_list($club_year = "")
         //此處加入欲直接點擊編輯的欄位設定
         $file = "ajax.php";
         //大量文字框
-        foreach ($teachers as $uid => $teacher) {
+        foreach ($teachers_arr as $uid => $teacher) {
             $jeditable->setTextAreaCol("#bio_{$uid}", $file, '390px', '70px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
         }
         $jeditable->render();
@@ -522,6 +530,8 @@ function teacher_list($club_year = "")
 function pid_check($cardid)
 {
     //先將字母數字存成陣列
+    $cardid = strtoupper($cardid); //若輸入英文字母為小寫則轉大寫
+
     $alphabet =['A'=>'10','B'=>'11','C'=>'12','D'=>'13','E'=>'14','F'=>'15','G'=>'16','H'=>'17','I'=>'34',
                 'J'=>'18','K'=>'19','L'=>'20','M'=>'21','N'=>'22','O'=>'35','P'=>'23','Q'=>'24','R'=>'25',
                 'S'=>'26','T'=>'27','U'=>'28','V'=>'29','W'=>'32','X'=>'30','Y'=>'31','Z'=>'33'];
@@ -532,7 +542,6 @@ function pid_check($cardid)
 
     //驗證英文字母正確性
     $alpha = substr($cardid,0,1);//英文字母
-    $alpha = strtoupper($alpha);//若輸入英文字母為小寫則轉大寫
     if(!preg_match("/[A-Za-z]/",$alpha)){
         return false;
 

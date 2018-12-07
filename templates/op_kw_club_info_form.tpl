@@ -1,5 +1,4 @@
 <form action="config.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal" role="form">
-
     <div class="form-group">
         <!--社團期別-->
         <label for="club_year" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_YEAR}></label>
@@ -87,16 +86,41 @@
              vicky-->
         </div>
 
+        <{if empty($type)}>
         <div class="col-sm-6">
             <!--設定者-->
             <input type='hidden' name="club_uid" value="<{$club_uid}>">
-
             <{$token_form}>
-
             <input type="hidden" name="op" value="<{$next_op}>">
             <input type="hidden" name="club_id" value="<{$club_id}>">
             <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}><{$smarty.const._MD_KWCLUB_ADMIN}></button>
         </div>
+        <{/if}>
     </div>
 
+    <{if $type=='copy' &&  $arr_year}>
+       
+        <div class="form-group">
+            <label for="club_year" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_COPY}></label>
+            <div class="col-sm-4">
+                <select class="form-control validate[required]" name="copy_year" id="copy_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
+                    <{foreach from=$arr_year key=year item=year_txt}>
+                        <option value="<{$year_txt}>" <{if $club_year == $year}>selected <{/if}>><{$year_txt}></option>
+                    <{/foreach}>
+                </select>
+            </div>
+
+            <div class="col-sm-6">
+                <!--設定者-->
+                <input type='hidden' name="club_uid" value="<{$club_uid}>">
+                <{$token_form}>
+                    <input type="hidden" name="type" value="copy">
+                    <input type="hidden" name="op" value="<{$next_op}>">
+                    <input type="hidden" name="club_id" value="<{$club_id}>">
+                    <button type="submit" class="btn btn-success"><{$smarty.const._MD_KWCLUB_COPY}></button>
+            </div>
+        </div>
+    <{/if}>
 </form>
+
+

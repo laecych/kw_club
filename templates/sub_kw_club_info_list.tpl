@@ -74,9 +74,7 @@
                     <li class="vm w1 text-center">
                         <a href="javascript:delete_kw_club_info_func(<{$data.club_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
                         <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form&club_id=<{$data.club_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
-                        <a href="<{$xoops_url}>/modules/kw_club/config.php?op=copy_kw_club_info&club_id=<{$data.club_id}>" class="btn btn-xs btn-success">
-                            <{$smarty.const._MD_KWCLUB_COPY}>
-                        </a>
+                    
                     </li>
                 <{/if}>
             </ul>
@@ -87,7 +85,13 @@
     <{if $smarty.session.isclubAdmin}>
         <div class="text-right">
             <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form" class="btn btn-info"><{$smarty.const._MD_KWCLUB_ADD_CLUB_INFO}></a>
+           <{if $all_kw_club_info }>
+            <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form&type=copy" class="btn btn-success">
+                <{$smarty.const._MD_KWCLUB_COPY}>
+            </a>
+            <{/if}>
         </div>
+         
     <{/if}>
 
     <{$bar}>

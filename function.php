@@ -41,7 +41,7 @@ function get_reg_uid_all($club_year)
         $sql  = "select a.*, b.*, c.`club_end_date` from `" . $xoopsDB->prefix("kw_club_reg") . "` as a
         join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
         join `" . $xoopsDB->prefix("kw_club_info") . "` as c on b.`club_year` = c.`club_year`
-        where b.`club_year`={$club_year}";
+        where b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
 
         while ($data = $xoopsDB->fetchArray($result)) {
@@ -231,26 +231,26 @@ function get_semester()
 
 }
 
-
 function get_ip()
 {
- $ip="";
- if(!empty($_SERVER["HTTP_CLIENT_IP"])){
-  $ip = $_SERVER["HTTP_CLIENT_IP"];
- }
- if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-  $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
-  if($ip){
-   array_unshift($ips, $ip); $ip = FALSE;
-  }
-  for($i = 0; $i < count($ips); $i++){
-   if (!eregi ("^(10|172\.16|192\.168)\.", $ips[$i])){
-    $ip = $ips[$i];
-    break;
-   }
-  }
- }
- return($ip ? $ip : $_SERVER['REMOTE_ADDR']);
+    $ip = "";
+    if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ips = explode(", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+        if ($ip) {
+            array_unshift($ips, $ip);
+            $ip = false;
+        }
+        for ($i = 0; $i < count($ips); $i++) {
+            if (!eregi("^(10|172\.16|192\.168)\.", $ips[$i])) {
+                $ip = $ips[$i];
+                break;
+            }
+        }
+    }
+    return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
 }
 
 // function get_ip()

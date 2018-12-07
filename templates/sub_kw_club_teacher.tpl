@@ -24,7 +24,7 @@
             </script>
             <div id="kw_club_teacher_save_msg"></div>
             <ul class="list-group" id="kw_club_teacher_sort">
-                <{foreach from=$all_place_content item=data}>
+                <{foreach from=$all_teacher_content item=data}>
                     <li id="teacherli_<{$data.teacher_id}>" class="list-group-item">
                         <{$data.teacher_title}>
                             <{if $smarty.session.isclubAdmin}>

@@ -20,14 +20,14 @@
     <div align="right">
         <a href="register.php" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_LIST_MODE}></a>
-        <a href="excel.php?club_year=<{$club_year}>&review=<{$review}>" class="btn btn-default"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+        <a href="excel.php?club_year=<{$club_year}>" class="btn btn-default"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_EXPORT_EXCEL}></a>
-        <a href="pdf.php?club_year=<{$smarty.session.club_year}>" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        <a href="pdf.php?club_year=<{$club_year}>" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_EXPORT_PDF}></a>
     </div>
 
     <h3>
-        <span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_PAID_LIST}>
+        <span class="club_year_text"><{$club_year}></span><{$smarty.const._MD_KWCLUB_PAID_LIST}>
         <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
     </h3>
 

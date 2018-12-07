@@ -44,10 +44,10 @@ if (!function_exists('club_class_list')) {
                 $all_class_content[$i]['class_date_close'] = $myts->htmlSpecialChars($class_date_close);
                 $all_class_content[$i]['class_time_start'] = $myts->htmlSpecialChars($class_time_start);
                 $all_class_content[$i]['class_time_end']   = $myts->htmlSpecialChars($class_time_end);
-                $all_class_content[$i]['cate_id']          = $myts->htmlSpecialChars($all_cate_arr[$cate_id]['cate_title']);
+                $all_class_content[$i]['cate_id']          = $myts->htmlSpecialChars($all_cate_arr[$cate_id]);
                 $all_class_content[$i]['teacher_id']       = (int) $teacher_id;
-                $all_class_content[$i]['teacher_id_title'] = $myts->htmlSpecialChars($all_teacher_arr[$teacher_id]['name']);
-                $all_class_content[$i]['place_id']         = $myts->htmlSpecialChars($all_place_arr[$place_id]['place_title']);
+                $all_class_content[$i]['teacher_id_title'] = $myts->htmlSpecialChars($all_teacher_arr[$teacher_id]);
+                $all_class_content[$i]['place_id']         = $myts->htmlSpecialChars($all_place_arr[$place_id]);
                 $all_class_content[$i]['class_member']     = (int) $class_member;
                 $all_class_content[$i]['class_money']      = (int) $class_money;
                 $all_class_content[$i]['class_fee']        = (int) $class_fee;
@@ -208,14 +208,22 @@ if (!function_exists('get_cate_all')) {
     function get_cate_all()
     {
         global $xoopsDB;
-        $sql      = "select * from `" . $xoopsDB->prefix("kw_club_cate") . "`";
-        $result   = $xoopsDB->query($sql) or web_error($sql);
-        $data_arr = array();
-        while ($data = $xoopsDB->fetchArray($result)) {
-            $cate_id            = $data['cate_id'];
-            $data_arr[$cate_id] = $data;
+        $sql    = "select `cate_id`, `cate_title` from `" . $xoopsDB->prefix("kw_club_cate") . "` where `cate_enable`='1' order by `cate_sort`";
+        $result = $xoopsDB->query($sql) or web_error($sql);
+        while (list($cate_id, $cate_title) = $xoopsDB->fetchRow($result)) {
+            $options_array_cate[$cate_id] = $cate_title;
         }
-        return $data_arr;
+        return $options_array_cate;
+
+        // global $xoopsDB;
+        // $sql      = "select * from `" . $xoopsDB->prefix("kw_club_cate") . "`";
+        // $result   = $xoopsDB->query($sql) or web_error($sql);
+        // $data_arr = array();
+        // while ($data = $xoopsDB->fetchArray($result)) {
+        //     $cate_id            = $data['cate_id'];
+        //     $data_arr[$cate_id] = $data;
+        // }
+        // return $data_arr;
     }
 }
 
@@ -224,20 +232,45 @@ if (!function_exists('get_place_all')) {
     function get_place_all()
     {
         global $xoopsDB;
-        $sql      = "select * from `" . $xoopsDB->prefix("kw_club_place") . "`";
-        $result   = $xoopsDB->query($sql) or web_error($sql);
-        $data_arr = array();
-        while ($data = $xoopsDB->fetchArray($result)) {
-            $cate_id            = $data['place_id'];
-            $data_arr[$cate_id] = $data;
+        $sql    = "select `place_id`, `place_title` from `" . $xoopsDB->prefix("kw_club_place") . "` where `place_enable`='1' order by `place_sort`";
+        $result = $xoopsDB->query($sql) or web_error($sql);
+        while (list($place_id, $place_title) = $xoopsDB->fetchRow($result)) {
+            $options_array_place[$place_id] = $place_title;
         }
-        return $data_arr;
+        return  $options_array_place;
+
+        // $sql      = "select * from `" . $xoopsDB->prefix("kw_club_place") . "`";
+        // $result   = $xoopsDB->query($sql) or web_error($sql);
+        // $data_arr = array();
+        // while ($data = $xoopsDB->fetchArray($result)) {
+        //     $cate_id            = $data['place_id'];
+        //     $data_arr[$cate_id] = $data;
+        // }
+        // return $data_arr;
     }
 }
+
 
 //取得所有社團老師陣列
 if (!function_exists('get_teacher_all')) {
     function get_teacher_all()
+    {
+       global $xoopsDB;
+        $sql    = "select `teacher_id`, `teacher_title` from `" . $xoopsDB->prefix("kw_club_teacher") . "` where `teacher_enable`='1' order by `teacher_sort`";
+        $result = $xoopsDB->query($sql) or web_error($sql);
+        while (list($teacher_id, $teacher_title) = $xoopsDB->fetchRow($result)) {
+            $options_array_teacher[$teacher_id] = $teacher_title;
+        }
+        return $options_array_teacher; 
+
+    }
+}
+
+
+
+//取得所有社團老師陣列
+if (!function_exists('get_innerteacher_all')) {
+    function get_innerteacher_all()
     {
         global $xoopsDB;
         $member_handler = xoops_gethandler('member');

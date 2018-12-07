@@ -10,7 +10,7 @@ $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM); //設定自動分頁
 $pdf->setFontSubsetting(true); //產生字型子集（有用到的字才放到文件中）
 $pdf->SetMargins(15, 15); //設定頁面邊界，
 
-$club_year = system_CleanVars($_REQUEST, 'club_year', '0', 'int');
+$club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $reg_all   = get_reg_uid_all($club_year);
 
 $i = 1;
@@ -21,7 +21,7 @@ foreach ($reg_all as $reg_uid => $reg) {
     }
 
     $pdf->SetFont('msungstdlight', '', 20, '', true); //設定字型
-    $pdf->Cell(180, 12, "{$reg['class']} {$reg['name']} " . _MD_KWCLUB_PAY_PDF, 0, 1, 'C', 0);
+    $pdf->Cell(180, 12, "{$reg['class']} {$reg['name']}  {$club_year}" . _MD_KWCLUB_PAY_PDF, 0, 1, 'C', 0);
     $pdf->SetFont('msungstdlight', '', 10, '', true); //設定字型
 
     $height = 10;
@@ -73,7 +73,7 @@ foreach ($reg_all as $reg_uid => $reg) {
     $i++;
 }
 
-$club_year_text = club_year_text($club_year);
-$title          = iconv('utf-8', 'big5', $club_year_text . _MD_KWCLUB_PAY_PDF);
+// $club_year_text = club_year_text($club_year);
+$title = iconv('utf-8', 'big5', $club_year . _MD_KWCLUB_PAY_PDF);
 //PDF內容設定
 $pdf->Output($title . '.pdf', 'D');

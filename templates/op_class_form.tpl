@@ -40,11 +40,16 @@
     <div class="form-group">
         <label for="teacher_id" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_TEACHER_NAME}><span class="caption-required">*</span></label>
         <div class="col-sm-5">
-            <select class="form-control validate[required]" size="1" name="teacher_id" id="teacher_id" title="<{$smarty.const._MD_KWCLUB_TEACHER_NAME}>">
-                <{foreach from=$arr_teacher key="tid" item="teacher" }>
-                    <option value="<{$tid}>" <{if ($tid==$uid and $class_id=='') or ($tid==$teacher_id and $class_id=='' and $class_num!='')}>selected<{/if}>><{$teacher.name}> (<{$teacher.email}>)</option>
+            <select class="form-control validate[required]" size="1" name="teacher_id" id="cate_id" title="<{$smarty.const._MD_KWCLUB_TEACHER_ID}>">
+                <{foreach from=$arr_teacher key=id item=arr_c}>
+                    <option value="<{$id}>" <{if $teacher_id==$id}>selected<{/if}>><{$arr_c}></option>
                 <{/foreach}>
             </select>
+            <!-- <select class="form-control validate[required]" size="1" name="teacher_id" id="teacher_id" title="<{$smarty.const._MD_KWCLUB_TEACHER_NAME}>">
+                <{foreach from=$arr_teacher key="tid" item="teacher" }>
+                    <option value="<{$tid}>" <{if ($tid==$uid and $class_id=='') or ($tid==$teacher_id and $class_id=='' and $class_num!='')}>selected<{/if}>><{$teacher.title}> (<{$teacher.desc}>)</option>
+                <{/foreach}>
+            </select> -->
         </div>
         <div class="col-sm-5">
             <div class="help-block">

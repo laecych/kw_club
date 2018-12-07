@@ -244,22 +244,21 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $xoopsTpl->assign('arr_semester', $arr_semester);
 
     //get the forigner key
-    $sql    = "select `cate_id`, `cate_title`  from `" . $xoopsDB->prefix("kw_club_cate") . "` where `cate_enable`='1' order by `cate_sort`";
-    $result = $xoopsDB->query($sql) or web_error($sql);
-    while (list($id, $title) = $xoopsDB->fetchRow($result)) {
-        $options_array_cate[$id] = $title;
-    }
-    $xoopsTpl->assign('arr_cate', $options_array_cate);
+    // $sql    = "select `cate_id`, `cate_title`  from `" . $xoopsDB->prefix("kw_club_cate") . "` where `cate_enable`='1' order by `cate_sort`";
+    // $result = $xoopsDB->query($sql) or web_error($sql);
+    // while (list($id, $title) = $xoopsDB->fetchRow($result)) {
+    //     $options_array_cate[$id] = $title;
+    // }
+    //社團類型
+    $xoopsTpl->assign('arr_cate', get_cate_all());
 
     //開課教師
     $xoopsTpl->assign('arr_teacher', get_teacher_all());
 
-    $sql    = "select `place_id`, `place_title` from `" . $xoopsDB->prefix("kw_club_place") . "` where `place_enable`='1' order by `place_sort`";
-    $result = $xoopsDB->query($sql) or web_error($sql);
-    while (list($place_id, $place_title) = $xoopsDB->fetchRow($result)) {
-        $options_array_place[$place_id] = $place_title;
-    }
-    $xoopsTpl->assign('arr_place', $options_array_place);
+    //開課地點
+    $xoopsTpl->assign('arr_place', get_place_all());
+
+    // $xoopsTpl->assign('arr_place', $options_array_place);
 
     //套用formValidator驗證機制
     if (!file_exists(TADTOOLS_PATH . "/formValidator.php")) {
