@@ -530,11 +530,8 @@ function teacher_list($club_year = "")
 function pid_check($cardid)
 {
     //先將字母數字存成陣列
-<<<<<<< HEAD
     $cardid = strtoupper($cardid); //若輸入英文字母為小寫則轉大寫
 
-=======
->>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
     $alphabet =['A'=>'10','B'=>'11','C'=>'12','D'=>'13','E'=>'14','F'=>'15','G'=>'16','H'=>'17','I'=>'34',
                 'J'=>'18','K'=>'19','L'=>'20','M'=>'21','N'=>'22','O'=>'35','P'=>'23','Q'=>'24','R'=>'25',
                 'S'=>'26','T'=>'27','U'=>'28','V'=>'29','W'=>'32','X'=>'30','Y'=>'31','Z'=>'33'];
@@ -545,10 +542,6 @@ function pid_check($cardid)
 
     //驗證英文字母正確性
     $alpha = substr($cardid,0,1);//英文字母
-<<<<<<< HEAD
-=======
-    $alpha = strtoupper($alpha);//若輸入英文字母為小寫則轉大寫
->>>>>>> 685224cc6d6b0c454c4aa46d27cc7d27966e7bda
     if(!preg_match("/[A-Za-z]/",$alpha)){
         return false;
 
