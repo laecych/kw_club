@@ -8,11 +8,13 @@
                     <{$smarty.const._MD_KWCLUB_CLASS_TITLE}>
                 </li>
             <{/if}>
+
+            <{if $smarty.session.isclubAdmin || $uid== $class_uid }>
             <!--報名者ID-->
             <li class="w1">
                 <{$smarty.const._MD_KWCLUB_REG_UID}>
             </li>
-            
+            <{/if}>
             <!--報名者姓名-->
             <li class="w1">
                 <{$smarty.const._MD_KWCLUB_REG_NAME}>
@@ -56,10 +58,13 @@
                         <a href="index.php?class_id=<{$data.class_id}>" data-toggle="tooltip" data-placement="bottom" title="<{$data.class_id}>"><{$data.class_title}></a>
                     </li>
                 <{/if}>
+
+                <{if $smarty.session.isclubAdmin || $uid==$class_uid }>
                 <!--報名者ID-->
                 <li class="vm w1 text-center">
                      <span class="editable" id="reg_uid_<{$data.reg_sn}>"><{$data.reg_uid}></span>
                 </li>
+                <{/if}>
                 <!--報名者姓名-->
                 <li class="vcell text-center"><{$smarty.const._MD_KWCLUB_REG_NAME}></li>
                 <li class="vm w1 text-center">
