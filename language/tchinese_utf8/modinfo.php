@@ -34,6 +34,9 @@ define('_MI_KWCLUB_SCHOOL_GK6', '六年級');
 define('_MI_KWCLUB_SCHOOL_GK7', '七年級');
 define('_MI_KWCLUB_SCHOOL_GK8', '八年級');
 define('_MI_KWCLUB_SCHOOL_GK9', '九年級');
+define('_MI_KWCLUB_SCHOOL_GK10', '十年級');
+define('_MI_KWCLUB_SCHOOL_GK11', '十一年級');
+define('_MI_KWCLUB_SCHOOL_GK12', '十二年級');
 
 define('_MI_KWCLUB_SCHOOL_GV0', '幼');
 define('_MI_KWCLUB_SCHOOL_GV1', '一');
@@ -45,7 +48,10 @@ define('_MI_KWCLUB_SCHOOL_GV6', '六');
 define('_MI_KWCLUB_SCHOOL_GV7', '七');
 define('_MI_KWCLUB_SCHOOL_GV8', '八');
 define('_MI_KWCLUB_SCHOOL_GV9', '九');
+define('_MI_KWCLUB_SCHOOL_GV10', '十');
+define('_MI_KWCLUB_SCHOOL_GV11', '十一');
+define('_MI_KWCLUB_SCHOOL_GV12', '十二');
 
 define('_MI_KWCLUB_SCHOOL_CLASS', '班級設定');
 define('_MI_KWCLUB_SCHOOL_CLASS_DESC', '設定學校可報名的班級名稱（請用 ; 隔開）');
-define('_MI_KWCLUB_SCHOOL_CLASS_DEFAULT', '甲班;乙班;丙班;丁班');
+define('_MI_KWCLUB_SCHOOL_CLASS_DEFAULT', '1班;2班;3班;4班');
