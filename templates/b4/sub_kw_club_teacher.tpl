@@ -30,10 +30,10 @@
                             <{if $smarty.session.isclubAdmin}>
                                 <img src="<{$xoops_url}>/modules/tadtools/treeTable/images/updown_s.png" style="cursor: s-resize;margin:0px 4px;" alt="<{$smarty.const._TAD_SORTABLE}>"
                                     title="<{$smarty.const._TAD_SORTABLE}>">
-                                <a href="javascript:delete_teacher_func(<{$data.teacher_id}>);" class="btn btn-xs btn-danger">
+                                <a href="javascript:delete_teacher_func(<{$data.teacher_id}>);" class="btn btn-sm btn-danger">
                                     <{$smarty.const._TAD_DEL}>
                                 </a>
-                                <a href="<{$xoops_url}>/modules/kw_club/config.php?type=teacher&teacher_id=<{$data.teacher_id}>#setupTab2" class="btn btn-xs btn-warning">
+                                <a href="<{$xoops_url}>/modules/kw_club/config.php?type=teacher&teacher_id=<{$data.teacher_id}>#setupTab2" class="btn btn-sm btn-warning">
                                     <{$smarty.const._TAD_EDIT}>
                                 </a>
                                 <{/if}>

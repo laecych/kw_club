@@ -20,9 +20,9 @@
     <div align="right">
         <a href="register.php" class="btn btn-primary"><i class="fa fa-table" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_LIST_MODE}></a>
-        <a href="excel.php?club_year=<{$club_year}>" class="btn btn-default"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
+        <a href="excel.php?club_year=<{$club_year}>" class="btn btn-secondary"><i class="fa fa-file-excel-o" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_EXPORT_EXCEL}></a>
-        <a href="pdf.php?club_year=<{$club_year}>" class="btn btn-default"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+        <a href="pdf.php?club_year=<{$club_year}>" class="btn btn-secondary"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
             <{$smarty.const._MD_KWCLUB_EXPORT_PDF}></a>
     </div>
 
@@ -84,10 +84,10 @@
 
                         <li class="vm w1 text-center">
                             <{if  !$data.reg_isfee}>
-                                <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-xs btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-sm btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i>
                                     <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                              <{else}>
-                                    <a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
                                         <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                             <{/if}>
                         </li>

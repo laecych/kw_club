@@ -74,9 +74,9 @@
                         <span data-toggle="tooltip" data-placement="bottom" <{if $data.class_fee}>style="color: #ad168a;"  title="<{$smarty.const._MD_KWCLUB_CLASS_MONEY}> <{$data.class_money}> <{$smarty.const._MD_KWCLUB_DOLLAR}> + <{$smarty.const._MD_KWCLUB_CLASS_FEE}> <{$data.class_fee}> <{$smarty.const._MD_KWCLUB_DOLLAR}>"<{/if}>><{$data.class_money}><{if $data.class_fee}> (<{$data.class_fee}>) <{/if}><{$smarty.const._MD_KWCLUB_DOLLAR}></span>
                         <div>
                             <{ if $data.reg_isfee==1}>
-                                <span class="label label-success"><{$smarty.const._MD_KWCLUB_PAID}></span>
+                                <span class="badge badge-success"><{$smarty.const._MD_KWCLUB_PAID}></span>
                             <{else}>
-                                <span class="label label-danger"><{$smarty.const._MD_KWCLUB_NOT_PAY}></span>
+                                <span class="badge badge-danger"><{$smarty.const._MD_KWCLUB_NOT_PAY}></span>
                             <{/if}>
                         </div>
                     </li>
@@ -97,10 +97,10 @@
 
                     <li class="vm w1 text-center">
                     <{if !($today> $end_day) || !$data.reg_isfee}>
-                        <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-xs" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-sm" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-times-circle" aria-hidden="true"></i>
                             <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                     <{else}>
-                            <a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
+                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
                             <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                     <{/if}>
                     </li>

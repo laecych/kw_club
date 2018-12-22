@@ -72,8 +72,8 @@
                 <{if $smarty.session.isclubAdmin}>
                     <li class="vcell"><{$smarty.const._TAD_FUNCTION}></li>
                     <li class="vm w1 text-center">
-                        <a href="javascript:delete_kw_club_info_func(<{$data.club_id}>);" class="btn btn-xs btn-danger"><{$smarty.const._TAD_DEL}></a>
-                        <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form&club_id=<{$data.club_id}>" class="btn btn-xs btn-warning"><{$smarty.const._TAD_EDIT}></a>
+                        <a href="javascript:delete_kw_club_info_func(<{$data.club_id}>);" class="btn btn-sm btn-danger"><{$smarty.const._TAD_DEL}></a>
+                        <a href="<{$xoops_url}>/modules/kw_club/config.php?op=kw_club_info_form&club_id=<{$data.club_id}>" class="btn btn-sm btn-warning"><{$smarty.const._TAD_EDIT}></a>
                     
                     </li>
                 <{/if}>
