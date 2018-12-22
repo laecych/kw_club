@@ -1,1 +1,2 @@
-<{includeq file="$xoops_rootpath/modules/kw_club/templates/op_`$op`.tpl"}>
+<{assign var=this_file value=$smarty.template|basename|replace: 'db:': ''}>
+<{includeq file="$xoops_rootpath/modules/$xoops_dirname/templates/b4.tpl" }>
