@@ -1,5 +1,16 @@
-<h1><{$smarty.const._MD_KWCLUB}></h1>
-
+<div class="row">
+    <div class="col-sm-10">
+        <h1><{$smarty.const._MD_KWCLUB}></h1>
+    </div>
+    <div class="col-sm-1" style="padding-top: 40px;">
+       <{if $language=="english"}>
+        <a href="index.php?language=tchinese_utf8" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+        <{else}>
+        <a href="index.php?language=english" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+        <{/if}>    
+           <{$smarty.const._MD_KWCLUB_LANGUAGE}></a>
+    </div>   
+</div>
 <!-- 社團期別下拉選單 -->
 <{if $arr_year}>
     <div class="alert alert-info" style="margin: 10px auto;"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}>

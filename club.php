@@ -16,6 +16,7 @@ $year       = system_CleanVars($_REQUEST, 'year', '', 'int');
 $club_year  = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $class_num  = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
+
 switch ($op) {
 
     //新增資料
@@ -108,7 +109,8 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
         $DBV['club_year']       = $club_year;
         $DBV['class_date_open'] = $DBV['class_date_close'] = $DBV['class_ischecked'] = $class_id = '';
 
-    } else {
+    } 
+    else {
         $DBV      = array();
         $class_id = $class_num = "";
     }
@@ -121,15 +123,17 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $class_json = array();
     $class_dir  = XOOPS_ROOT_PATH . "/uploads/kw_club/class/";
     $dh         = opendir($class_dir);
+
     if (is_dir($class_dir) && $dh = opendir($class_dir)) {
         while (($file = readdir($dh)) !== false) {
             if ($file != "." && $file != "..") {
                 $file_name = str_replace(".json", "", $file);
-                if (!in_array($file_name, $arr_num)) {
+                //if (!in_array($file_name, $arr_num)) {
                     array_push($arr_num, $file_name);
-                    $class_json                         = json_decode(file_get_contents(XOOPS_ROOT_PATH . "/uploads/kw_club/class/" . $file), true);
+                    $class_json                         = json_decode(file_get_contents(XOOPS_ROOT_PATH .
+                    "/uploads/kw_club/class/" . $file), true);
                     $js_class[$class_json['class_num']] = $class_json['class_title'];
-                }
+               // }
             }
         }
         closedir($dh);

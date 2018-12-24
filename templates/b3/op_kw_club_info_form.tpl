@@ -105,7 +105,7 @@
             <div class="col-sm-4">
                 <select class="form-control validate[required]" name="copy_year" id="copy_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
                     <{foreach from=$arr_year  item=year}>
-                        <option value="<{$year_txt}>" <{if $club_year == $year}>selected <{/if}>><{$year}></option>
+                        <option value="<{$year}>" <{if $club_year == $year}>selected <{/if}>><{$year}></option>
                     <{/foreach}>
                 </select>
             </div>

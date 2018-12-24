@@ -79,7 +79,7 @@ switch ($op) {
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab4");
         exit;
 
-  case "update_teacher":
+    case "update_teacher":
         update_cate($type, $teacher_id);
         header("location: {$_SERVER['PHP_SELF']}?type=$type#setupTab2");
         exit;

@@ -1,6 +1,6 @@
 <h2 class="text-center">
     <span class="label label-info"><{$cate_id_title}></span>
-    <{$class_title}>
+    <{$class_num}>_<{$class_title}>
     <!--是否開班-->
     <{if $smarty.session.isclubAdmin}>
         <span class="badge">

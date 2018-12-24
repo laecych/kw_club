@@ -15,6 +15,7 @@ $club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
 $reg_uid   = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
 
+
 $today = date('Y-m-d');
 switch ($op) {
 
@@ -53,6 +54,7 @@ switch ($op) {
             class_show($class_id);
             $op = 'class_show';
         } else {
+           
             club_class_list($club_year);
             $op = 'class_list';
         }

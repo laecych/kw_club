@@ -80,7 +80,7 @@ function get_reg_uid_all($club_year)
     }
 }
 
-//取得期別的所有社團編號
+//取得的所有社團編號(已存在的社團)
 function get_club_class_num()
 {
     global $xoopsDB;
@@ -89,7 +89,7 @@ function get_club_class_num()
         return false;
     } else {
         $year = $_SESSION['club_year'];
-        $sql  = "select `class_num` from `" . $xoopsDB->prefix("kw_club_class") . "`  where `club_year` = '{$year}'";
+        $sql  = "select `class_num` from `" . $xoopsDB->prefix("kw_club_class") . "` ";// where `club_year` = '{$year}'";
         // echo $sql;
         $result = $xoopsDB->query($sql) or web_error($sql);
         while (list($class_num) = $xoopsDB->fetchRow($result)) {

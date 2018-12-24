@@ -32,7 +32,11 @@
     <div class="form-group row">
         <label for="class_title" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
-            <input class='form-control validate[required]' type='text' name='class_title' title='<{$smarty.const._MD_KWCLUB_CLASS_TITLE}>' id='class_title' value='<{$class_title}>'>
+            <{if $class_num && $class_title && $class_id==""}>
+                <{$class_num}>_<{$class_title}>
+            <{else}>
+                <input class='form-control validate[required]' type='text' name='class_title' title='<{$smarty.const._MD_KWCLUB_CLASS_TITLE}>' id='class_title' value='<{$class_title}>'>
+            <{/if}>
         </div>
     </div>
 

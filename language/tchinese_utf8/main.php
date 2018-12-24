@@ -290,3 +290,5 @@ define('_MD_KWCLUB_TEACHER_DESC', "<a href='" . XOOPS_URL . "/edituser.php?op=av
 
 define('_MD_KWCLUB_REG_PARENT', '家長姓名');
 define('_MD_KWCLUB_REG_TEL', '家長聯絡電話');
+
+define('_MD_KWCLUB_LANGUAGE', 'English');

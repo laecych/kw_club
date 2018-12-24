@@ -5,7 +5,7 @@
 <{/if}>
 
 <form class="form-horizontal" name="classform" id="classform" action="club.php" method="post" enctype = "multipart/form-data">
-
+    <{$js_class[3]}>
     <!-- 社團編號 -->
     <div class="form-group">
         <label for="class_num" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_PICK_CLUB}><span class="caption-required">*</span></label>
@@ -32,7 +32,12 @@
     <div class="form-group">
         <label for="class_title" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
-            <input class='form-control validate[required]' type='text' name='class_title' title='<{$smarty.const._MD_KWCLUB_CLASS_TITLE}>' id='class_title' value='<{$class_title}>'>
+            <{if $class_num && $class_title && $class_id==""}>
+                <{$class_num}>_<{$class_title}>
+            <{else}>
+                <input class='form-control validate[required]' type='text' name='class_title' title='<{$smarty.const._MD_KWCLUB_CLASS_TITLE}>' id='class_title' value='<{$class_title}>'>
+            <{/if}>
+           
         </div>
     </div>
 

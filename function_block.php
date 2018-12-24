@@ -104,6 +104,7 @@ if (!function_exists('club_class_list')) {
             // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
             //檢查報名是否可行
             $xoopsTpl->assign('chk_time', $chk_time);
+            $xoopsTpl->assign('language', $_SESSION['language']);
 
             //超過報名截止時間即停止報名及修改
             // $xoopsTpl->assign('can_operate', chk_time('return', true));
@@ -237,7 +238,7 @@ if (!function_exists('get_place_all')) {
         while (list($place_id, $place_title) = $xoopsDB->fetchRow($result)) {
             $options_array_place[$place_id] = $place_title;
         }
-        return  $options_array_place;
+        return $options_array_place;
 
         // $sql      = "select * from `" . $xoopsDB->prefix("kw_club_place") . "`";
         // $result   = $xoopsDB->query($sql) or web_error($sql);
@@ -250,23 +251,20 @@ if (!function_exists('get_place_all')) {
     }
 }
 
-
 //取得所有社團老師陣列
 if (!function_exists('get_teacher_all')) {
     function get_teacher_all()
     {
-       global $xoopsDB;
+        global $xoopsDB;
         $sql    = "select `teacher_id`, `teacher_title` from `" . $xoopsDB->prefix("kw_club_teacher") . "` where `teacher_enable`='1' order by `teacher_sort`";
         $result = $xoopsDB->query($sql) or web_error($sql);
         while (list($teacher_id, $teacher_title) = $xoopsDB->fetchRow($result)) {
             $options_array_teacher[$teacher_id] = $teacher_title;
         }
-        return $options_array_teacher; 
+        return $options_array_teacher;
 
     }
 }
-
-
 
 //取得所有社團老師陣列
 if (!function_exists('get_innerteacher_all')) {
