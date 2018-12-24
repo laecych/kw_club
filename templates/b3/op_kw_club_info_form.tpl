@@ -104,8 +104,8 @@
             <label for="club_year" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_COPY}></label>
             <div class="col-sm-4">
                 <select class="form-control validate[required]" name="copy_year" id="copy_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
-                    <{foreach from=$arr_year key=year item=year_txt}>
-                        <option value="<{$year_txt}>" <{if $club_year == $year}>selected <{/if}>><{$year_txt}></option>
+                    <{foreach from=$arr_year  item=year}>
+                        <option value="<{$year_txt}>" <{if $club_year == $year}>selected <{/if}>><{$year}></option>
                     <{/foreach}>
                 </select>
             </div>
