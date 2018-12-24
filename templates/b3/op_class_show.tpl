@@ -15,7 +15,7 @@
     <{/if}>
 
     <p class="text-center" style="font-size: 0.6em; margin: 30px auto 5px; padding:20px; border-top: 1px dashed #5f8aca;">
-        <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year_text}></a>
+        <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year}></a>
         <{$smarty.const._MD_KWCLUB_APPLY_DATE}><{$smarty.const._TAD_FOR}><span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>
     </p>
 </h2>
@@ -182,7 +182,7 @@
 <br>
 
 <h3>
-    <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year_text}></a>
+    <a href="index.php?club_year=<{$club_year}>" class="club_year_text"><{$club_year}></a>
     <span style="color:green"><{$class_title}></span>
     <{$smarty.const._MD_KWCLUB_REGISTERED_LIST}>
     <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>

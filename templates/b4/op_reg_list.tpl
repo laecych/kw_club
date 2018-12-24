@@ -4,8 +4,9 @@
     <div class="alert alert-info" style="margin: 10px auto;"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}>
         <select name="club_year" id="club_year" onChange="location.href='register.php?club_year=' + $('#club_year').val() + '&review=' + $('#review').val() ;">
             <!-- <option value=""><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></option> -->
-            <{foreach from=$arr_year key=year item=year_txt}>
-                <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year_txt}></option>
+         
+            <{foreach from=$arr_year item=year}>
+                <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year}></option>
             <{/foreach}>
         </select>
         <select name="review" id="review" onChange="location.href='register.php?club_year=' + $('#club_year').val() + '&review=' + $('#review').val() ;">
@@ -33,7 +34,7 @@
 
 
 <h3>
-    <{if $club_year_text}><span class="club_year_text"><{$club_year}></span><{/if}><{$smarty.const._MD_KWCLUB_REGISTER_LIST}>
+    <{if $club_year}><span class="club_year_text"><{$club_year}></span><{/if}><{$smarty.const._MD_KWCLUB_REGISTER_LIST}>
     <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
 </h3>
 

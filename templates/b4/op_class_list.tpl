@@ -5,8 +5,8 @@
     <div class="alert alert-info" style="margin: 10px auto;"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}>
         <select name="club_year" onChange="location.href='index.php?club_year='+this.value">
             <!-- <option value=""><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></option> -->
-            <{foreach from=$arr_year key=year item=year_txt}>
-                <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year_txt}></option>
+            <{foreach from=$arr_year item=year}>
+                <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year}></option>
             <{/foreach}>
         </select>
     </div>

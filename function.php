@@ -384,7 +384,7 @@ function isclub($group_name = '')
 function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
-
+    
     $myts = MyTextSanitizer::getInstance();
 
     $and_class_id = $class_id ? " and a.`class_id`='{$class_id}'" : '';
@@ -393,6 +393,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
     join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
     where b.`club_year`='{$club_year}' {$and_class_id} {$order}";
 
+    
     if ($show_PageBar) {
         //getPageBar($原sql語法, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
         $PageBar = getPageBar($sql, 20, 10);

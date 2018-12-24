@@ -5,8 +5,8 @@
         <span class="input-group-addon" id="basic-addon3"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></span>
         <select name="club_year" class="form-control">
             <{if $arr_year}>
-                <{foreach from=$arr_year key=year item=year_txt}>
-                    <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year_txt}></option>
+                <{foreach from=$arr_year item=year}>
+                    <option value="<{$year}>" <{if $club_year==$year}>selected<{/if}>><{$year}></option>
                 <{/foreach}>
             <{else}>
                 <option value=""><{$smarty.const._MD_KWCLUB_EMPTY_YEAR}></option>
@@ -24,7 +24,7 @@
 <{if $reg_uid}>
     <{if $reg_name}>
         <h3>
-            <span style="color: rgb(124, 58, 58);"><{$reg_name}></span><span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_MY_ALL_CLASS}>
+            <span style="color: rgb(124, 58, 58);"><{$reg_name}></span><span class="club_year_text"><{$club_year}></span><{$smarty.const._MD_KWCLUB_MY_ALL_CLASS}>
             <small><{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}></small>
         </h3>
 
@@ -112,6 +112,6 @@
         </div>
     <{else}>
         <div class="alert alert-danger">
-            <span class="club_year_text"><{$club_year_text}></span><{$smarty.const._MD_KWCLUB_NOT_FOUND|sprintf:$reg_uid}></div>
+            <span class="club_year_text"><{$club_year}></span><{$smarty.const._MD_KWCLUB_NOT_FOUND|sprintf:$reg_uid}></div>
     <{/if}>
 <{/if}>

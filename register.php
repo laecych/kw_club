@@ -63,7 +63,6 @@ function reg_list($club_year = '', $review = 'reg_sn')
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());
     $xoopsTpl->assign('review', $review);
-  
 
     //取得排序語法
     if ($review == 'grade') {
@@ -104,8 +103,6 @@ function reg_uid($club_year = "")
     $xoopsTpl->assign('reg_all', $reg_all);
     $xoopsTpl->assign('total', sizeof($reg_all));
 
-
-    
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
     $sweet_alert_obj = new sweet_alert();
     $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", "reg_sn");
