@@ -1,7 +1,7 @@
 <h2><{$smarty.const._MD_KWCLUB_SETUP_TEACHER}></h2>
-<form action="config.php" method="post" id="teacherForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
-    <div class="form-group">
-        <label class="sr-only control-label">
+<form action="config.php" method="post" id="teacherForm" enctype="multipart/form-data" class="myForm " role="form">
+    <div class="form-group row">
+        <label class="sr-only col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_SETUP_TEACHER}>
         </label>
         <div class="col-sm-12">

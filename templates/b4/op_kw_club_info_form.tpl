@@ -1,7 +1,7 @@
-<form action="config.php" method="post" id="myForm" enctype="multipart/form-data" class="form-horizontal" role="form">
-    <div class="form-group">
+<form action="config.php" method="post" id="myForm" enctype="multipart/form-data"  role="form">
+    <div class="form-group row">
         <!--社團期別-->
-        <label for="club_year" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_YEAR}></label>
+        <label for="club_year" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_YEAR}></label>
         <div class="col-sm-4">
             <{if $club_year}>
                 <div class="form-control-static">
@@ -23,34 +23,36 @@
 
 
         <!--是否啟用-->
-        <label class="col-sm-2 control-label">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_ENABLE}>
         </label>
         <div class="col-sm-4">
-            <label class="radio-inline">
-                <input type="radio" name="club_enable" id="club_enable_1" value="1" <{if $club_enable == "1"}>checked="checked"<{/if}>><{$smarty.const._YES}>
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="club_enable" id="club_enable_0" value="0" <{if $club_enable != "1"}>checked="checked"<{/if}>><{$smarty.const._NO}>
-            </label>
+            <div class="form-check form-check-inline">
+                <input type="radio" name="club_enable" id="club_enable_1" value="1" <{if $club_enable == "1"}>checked="checked"<{/if}>>
+                <label class="form-check-label" for="club_enable_1"><{$smarty.const._YES}></label>
+            
+                <input type="radio" name="club_enable" id="club_enable_0" value="0" <{if $club_enable != "1"}>checked="checked"<{/if}>>  <label class="form-check-label" for="club_enable_0"><{$smarty.const._NO}></label>
+          </div>
         </div>
     </div>
 
     <!--報名起訖-->
-    <div class="form-group">
-        <label for="class_date_open" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_APPLY_DATE}></label>
+    <div class="form-group row">
+        <label for="class_date_open" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_APPLY_DATE}></label>
         <div class="col-sm-10">
             <div class="input-group">
                 <input type="text" name="club_start_date" id="club_start_date" value="<{$club_start_date}>" class = "form-control validate[required]" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', startDate:'%y-%M-%d %H:%m'})">
-                <span class="input-group-addon"><{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}></span>
+                <div class="input-group-prepend">
+                        <span class="input-group-text"><{$smarty.const._MD_KWCLUB_APPLY_FROM_TO}></span>
+                </div>
                 <input type="text" name="club_end_date" id="club_end_date"  value="<{$club_end_date}>" class = "form-control validate[required]" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'#F{$dp.$D(\'club_start_date\',{d:1});}'})">
             </div>
         </div>
     </div>
 
     <!--
-    <div class="form-group">
-        <label for="club_isfree" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_ISFREE}></label>
+    <div class="form-group row">
+        <label for="club_isfree" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_ISFREE}></label>
         <div class="col-sm-10">
             <label class="radio-inline">
                 <input type='radio' name='club_isfree' id='club_isfree1' title='<{$smarty.const._MD_KWCLUB_FREE_APPLY}>' value='0' <{if $club_isfree!=1}>checked<{/if}>>
@@ -67,10 +69,10 @@
     <input type='hidden' name='club_isfree' value='1'>
 
 
-    <div class="form-group">
+    <div class="form-group row">
 
         <!--候補人數-->
-        <label for="club_backup_num" class="col-sm-2 control-label">
+        <label for="club_backup_num" class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_BACKUP_NUM}>
         </label>
         <div class="col-sm-4">
@@ -100,8 +102,8 @@
 
     <{if $type=='copy' &&  $arr_year}>
        
-        <div class="form-group">
-            <label for="club_year" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_COPY}></label>
+        <div class="form-group row">
+            <label for="club_year" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_COPY}></label>
             <div class="col-sm-4">
                 <select class="form-control validate[required]" name="copy_year" id="copy_year" title="<{$smarty.const._MD_KWCLUB_YEAR}>">
                     <{foreach from=$arr_year key=year item=year_txt}>

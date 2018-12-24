@@ -105,19 +105,19 @@
 
 
 <!--套用formValidator驗證機制-->
-<form action="index.php" method="post" id="regForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
+<form action="index.php" method="post" id="regForm" enctype="multipart/form-data" class="myForm " role="form">
 
     <!--報名者姓名-->
-    <div class="form-group">
+    <div class="form-group row">
         <!--身分證字號-->
-        <label class="col-sm-2 control-label">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_REG_UID}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
             <input type="text" name="reg_uid" id="reg_uid" class="form-control validate[required]" value="<{$reg_uid}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_UID}>">
         </div>
 
-        <label class="col-sm-2 control-label">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_REG_NAME}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
@@ -127,46 +127,51 @@
 
 
     <!--報名者年級-->
-    <div class="form-group">
-        <label for="reg_grade" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_REG_GRADE}><span class="caption-required">*</span></label>
+    <div class="form-group row">
+        <label for="reg_grade" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_REG_GRADE}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
             <{foreach from = $class_grade_arr key=v item=gname}>
-                <label class="radio-inline">
+            <div class="form-check form-check-inline">   
+          
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="reg_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
                     <{else}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="reg_grade<{$v}>"><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}></label>
                     <{/if}>
-                </label>
+                    
+            </div> 
             <{/foreach}>
         </div>
     </div>
 
     <!--報名者班級-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_REG_CLASS}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-10">
             <{foreach from = $school_class key=v item=cname}>
-                <label class="radio-inline">
-                    <input type='radio' name='reg_class' id="reg_class<{$v}>" class="validate[required]" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked="checked"<{/if}>><{$cname}>
-                </label>
+            <div class="form-check form-check-inline">
+                <input type='radio' name='reg_class' id="reg_class<{$v}>" class="validate[required]" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked="checked"<{/if}>>
+                <label class="form-check-label" for="reg_class<{$v}>"> <{$cname}> </label>
+            </div>
             <{/foreach}>
         </div>
     </div>
 
   
-    <div class="form-group">
+    <div class="form-group row">
         <!--家長姓名-->
-        <label class="col-sm-2 control-label">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_REG_PARENT}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
             <input type="text" name="reg_parent" id="reg_parent" class="form-control validate[required]" value="<{$reg_parent}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_PARENT}>">
         </div>
         <!--連絡電話-->
-        <label class="col-sm-2 control-label">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_REG_TEL}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
@@ -174,8 +179,8 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-sm-2 control-label">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_CAPTCHA}>
         </label>
         <div class="col-sm-10">

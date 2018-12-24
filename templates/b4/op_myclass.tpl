@@ -1,6 +1,6 @@
 <h2><{$smarty.const._MD_KWCLUB_MYCLASS}></h2>
 
-<form action="index.php" method="post" id="myForm" class="myForm form-horizontal" role="form" style="margin: 20px auto 50px;">
+<form action="index.php" method="post" id="myForm" class="myForm " role="form" style="margin: 20px auto 50px;">
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon3"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></span>
         <select name="club_year" class="form-control">

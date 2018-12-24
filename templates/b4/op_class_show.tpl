@@ -23,7 +23,7 @@
 <div class="row" style="margin: 30px auto;">
     <div class="col-sm-6">
         <!--社團簡介-->
-        <div class="well">
+        <div class="card card-body bg-light m-1">
             <{$class_desc}>
         </div>
     </div>

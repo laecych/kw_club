@@ -1,9 +1,9 @@
 <!--套用formValidator驗證機制-->
-<form action="config.php" method="post" id="cateForm" enctype="multipart/form-data" class="myForm form-horizontal" role="form">
+<form action="config.php" method="post" id="cateForm" enctype="multipart/form-data" class="myForm " role="form">
 
     <!--類型標題-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_CATE_TITLE}>
         </label>
         <div class="col-sm-10">
@@ -12,8 +12,8 @@
     </div>
 
     <!--類型說明-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_CATE_DESC}>
         </label>
         <div class="col-sm-10">
@@ -24,18 +24,19 @@
 
 
     <!--狀態-->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">
             <{$smarty.const._MD_KWCLUB_CATE_ENABLE}>
         </label>
         <div class="col-sm-10">
+          <div class="form-check form-check-inline">
+                <input type="radio" name="cate_enable" id="cate_enable_1" value="1" <{if $cate_enable != "0"}>checked="checked"<{/if}>>
+                <label class="form-check-label" for="ate_enable_1"><{$smarty.const._YES}></label>
+         
+                <input type="radio" name="cate_enable" id="cate_enable_0" value="0" <{if $cate_enable == "0"}>checked="checked"<{/if}>>
+                <label class="form-check-label" for="ate_enable_0"><{$smarty.const._NO}></label>
             
-            <label class="radio-inline">
-                <input type="radio" name="cate_enable" id="cate_enable_1" value="1" <{if $cate_enable != "0"}>checked="checked"<{/if}>><{$smarty.const._YES}>
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="cate_enable" id="cate_enable_0" value="0" <{if $cate_enable == "0"}>checked="checked"<{/if}>><{$smarty.const._NO}>
-            </label>
+          </div>
         </div>
     </div>
 
