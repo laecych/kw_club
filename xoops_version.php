@@ -32,13 +32,13 @@ $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
 $modversion['status_version']      = '1.2';
-$modversion['release_date']        = '2018-12-7';
+$modversion['release_date']        = '2019-01-01';
 $modversion['module_website_url']  = 'http://localhost';
 $modversion['module_website_name'] = _MI_KWCLUB_AUTHOR_WEB;
 $modversion['module_status']       = 'release';
 $modversion['author_website_url']  = 'http://localhost';
 $modversion['author_website_name'] = _MI_KWCLUB_AUTHOR_WEB;
-$modversion['min_php']             = '5.2';
+$modversion['min_php']             = '5.4';
 $modversion['min_xoops']           = '2.5';
 
 //---paypal資訊---//

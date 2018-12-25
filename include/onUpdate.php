@@ -11,9 +11,38 @@ function xoops_module_update_kw_club(&$module, $old_version)
     }
     go_update2();
     go_update3();
+    //新增檔案欄位
+    if (chk_fc_tag()) {
+        go_fc_tag();
+    }
 
     return true;
 }
+
+//新增檔案欄位
+function chk_fc_tag()
+{
+    global $xoopsDB;
+    $sql    = "SELECT count(`tag`) FROM " . $xoopsDB->prefix("kw_club_files_center");
+    $result = $xoopsDB->query($sql);
+    if (empty($result)) {
+        return true;
+    }
+
+    return false;
+}
+
+function go_fc_tag()
+{
+    global $xoopsDB;
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_files_center") . "
+    ADD `upload_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '上傳時間',
+    ADD `uid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上傳者',
+    ADD `tag` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '註記'
+    ";
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL . "/modules/system/admin.php?fct=modulesadmin", 30, $xoopsDB->error());
+}
+
 function mk_group($name = "", $description = "")
 {
     global $xoopsDB;
