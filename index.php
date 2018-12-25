@@ -84,6 +84,7 @@ function reg_form($class_id = "")
         $class_grade_arr = explode("、", $class['class_grade']);
         $xoopsTpl->assign('class_grade_arr', $class_grade_arr);
         $xoopsTpl->assign('class_id', $class_id);
+        $xoopsTpl->assign('language', $_SESSION['language']);
 
         $class_arr = explode(';', $xoopsModuleConfig['school_class']);
         foreach ($class_arr as $class_name) {
@@ -249,6 +250,7 @@ function myclass($reg_uid = "", $club_year = "")
     //查詢年度
     $club_year = (empty($club_year) && isset($_SESSION['club_year'])) ? $_SESSION['club_year'] : $club_year;
     $xoopsTpl->assign('club_year', $club_year);
+    $xoopsTpl->assign('language', $_SESSION['language']);
     // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
 
     //取得社團期別陣列
@@ -294,6 +296,7 @@ function myclass($reg_uid = "", $club_year = "")
         $xoopsTpl->assign('in_money', $in_money);
         $xoopsTpl->assign('un_money', $un_money);
         $xoopsTpl->assign('arr_reg', $arr_reg);
+       
 
         include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
         $sweet_alert = new sweet_alert();

@@ -1,4 +1,17 @@
-<h2><{$smarty.const._MD_KWCLUB_MYCLASS}></h2>
+
+<div class="row">
+        <div class="col-sm-10">
+                <h2><{$smarty.const._MD_KWCLUB_MYCLASS}></h2>
+        </div>
+        <div class="col-sm-1" style="padding-top: 40px;">
+           <{if $language=="english"}>
+            <a href="index.php?op=myclass&language=tchinese_utf8" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+            <{else}>
+            <a href="index.php?op=myclass&language=english" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+            <{/if}>    
+               <{$smarty.const._MD_KWCLUB_LANGUAGE}></a>
+        </div>   
+    </div>
 
 <form action="index.php" method="post" id="myForm" class="myForm " role="form" style="margin: 20px auto 50px;">
     <div class="input-group">
