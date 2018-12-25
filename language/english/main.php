@@ -1,5 +1,16 @@
 <?php
 
+if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+    $_SESSION['language'] = "tchinese_utf8";
+} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+    $_SESSION['language'] = $_REQUEST['language'];
+}
+
+if ($_SESSION['language'] == "english") {
+    include_once "../../modules/kw_club/language/english/main.php";
+}
+
+include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/main.php";
 //前後台語系
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');
 

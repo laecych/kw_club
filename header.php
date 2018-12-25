@@ -1,16 +1,4 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-    $_SESSION['language'] = "tchinese_utf8";
-} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-    $_SESSION['language'] = $_REQUEST['language'];
-}
-
-if ($_SESSION['language'] == "english") {
-    include_once "../../modules/kw_club/language/english/main.php";
-}
-
 //載入XOOPS主設定檔（必要）
 include_once "../../mainfile.php";
 
