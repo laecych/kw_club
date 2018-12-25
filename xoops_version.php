@@ -21,7 +21,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name']        = _MI_KWCLUB_NAME;
-$modversion['version']     = '1.2';
+$modversion['version']     = '1.3';
 $modversion['description'] = _MI_KWCLUB_DESC;
 $modversion['author']      = _MI_KWCLUB_AUTHOR;
 $modversion['credits']     = _MI_KWCLUB_CREDITS;
@@ -31,7 +31,7 @@ $modversion['image']       = "images/logo.png";
 $modversion['dirname']     = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['status_version']      = '1.2';
+$modversion['status_version']      = '1.3';
 $modversion['release_date']        = '2019-01-01';
 $modversion['module_website_url']  = 'http://localhost';
 $modversion['module_website_name'] = _MI_KWCLUB_AUTHOR_WEB;

@@ -38,8 +38,8 @@ define('_MD_KWCLUB_COPY', 'Copy Club');
 
 //前台選單
 define('_MD_KWCLUB_INDEX_MYCLASS', 'My Classes');
-define('_MD_KWCLUB_INDEX_TEACHER', 'Teacher Introduce');
-define('_MD_KWCLUB_INDEX_FORM', 'Histroy');
+define('_MD_KWCLUB_INDEX_TEACHER', 'Teacher profile');
+define('_MD_KWCLUB_INDEX_FORM', 'Add class');
 define('_MD_KWCLUB_REG', 'Result');
 
 //教師列表
@@ -64,13 +64,13 @@ define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now！');
 
 define('_MD_KWCLUB_SELECT_YEAR', 'Please choose the period of the club：');
 define('_MD_KWCLUB_EMPTY_YEAR', 'There is no clubs period');
-define('_MD_KWCLUB', 'Club Application');
-define('_MD_KWCLUB_LIST', 'Club list');
+define('_MD_KWCLUB', 'Registration');
+define('_MD_KWCLUB_LIST', 'List');
 define('_MD_KWCLUB_APPLY_DATE', 'Registration period');
 define('_MD_KWCLUB_APPLY_FROM_TO', 'To');
 define('_MD_KWCLUB_EMPTY_CLUB', 'There is no class clubs！');
 define('_MD_KWCLUB_FORBBIDEN', 'Error! No Permission');
-define('_MD_KWCLUB_INFO_SETUP', 'Club period setting');
+define('_MD_KWCLUB_INFO_SETUP', 'Set up Registeration');
 define('_MD_KWCLUB_YEAR', 'Club period');
 define('_MD_KWCLUB_NOW_YEAR', 'Club period is：');
 define('_MD_KWCLUB_ADMIN', 'Club period setting');
@@ -96,7 +96,7 @@ define('_MD_KWCLUB_ADD_CLASS', 'Add class');
 define('_MD_KWCLUB_MODIFY_CLUB', 'edit class');
 
 define('_MD_KWCLUB_SELECT', 'Please choose');
-define('_MD_KWCLUB_SETUP', 'set config');
+define('_MD_KWCLUB_SETUP', 'Set up');
 
 define('_MD_KWCLUB_PLACE_TITLE', 'place');
 define('_MD_KWCLUB_PLACE_DESC', 'describe');
@@ -111,8 +111,6 @@ define('_MD_KWCLUB_TEACHER_ENABLE', 'status');
 define('_MD_KWCLUB_ADMIN_GROUP', '社團管理');
 define('_MD_KWCLUB_TEACHER_GROUP', '社團老師');
 define('_MD_KWCLUB_GROUP_NOTE', '：為社團報名模組用，勿刪，勿修改');
-
-define('_MD_KWCLUB_SETUP_TEACHER', 'setting teacher');
 
 define('_MD_KWCLUB_SORTBY_REG_NAME', 'order by name');
 define('_MD_KWCLUB_SORTBY_REG_DATETIME', 'order by register');
@@ -165,7 +163,7 @@ define('_MD_KWCLUB_KINDERGARTEN', 'kindergarten');
 define('_MD_KWCLUB_KG', 'kid');
 
 define('_MD_KWCLUB_GRADE', 'Grade');
-define('_MD_KWCLUB_G', 'year');
+define('_MD_KWCLUB_G', '年');
 define('_MD_KWCLUB_CLASS', 'Class');
 define('_MD_KWCLUB_CLICK_TO_EDIT', 'click to edit');
 define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', '上表中有標<span class="editable">藍色底線</span>者，可直接點擊編輯修改');
@@ -196,44 +194,46 @@ define('_MD_KWCLUB_ALL_WEEK', 'Mon、Tue、Wed、Thu、Fri');
 define('_MD_KWCLUB_1_5', 'Every week <span class="text_g">Mon to Fri</span>');
 define('_MD_KWCLUB_W', 'Every week <span class="text_g">%s</span> Time ');
 // <{$smarty.const._MD_KWCLUB_W|sprintf:$data.class_week}>
-define('_MD_KWCLUB_WEEK', 'Week');
+define('_MD_KWCLUB_WEEK', 'Week ');
 
-define('_MD_KWCLUB_NOT_EMPTY_CLASS', '警告！！此課程已有學生報名，無法刪除！！');
+define('_MD_KWCLUB_NOT_EMPTY_CLASS', 'Warning！！This course has already registered for students and cannot be deleted！');
 
-define('_MD_KWCLUB_ALL_USERS', '所有使用者');
-define('_MD_KWCLUB_PICKED_USERS', '已選擇使用者');
-define('_MD_KWCLUB_SEARCH_KEY', '請輸入姓名、Email或帳號...');
-define('_MD_KWCLUB_SEARCH', '搜尋');
+define('_MD_KWCLUB_ALL_USERS', 'All users');
+define('_MD_KWCLUB_PICKED_USERS', 'Selected users');
+define('_MD_KWCLUB_SEARCH_KEY', 'Please enter your name, email or account...');
+define('_MD_KWCLUB_SEARCH', 'Search');
 
 define('_MD_KWCLUB_NOT_PAY', 'Unpaid');
 define('_MD_KWCLUB_PAID', 'Paid');
-define('_MD_KWCLUB_CLICK_TO', '點此改為：');
+define('_MD_KWCLUB_CLICK_TO', 'Click to edit：');
 
 define('_MD_KWCLUB_DETIAL', 'Details');
-define('_MD_KWCLUB_EMAPY_REGISTER', '此期沒有人報名！');
+define('_MD_KWCLUB_EMAPY_REGISTER', 'No one signed up during this period！');
 
-define('_MD_KWCLUB_PLACE_SETUP', '上課地點設定');
-define('_MD_KWCLUB_PLACE_LIST', '上課場地列表');
-define('_MD_KWCLUB_CLUB_YEAR_LIST', '期別列表');
-define('_MD_KWCLUB_CATE_SETUP', '社團類型設定');
-define('_MD_KWCLUB_CATE_LIST', '社團類型列表');
+define('_MD_KWCLUB_PLACE_SETUP', 'Set up Place');
+define('_MD_KWCLUB_PLACE_LIST', 'Place list');
+define('_MD_KWCLUB_CLUB_YEAR_LIST', 'Club list');
+define('_MD_KWCLUB_CATE_SETUP', 'Set up Type');
+define('_MD_KWCLUB_CATE_LIST', 'Type list');
 
-define('_MD_KWCLUB_TEACHER_SETUP', '開課教師設定');
-define('_MD_KWCLUB_TEACHER_LIST', '教師列表');
+define('_MD_KWCLUB_TEACHER_SETUP', 'Set up Teacher');
+define('_MD_KWCLUB_TEACHER_LIST', 'Teacher List');
 
-define('_MD_KWCLUB_LIST_MODE', '報名列表模式');
-define('_MD_KWCLUB_EXPORT_PDF', '匯出PDF繳費單');
-define('_MD_KWCLUB_PAID_LIST', '所有報名繳費列表');
-define('_MD_KWCLUB_PAY_MODE', '繳費統計模式');
-define('_MD_KWCLUB_EXPORT_EXCEL', '匯出 Excel');
+define('_MD_KWCLUB_SETUP_TEACHER', 'Set up Teacher');
 
-define('_MD_KWCLUB_PAGEBAR_TOTAL', '（共 %s 筆）');
+define('_MD_KWCLUB_LIST_MODE', 'List mode');
+define('_MD_KWCLUB_EXPORT_PDF', 'PDF');
+define('_MD_KWCLUB_PAID_LIST', 'Paid list');
+define('_MD_KWCLUB_PAY_MODE', 'Pay mode');
+define('_MD_KWCLUB_EXPORT_EXCEL', 'Excel');
+
+define('_MD_KWCLUB_PAGEBAR_TOTAL', '（ %s in total）');
 // <{$smarty.const._MD_KWCLUB_PAGEBAR_TOTAL|sprintf:$total}>
 
-define('_MD_KWCLUB_APPLY_RESULT', '的報名結果');
-define('_MD_KWCLUB_MY_ALL_CLASS', '的報名社團列表');
+define('_MD_KWCLUB_APPLY_RESULT', ' Registration result');
+define('_MD_KWCLUB_MY_ALL_CLASS', ' Registration list');
 
-define('_MD_KWCLUB_PAY_STATUS', "總共 %s 元，已繳 <span style='color: green'>%s</span> 元，未繳 <span style='color: red'>%s</span> 元");
+define('_MD_KWCLUB_PAY_STATUS', "Total %s TWD，Paid:<span style='color: green'>%s</span> TWD，Unpaid:<span style='color: red'>%s</span> TWD");
 // <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$money:$in_money:$un_money}>
 
 define('_MD_KWCLUB_APPLY_CLASS', 'Sign up「%s」');
@@ -248,19 +248,19 @@ define('_MD_KWCLUB_MYCLASS', 'Check out my clubs');
 define('_MD_KWCLUB_NOT_FOUND', 'There is no any  %s registrations! ）');
 // <{$smarty.const._MD_KWCLUB_NOT_FOUND|sprintf:$reg_uid}>
 
-define('_MD_KWCLUB_CLASS_ENABLE', '開班');
-define('_MD_KWCLUB_CLASS_UNABLE', '不開班');
+define('_MD_KWCLUB_CLASS_ENABLE', 'OPEN');
+define('_MD_KWCLUB_CLASS_UNABLE', 'CLOSE');
 define('_MD_KWCLUB_CLASS_UNDONE', '尚未報名完成');
-define('_MD_KWCLUB_CLASS_ENABLE_DESC', '點擊按鈕後，狀態變成正式開班');
-define('_MD_KWCLUB_CLASS_UNABLE_DESC', '點擊按鈕後，狀態改成不開班');
-define('_MD_KWCLUB_CLASS_BLANK', '未定');
-define('_MD_KWCLUB_CLASS_BLANK_DESC', '點擊按鈕後，狀態改成空白');
+define('_MD_KWCLUB_CLASS_ENABLE_DESC', 'Click to alter the status becomes OPEN');
+define('_MD_KWCLUB_CLASS_UNABLE_DESC', 'Click to alter the status becomes Close');
+define('_MD_KWCLUB_CLASS_BLANK', 'Undecided');
+define('_MD_KWCLUB_CLASS_BLANK_DESC', 'Click to alter the status becomes BLANK');
 
 define('_MD_KWCLUB_FULL_REGISTRATION', 'Full');
 define('_MD_KWCLUB_SIGNUP_TO_MAKE_UP', 'Registration candidate');
-define('_MD_KWCLUB_SIGNUP', 'Apply');
-define('_MD_KWCLUB_NON_REGISTRATION_TIME', 'It is not time for registation');
-define('_MD_KWCLUB_REGISTERED_LIST', 'Registered list');
+define('_MD_KWCLUB_SIGNUP', 'Sign up');
+define('_MD_KWCLUB_NON_REGISTRATION_TIME', 'Now is not the time to register');
+define('_MD_KWCLUB_REGISTERED_LIST', 'Registration list');
 
 define('_MD_KWCLUB_NUMBER_OF_RECRUITED', 'Recruit');
 define('_MD_KWCLUB_NUMBER_OF_APPLICANTS', 'Registed');

@@ -103,7 +103,7 @@
         <div class="col-sm-10">
                 <h2><{$smarty.const._MD_KWCLUB_APPLY_CLASS|sprintf:$class.class_title}></h2>
         </div>
-        <div class="col-sm-1" style="padding-top: 40px;">
+        <div class="col-sm-2" style="padding-top: 40px;">
            <{if $language=="english"}>
             <a href="index.php?op=reg_form&class_id=<{$class_id}>&language=tchinese_utf8" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
             <{else}>
