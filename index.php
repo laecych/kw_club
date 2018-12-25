@@ -144,11 +144,11 @@ function insert_reg()
         }
 
         //驗正是否通過
-        if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
+        // if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
 
-        } else {
-            redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
-        }
+        // } else {
+        //     redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
+        // }
     }
 
     //檢查是否衝堂
@@ -170,7 +170,7 @@ function insert_reg()
     $reg_grade = $myts->addSlashes($_POST['reg_grade']);
     $reg_class = $myts->addSlashes($_POST['reg_class']);
     $reg_parent = $myts->addSlashes($_POST['reg_parent']);
-    $reg_tel = $myts->addSlashes($_POST['reg_tel']);
+    $reg_tel = (int)$myts->addSlashes($_POST['reg_tel']);
     $reg_isreg = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
     $reg_ip    = get_ip();
 

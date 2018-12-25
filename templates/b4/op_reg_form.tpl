@@ -188,7 +188,7 @@
             <{$smarty.const._MD_KWCLUB_REG_TEL}><span class="caption-required">*</span>
         </label>
         <div class="col-sm-4">
-            <input type="text" name="reg_tel" id="reg_tel" class="form-control validate[required]" value="<{$reg_tel}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_TEL}>">
+            <input type="number" name="reg_tel" id="reg_tel" class="form-control validate[required]" value="<{$reg_tel}>" placeholder="<{$smarty.const._MD_KWCLUB_KEYIN}><{$smarty.const._MD_KWCLUB_REG_TEL}>"  maxlength="10" onkeyup="value=value.replace(/[^\d]/g,'')">
         </div>
     </div>
 

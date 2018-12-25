@@ -132,8 +132,8 @@ define('_MD_KWCLUB_NEED_CATE_ID', '沒有指定的編號');
 define('_MD_KWCLUB_NEED_CLASS_ID', '沒有指定的社團課程編號');
 define('_MD_KWCLUB_CLASS_SAME_TIME', 'Error！Conflict, please confirm again！');
 
-define('_MD_KWCLUB_OFFICIALLY_ENROLL', 'Qualified');
-define('_MD_KWCLUB_CANDIDATE', 'Waiting list');
+define('_MD_KWCLUB_OFFICIALLY_ENROLL', '正取');
+define('_MD_KWCLUB_CANDIDATE', '備取');
 define('_MD_KWCLUB_APPLY_SUCCESS', 'Sucessful！');
 define('_MD_KWCLUB_REPEAT_APPLY', 'Error！Repeat！');
 
