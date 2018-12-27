@@ -167,6 +167,9 @@ define('_MD_KWCLUB_GRADE6', '六');
 define('_MD_KWCLUB_GRADE7', '七');
 define('_MD_KWCLUB_GRADE8', '八');
 define('_MD_KWCLUB_GRADE9', '九');
+define('_MD_KWCLUB_GRADE10', '十');
+define('_MD_KWCLUB_GRADE11', '十一');
+define('_MD_KWCLUB_GRADE12', '十二');
 
 define('_MD_KWCLUB_YEAR_TEXT_00', '暑假');
 define('_MD_KWCLUB_YEAR_TEXT_01', '第一學期');

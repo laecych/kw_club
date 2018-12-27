@@ -29,11 +29,11 @@ define('_MD_KWCLUB_CLASS_DATE_OPEN', 'Class start date');
 define('_MD_KWCLUB_CLASS_DATE_CLOSE', 'Class termination date');
 define('_MD_KWCLUB_CLASS_TIME_START', 'Class start time');
 define('_MD_KWCLUB_CLASS_TIME_END', 'Class termination time');
-define('_MD_KWCLUB_PLACE_ID', 'Place');
-define('_MD_KWCLUB_CLASS_MENBER', 'Menber');
+define('_MD_KWCLUB_PLACE_ID', 'Location');
+define('_MD_KWCLUB_CLASS_MENBER', 'Member');
 define('_MD_KWCLUB_CLASS_MONEY', 'Club tuition');
 define('_MD_KWCLUB_CLASS_FEE', 'Additional charges');
-define('_MD_KWCLUB_CLASS_NOTE', 'Club note');
+define('_MD_KWCLUB_CLASS_NOTE', 'Remarks');
 define('_MD_KWCLUB_CLASS_REGNUM', 'Number of applicants');
 define('_MD_KWCLUB_CLASS_REGNUM_FULL', 'Applicants is full！');
 define('_MD_KWCLUB_CLASS_REG', 'Apply');
@@ -61,11 +61,11 @@ define('_MD_KWCLUB_CATE_SORT', 'Sort');
 define('_MD_KWCLUB_CATE_ENABLE', 'Status');
 
 define('_MD_KWCLUB_REG_YEAR', 'Club Period');
-define('_MD_KWCLUB_REG_NAME', ' student Name');
+define('_MD_KWCLUB_REG_NAME', ' Student Name');
 define('_MD_KWCLUB_REG_GRADE', 'Grade');
 define('_MD_KWCLUB_REG_CLASS', 'Class');
 define('_MD_KWCLUB_REG_SN', 'Register SN');
-define('_MD_KWCLUB_REG_UID', ' your ID');
+define('_MD_KWCLUB_REG_UID', 'Taiwanes ID or ARC');
 define('_MD_KWCLUB_REG_DATETIME', 'Date');
 define('_MD_KWCLUB_REG_ISREG', 'Result');
 define('_MD_KWCLUB_REG_ISFEE', 'Paid');
@@ -202,8 +202,8 @@ define('_MD_KWCLUB_W4', 'Thu');
 define('_MD_KWCLUB_W5', 'Fri');
 define('_MD_KWCLUB_W6', 'Sat');
 define('_MD_KWCLUB_ALL_WEEK', 'Mon、Tue、Wed、Thu、Fri');
-define('_MD_KWCLUB_1_5', 'Every week <span class="text_g">Mon to Fri</span>');
-define('_MD_KWCLUB_W', 'Every week <span class="text_g">%s</span> Time ');
+define('_MD_KWCLUB_1_5', 'Every <span class="text_g">Mon to Fri</span>');
+define('_MD_KWCLUB_W', 'Every <span class="text_g">%s</span> Time ');
 // <{$smarty.const._MD_KWCLUB_W|sprintf:$data.class_week}>
 define('_MD_KWCLUB_WEEK', 'Week ');
 
@@ -293,10 +293,10 @@ define('_MD_KWCLUB_TEACHER_CLASS', 'Histroy');
 define('_MD_KWCLUB_TXTLOCK', 'Locked');
 define('_MD_KWCLUB_TXTUNLOCK', 'Unlocked');
 define('_MD_KWCLUB_CAPTCHA_ERROR', 'Error');
-define('_MD_KWCLUB_CAPTCHA', 'CAPTCHA');
+define('_MD_KWCLUB_CAPTCHA', 'Verification');
 
 define('_MD_KWCLUB_TEACHER_DESC', "<a href=../../edituser.php?op=avatarform'>點此可上傳照片</a>，<a href='../../edituser.php'>點此可編輯「個人介紹」</a>。");
 
-define('_MD_KWCLUB_REG_PARENT', ' parent Name');
-define('_MD_KWCLUB_REG_TEL', ' phone Number');
+define('_MD_KWCLUB_REG_PARENT', ' Parent Name');
+define('_MD_KWCLUB_REG_TEL', ' Phone Number');
 define('_MD_KWCLUB_LANGUAGE', '中文');

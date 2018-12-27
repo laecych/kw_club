@@ -122,7 +122,7 @@
                         <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
                     <{else}>
                         <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked="checked"<{/if}>>
-                        <label class="form-check-label" for="class_grade<{$v}>"><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}></label>
+                        <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}></label>
                     <{/if}>
             </div>
             <{/foreach}>

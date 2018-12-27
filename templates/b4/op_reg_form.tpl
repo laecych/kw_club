@@ -151,7 +151,7 @@
                         <label class="form-check-label" for="reg_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
                     <{else}>
                         <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
-                        <label class="form-check-label" for="reg_grade<{$v}>"><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}></label>
+                        <label class="form-check-label" for="reg_grade<{$v}>"><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}></label>
                     <{/if}>
                     
             </div> 

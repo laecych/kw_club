@@ -146,7 +146,8 @@
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
                         <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
                     <{else}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
+                        <{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}>
                     <{/if}>
                 </label>
             <{/foreach}>
