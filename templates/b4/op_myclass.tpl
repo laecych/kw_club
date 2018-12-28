@@ -5,9 +5,9 @@
         </div>
         <div class="col-sm-1" style="padding-top: 40px;">
            <{if $language=="english"}>
-            <a href="index.php?op=myclass&language=tchinese_utf8" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+            <a href="index.php?op=myclass&language=tchinese_utf8" class="btn btn-primary btn-block" ><i class="fa fa-refresh" aria-hidden="true"></i>
             <{else}>
-            <a href="index.php?op=myclass&language=english" class="btn btn-primary btn-block" ><i class="fa fa-plus" aria-hidden="true"></i>
+            <a href="index.php?op=myclass&language=english" class="btn btn-primary btn-block" ><i class="fa fa-refresh" aria-hidden="true"></i>
             <{/if}>    
                <{$smarty.const._MD_KWCLUB_LANGUAGE}></a>
         </div>   
