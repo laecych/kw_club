@@ -65,7 +65,7 @@ define('_MD_KWCLUB_REG_NAME', ' Student Name');
 define('_MD_KWCLUB_REG_GRADE', 'Grade');
 define('_MD_KWCLUB_REG_CLASS', 'Class');
 define('_MD_KWCLUB_REG_SN', 'Register SN');
-define('_MD_KWCLUB_REG_UID', 'Taiwanes ID or ARC');
+define('_MD_KWCLUB_REG_UID', 'Taiwanese ID or ARC');
 define('_MD_KWCLUB_REG_DATETIME', 'Date');
 define('_MD_KWCLUB_REG_ISREG', 'Result');
 define('_MD_KWCLUB_REG_ISFEE', 'Paid');
