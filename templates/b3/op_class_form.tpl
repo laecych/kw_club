@@ -114,7 +114,7 @@
     <div class="form-group">
         <label for="class_grade" class="col-sm-2 control-label"><{$smarty.const._MD_KWCLUB_CLASS_GRADE}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
-            <{foreach from = $c_grade key=v item=gname}>
+            <{foreach from = $grade_name_arr key=v item=gname}>
                 <label class="checkbox-inline">
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
                         <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked="checked"<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
