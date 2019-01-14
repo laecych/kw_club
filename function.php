@@ -385,7 +385,11 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
     
-    $myts = MyTextSanitizer::getInstance();
+    //預設排序
+    if(empty($order))
+        $order = 'ORDER BY a.`reg_uid`, b.`class_id`';
+    
+        $myts = MyTextSanitizer::getInstance();
 
     $and_class_id = $class_id ? " and a.`class_id`='{$class_id}'" : '';
 

@@ -38,8 +38,10 @@ switch ($op) {
     case "delete_reg":
         $class_id = delete_reg();
         if ($_SESSION['isclubAdmin'] or $_SESSION['isclubUser']) {
+            //管理者刪
             header("location: {$_SERVER['PHP_SELF']}?class_id={$class_id}");
         } else {
+            //自己刪
             header("location: {$_SERVER['PHP_SELF']}?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}");
         }
         exit;
@@ -140,30 +142,31 @@ function insert_reg()
         $is_full = false;
         if (($class['class_member'] + $club_info['club_backup_num']) <= $class['class_regnum']) {
             $is_full = true;
-            redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
+            redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
         }
 
         //驗正是否通過
-        // if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
+        if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
 
-        // } else {
-        //     redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
-        // }
+        } else {
+            redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
+        }
+    }
+    //檢查身分證字號或居留證
+    $reg_uid = $myts->addSlashes($_POST['reg_uid']);
+    if (!pid_check($reg_uid)) {
+        redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_PID_WRONG);
     }
 
     //檢查是否衝堂
     if (check_class_date($reg_uid, $class_id)) {
-        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_CLASS_SAME_TIME);
+        redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CLASS_SAME_TIME);
     }
 
-    //檢查身分證字號或居留證
-    $reg_uid = $myts->addSlashes($_POST['reg_uid']);
-    if (!pid_check($reg_uid)) {
-        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_PID_WRONG);
-    }
+   
     //檢查其他班級或年級資料値
     if (empty($_POST['reg_grade']) &&  empty($_POST['reg_class'])) {
-        redirect_header("index.php?class_id={$class_id}", 3, _MD_KWCLUB_GC_WRONG);
+        redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_GC_WRONG);
     }
 
     $reg_name  = $myts->addSlashes($_POST['reg_name']);
