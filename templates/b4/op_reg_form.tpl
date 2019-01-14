@@ -33,7 +33,7 @@
         
                   
         if (studIdNumber.length != 10) {
-            alert("學生ID字號長度不足!");
+            alert("學生ID字號長度錯誤!");
             return false;
         }
          //格式，用正則表示式比對第一個字母是否為英文字母
