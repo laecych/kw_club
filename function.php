@@ -99,7 +99,6 @@ function get_club_class_num()
         //  die($data[0]);
         return $data;
     }
-
 }
 
 //以流水號取得某筆社團資料
@@ -183,26 +182,18 @@ function get_semester()
     $arr_time  = getdate();
     $this_week = $arr_time['wday'];
 
-    if ($arr_time['mon'] >= 1 && $arr_time['mon'] <= 4) // 2 3 4 (第二學期)
-    {
+    if ($arr_time['mon'] >= 1 && $arr_time['mon'] <= 4) { // 2 3 4 (第二學期)
         $this_semester = '02';
         $this_year     = $arr_time['year'] - 1912;
-
-    } else if ($arr_time['mon'] > 7 && $arr_time['mon'] <= 11) //8-11 (第一學期)
-    {
+    } elseif ($arr_time['mon'] > 7 && $arr_time['mon'] <= 11) { //8-11 (第一學期)
         $this_semester = '01';
         $this_year     = $arr_time['year'] - 1911;
-
-    } else if ($arr_time['mon'] == 12) //12-01 (寒假)
-    {
+    } elseif ($arr_time['mon'] == 12) { //12-01 (寒假)
         $this_semester = '11';
         $this_year     = $arr_time['year'] - 1911;
-
-    } else if ($arr_time['mon'] > 4 && $arr_time['mon'] <= 7) //5-7 (暑假)
-    {
+    } elseif ($arr_time['mon'] > 4 && $arr_time['mon'] <= 7) { //5-7 (暑假)
         $this_semester = '00';
         $this_year     = $arr_time['year'] - 1911;
-
     }
 
     $last_year = $this_year - 1;
@@ -228,7 +219,6 @@ function get_semester()
     }
 
     return $semester;
-
 }
 
 
@@ -301,7 +291,6 @@ function js_class($class_num)
     } else {
         return false;
     }
-
 }
 
 //列出所有kw_club_cate資料
@@ -386,10 +375,11 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
     
     //預設排序
-    if(empty($order))
+    if (empty($order)) {
         $order = 'ORDER BY a.`reg_uid`, b.`class_id`';
+    }
     
-        $myts = MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     $and_class_id = $class_id ? " and a.`class_id`='{$class_id}'" : '';
 
@@ -426,7 +416,6 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
             $grade_name = $grade . _MD_KWCLUB_GRADE;
         }
         $g_arr[$grade] = $grade_name;
-
     }
     $grade_opt = json_encode($g_arr, 256);
     $grade_opt = substr(str_replace('"', "'", $grade_opt), 1, -1);

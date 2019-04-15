@@ -64,7 +64,6 @@ function get_club_admin()
     $xoopsTpl->assign("user_arr", implode(',', $user_arr));
     $xoopsTpl->assign("user_ok", $user_ok);
     $xoopsTpl->assign("user_yet", $user_yet);
-
 }
 
 //儲存社團管理員

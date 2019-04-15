@@ -56,7 +56,6 @@ switch ($op) {
             class_show($class_id);
             $op = 'class_show';
         } else {
-           
             club_class_list($club_year);
             $op = 'class_list';
         }
@@ -106,7 +105,6 @@ function reg_form($class_id = "")
         include_once TADTOOLS_PATH . "/formValidator.php";
         $formValidator = new formValidator("#regForm", true);
         $formValidator->render();
-
     }
 }
 
@@ -147,7 +145,6 @@ function insert_reg()
 
         //驗正是否通過
         if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
-
         } else {
             redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
         }
@@ -197,11 +194,9 @@ function insert_reg()
         $xoopsDB->query($update_sql);
 
         redirect_header("index.php?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}", 3, _MD_KWCLUB_APPLY_SUCCESS);
-
     } else {
         redirect_header("index.php?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}", 3, _MD_KWCLUB_REPEAT_APPLY);
     }
-
 }
 
 function check_class_date($reg_uid, $class_id)
@@ -273,7 +268,6 @@ function myclass($reg_uid = "", $club_year = "")
         $total  = $xoopsDB->getRowsNum($result);
 
         while ($data = $xoopsDB->fetchArray($result)) {
-
             $data['end_date'] = strtotime($data['club_end_date']);
 
             $class_pay         = $data['class_money'] + $data['class_fee'];
@@ -308,7 +302,6 @@ function myclass($reg_uid = "", $club_year = "")
         } else {
             $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&club_year={$club_year}&reg_uid={$reg_uid}&reg_sn=", 'reg_sn', _MD_KWCLUB_SURE_CANCEL_APPLY, _MD_KWCLUB_CANCEL, _MD_KWCLUB_CANCEL_APPLY);
         }
-
     }
 
     $xoopsTpl->assign('total', $total);
@@ -371,7 +364,6 @@ function class_showjson($class_id = '')
 
     // $xoopsTpl->assign('op', 'class_show');
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
-
 }
 
 //以流水號秀出某筆kw_club_class資料內容
@@ -489,7 +481,6 @@ function class_show($class_id = '')
         $sweet_alert_obj = new sweet_alert();
         $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", "reg_sn");
     }
-
 }
 
 
@@ -543,36 +534,34 @@ function pid_check($cardid)
                 'J'=>'18','K'=>'19','L'=>'20','M'=>'21','N'=>'22','O'=>'35','P'=>'23','Q'=>'24','R'=>'25',
                 'S'=>'26','T'=>'27','U'=>'28','V'=>'29','W'=>'32','X'=>'30','Y'=>'31','Z'=>'33'];
     //檢查字元長度
-    if(strlen(trim($cardid)) !=10 ){
+    if (strlen(trim($cardid)) !=10) {
         return false;
     }//長度不對
 
     //驗證英文字母正確性
-    $alpha = substr($cardid,0,1);//英文字母
-    if(!preg_match("/[A-Za-z]/",$alpha)){
+    $alpha = substr($cardid, 0, 1);//英文字母
+    if (!preg_match("/[A-Za-z]/", $alpha)) {
         return false;
-
-    }else{
-            //計算字母總和
-            $nx = $alphabet[$alpha];
-            $ns = $nx[0]+$nx[1]*9;//十位數+個位數x9
+    } else {
+        //計算字母總和
+        $nx = $alphabet[$alpha];
+        $ns = $nx[0]+$nx[1]*9;//十位數+個位數x9
     }
 
     //驗證男女性別
-    $gender = substr($cardid,1,1);//取性別位置
-    if($gender !='1' && $gender !='2' && $gender !='A' && $gender !='B' && $gender !='C' && $gender !='D')
-    {
+    $gender = substr($cardid, 1, 1);//取性別位置
+    if ($gender !='1' && $gender !='2' && $gender !='A' && $gender !='B' && $gender !='C' && $gender !='D') {
         return false;
     }//驗證性別
 
     //N2x8+N3x7+N4x6+N5x5+N6x4+N7x3+N8x2+N9+N10
-    if($err ==''){
+    if ($err =='') {
         $i = 8;
         $j = 1;
         $ms =0;
         //先算 N2x8 + N3x7 + N4x6 + N5x5 + N6x4 + N7x3 + N8x2
-        while($i >= 2){
-            if($j==1){   
+        while ($i >= 2) {
+            if ($j==1) {
                 $g = substr($cardid, $j, 1);
                 switch ($g) {
                 case 'A': $mx = 0;
@@ -586,22 +575,22 @@ function pid_check($cardid)
                 default: $mx = $g;
                     break;
                 }
-            }else{
+            } else {
                 $mx = substr($cardid, $j, 1); //由第j筆每次取一個數字
             }
             
             $my = $mx * $i;//N*$i
             $ms += $my;//ms為加總
             $j++;
-            $i--;	
+            $i--;
         }
         //最後再加上 N9 及 N10
-        $ms = $ms + substr($cardid,8,1) + substr($cardid,9,1);
+        $ms = $ms + substr($cardid, 8, 1) + substr($cardid, 9, 1);
         //最後驗證除10
         $total = $ns + $ms;//上方的英文數字總和 + N2~N10總和
         
         return ($total % 10 == 0) ? true : false;
-        }
+    }
 }
 
 
@@ -632,4 +621,3 @@ function update_class_enable($class_id, $class_enable)
     where `class_id` = '$class_id'";
     $xoopsDB->queryF($sql) or web_error($sql);
 }
-

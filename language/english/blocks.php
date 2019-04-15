@@ -3,9 +3,9 @@ define('_MB_KWCLUB', 'Society Registration');
 define('_MB_KWCLUB_SELECT_YEAR', 'Please select the club period:');
 
 if (isset($_SESSION['isclubAdmin'])) {
-define('_MB_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!' );
+    define('_MB_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
 } else {
-define('_MB_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
+    define('_MB_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
 }
 
 define('_MB_KWCLUB_LIST', 'Society List');
@@ -73,5 +73,3 @@ define('_MD_KWCLUB_YEAR_TEXT_00', 'Summer vacation');
 define('_MD_KWCLUB_YEAR_TEXT_01', 'First semester');
 define('_MD_KWCLUB_YEAR_TEXT_11', 'Winter holiday');
 define('_MD_KWCLUB_YEAR_TEXT_02', 'Second semester');
-
-

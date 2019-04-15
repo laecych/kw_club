@@ -67,7 +67,6 @@ if (!function_exists('club_class_list')) {
                 //是否報名額滿
                 $all_class_content[$i]['is_full'] = (($class_member + $club_info['club_backup_num']) <= $class_regnum) ? true : false;
                 $i++;
-
             }
 
             //刪除確認的JS
@@ -77,7 +76,6 @@ if (!function_exists('club_class_list')) {
             include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
             $sweet_alert_obj = new sweet_alert();
             $sweet_alert_obj->render('delete_class_func', "club.php?op=delete_class&class_id=", "class_id");
-
         } else {
             if ($mode == "return") {
                 return;
@@ -115,7 +113,6 @@ if (!function_exists('club_class_list')) {
             $xoopsTpl->assign('all_class_content', $all_class_content);
             $xoopsTpl->assign('total', $total);
         }
-
     }
 }
 
@@ -202,9 +199,7 @@ if (!function_exists('chk_time')) {
         } else {
             return true;
         }
-
     }
-
 }
 
 //取得所有社團類型陣列
@@ -265,7 +260,6 @@ if (!function_exists('get_teacher_all')) {
             $options_array_teacher[$teacher_id] = $teacher_title;
         }
         return $options_array_teacher;
-
     }
 }
 

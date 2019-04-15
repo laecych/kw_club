@@ -102,15 +102,12 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     if (!empty($class_id)) {
         $DBV       = get_club_class($class_id);
         $class_num = $DBV['class_num'];
-
     } elseif (!empty($class_num)) {
         $DBV = js_class($class_num);
 
         $DBV['club_year']       = $club_year;
         $DBV['class_date_open'] = $DBV['class_date_close'] = $DBV['class_ischecked'] = $class_id = '';
-
-    } 
-    else {
+    } else {
         $DBV      = array();
         $class_id = $class_num = "";
     }
@@ -129,11 +126,11 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
             if ($file != "." && $file != "..") {
                 $file_name = str_replace(".json", "", $file);
                 //if (!in_array($file_name, $arr_num)) {
-                    array_push($arr_num, $file_name);
-                    $class_json                         = json_decode(file_get_contents(XOOPS_ROOT_PATH .
+                array_push($arr_num, $file_name);
+                $class_json                         = json_decode(file_get_contents(XOOPS_ROOT_PATH .
                     "/uploads/kw_club/class/" . $file), true);
-                    $js_class[$class_json['class_num']] = $class_json['class_title'];
-               // }
+                $js_class[$class_json['class_num']] = $class_json['class_title'];
+                // }
             }
         }
         closedir($dh);
@@ -468,7 +465,7 @@ function delete_class($class_id)
 
     if (empty($class_id)) {
         redirect_header("index.php", 3, _MD_KWCLUB_NEED_CLASS_ID);
-    } else if (check_class_reg($class_id)) {
+    } elseif (check_class_reg($class_id)) {
         redirect_header("club.php", 3, _MD_KWCLUB_NOT_EMPTY_CLASS);
     } else {
         if ($_SESSION['isclubAdmin']) {
@@ -486,7 +483,6 @@ function delete_class($class_id)
 
 function class_ischecked($class_id, $ischecked = '')
 {
-
     global $xoopsDB;
 
     //檢查權限

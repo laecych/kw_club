@@ -74,9 +74,9 @@ define('_MD_KWCLUB_REG_IP', 'IP');
 define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now!');
 //by tad
 if ($_SESSION['isclubAdmin']) {
-define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
+    define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
 } else {
-define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
+    define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
 }
 define('_MD_KWCLUB_SELECT_YEAR', 'Please choose the period of the club：');
 define('_MD_KWCLUB_EMPTY_YEAR', 'There is no clubs period');

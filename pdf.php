@@ -35,7 +35,6 @@ foreach ($reg_all as $reg_uid => $reg) {
     $money = $fee = 0;
 
     foreach ($reg['data'] as $class_id => $data) {
-
         $reg_name     = $myts->htmlSpecialChars($data['reg_name']);
         $class_title  = $myts->htmlSpecialChars($data['class_title']);
         $class_money  = $myts->htmlSpecialChars($data['class_money']);

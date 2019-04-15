@@ -2,7 +2,7 @@
 
 if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
     $_SESSION['language'] = "tchinese_utf8";
-} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+} elseif (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
     $_SESSION['language'] = $_REQUEST['language'];
 }
 

@@ -353,7 +353,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             . ' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<span class = "glyphicon glyphicon-text-height"></span><span class="caret"></span></button>'
             . '<ul class="dropdown-menu">';
-            //. _SIZE . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
+        //. _SIZE . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
         foreach ($GLOBALS['formtextdhtml_sizes'] as $value => $name) {
             $fontStr .= '<li><a href="javascript:xoopsSetElementAttribute(\'size\', \'' . $value . '\', \''
                 . $textarea_id . '\', \'' . $hiddentext . '\');">' . $name . '</a></li>';
@@ -365,7 +365,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             . ' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<span class = "glyphicon glyphicon-font"></span><span class="caret"></span></button>'
             . '<ul class="dropdown-menu">';
-            //. _FONT . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
+        //. _FONT . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
         foreach ($fontarray as $font) {
             $fontStr .= '<li><a href="javascript:xoopsSetElementAttribute(\'font\', \'' . $font . '\', \''
                 . $textarea_id . '\', \'' . $hiddentext . '\');">' . $font . '</a></li>';
@@ -377,7 +377,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             . ' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
             . '<span class = "glyphicon glyphicon-text-color"></span><span class="caret"></span></button>'
             . '<ul class="dropdown-menu">';
-            //. _COLOR . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
+        //. _COLOR . '&nbsp;&nbsp;<span class="caret"></span></button><ul class="dropdown-menu">';
         foreach ($colorArray as $color => $hex) {
             $fontStr .= '<li><a href="javascript:xoopsSetElementAttribute(\'color\', \'' . $hex . '\', \''
                 . $textarea_id . '\', \'' . $hiddentext . '\');">'
@@ -456,7 +456,6 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
      */
     public function renderFormFile(XoopsFormFile $element)
     {
-
         return '<input type="file" class="form-control"  name="' . $element->getName()
         . '" id="' . $element->getName()
         . '" title="' . $element->getTitle() . '" ' . $element->getExtra() . '>'
@@ -501,7 +500,6 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
      */
     public function renderFormRadio(XoopsFormRadio $element)
     {
-
         $elementName = $element->getName();
         $elementId = $elementName;
 

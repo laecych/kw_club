@@ -189,8 +189,11 @@ function kw_club_info_list()
     }
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
     $sweet_alert_obj          = new sweet_alert();
-    $delete_kw_club_info_func = $sweet_alert_obj->render('delete_kw_club_info_func',
-        "{$_SERVER['PHP_SELF']}?op=delete_kw_club_info&club_id=", "club_id");
+    $delete_kw_club_info_func = $sweet_alert_obj->render(
+        'delete_kw_club_info_func',
+        "{$_SERVER['PHP_SELF']}?op=delete_kw_club_info&club_id=",
+        "club_id"
+    );
     $xoopsTpl->assign('delete_kw_club_info_func', $delete_kw_club_info_func);
 
     $xoopsTpl->assign('bar', $bar);
@@ -289,7 +292,6 @@ function kw_club_info_form($club_id = '')
 
     // $arr_semester = get_semester();
     // $xoopsTpl->assign('arr_semester', $arr_semester);
-
 }
 
 //新增資料到kw_club_info中
@@ -353,8 +355,8 @@ function insert_kw_club_info($type = '')
     $copy_year = $myts->addSlashes($_POST['copy_year']);
 
     if ($type == "copy" && !empty($club_year) && !empty($copy_year)) {
-        kw_club_info_copy($club_year , $copy_year);
-    } 
+        kw_club_info_copy($club_year, $copy_year);
+    }
 
     return $club_id;
 }
@@ -364,8 +366,7 @@ function kw_club_info_copy($club_year = '', $copy_year = '')
 {
     global $xoopsDB, $xoopsUser;
 
-    if(empty($club_year) || empty( $copy_year))
-    {
+    if (empty($club_year) || empty($copy_year)) {
         redirect_header("index.php", 3, _TAD_NEED_TADTOOLS);
     }
 
@@ -378,7 +379,6 @@ function kw_club_info_copy($club_year = '', $copy_year = '')
     $result     = $xoopsDB->query($sql) or web_error($sql);
     $arr  = array();
     while ($arr = $xoopsDB->fetchArray($result)) {
-
         $sql_copy = "insert into `" . $xoopsDB->prefix("kw_club_class") . "` (
         `club_year`,
         `class_num`,
@@ -426,13 +426,11 @@ function kw_club_info_copy($club_year = '', $copy_year = '')
         '{$today}',
         '{$ip}'
     )";
-    $xoopsDB->query($sql_copy) or web_error($sql_copy);
-
+        $xoopsDB->query($sql_copy) or web_error($sql_copy);
     }
     return $arr_year;
 
     //複製kw_club_class 設定club_year = $club_year
-
 }
 
 
@@ -504,7 +502,6 @@ function delete_kw_club_info($club_id = '')
     $sql = "delete from `" . $xoopsDB->prefix("kw_club_info") . "`
     where `club_id` = '{$club_id}'";
     $xoopsDB->queryF($sql) or web_error($sql);
-
 }
 
 
@@ -608,7 +605,6 @@ function insert_cate($type)
     $id = $xoopsDB->getInsertId();
 
     return $id;
-
 }
 
 //更新kw_club_cate某一筆資料
@@ -652,7 +648,6 @@ function delete_cate($type, $cate_id = '')
     $sql = "delete from `" . $xoopsDB->prefix('kw_club_' . $type) . "`
     where `" . $type . "_id` = '{$cate_id}'";
     $xoopsDB->queryF($sql) or web_error($sql);
-
 }
 
 //自動取得kw_club_cate的最新排序
@@ -702,7 +697,6 @@ function get_club_teacher()
     $xoopsTpl->assign("user_arr", implode(',', $user_arr));
     $xoopsTpl->assign("user_ok", $user_ok);
     $xoopsTpl->assign("user_yet", $user_yet);
-
 }
 
 //儲存社團老師
@@ -731,7 +725,6 @@ function save_club_teacher($users_uid)
             }
         }
     }
-
 }
 
 //改變啟用狀態
