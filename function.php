@@ -38,6 +38,7 @@ function get_reg_uid_all($club_year)
         // $data['money'] = $data['in_money'] = $data['un_money'] = 0;
 
         $myts = MyTextSanitizer::getInstance();
+        $arr_reg = [];
         $sql  = 'select a.*, b.*, c.`club_end_date` from `' . $xoopsDB->prefix('kw_club_reg') . '` as a
         join `' . $xoopsDB->prefix('kw_club_class') . '` as b on a.`class_id` = b.`class_id`
         join `' . $xoopsDB->prefix('kw_club_info') . "` as c on b.`club_year` = c.`club_year`
