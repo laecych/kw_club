@@ -109,7 +109,9 @@ class XoopsLoad
             }
 
             return true;
-        } elseif (file_exists($file = XOOPS_ROOT_PATH . '/class/' . $name . '.php')) {
+        }
+
+        if (file_exists($file = XOOPS_ROOT_PATH . '/class/' . $name . '.php')) {
             require_once $file;
             $class = 'Xoops' . ucfirst($name);
             if (class_exists($class)) {
