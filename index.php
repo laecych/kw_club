@@ -461,7 +461,7 @@ function class_show($class_id = '')
     if ($_SESSION['isclubAdmin'] or $uid == $class_uid) {
         //刪除訊息警告
         if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
-            redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+            redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
         }
         //刪除班級
         require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';

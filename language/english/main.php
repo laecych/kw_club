@@ -11,6 +11,8 @@
 // }
 
 xoops_loadLanguage('main', 'tadtools');
+define('_MD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
+
 
 //Front and back language
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');
