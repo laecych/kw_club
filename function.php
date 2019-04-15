@@ -243,7 +243,7 @@ function get_ip()
         }
     }
 
-    return ($ip ? $ip : $_SERVER['REMOTE_ADDR']);
+    return ($ip ?: $_SERVER['REMOTE_ADDR']);
 }
 
 // function get_ip()
