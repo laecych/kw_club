@@ -71,7 +71,7 @@ require_once XOOPS_ROOT_PATH . '/footer.php';
 
 function class_form($class_id = '', $club_year = '', $class_num = '')
 {
-    global $xoopsDB, $xoopsTpl, $xoopsUser, $xoopsModuleConfig, $grade_name_arr;
+    global $xoopsTpl, $xoopsUser, $xoopsModuleConfig, $grade_name_arr;
 
     //安全性表單
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
