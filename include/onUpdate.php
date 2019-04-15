@@ -23,7 +23,7 @@ function xoops_module_update_kw_club(&$module, $old_version)
 function chk_fc_tag()
 {
     global $xoopsDB;
-    $sql    = "SELECT count(`tag`) FROM " . $xoopsDB->prefix("kw_club_files_center");
+    $sql    = 'SELECT count(`tag`) FROM ' . $xoopsDB->prefix('kw_club_files_center');
     $result = $xoopsDB->query($sql);
     if (empty($result)) {
         return true;
@@ -35,26 +35,27 @@ function chk_fc_tag()
 function go_fc_tag()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_files_center") . "
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('kw_club_files_center') . "
     ADD `upload_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '上傳時間',
     ADD `uid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT 0 COMMENT '上傳者',
     ADD `tag` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '註記'
     ";
-    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL . "/modules/system/admin.php?fct=modulesadmin", 30, $xoopsDB->error());
+    $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL . '/modules/system/admin.php?fct=modulesadmin', 30, $xoopsDB->error());
 }
 
-function mk_group($name = "", $description = "")
+function mk_group($name = '', $description = '')
 {
     global $xoopsDB;
-    $sql           = "select groupid from " . $xoopsDB->prefix("groups") . " where `name`='$name'";
-    $result        = $xoopsDB->query($sql) or web_error($sql);
+    $sql = 'select groupid from ' . $xoopsDB->prefix('groups') . " where `name`='$name'";
+    $result = $xoopsDB->query($sql) or web_error($sql);
     list($groupid) = $xoopsDB->fetchRow($result);
     if (empty($groupid)) {
-        $sql = "insert into " . $xoopsDB->prefix("groups") . " (`name`, `description`) values('{$name}','{$description}')";
+        $sql = 'insert into ' . $xoopsDB->prefix('groups') . " (`name`, `description`) values('{$name}','{$description}')";
         $xoopsDB->queryF($sql) or web_error($sql);
         //取得最後新增資料的流水編號
         $groupid = $xoopsDB->getInsertId();
     }
+
     return $groupid;
 }
 
@@ -62,7 +63,7 @@ function mk_group($name = "", $description = "")
 function chk_chk1()
 {
     global $xoopsDB;
-    $sql    = "select count(`reg_parent`) from " . $xoopsDB->prefix("kw_club_reg");
+    $sql    = 'select count(`reg_parent`) from ' . $xoopsDB->prefix('kw_club_reg');
     $result = $xoopsDB->query($sql);
     if (empty($result)) {
         return true;
@@ -87,7 +88,7 @@ function chk_chk1()
 function go_update1()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_reg") . " ADD `reg_parent` varchar(255) NOT NULL  COMMENT '報名者家長' after `reg_class`,  ADD `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話' after `reg_parent`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('kw_club_reg') . " ADD `reg_parent` varchar(255) NOT NULL  COMMENT '報名者家長' after `reg_class`,  ADD `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話' after `reg_parent`";
     $xoopsDB->queryF($sql) or web_error($sql);
 
     return true;
@@ -96,10 +97,10 @@ function go_update1()
 function go_update2()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_info") . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `club_id`;";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('kw_club_info') . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `club_id`;";
     $xoopsDB->queryF($sql) or web_error($sql);
 
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("kw_club_class") . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `class_id`;";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('kw_club_class') . " CHANGE `club_year` `club_year` varchar(255) COLLATE 'utf8_general_ci' NOT NULL COMMENT '社團年度' AFTER `class_id`;";
     $xoopsDB->queryF($sql) or web_error($sql);
 
     return true;
@@ -109,7 +110,7 @@ function go_update3()
 {
     global $xoopsDB;
 
-    $sql = " CREATE TABLE if not exists " . $xoopsDB->prefix("kw_club_teacher") . " (
+    $sql = ' CREATE TABLE if not exists ' . $xoopsDB->prefix('kw_club_teacher') . " (
             `teacher_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '教師編號',
             `teacher_title` varchar(255) NOT NULL default '' COMMENT '教師標題',
             `teacher_desc` text NOT NULL default '' COMMENT '教師簡介',

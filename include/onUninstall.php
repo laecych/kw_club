@@ -3,8 +3,9 @@
 function xoops_module_uninstall_kw_club(&$module)
 {
     global $xoopsDB;
-    $date = date("Ymd");
-    rename(XOOPS_ROOT_PATH . "/uploads/kw_club", XOOPS_ROOT_PATH . "/uploads/kwclub_bak_{$date}");
+    $date = date('Ymd');
+    rename(XOOPS_ROOT_PATH . '/uploads/kw_club', XOOPS_ROOT_PATH . "/uploads/kwclub_bak_{$date}");
+
     return true;
 }
 
@@ -20,9 +21,9 @@ function delete_directory($dirname)
     }
 
     while ($file = readdir($dir_handle)) {
-        if ($file != "." && $file != "..") {
-            if (!is_dir($dirname . "/" . $file)) {
-                unlink($dirname . "/" . $file);
+        if ('.' != $file && '..' != $file) {
+            if (!is_dir($dirname . '/' . $file)) {
+                unlink($dirname . '/' . $file);
             } else {
                 delete_directory($dirname . '/' . $file);
             }
@@ -30,17 +31,18 @@ function delete_directory($dirname)
     }
     closedir($dir_handle);
     rmdir($dirname);
+
     return true;
 }
 
 //拷貝目錄
-function full_copy($source = "", $target = "")
+function full_copy($source = '', $target = '')
 {
     if (is_dir($source)) {
         @mkdir($target);
         $d = dir($source);
         while (false !== ($entry = $d->read())) {
-            if ($entry == '.' || $entry == '..') {
+            if ('.' == $entry || '..' == $entry) {
                 continue;
             }
 
@@ -61,6 +63,6 @@ function rm_group($name)
 {
     $member_handler = xoops_gethandler('member');
     $group          = $member_handler->createGroup();
-    $group->setVar("name", $name);
+    $group->setVar('name', $name);
     $member_handler->insertGroup($group);
 }

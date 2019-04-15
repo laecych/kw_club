@@ -1,5 +1,5 @@
 <?php
-include_once "header.php";
+include_once 'header.php';
 require_once TADTOOLS_PATH . '/PHPExcel.php'; //引入 PHPExcel 物件庫
 require_once TADTOOLS_PATH . '/PHPExcel/IOFactory.php'; //引入 PHPExcel_IOFactory 物件庫
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
@@ -16,17 +16,12 @@ $objPHPExcel->createSheet(); //建立新的工作表，上面那三行再來一�
 $objPHPExcel->getDefaultStyle()->getFont()->setName('Microsoft JhengHei')->setSize(12);
 
 $i = 1;
-$objActSheet->mergeCells("A{$i}:L{$i}")->setCellValue("A1", $club_year . _MD_KWCLUB_APPLY_EXCEL);
+$objActSheet->mergeCells("A{$i}:L{$i}")->setCellValue('A1', $club_year . _MD_KWCLUB_APPLY_EXCEL);
 
-$objActSheet->getStyle('A:L')->getAlignment()
-    ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER) //垂直置中
-    ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); //水平置中
-$objActSheet->getStyle('D:E')->getAlignment()
-    ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)
-    ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT); //水平靠右
-$objActSheet->getStyle('C')->getAlignment()
-    ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)
-    ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT); //水平靠左
+$objActSheet->getStyle('A:L')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)//垂直置中
+            ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); //水平置中
+$objActSheet->getStyle('D:E')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT); //水平靠右
+$objActSheet->getStyle('C')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT); //水平靠左
 
 $i++;
 $objActSheet->setCellValue("A{$i}", _MD_KWCLUB_REG_SN);
@@ -60,15 +55,15 @@ $objActSheet->getColumnDimension('L')->setWidth(20);
 
 $i++;
 
-$sql = "select a.`reg_sn`,b.`club_year`,b.`class_title`,b.`class_money`,b.`class_fee`,a.`reg_uid`,a.`reg_name`,a.`reg_grade`,a.`reg_class`,a.`reg_parent`,a.`reg_tel`,a.`reg_datetime` from `" . $xoopsDB->prefix("kw_club_reg") . "` as a
-join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
-join `" . $xoopsDB->prefix("kw_club_info") . "` as c on b.`club_year` = c.`club_year`
+$sql = 'select a.`reg_sn`,b.`club_year`,b.`class_title`,b.`class_money`,b.`class_fee`,a.`reg_uid`,a.`reg_name`,a.`reg_grade`,a.`reg_class`,a.`reg_parent`,a.`reg_tel`,a.`reg_datetime` from `' . $xoopsDB->prefix('kw_club_reg') . '` as a
+join `' . $xoopsDB->prefix('kw_club_class') . '` as b on a.`class_id` = b.`class_id`
+join `' . $xoopsDB->prefix('kw_club_info') . "` as c on b.`club_year` = c.`club_year`
 where b.`club_year`='{$club_year}' ORDER BY a.`reg_grade` DESC , a.`reg_class` ";
 
 $result = $xoopsDB->query($sql) or die($sql);
 while ($club_reg = $xoopsDB->fetchRow($result)) {
     $club_reg[1] = $club_year;
-    if ($club_reg[7] == _MD_KWCLUB_KG) {
+    if (_MD_KWCLUB_KG == $club_reg[7]) {
         $club_reg[7] = _MD_KWCLUB_KINDERGARTEN;
     } else {
         $club_reg[7] = $club_reg[7] . _MD_KWCLUB_G;

@@ -38,7 +38,7 @@ class XoopsLoad
         static $deprecated;
 
         if (!isset($deprecated)) {
-            $deprecated = array(
+            $deprecated = [
                 'uploader'    => 'xoopsmediauploader',
                 'utility'     => 'xoopsutility',
                 'captcha'     => 'xoopscaptcha',
@@ -46,10 +46,11 @@ class XoopsLoad
                 'file'        => 'xoopsfile',
                 'model'       => 'xoopsmodelfactory',
                 'calendar'    => 'xoopscalendar',
-                'userutility' => 'xoopsuserutility');
+                'userutility' => 'xoopsuserutility',
+            ];
         }
-        $name = strtolower($name);
-        if (in_array($type, array('core', 'class')) && array_key_exists($name, $deprecated)) {
+        $name = mb_strtolower($name);
+        if (in_array($type, ['core', 'class'], true) && array_key_exists($name, $deprecated)) {
             if (isset($GLOBALS['xoopsLogger'])) {
                 $GLOBALS['xoopsLogger']->addDeprecated("xoops_load('{$name}') is deprecated, use xoops_load('{$deprecated[$name]}')");
             } else {
@@ -71,15 +72,15 @@ class XoopsLoad
         $isloaded = false;
         switch ($type) {
             case 'framework':
-                $isloaded = XoopsLoad::loadFramework($name);
+                $isloaded = self::loadFramework($name);
                 break;
             case 'class':
             case 'core':
                 $type     = 'core';
-                $isloaded = XoopsLoad::loadCore($name);
+                $isloaded = self::loadCore($name);
                 break;
             default:
-                $isloaded = XoopsLoad::loadModule($name, $type);
+                $isloaded = self::loadModule($name, $type);
                 break;
         }
         $loaded[$type][$name] = $isloaded;
@@ -99,12 +100,12 @@ class XoopsLoad
         static $configs;
 
         if (!isset($configs)) {
-            $configs = XoopsLoad::loadCoreConfig();
+            $configs = self::loadCoreConfig();
         }
         if (isset($configs[$name])) {
             require_once $configs[$name];
             if (class_exists($name) && method_exists($name, '__autoload')) {
-                call_user_func(array($name, '__autoload'));
+                call_user_func([$name, '__autoload']);
             }
 
             return true;
@@ -113,9 +114,8 @@ class XoopsLoad
             $class = 'Xoops' . ucfirst($name);
             if (class_exists($class)) {
                 return $class;
-            } else {
-                trigger_error('Class ' . $name . ' not found in file ' . __FILE__ . 'at line ' . __LINE__, E_USER_WARNING);
             }
+            trigger_error('Class ' . $name . ' not found in file ' . __FILE__ . 'at line ' . __LINE__, E_USER_WARNING);
         }
 
         return false;
@@ -140,6 +140,7 @@ class XoopsLoad
         if (class_exists($class)) {
             return $class;
         }
+
         return null;
     }
 
@@ -147,8 +148,8 @@ class XoopsLoad
      * Load module class
      *
      * @access private
-     * @param  string      $name    class file name
-     * @param  string|null $dirname module directory name
+     * @param string      $name    class file name
+     * @param string|null $dirname module directory name
      * @return bool
      */
     public static function loadModule($name, $dirname = null)
@@ -173,7 +174,7 @@ class XoopsLoad
      */
     public static function loadCoreConfig()
     {
-        return $configs = array(
+        return $configs = [
             'xoopsuserutility'            => XOOPS_ROOT_PATH . '/class/userutility.php',
             'xoopsmediauploader'          => XOOPS_ROOT_PATH . '/class/uploader.php',
             'xoopsutility'                => XOOPS_ROOT_PATH . '/class/utility/xoopsutility.php',
@@ -232,7 +233,8 @@ class XoopsLoad
             'xoopsformrendererbootstrap3' => XOOPS_ROOT_PATH . '/class/xoopsform/renderer/XoopsFormRendererBootstrap3.php',
             'xoopsformrendererbootstrap4' => XOOPS_ROOT_PATH . '/class/xoopsform/renderer/XoopsFormRendererBootstrap4.php',
             'xoopsfilterinput'            => XOOPS_ROOT_PATH . '/class/xoopsfilterinput.php',
-            'xoopsrequest'                => XOOPS_ROOT_PATH . '/class/xoopsrequest.php');
+            'xoopsrequest'                => XOOPS_ROOT_PATH . '/class/xoopsrequest.php',
+        ];
     }
 
     /**
@@ -261,9 +263,10 @@ class XoopsLoad
             }
         }
 
-        return $configs = array_merge(XoopsLoad::loadCoreConfig(), $configs);
+        return $configs = array_merge(self::loadCoreConfig(), $configs);
     }
 }
+
 // To be enabled in XOOPS 3.0
 // spl_autoload_register(array('XoopsLoad', 'load'));
 

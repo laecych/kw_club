@@ -1,13 +1,13 @@
 <?php
 
 if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-    $_SESSION['language'] = "tchinese_utf8";
+    $_SESSION['language'] = 'tchinese_utf8';
 } elseif (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
     $_SESSION['language'] = $_REQUEST['language'];
 }
 
-if ($_SESSION['language'] == "english") {
-    include_once XOOPS_ROOT_PATH . "/modules/kw_club/language/english/main.php";
+if ('english' == $_SESSION['language']) {
+    include_once XOOPS_ROOT_PATH . '/modules/kw_club/language/english/main.php';
 }
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/main.php";
 

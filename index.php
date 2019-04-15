@@ -1,41 +1,35 @@
 <?php
 /*-----------引入檔案區--------------*/
-include_once "header.php";
-$xoopsOption['template_main'] = "kw_club_index.tpl";
-include_once XOOPS_ROOT_PATH . "/header.php";
+include_once 'header.php';
+$xoopsOption['template_main'] = 'kw_club_index.tpl';
+include_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op        = system_CleanVars($_REQUEST, 'op', '', 'string');
-$class_id  = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
+$op           = system_CleanVars($_REQUEST, 'op', '', 'string');
+$class_id     = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
 $class_enable = system_CleanVars($_REQUEST, 'class_enable', '', 'int');
-$cate_id   = system_CleanVars($_REQUEST, 'cate_id', '0', 'int');
-$uid       = system_CleanVars($_REQUEST, 'uid', '', 'string');
-$club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
-$reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
-$reg_uid   = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
-
+$cate_id      = system_CleanVars($_REQUEST, 'cate_id', '0', 'int');
+$uid          = system_CleanVars($_REQUEST, 'uid', '', 'string');
+$club_year    = system_CleanVars($_REQUEST, 'club_year', '', 'string');
+$reg_sn       = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
+$reg_uid      = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
 
 $today = date('Y-m-d');
 switch ($op) {
-
-    case "teacher":
+    case 'teacher':
         teacher_list($club_year);
         break;
-
-    case "myclass":
+    case 'myclass':
         myclass($reg_uid, $club_year);
         break;
-
-    case "reg_form":
+    case 'reg_form':
         reg_form($class_id);
         break;
-
-    case "insert_reg":
+    case 'insert_reg':
         insert_reg();
         break;
-
-    case "delete_reg":
+    case 'delete_reg':
         $class_id = delete_reg();
         if ($_SESSION['isclubAdmin'] or $_SESSION['isclubUser']) {
             //管理者刪
@@ -45,8 +39,8 @@ switch ($op) {
             header("location: {$_SERVER['PHP_SELF']}?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}");
         }
         exit;
-    
-    case "update_enable":
+
+    case 'update_enable':
         update_class_enable($class_id, $class_enable);
         header("location: {$_SERVER['PHP_SELF']}");
         exit;
@@ -65,7 +59,7 @@ switch ($op) {
 
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('op', $op);
-$xoopsTpl->assign("toolbar", toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 include_once XOOPS_ROOT_PATH . '/footer.php';
@@ -73,16 +67,16 @@ include_once XOOPS_ROOT_PATH . '/footer.php';
 /*-----------function區--------------*/
 
 //報名表單
-function reg_form($class_id = "")
+function reg_form($class_id = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $xoopsModuleConfig;
 
     if (empty($class_id)) {
         redirect_header($_SERVER['PHP_SELF'], 3, _MD_KWCLUB_NEED_CLASS_ID);
-    } elseif ($_SESSION['club_isfree'] == '1') { //自由報名
+    } elseif ('1' == $_SESSION['club_isfree']) { //自由報名
         $class = get_club_class($class_id);
         $xoopsTpl->assign('class', $class);
-        $class_grade_arr = explode("、", $class['class_grade']);
+        $class_grade_arr = explode('、', $class['class_grade']);
         $xoopsTpl->assign('class_grade_arr', $class_grade_arr);
         $xoopsTpl->assign('class_id', $class_id);
         $xoopsTpl->assign('language', $_SESSION['language']);
@@ -94,16 +88,16 @@ function reg_form($class_id = "")
         $xoopsTpl->assign('school_class', $school_class);
 
         //安全性表單
-        include_once XOOPS_ROOT_PATH . "/class/xoopsformloader.php";
+        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
         $xoopsTpl->assign('reg_token', $token->render());
 
         //套用formValidator驗證機制
-        if (!file_exists(TADTOOLS_PATH . "/formValidator.php")) {
-            redirect_header("index.php", 3, _TAD_NEED_TADTOOLS);
+        if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
+            redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
         }
-        include_once TADTOOLS_PATH . "/formValidator.php";
-        $formValidator = new formValidator("#regForm", true);
+        include_once TADTOOLS_PATH . '/formValidator.php';
+        $formValidator = new formValidator('#regForm', true);
         $formValidator->render();
     }
 }
@@ -115,13 +109,13 @@ function insert_reg()
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode("<br />", $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
     $myts = MyTextSanitizer::getInstance();
 
-    $class_id  = (int) $_POST['class_id'];
+    $class_id  = (int)$_POST['class_id'];
     $class     = get_club_class($class_id);
     $club_year = $class['club_year'];
 
@@ -138,7 +132,7 @@ function insert_reg()
 
         //是否報名額滿
         $is_full = false;
-        if (($class['class_member'] + $club_info['club_backup_num']) <= $class['class_regnum']) {
+        if ($class['class_regnum'] >= ($class['class_member'] + $club_info['club_backup_num'])) {
             $is_full = true;
             redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CLASS_REGNUM_FULL);
         }
@@ -160,21 +154,20 @@ function insert_reg()
         redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CLASS_SAME_TIME);
     }
 
-   
     //檢查其他班級或年級資料値
-    if (empty($_POST['reg_grade']) &&  empty($_POST['reg_class'])) {
+    if (empty($_POST['reg_grade']) && empty($_POST['reg_class'])) {
         redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_GC_WRONG);
     }
 
-    $reg_name  = $myts->addSlashes($_POST['reg_name']);
-    $reg_grade = $myts->addSlashes($_POST['reg_grade']);
-    $reg_class = $myts->addSlashes($_POST['reg_class']);
+    $reg_name   = $myts->addSlashes($_POST['reg_name']);
+    $reg_grade  = $myts->addSlashes($_POST['reg_grade']);
+    $reg_class  = $myts->addSlashes($_POST['reg_class']);
     $reg_parent = $myts->addSlashes($_POST['reg_parent']);
-    $reg_tel = (int)$myts->addSlashes($_POST['reg_tel']);
-    $reg_isreg = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
-    $reg_ip    = get_ip();
+    $reg_tel    = (int)$myts->addSlashes($_POST['reg_tel']);
+    $reg_isreg  = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
+    $reg_ip     = get_ip();
 
-    $sql = "INSERT INTO `" . $xoopsDB->prefix("kw_club_reg") . "` (
+    $sql = 'INSERT INTO `' . $xoopsDB->prefix('kw_club_reg') . "` (
         `class_id`,`reg_uid`, `reg_name`, `reg_grade`, `reg_class`, `reg_parent`, `reg_tel`, `reg_isreg`, `reg_datetime`,  `reg_ip`) VALUES
         (
             '{$class_id}',
@@ -190,7 +183,7 @@ function insert_reg()
         )";
 
     if ($xoopsDB->query($sql)) {
-        $update_sql = "update `" . $xoopsDB->prefix("kw_club_class") . "` set `class_regnum`=`class_regnum`+1 where `class_id`={$class_id}";
+        $update_sql = 'update `' . $xoopsDB->prefix('kw_club_class') . "` set `class_regnum`=`class_regnum`+1 where `class_id`={$class_id}";
         $xoopsDB->query($update_sql);
 
         redirect_header("index.php?op=myclass&reg_uid={$reg_uid}&club_year={$club_year}", 3, _MD_KWCLUB_APPLY_SUCCESS);
@@ -203,12 +196,12 @@ function check_class_date($reg_uid, $class_id)
 {
     global $xoopsDB;
 
-    $arr_reg     = array();
+    $arr_reg     = [];
     $check_class = 0;
     $class_new   = get_club_class($class_id);
     $year        = $_SESSION['club_year'];
-    $sql         = "select a.* from `" . $xoopsDB->prefix("kw_club_reg") . "`  as a
-    join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
+    $sql         = 'select a.* from `' . $xoopsDB->prefix('kw_club_reg') . '`  as a
+    join `' . $xoopsDB->prefix('kw_club_class') . "` as b on a.`class_id` = b.`class_id`
     where a.`reg_uid`='{$reg_uid}' and b.`club_year` = '{$year}'";
 
     $result = $xoopsDB->query($sql) or web_error($sql);
@@ -216,17 +209,17 @@ function check_class_date($reg_uid, $class_id)
         $class_reg = get_club_class($arr['class_id']);
         //check the date repeat
 
-        if (!(strtotime($class_reg['class_date_close']) < strtotime($class_new['class_date_open'])) &&
-            !(strtotime($class_reg['class_date_open']) > strtotime($class_new['class_date_close']))) {
+        if (!(strtotime($class_reg['class_date_close']) < strtotime($class_new['class_date_open']))
+            && !(strtotime($class_reg['class_date_open']) > strtotime($class_new['class_date_close']))) {
             //check the week repeat
 
-            $class_week_reg = explode("、", $class_reg['class_week']);
-            $class_week_new = explode("、", $class_new['class_week']);
+            $class_week_reg = explode('、', $class_reg['class_week']);
+            $class_week_new = explode('、', $class_new['class_week']);
             foreach ($class_week_new as &$value) {
-                if (in_array($value, $class_week_reg)) {
+                if (in_array($value, $class_week_reg, true)) {
                     // check the time repeat
-                    if (!(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start'])) &&
-                        !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))) {
+                    if (!(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start']))
+                        && !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))) {
                         $check_class++;
                     }
                 }
@@ -236,13 +229,13 @@ function check_class_date($reg_uid, $class_id)
 
     if ($check_class > 0) {
         return ture;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 // 我的社團
-function myclass($reg_uid = "", $club_year = "")
+function myclass($reg_uid = '', $club_year = '')
 {
     global $xoopsDB, $xoopsTpl;
     //查詢年度
@@ -255,17 +248,17 @@ function myclass($reg_uid = "", $club_year = "")
     $xoopsTpl->assign('arr_year', get_all_year());
 
     if (empty($reg_uid)) {
-        $arr_reg = "";
+        $arr_reg = '';
     } else {
         $money = $in_money = $un_money = 0;
 
         $myts = MyTextSanitizer::getInstance();
-        $sql  = "select a.*, b.*, c.`club_end_date` from `" . $xoopsDB->prefix("kw_club_reg") . "` as a
-        join `" . $xoopsDB->prefix("kw_club_class") . "` as b on a.`class_id` = b.`class_id`
-        join `" . $xoopsDB->prefix("kw_club_info") . "` as c on b.`club_year` = c.`club_year`
+        $sql  = 'select a.*, b.*, c.`club_end_date` from `' . $xoopsDB->prefix('kw_club_reg') . '` as a
+        join `' . $xoopsDB->prefix('kw_club_class') . '` as b on a.`class_id` = b.`class_id`
+        join `' . $xoopsDB->prefix('kw_club_info') . "` as c on b.`club_year` = c.`club_year`
         where a.`reg_uid` = '{$reg_uid}'  and b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
-        $total  = $xoopsDB->getRowsNum($result);
+        $total = $xoopsDB->getRowsNum($result);
 
         while ($data = $xoopsDB->fetchArray($result)) {
             $data['end_date'] = strtotime($data['club_end_date']);
@@ -275,7 +268,7 @@ function myclass($reg_uid = "", $club_year = "")
 
             $arr_reg[] = $data;
 
-            if ($data['reg_isfee'] == '1') {
+            if ('1' == $data['reg_isfee']) {
                 $in_money += $class_pay;
             } else {
                 $un_money += $class_pay;
@@ -293,14 +286,13 @@ function myclass($reg_uid = "", $club_year = "")
         $xoopsTpl->assign('in_money', $in_money);
         $xoopsTpl->assign('un_money', $un_money);
         $xoopsTpl->assign('arr_reg', $arr_reg);
-       
 
-        include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
+        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
         $sweet_alert = new sweet_alert();
         if ($_SESSION['isclubAdmin']) {
-            $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
+            $sweet_alert->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
         } else {
-            $sweet_alert->render("delete_reg_func", "{$_SERVER['PHP_SELF']}?op=delete_reg&club_year={$club_year}&reg_uid={$reg_uid}&reg_sn=", 'reg_sn', _MD_KWCLUB_SURE_CANCEL_APPLY, _MD_KWCLUB_CANCEL, _MD_KWCLUB_CANCEL_APPLY);
+            $sweet_alert->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&club_year={$club_year}&reg_uid={$reg_uid}&reg_sn=", 'reg_sn', _MD_KWCLUB_SURE_CANCEL_APPLY, _MD_KWCLUB_CANCEL, _MD_KWCLUB_CANCEL_APPLY);
         }
     }
 
@@ -326,7 +318,7 @@ function class_showjson($class_id = '')
     //檢查報名是否可行
     chk_time();
 
-    if (($all['class_member'] + $_SESSION['club_backup_num']) <= $all['class_regnum']) {
+    if ($all['class_regnum'] >= ($all['class_member'] + $_SESSION['club_backup_num'])) {
         $xoopsTpl->assign('is_full', 'yes');
     }
 
@@ -372,7 +364,7 @@ function class_show($class_id = '')
     global $xoopsDB, $xoopsUser, $xoopsTpl, $today;
 
     if (empty($class_id)) {
-        redirect_header("index.php", 3, _MD_KWCLUB_NEED_CLASS_ID);
+        redirect_header('index.php', 3, _MD_KWCLUB_NEED_CLASS_ID);
     }
 
     $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
@@ -380,10 +372,10 @@ function class_show($class_id = '')
 
     $myts = MyTextSanitizer::getInstance();
 
-    $sql = "select * from `" . $xoopsDB->prefix("kw_club_class") . "`
+    $sql = 'select * from `' . $xoopsDB->prefix('kw_club_class') . "`
     where `class_id` = '{$class_id}' ";
     $result = $xoopsDB->query($sql) or web_error($sql);
-    $all    = $xoopsDB->fetchArray($result);
+    $all = $xoopsDB->fetchArray($result);
 
     //檢查報名是否可行
     $xoopsTpl->assign('chk_time', chk_time('return'));
@@ -392,7 +384,7 @@ function class_show($class_id = '')
     $xoopsTpl->assign('can_operate', true);
 
     $is_full = false;
-    if (($all['class_member'] + $_SESSION['club_backup_num']) <= $all['class_regnum']) {
+    if ($all['class_regnum'] >= ($all['class_member'] + $_SESSION['club_backup_num'])) {
         $is_full = true;
     }
     $xoopsTpl->assign('is_full', $is_full);
@@ -412,7 +404,7 @@ function class_show($class_id = '')
     $place_arr   = get_cate($place_id, 'place');
 
     //將是/否選項轉換為圖示
-    $class_isopen_pic = ($class_isopen == 1) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+    $class_isopen_pic = (1 == $class_isopen) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
     //過濾讀出的變數值
     $class_num   = $myts->htmlSpecialChars($class_num);
@@ -463,46 +455,43 @@ function class_show($class_id = '')
         //取得報名資料
         $all_reg = get_club_class_reg($club_year, $class_id);
         $xoopsTpl->assign('all_reg', $all_reg);
-        $xoopsTpl->assign('total', sizeof($all_reg));
+        $xoopsTpl->assign('total', count($all_reg));
     }
 
     if ($_SESSION['isclubAdmin'] or $uid == $class_uid) {
-
         //刪除訊息警告
-        if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php")) {
-            redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
+        if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
+            redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
         }
         //刪除班級
-        include_once XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php";
+        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
         $sweet_alert_obj = new sweet_alert();
-        $sweet_alert_obj->render('delete_class_func', "club.php?op=delete_class&class_id=", "class_id");
+        $sweet_alert_obj->render('delete_class_func', 'club.php?op=delete_class&class_id=', 'class_id');
 
         //刪除報名
         $sweet_alert_obj = new sweet_alert();
-        $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", "reg_sn");
+        $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
     }
 }
 
-
 //教師列表
-function teacher_list($club_year = "")
+function teacher_list($club_year = '')
 {
     global $xoopsTpl, $xoopsDB;
- 
-    $sql    = "select * from `" . $xoopsDB->prefix("kw_club_teacher") . "` where `teacher_enable`='1' order by `teacher_sort`";
+
+    $sql = 'select * from `' . $xoopsDB->prefix('kw_club_teacher') . "` where `teacher_enable`='1' order by `teacher_sort`";
     $result = $xoopsDB->query($sql) or web_error($sql);
-    $teachers_arr = array();
+    $teachers_arr = [];
     while ($data = $xoopsDB->fetchArray($result)) {
-        $id            = $data['teacher_id'];
+        $id                = $data['teacher_id'];
         $teachers_arr[$id] = $data;
     }
     $xoopsTpl->assign('teachers', $teachers_arr);
 
-
-    $sql = "select * from `" . $xoopsDB->prefix("kw_club_class") . "`
+    $sql = 'select * from `' . $xoopsDB->prefix('kw_club_class') . "`
     where `class_isopen`='1' order by club_year desc";
-    $result    = $xoopsDB->query($sql) or web_error($sql);
-    $tea_class = array();
+    $result = $xoopsDB->query($sql) or web_error($sql);
+    $tea_class = [];
     while ($class = $xoopsDB->fetchArray($result)) {
         $uid                        = $class['teacher_id'];
         $class_id                   = $class['class_id'];
@@ -511,11 +500,11 @@ function teacher_list($club_year = "")
     $xoopsTpl->assign('tea_class', $tea_class);
 
     if ($_SESSION['isclubAdmin']) {
-        include_once XOOPS_ROOT_PATH . "/modules/tadtools/jeditable.php";
-        $file      = "save.php";
+        include_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
+        $file      = 'save.php';
         $jeditable = new jeditable();
         //此處加入欲直接點擊編輯的欄位設定
-        $file = "ajax.php";
+        $file = 'ajax.php';
         //大量文字框
         foreach ($teachers_arr as $uid => $teacher) {
             $jeditable->setTextAreaCol("#bio_{$uid}", $file, '390px', '70px', "{uid: {$uid} ,op : 'update_bio'}", _MD_KWCLUB_CLICK_TO_EDIT);
@@ -524,75 +513,102 @@ function teacher_list($club_year = "")
     }
 }
 
-
 function pid_check($cardid)
 {
     //先將字母數字存成陣列
-    $cardid = strtoupper($cardid); //若輸入英文字母為小寫則轉大寫
+    $cardid = mb_strtoupper($cardid); //若輸入英文字母為小寫則轉大寫
 
-    $alphabet =['A'=>'10','B'=>'11','C'=>'12','D'=>'13','E'=>'14','F'=>'15','G'=>'16','H'=>'17','I'=>'34',
-                'J'=>'18','K'=>'19','L'=>'20','M'=>'21','N'=>'22','O'=>'35','P'=>'23','Q'=>'24','R'=>'25',
-                'S'=>'26','T'=>'27','U'=>'28','V'=>'29','W'=>'32','X'=>'30','Y'=>'31','Z'=>'33'];
+    $alphabet = [
+        'A' => '10',
+        'B' => '11',
+        'C' => '12',
+        'D' => '13',
+        'E' => '14',
+        'F' => '15',
+        'G' => '16',
+        'H' => '17',
+        'I' => '34',
+        'J' => '18',
+        'K' => '19',
+        'L' => '20',
+        'M' => '21',
+        'N' => '22',
+        'O' => '35',
+        'P' => '23',
+        'Q' => '24',
+        'R' => '25',
+        'S' => '26',
+        'T' => '27',
+        'U' => '28',
+        'V' => '29',
+        'W' => '32',
+        'X' => '30',
+        'Y' => '31',
+        'Z' => '33',
+    ];
     //檢查字元長度
-    if (strlen(trim($cardid)) !=10) {
+    if (10 != mb_strlen(trim($cardid))) {
         return false;
     }//長度不對
 
     //驗證英文字母正確性
-    $alpha = substr($cardid, 0, 1);//英文字母
-    if (!preg_match("/[A-Za-z]/", $alpha)) {
+    $alpha = mb_substr($cardid, 0, 1); //英文字母
+    if (!preg_match('/[A-Za-z]/', $alpha)) {
         return false;
-    } else {
-        //計算字母總和
-        $nx = $alphabet[$alpha];
-        $ns = $nx[0]+$nx[1]*9;//十位數+個位數x9
     }
+    //計算字母總和
+    $nx = $alphabet[$alpha];
+    $ns = $nx[0] + $nx[1] * 9; //十位數+個位數x9
 
     //驗證男女性別
-    $gender = substr($cardid, 1, 1);//取性別位置
-    if ($gender !='1' && $gender !='2' && $gender !='A' && $gender !='B' && $gender !='C' && $gender !='D') {
+    $gender = mb_substr($cardid, 1, 1); //取性別位置
+    if ('1' != $gender && '2' != $gender && 'A' != $gender && 'B' != $gender && 'C' != $gender && 'D' != $gender) {
         return false;
     }//驗證性別
 
     //N2x8+N3x7+N4x6+N5x5+N6x4+N7x3+N8x2+N9+N10
-    if ($err =='') {
-        $i = 8;
-        $j = 1;
-        $ms =0;
+    if ('' == $err) {
+        $i  = 8;
+        $j  = 1;
+        $ms = 0;
         //先算 N2x8 + N3x7 + N4x6 + N5x5 + N6x4 + N7x3 + N8x2
         while ($i >= 2) {
-            if ($j==1) {
-                $g = substr($cardid, $j, 1);
+            if (1 == $j) {
+                $g = mb_substr($cardid, $j, 1);
                 switch ($g) {
-                case 'A': $mx = 0;
-                    break;
-                case 'B': $mx = 1;
-                    break;
-                case 'C': $mx = 2;
-                    break;
-                case 'D':$mx = 3;
-                    break;
-                default: $mx = $g;
-                    break;
+                    case 'A':
+                        $mx = 0;
+                        break;
+                    case 'B':
+                        $mx = 1;
+                        break;
+                    case 'C':
+                        $mx = 2;
+                        break;
+                    case 'D':
+                        $mx = 3;
+                        break;
+                    default:
+                        $mx = $g;
+                        break;
                 }
             } else {
-                $mx = substr($cardid, $j, 1); //由第j筆每次取一個數字
+                $mx = mb_substr($cardid, $j, 1); //由第j筆每次取一個數字
             }
-            
-            $my = $mx * $i;//N*$i
-            $ms += $my;//ms為加總
+
+            $my = $mx * $i; //N*$i
+            $ms += $my; //ms為加總
             $j++;
             $i--;
         }
         //最後再加上 N9 及 N10
-        $ms = $ms + substr($cardid, 8, 1) + substr($cardid, 9, 1);
+        $ms = $ms + mb_substr($cardid, 8, 1) + mb_substr($cardid, 9, 1);
         //最後驗證除10
-        $total = $ns + $ms;//上方的英文數字總和 + N2~N10總和
-        
-        return ($total % 10 == 0) ? true : false;
+        $total = $ns + $ms; //上方的英文數字總和 + N2~N10總和
+
+        return (0 == $total % 10) ? true : false;
     }
 }
-
 
 // function pid_check($pid)
 // {
@@ -610,13 +626,12 @@ function pid_check($cardid)
 // return ($iSum % 10 == 0) ? true : false;
 // }
 
-
 //改變啟用狀態
 function update_class_enable($class_id, $class_enable)
 {
     global $xoopsDB;
 
-    $sql = "update `" . $xoopsDB->prefix("kw_club_class") . "` set
+    $sql = 'update `' . $xoopsDB->prefix('kw_club_class') . "` set
     `class_isopen` = '{$class_enable}'
     where `class_id` = '$class_id'";
     $xoopsDB->queryF($sql) or web_error($sql);

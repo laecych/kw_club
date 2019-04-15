@@ -1,9 +1,9 @@
 <?php
 //載入XOOPS主設定檔（必要）
-include_once "../../mainfile.php";
+include_once '../../mainfile.php';
 
 //載入自訂的共同函數檔
-include_once "function.php";
+include_once 'function.php';
 if ($xoopsUser) {
     //判斷是否對該模組有管理權限（通常就是站長了）
     if (!isset($_SESSION['is_kw_club_Admin'])) {
@@ -29,29 +29,29 @@ if ($xoopsUser) {
 
 //回模組首頁
 
-$interface_menu[_MD_KWCLUB_INDEX_MYCLASS] = "index.php?op=myclass";
-$interface_icon[_MD_KWCLUB_INDEX_MYCLASS] = "fa-chevron-right";
+$interface_menu[_MD_KWCLUB_INDEX_MYCLASS] = 'index.php?op=myclass';
+$interface_icon[_MD_KWCLUB_INDEX_MYCLASS] = 'fa-chevron-right';
 
-$interface_menu[_MD_KWCLUB_INDEX_TEACHER] = "index.php?op=teacher";
-$interface_icon[_MD_KWCLUB_INDEX_TEACHER] = "fa-chevron-right";
+$interface_menu[_MD_KWCLUB_INDEX_TEACHER] = 'index.php?op=teacher';
+$interface_icon[_MD_KWCLUB_INDEX_TEACHER] = 'fa-chevron-right';
 
 if ($_SESSION['isclubUser'] and chk_time('return', true)) {
-    $interface_menu[_MD_KWCLUB_INDEX_FORM] = "club.php";
-    $interface_icon[_MD_KWCLUB_INDEX_FORM] = "fa-chevron-right";
+    $interface_menu[_MD_KWCLUB_INDEX_FORM] = 'club.php';
+    $interface_icon[_MD_KWCLUB_INDEX_FORM] = 'fa-chevron-right';
 }
 
 if ($_SESSION['isclubAdmin']) {
-    $interface_menu[_MD_KWCLUB_REG] = "register.php";
-    $interface_icon[_MD_KWCLUB_REG] = "fa-chevron-right";
+    $interface_menu[_MD_KWCLUB_REG] = 'register.php';
+    $interface_icon[_MD_KWCLUB_REG] = 'fa-chevron-right';
 
-    $interface_menu[_MD_KWCLUB_SETUP] = "config.php";
-    $interface_icon[_MD_KWCLUB_SETUP] = "fa-chevron-right";
+    $interface_menu[_MD_KWCLUB_SETUP] = 'config.php';
+    $interface_icon[_MD_KWCLUB_SETUP] = 'fa-chevron-right';
 }
 
 //模組後台
 if ($_SESSION['is_kw_club_Admin']) {
-    $interface_menu[_TAD_TO_ADMIN] = "admin/main.php";
-    $interface_icon[_TAD_TO_ADMIN] = "fa-chevron-right";
+    $interface_menu[_TAD_TO_ADMIN] = 'admin/main.php';
+    $interface_icon[_TAD_TO_ADMIN] = 'fa-chevron-right';
 }
 
 if (!isset($_SESSION['club_year']) or empty($_SESSION['club_year'])) {
