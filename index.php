@@ -31,7 +31,7 @@ switch ($op) {
         break;
     case 'delete_reg':
         $class_id = delete_reg();
-        if ($_SESSION['isclubAdmin'] or $_SESSION['isclubUser']) {
+        if ($_SESSION['isclubAdmin'] || $_SESSION['isclubUser']) {
             //管理者刪
             header("location: {$_SERVER['PHP_SELF']}?class_id={$class_id}");
         } else {
@@ -243,6 +243,8 @@ function myclass($reg_uid = '', $club_year = '')
     $xoopsTpl->assign('club_year', $club_year);
     $xoopsTpl->assign('language', $_SESSION['language']);
     // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
+    $reg_name = $arr_reg = '';
+    $total = 0;
 
     //取得社團期別陣列
     $xoopsTpl->assign('arr_year', get_all_year());

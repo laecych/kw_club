@@ -1,14 +1,14 @@
 <?php
-// if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = "tchinese_utf8";
-// } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = $_REQUEST['language'];
-// }
+ if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+     $_SESSION['language'] = "english";
+ } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+     $_SESSION['language'] = $_REQUEST['language'];
+ }
 
-// if ($_SESSION['language'] == "english") {
-//     require_once "../../modules/kw_club/language/english/modinfo.php";
-// }
-//require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
+ if ($_SESSION['language'] === "english") {
+     require_once __DIR__ . "/modinfo.php";
+ }
+require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
 
 // require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo.php";
 

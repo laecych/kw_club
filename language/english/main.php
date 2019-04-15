@@ -1,14 +1,14 @@
 <?php
 
-// if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = "tchinese_utf8";
-// } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = $_REQUEST['language'];
-// }
+ if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+     $_SESSION['language'] = "english";
+ } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+     $_SESSION['language'] = $_REQUEST['language'];
+ }
 
-// if ($_SESSION['language'] == "english") {
-//     require_once "../../modules/kw_club/language/english/main.php";
-// }
+ if ($_SESSION['language'] === "tchinese_utf8") {
+     require_once dirname(__DIR__) . "/tchinese_utf8/main.php";
+ }
 
 xoops_loadLanguage('main', 'tadtools');
 define('_MD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
@@ -304,8 +304,8 @@ define('_MD_KWCLUB_TXTUNLOCK', 'Unlocked');
 define('_MD_KWCLUB_CAPTCHA_ERROR', 'Error');
 define('_MD_KWCLUB_CAPTCHA', 'Verification');
 
-define('_MD_KWCLUB_TEACHER_DESC', "<a href=../../edituser.php?op=avatarform'>Click here to upload photos</a>, <a href='../../edituser.php '> Click here to edit 'Personal Introduction'</a>.");
+define('_MD_KWCLUB_TEACHER_DESC', "<a href='../../edituser.php?op=avatarform'>Click here to upload photos</a>, <a href='../../edituser.php '> Click here to edit 'Personal Introduction'</a>.");
 
 define('_MD_KWCLUB_REG_PARENT', ' Parent Name');
 define('_MD_KWCLUB_REG_TEL', ' Phone Number');
-define('_MD_KWCLUB_LANGUAGE', 'English');
+define('_MD_KWCLUB_LANGUAGE', 'Chinese');

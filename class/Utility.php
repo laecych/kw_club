@@ -21,6 +21,8 @@ namespace XoopsModules\Kv_club;
  * @author       Mamba <mambax7@gmail.com>
  */
 
+require_once dirname(__DIR__) . '/function.php';
+
 /**
  * Class Utility
  */

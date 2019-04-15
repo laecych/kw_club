@@ -89,6 +89,7 @@ function get_club_class_num()
     if (!isset($_SESSION['club_year'])) {
         return false;
     }
+    $data = [];
     $year = $_SESSION['club_year'];
     $sql  = 'select `class_num` from `' . $xoopsDB->prefix('kw_club_class') . '` '; // where `club_year` = '{$year}'";
     // echo $sql;
