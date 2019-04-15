@@ -1,8 +1,5 @@
 <?php
 
-use XoopsModules\Tadtools;
-use XoopsModules\Kv_club\Utility;
-
 function xoops_module_uninstall_kw_club(&$module)
 {
     global $xoopsDB;

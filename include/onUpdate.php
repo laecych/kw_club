@@ -1,6 +1,5 @@
 <?php
 
-use XoopsModules\Tadtools;
 use XoopsModules\Kv_club\Utility;
 
 function xoops_module_update_kw_club(&$module, $old_version)

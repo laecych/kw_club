@@ -307,6 +307,7 @@ class Utility
 
     public static function rm_group($name)
     {
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $group         = $memberHandler->createGroup();
         $group->setVar('name', $name);
