@@ -4,10 +4,10 @@
 if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php')) {
     redirect_header('http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50', 3, _TAD_NEED_TADTOOLS);
 }
-include_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
 
 //其他自訂的共同的函數
-include_once 'function_block.php';
+require_once __DIR__ . '/function_block.php';
 
 //以流水號取得某筆資料
 function get_cate($cate_id, $type)
@@ -44,7 +44,7 @@ function get_reg_uid_all($club_year)
         where b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
 
-        while ($data = $xoopsDB->fetchArray($result)) {
+        while (false !== ($data = $xoopsDB->fetchArray($result))) {
             $reg_uid  = $data['reg_uid'] = mb_strtoupper($data['reg_uid']);
             $class_id = $data['class_id'];
 
@@ -159,7 +159,7 @@ function get_club_class_all()
         $sql = 'select * from `' . $xoopsDB->prefix('kw_club_class') . "` where `club_year`= {$year}";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $data_arr = [];
-        while ($data = $xoopsDB->fetchArray($result)) {
+        while (false !== ($data = $xoopsDB->fetchArray($result))) {
             $class_id            = $data['class_id'];
             $data_arr[$class_id] = $data;
         }
@@ -307,7 +307,7 @@ function cate_list($type)
     $result = $xoopsDB->query($sql) or web_error($sql);
 
     $all_content = [];
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //過濾讀出的變數值
         $all["{$type}_title"] = $myts->htmlSpecialChars($all["{$type}_title"]);
         $all["{$type}_desc"]  = $myts->htmlSpecialChars($all["{$type}_desc"]);
@@ -318,7 +318,7 @@ function cate_list($type)
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
         redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert_obj = new sweet_alert();
     $sweet_alert_obj->render("delete_{$type}_func", "{$_SERVER['PHP_SELF']}?type={$type}&op=delete_{$type}&{$type}_id=", "{$type}_id");
 
@@ -405,7 +405,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
     }
     $result = $xoopsDB->query($sql) or web_error($sql);
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
     $file      = 'save.php';
     $jeditable = new jeditable();
     //此處加入欲直接點擊編輯的欄位設定
@@ -433,7 +433,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
     $class_opt = mb_substr(str_replace('"', "'", $class_opt), 1, -1);
 
     $all_reg = [];
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //將是/否選項轉換為圖示
         $all['reg_isfee_pic'] = 1 == $all['reg_isfee'] ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_PAID . '" title="' . _MD_KWCLUB_PAID . '">' : '<img src="'
                                                                                                                                                                                         . XOOPS_URL
@@ -465,7 +465,7 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
         }
     }
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert_obj = new sweet_alert();
     $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
 

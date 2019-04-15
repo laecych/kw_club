@@ -16,7 +16,7 @@
  * @author     kawaki
  * @version    $Id $
  **/
-include_once 'function.php';
+require_once __DIR__ . '/function.php';
 $modversion = [];
 
 //---模組基本資訊---//

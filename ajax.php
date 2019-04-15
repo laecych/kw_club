@@ -1,8 +1,8 @@
 <?php
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op      = system_CleanVars($_REQUEST, 'op', '', 'string');
 $keyman  = system_CleanVars($_REQUEST, 'keyman', '', 'string');
 $reg_sn  = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
@@ -37,7 +37,7 @@ function search_reg_uid($reg_uid)
     $myts = MyTextSanitizer::getInstance();
 
     $sql = 'select `reg_name` from ' . $xoopsDB->prefix('kw_club_reg') . " where `reg_uid`='{$reg_uid}' order by reg_datetime desc limit 0,1";
-    $result = $xoopsDB->query($sql) or die($sql);
+    $result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
     list($reg_name) = $xoopsDB->fetchRow($result);
     $reg_name = $myts->htmlSpecialChars($reg_name);
 
@@ -107,8 +107,8 @@ function keyman($keyman)
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
-        $member_handler = xoops_gethandler('member');
-        $user_arr       = $member_handler->getUsersByGroup($groupid);
+        $memberHandler = xoops_getHandler('member');
+        $user_arr       = $memberHandler->getUsersByGroup($groupid);
     }
 
     $where = !empty($keyman) ? "where name like '%{$keyman}%' or uname like '%{$keyman}%' or email like '%{$keyman}%'" : '';
@@ -118,7 +118,7 @@ function keyman($keyman)
 
     $myts    = MyTextSanitizer::getInstance();
     $user_ok = $user_yet = '';
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         foreach ($all as $k => $v) {
             $$k = $v;
         }

@@ -16,7 +16,7 @@
  * @author              Taiwen Jiang <phppp@users.sourceforge.net>
  * @todo                For PHP 5 compliant
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class XoopsLoad
@@ -110,7 +110,7 @@ class XoopsLoad
 
             return true;
         } elseif (file_exists($file = XOOPS_ROOT_PATH . '/class/' . $name . '.php')) {
-            include_once $file;
+            require_once $file;
             $class = 'Xoops' . ucfirst($name);
             if (class_exists($class)) {
                 return $class;
@@ -135,7 +135,7 @@ class XoopsLoad
 
             return false;
         }
-        include_once $file;
+        require_once $file;
         $class = 'Xoops' . ucfirst($name);
         if (class_exists($class)) {
             return $class;
@@ -158,7 +158,7 @@ class XoopsLoad
             return false;
         }
         if (file_exists($file = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/class/' . $name . '.php')) {
-            include_once $file;
+            require_once $file;
             if (class_exists(ucfirst($dirname) . ucfirst($name))) {
                 return true;
             }
@@ -273,4 +273,4 @@ class XoopsLoad
 /**
  * XMF libraries
  */
-include_once XOOPS_ROOT_PATH . '/class/libraries/vendor/autoload.php';
+require_once XOOPS_ROOT_PATH . '/class/libraries/vendor/autoload.php';

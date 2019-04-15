@@ -1,12 +1,12 @@
 <?php
 /*-----------引入檔案區--------------*/
 
-include_once 'header.php';
-$xoopsOption['template_main'] = 'kw_club_club.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'kw_club_club.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op         = system_CleanVars($_REQUEST, 'op', '', 'string');
 $cate_id    = system_CleanVars($_REQUEST, 'cate_id', '', 'int');
 $class_id   = system_CleanVars($_REQUEST, 'class_id', '', 'int');
@@ -36,17 +36,17 @@ switch ($op) {
 
     case 'class_enable':
         class_ischecked($class_id, 1);
-        header("location: {$_SERVER['HTTP_REFERER']}");
+        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
         exit;
 
     case 'class_unable':
         class_ischecked($class_id, 0);
-        header("location: {$_SERVER['HTTP_REFERER']}");
+        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
         exit;
 
     case 'class_blank':
         class_ischecked($class_id, '');
-        header("location: {$_SERVER['HTTP_REFERER']}");
+        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
         exit;
 
     default:
@@ -65,7 +65,7 @@ $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/
 
@@ -74,12 +74,12 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     global $xoopsDB, $xoopsTpl, $xoopsUser, $xoopsModuleConfig, $grade_name_arr;
 
     //安全性表單
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
     $xoopsTpl->assign('token', $token->render());
 
     //引入日期
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
     $cal = new My97DatePicker();
     $cal->render();
 
@@ -229,7 +229,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $class_desc = !isset($DBV['class_desc']) ? '' : $DBV['class_desc'];
     $xoopsTpl->assign('class_desc', $class_desc);
     //所見即所得編輯器
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/ck.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/ck.php';
     $ck = new CKEditor('kw_club', 'class_desc', $class_desc);
     $ck->setHeight(250);
     $ck->setToolbarSet('tadSimple');
@@ -261,7 +261,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
         redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#classform', true);
     $formValidator->render();
 
@@ -280,7 +280,7 @@ function insert_class()
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -385,7 +385,7 @@ function update_class($class_id = '')
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 

@@ -7,9 +7,9 @@ if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
 }
 
 if ('english' == $_SESSION['language']) {
-    include_once XOOPS_ROOT_PATH . '/modules/kw_club/language/english/main.php';
+    require_once XOOPS_ROOT_PATH . '/modules/kw_club/language/english/main.php';
 }
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/main.php";
+require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/main.php";
 
 //前後台語系
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');

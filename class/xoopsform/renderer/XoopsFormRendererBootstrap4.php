@@ -581,7 +581,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
                . $element->getExtra()
                . ' '
                . ($element->autoComplete ? '' : 'autocomplete="off" ')
-               . '/>';
+               . '>';
     }
 
     /**
@@ -620,7 +620,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
         $ele_value   = $element->getValue();
         $ele_options = $element->getOptions();
         $ret         = '<select class="form-control" size="' . $element->getSize() . '"' . $element->getExtra();
-        if (false != $element->isMultiple()) {
+        if (false !== $element->isMultiple()) {
             $ret .= ' name="' . $ele_name . '[]" id="' . $ele_name . '" title="' . $ele_title . '" multiple="multiple">';
         } else {
             $ret .= ' name="' . $ele_name . '" id="' . $ele_name . '" title="' . $ele_title . '">';
@@ -686,9 +686,9 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
     {
         static $included = false;
         if (file_exists(XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php')) {
-            include_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php';
+            require_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php';
         } else {
-            include_once XOOPS_ROOT_PATH . '/language/english/calendar.php';
+            require_once XOOPS_ROOT_PATH . '/language/english/calendar.php';
         }
 
         $ele_name  = $element->getName();
@@ -725,7 +725,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
                     var el = Calendar.is_ie ? Calendar.getElement(ev) : Calendar.getTargetElement(ev);
                     for (; el != null; el = el.parentNode)
                     if (el == calendar.element || el.tagName == "A") break;
-                    if (el == null) {
+                    if (el === null) {
                     calendar.callCloseHandler(); Calendar.stopEvent(ev);
                     }
                     }

@@ -31,7 +31,7 @@ if (!function_exists('club_class_list')) {
             $all_teacher_arr   = get_teacher_all();
             $all_class_content = [];
             $i                 = 0;
-            while ($all = $xoopsDB->fetchArray($result)) {
+            while (false !== ($all = $xoopsDB->fetchArray($result))) {
                 //以下會產生這些變數： $class_id, $club_year, $class_num, $cate_id, $class_title, $teacher_id, $class_week, $class_date_open, $class_date_close, $class_time_start, $class_time_end, $place_id, $class_member, $class_money, $class_fee, $class_regnum, $class_note, $class_date_start, $class_date_end, $class_ischecked, $class_isopen, $class_desc
                 foreach ($all as $k => $v) {
                     $$k = $v;
@@ -73,7 +73,7 @@ if (!function_exists('club_class_list')) {
             if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
                 redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
             }
-            include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+            require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
             $sweet_alert_obj = new sweet_alert();
             $sweet_alert_obj->render('delete_class_func', 'club.php?op=delete_class&class_id=', 'class_id');
         } else {
@@ -219,7 +219,7 @@ if (!function_exists('get_cate_all')) {
         // $sql      = "select * from `" . $xoopsDB->prefix("kw_club_cate") . "`";
         // $result   = $xoopsDB->query($sql) or web_error($sql);
         // $data_arr = array();
-        // while ($data = $xoopsDB->fetchArray($result)) {
+        // while (false !== ($data = $xoopsDB->fetchArray($result))) {
         //     $cate_id            = $data['cate_id'];
         //     $data_arr[$cate_id] = $data;
         // }
@@ -242,7 +242,7 @@ if (!function_exists('get_place_all')) {
         // $sql      = "select * from `" . $xoopsDB->prefix("kw_club_place") . "`";
         // $result   = $xoopsDB->query($sql) or web_error($sql);
         // $data_arr = array();
-        // while ($data = $xoopsDB->fetchArray($result)) {
+        // while (false !== ($data = $xoopsDB->fetchArray($result))) {
         //     $cate_id            = $data['place_id'];
         //     $data_arr[$cate_id] = $data;
         // }
@@ -270,7 +270,7 @@ if (!function_exists('get_innerteacher_all')) {
     function get_innerteacher_all()
     {
         global $xoopsDB;
-        $member_handler = xoops_gethandler('member');
+        $memberHandler = xoops_getHandler('member');
         //開課教師
         $groupid = group_id_from_name(_MD_KWCLUB_TEACHER_GROUP);
         $sql     = 'select b.* from `' . $xoopsDB->prefix('groups_users_link') . '` as a
@@ -278,9 +278,9 @@ if (!function_exists('get_innerteacher_all')) {
     where a.`groupid`='{$groupid}' order by b.`name`";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $arr_teacher = [];
-        while ($teacher = $xoopsDB->fetchArray($result)) {
+        while (false !== ($teacher = $xoopsDB->fetchArray($result))) {
             $uid            = $teacher['uid'];
-            $user           = $member_handler->getUser($uid);
+            $user           = $memberHandler->getUser($uid);
             $user_avatar    = $user->user_avatar();
             $teacher['bio'] = $teacher['bio'];
             $teacher['pic'] = ('blank.gif' != $user_avatar) ? XOOPS_URL . '/uploads/' . $user_avatar : XOOPS_URL . '/uploads/avatars/blank.gif';

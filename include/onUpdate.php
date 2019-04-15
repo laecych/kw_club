@@ -113,7 +113,7 @@ function go_update3()
     $sql = ' CREATE TABLE if not exists ' . $xoopsDB->prefix('kw_club_teacher') . " (
             `teacher_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '教師編號',
             `teacher_title` varchar(255) NOT NULL default '' COMMENT '教師標題',
-            `teacher_desc` text NOT NULL default '' COMMENT '教師簡介',
+            `teacher_desc` text COMMENT '教師簡介',
             `teacher_sort` smallint(6) unsigned NOT NULL default '0' COMMENT '教師排序',
             `teacher_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
             PRIMARY KEY  (`teacher_id`)) ENGINE=MyISAM ;";
@@ -224,7 +224,7 @@ return true;
 function go_update1(){
 global $xoopsDB;
 $sql="ALTER TABLE ".$xoopsDB->prefix("資料表")." ADD `欄位` smallint(5) NOT NULL";
-$xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
+$xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  $GLOBALS['xoopsDB']->error());
 
 return true;
 }

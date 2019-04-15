@@ -1,5 +1,5 @@
 <?php
-include '../../mainfile.php';
+require dirname(dirname(__DIR__)) . '/mainfile.php';
 $sort = '';
 $op   = $_GET['op'];
 if ('update_kw_club_cate_sort' == $op) {

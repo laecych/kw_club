@@ -1,11 +1,11 @@
 <?php
 /*-----------引入檔案區--------------*/
-include_once 'header.php';
-$xoopsOption['template_main'] = 'kw_club_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once __DIR__ . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'kw_club_index.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op           = system_CleanVars($_REQUEST, 'op', '', 'string');
 $class_id     = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
 $class_enable = system_CleanVars($_REQUEST, 'class_enable', '', 'int');
@@ -62,7 +62,7 @@ $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
 
@@ -88,7 +88,7 @@ function reg_form($class_id = '')
         $xoopsTpl->assign('school_class', $school_class);
 
         //安全性表單
-        include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+        require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
         $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
         $xoopsTpl->assign('reg_token', $token->render());
 
@@ -96,7 +96,7 @@ function reg_form($class_id = '')
         if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
             redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
         }
-        include_once TADTOOLS_PATH . '/formValidator.php';
+        require_once TADTOOLS_PATH . '/formValidator.php';
         $formValidator = new formValidator('#regForm', true);
         $formValidator->render();
     }
@@ -109,7 +109,7 @@ function insert_reg()
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -205,7 +205,7 @@ function check_class_date($reg_uid, $class_id)
     where a.`reg_uid`='{$reg_uid}' and b.`club_year` = '{$year}'";
 
     $result = $xoopsDB->query($sql) or web_error($sql);
-    while ($arr = $xoopsDB->fetchArray($result)) {
+    while (false !== ($arr = $xoopsDB->fetchArray($result))) {
         $class_reg = get_club_class($arr['class_id']);
         //check the date repeat
 
@@ -260,7 +260,7 @@ function myclass($reg_uid = '', $club_year = '')
         $result = $xoopsDB->query($sql) or web_error($sql);
         $total = $xoopsDB->getRowsNum($result);
 
-        while ($data = $xoopsDB->fetchArray($result)) {
+        while (false !== ($data = $xoopsDB->fetchArray($result))) {
             $data['end_date'] = strtotime($data['club_end_date']);
 
             $class_pay         = $data['class_money'] + $data['class_fee'];
@@ -287,7 +287,7 @@ function myclass($reg_uid = '', $club_year = '')
         $xoopsTpl->assign('un_money', $un_money);
         $xoopsTpl->assign('arr_reg', $arr_reg);
 
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
         $sweet_alert = new sweet_alert();
         if ($_SESSION['isclubAdmin']) {
             $sweet_alert->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
@@ -464,7 +464,7 @@ function class_show($class_id = '')
             redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
         }
         //刪除班級
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
         $sweet_alert_obj = new sweet_alert();
         $sweet_alert_obj->render('delete_class_func', 'club.php?op=delete_class&class_id=', 'class_id');
 
@@ -482,7 +482,7 @@ function teacher_list($club_year = '')
     $sql = 'select * from `' . $xoopsDB->prefix('kw_club_teacher') . "` where `teacher_enable`='1' order by `teacher_sort`";
     $result = $xoopsDB->query($sql) or web_error($sql);
     $teachers_arr = [];
-    while ($data = $xoopsDB->fetchArray($result)) {
+    while (false !== ($data = $xoopsDB->fetchArray($result))) {
         $id                = $data['teacher_id'];
         $teachers_arr[$id] = $data;
     }
@@ -492,7 +492,7 @@ function teacher_list($club_year = '')
     where `class_isopen`='1' order by club_year desc";
     $result = $xoopsDB->query($sql) or web_error($sql);
     $tea_class = [];
-    while ($class = $xoopsDB->fetchArray($result)) {
+    while (false !== ($class = $xoopsDB->fetchArray($result))) {
         $uid                        = $class['teacher_id'];
         $class_id                   = $class['class_id'];
         $tea_class[$uid][$class_id] = $class;
@@ -500,7 +500,7 @@ function teacher_list($club_year = '')
     $xoopsTpl->assign('tea_class', $tea_class);
 
     if ($_SESSION['isclubAdmin']) {
-        include_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
         $file      = 'save.php';
         $jeditable = new jeditable();
         //此處加入欲直接點擊編輯的欄位設定

@@ -1,14 +1,14 @@
 <?php
 /*-----------引入檔案區--------------*/
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 if (!$_SESSION['isclubAdmin']) {
     redirect_header('index.php', 3, _MD_KWCLUB_FORBBIDEN);
 }
-$xoopsOption['template_main'] = 'kw_club_register.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'kw_club_register.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op        = system_CleanVars($_REQUEST, 'op', '', 'string');
 $class_id  = system_CleanVars($_REQUEST, 'class_id', '', 'int');
 $reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
@@ -20,7 +20,7 @@ switch ($op) {
     case 'delete_reg':
         delete_reg();
         // header("location: {$_SERVER['PHP_SELF']}");
-        header("location: {$_SERVER['HTTP_REFERER']}");
+        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
         exit;
 
     case 'reg_uid':
@@ -28,7 +28,7 @@ switch ($op) {
         break;
     case 'update_reg_isfee':
         update_reg_isfee($reg_sn, $reg_isfee);
-        header("location: {$_SERVER['HTTP_REFERER']}");
+        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
         exit;
 
     default:
@@ -43,7 +43,7 @@ $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/
 //列出所有kw_club_reg資料
@@ -101,7 +101,7 @@ function reg_uid($club_year = '')
     $xoopsTpl->assign('reg_all', $reg_all);
     $xoopsTpl->assign('total', count($reg_all));
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert_obj = new sweet_alert();
     $sweet_alert_obj->render('delete_reg_func', "{$_SERVER['PHP_SELF']}?op=delete_reg&reg_sn=", 'reg_sn');
 }

@@ -1,5 +1,5 @@
 <?php
-include_once '../../../../../mainfile.php';
+require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/../mainfile.php';
 
 $aResponse['error']   = false;
 $_SESSION['iQaptcha'] = false;

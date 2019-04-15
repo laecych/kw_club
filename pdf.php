@@ -1,7 +1,7 @@
 <?php
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 require_once TADTOOLS_PATH . '/tcpdf/tcpdf.php';
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 
 $pdf = new TCPDF('P', 'mm', 'A4');
 $pdf->setPrintHeader(false); //不要頁首

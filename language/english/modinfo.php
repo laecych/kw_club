@@ -6,11 +6,11 @@
 // }
 
 // if ($_SESSION['language'] == "english") {
-//     include_once "../../modules/kw_club/language/english/modinfo.php";
+//     require_once "../../modules/kw_club/language/english/modinfo.php";
 // }
-//include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
+//require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
 
-// include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo.php";
+// require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo.php";
 
 xoops_loadLanguage('modinfo_common', 'tadtools');
 
@@ -20,27 +20,27 @@ define('_MI_KWCLUB_CREDITS', '');
 define('_MI_KWCLUB_DESC', 'Club Registration System');
 define('_MI_KWCLUB_AUTHOR_WEB', 'https://github.com/laecych');
 
-//define('_MI_KWCLUB_NAME', 'Society Registration System');
-//define('_MI_KWCLUB_AUTHOR', 'Society Registration System');
+//define('_MI_KWCLUB_NAME', 'Club Registration System');
+//define('_MI_KWCLUB_AUTHOR', 'Club Registration System');
 //define('_MI_KWCLUB_CREDITS', '');
 //define('_MI_KWCLUB_DESC', 'National Small Community Registration System');
 //define('_MI_KWCLUB_AUTHOR_WEB', 'https://github.com/laecych');
 
 define('_MI_KWCLUB_SMNAME2', 'Teacher Profile');
-define('_MI_KWCLUB_SMNAME3', 'My Society');
+define('_MI_KWCLUB_SMNAME3', 'My Club');
 define('_MI_KWCLUB_SMNAME4', 'Registration Statistics');
 
-define('_MI_KW_CLUB_SHOW_BLOCK_NAME', 'Society Registration System Block');
-define('_MI_KW_CLUB_SHOW_BLOCK_DESC', 'Society Registration System Block Block (kw_club_show)');
+define('_MI_KW_CLUB_SHOW_BLOCK_NAME', 'Club Registration System Block');
+define('_MI_KW_CLUB_SHOW_BLOCK_DESC', 'Club Registration System Block Block (kw_club_show)');
 
-define('_MI_KWCLUB_ADMIN_GROUP', 'Society Management');
+define('_MI_KWCLUB_ADMIN_GROUP', 'Club Management');
 define('_MI_KWCLUB_TEACHER_GROUP', 'Social Teacher');
-define('_MI_KWCLUB_GROUP_NOTE', ': for community registration module, do not delete, do not modify ');
-define('_MI_KWCLUB_SETUP_ADMIN', 'Society Management Settings');
-define('_MI_KWCLUB_SETUP_TEACHER', 'Society teacher setting');
+define('_MI_KWCLUB_GROUP_NOTE', ': For community registration module, do not delete, do not modify ');
+define('_MI_KWCLUB_SETUP_ADMIN', 'Management');
+define('_MI_KWCLUB_SETUP_TEACHER', 'Club teacher setting');
 define('_MI_KWCLUB_SCHOOL_GRADE', 'Set up grade');
 define('_MI_KWCLUB_SCHOOL_GRADE_DESC', 'Set the grade that the school can register');
-define('_MI_KWCLUB_SCHOOL_GK0', 'kindergarten');
+define('_MI_KWCLUB_SCHOOL_GK0', 'Kindergarten');
 define('_MI_KWCLUB_SCHOOL_GK1', 'Grade 1');
 define('_MI_KWCLUB_SCHOOL_GK2', 'Grade 2');
 define('_MI_KWCLUB_SCHOOL_GK3', 'Grade 3');

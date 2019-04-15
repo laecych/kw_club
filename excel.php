@@ -1,8 +1,8 @@
 <?php
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 require_once TADTOOLS_PATH . '/PHPExcel.php'; //引入 PHPExcel 物件庫
 require_once TADTOOLS_PATH . '/PHPExcel/IOFactory.php'; //引入 PHPExcel_IOFactory 物件庫
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 // $club_year_text = club_year_text($club_year);
 
@@ -60,8 +60,8 @@ join `' . $xoopsDB->prefix('kw_club_class') . '` as b on a.`class_id` = b.`class
 join `' . $xoopsDB->prefix('kw_club_info') . "` as c on b.`club_year` = c.`club_year`
 where b.`club_year`='{$club_year}' ORDER BY a.`reg_grade` DESC , a.`reg_class` ";
 
-$result = $xoopsDB->query($sql) or die($sql);
-while ($club_reg = $xoopsDB->fetchRow($result)) {
+$result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+while (false !== ($club_reg = $xoopsDB->fetchRow($result))) {
     $club_reg[1] = $club_year;
     if (_MD_KWCLUB_KG == $club_reg[7]) {
         $club_reg[7] = _MD_KWCLUB_KINDERGARTEN;

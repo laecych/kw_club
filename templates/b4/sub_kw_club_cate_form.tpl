@@ -30,10 +30,10 @@
         </label>
         <div class="col-sm-10">
           <div class="form-check form-check-inline">
-                <input type="radio" name="cate_enable" id="cate_enable_1" value="1" <{if $cate_enable != "0"}>checked="checked"<{/if}>>
+                <input type="radio" name="cate_enable" id="cate_enable_1" value="1" <{if $cate_enable != "0"}>checked<{/if}>>
                 <label class="form-check-label" for="ate_enable_1"><{$smarty.const._YES}></label>
          
-                <input type="radio" name="cate_enable" id="cate_enable_0" value="0" <{if $cate_enable == "0"}>checked="checked"<{/if}>>
+                <input type="radio" name="cate_enable" id="cate_enable_0" value="0" <{if $cate_enable == "0"}>checked<{/if}>>
                 <label class="form-check-label" for="ate_enable_0"><{$smarty.const._NO}></label>
             
           </div>

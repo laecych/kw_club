@@ -7,11 +7,12 @@
 // }
 
 // if ($_SESSION['language'] == "english") {
-//     include_once "../../modules/kw_club/language/english/main.php";
+//     require_once "../../modules/kw_club/language/english/main.php";
 // }
 
-//include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/main.php";
-//前後台語系
+xoops_loadLanguage('main', 'tadtools');
+
+//Front and back language
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');
 
 define('_MD_KWCLUB_CLASS_YEAR', 'Club Period');
@@ -71,7 +72,7 @@ define('_MD_KWCLUB_REG_ISREG', 'Result');
 define('_MD_KWCLUB_REG_ISFEE', 'Paid');
 define('_MD_KWCLUB_REG_IP', 'IP');
 
-define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now!');
+//define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now!');
 //by tad
 if ($_SESSION['isclubAdmin']) {
     define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
@@ -120,19 +121,15 @@ define('_MD_KWCLUB_PLACE_SORT', 'order');
 define('_MD_KWCLUB_PLACE_ENABLE', 'status');
 
 define('_MD_KWCLUB_TEACHER_TITLE', 'Teacher');
-define('_MD_KWCLUB_TEACHER_DESCS', 'Introduce');
-define('_MD_KWCLUB_TEACHER_SORT', 'order');
-define('_MD_KWCLUB_TEACHER_ENABLE', 'status');
-define('_MD_KWCLUB_TEACHER_TITLE', 'Social Teacher');
 define('_MD_KWCLUB_TEACHER_DESCS', 'Teacher Profile');
-define('_MD_KWCLUB_TEACHER_SORT', 'Sort');
+define('_MD_KWCLUB_TEACHER_SORT', 'Sort Order');
 define('_MD_KWCLUB_TEACHER_ENABLE', 'Status');
 
-define('_MD_KWCLUB_ADMIN_GROUP', 'Society Management');
+define('_MD_KWCLUB_ADMIN_GROUP', 'Club Management');
 define('_MD_KWCLUB_TEACHER_GROUP', 'Social Teacher');
 define('_MD_KWCLUB_GROUP_NOTE', ': for community registration module, do not delete, do not modify ');
 
-define('_MD_KWCLUB_SETUP_TEACHER', 'Society teacher setting');
+define('_MD_KWCLUB_SETUP_TEACHER', 'Club teacher setting');
 define('_MD_KWCLUB_SORTBY_REG_NAME', 'order by name');
 define('_MD_KWCLUB_SORTBY_REG_DATETIME', 'order by register');
 define('_MD_KWCLUB_SORTBY_CLASS_TITLE', 'order by class name');
@@ -141,7 +138,7 @@ define('_MD_KWCLUB_SORTBY_REG_GRADE', 'order by grade');
 define('_MD_KWCLUB_TODAY', 'Today');
 define('_MD_KWCLUB_IS_BACKUP', 'waiting list');
 
-define('_MD_KWCLUB_PAY_PDF', 'Society Registration Bills');
+define('_MD_KWCLUB_PAY_PDF', 'Club Registration Bills');
 define('_MD_KWCLUB_TOTAL_PAY', 'Total tuition fee:');
 define('_MD_KWCLUB_OTHER_PAY', 'Additional plus:');
 define('_MD_KWCLUB_SIGN', 'Sign:');
@@ -190,7 +187,7 @@ define('_MD_KWCLUB_CLICK_TO_EDIT', 'click to edit');
 define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', 'There is a <span class="editable">blue bottom line</span> in the above table, you can directly click Edit to modify ');
 define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', 'Administrator can click on the introduction to modify directly');
 
-define('_MD_KWCLUB_APPLY_EXCEL', 'Society Registration Statistics Table');
+define('_MD_KWCLUB_APPLY_EXCEL', 'Club Registration Statistics Table');
 define('_MD_KWCLUB_TOTAL', 'total');
 define('_MD_KWCLUB_REGISTER_DATA', 'Registration');
 define('_MD_KWCLUB_REGISTER_LIST', 'Registration list');
@@ -240,7 +237,7 @@ define('_MD_KWCLUB_CATE_LIST', 'Type list');
 define('_MD_KWCLUB_TEACHER_SETUP', 'Set up Teacher');
 define('_MD_KWCLUB_TEACHER_LIST', 'Teacher List');
 
-define('_MD_KWCLUB_SETUP_TEACHER', 'Set up Teacher');
+//define('_MD_KWCLUB_SETUP_TEACHER', 'Set up Teacher');
 
 define('_MD_KWCLUB_LIST_MODE', 'List mode');
 define('_MD_KWCLUB_EXPORT_PDF', 'PDF');

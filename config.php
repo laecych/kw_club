@@ -1,14 +1,14 @@
 <?php
 
-include_once 'header.php';
+require_once __DIR__ . '/header.php';
 if (!$_SESSION['isclubAdmin']) {
     redirect_header('index.php', 3, _MD_KWCLUB_FORBBIDEN);
 }
-$xoopsOption['template_main'] = 'kw_club_config.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+$GLOBALS['xoopsOption']['template_main'] = 'kw_club_config.tpl';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op          = system_CleanVars($_REQUEST, 'op', '', 'string');
 $type        = system_CleanVars($_REQUEST, 'type', '', 'string');
 $club_id     = system_CleanVars($_REQUEST, 'club_id', '', 'int');
@@ -120,7 +120,7 @@ $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 
 //列出所有kw_club_info資料
 function kw_club_info_list()
@@ -141,7 +141,7 @@ function kw_club_info_list()
 
     $all_kw_club_info = [];
     $i                = 0;
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         $all_kw_club_info[$i] = $all;
         //以下會產生這些變數： $club_id, $club_year, $club_start_date, $club_end_date, $club_isfree, $club_backup_num, $club_uid, $club_datetime, $club_enable
         foreach ($all as $k => $v) {
@@ -190,7 +190,7 @@ function kw_club_info_list()
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php')) {
         redirect_header('index.php', 3, _MD_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/sweet_alert.php';
     $sweet_alert_obj          = new sweet_alert();
     $delete_kw_club_info_func = $sweet_alert_obj->render('delete_kw_club_info_func', "{$_SERVER['PHP_SELF']}?op=delete_kw_club_info&club_id=", 'club_id');
     $xoopsTpl->assign('delete_kw_club_info_func', $delete_kw_club_info_func);
@@ -202,7 +202,7 @@ function kw_club_info_list()
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
     $responsive_tabs = new easy_responsive_tabs('#setupTab');
     $responsive_tabs->rander();
 }
@@ -265,12 +265,12 @@ function kw_club_info_form($club_id = '')
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
         redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('#myForm', true);
     $formValidator->render();
 
     //加入Token安全機制
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     $token      = new XoopsFormHiddenToken();
     $token_form = $token->render();
     $xoopsTpl->assign('type', $_REQUEST['type']);
@@ -279,7 +279,7 @@ function kw_club_info_form($club_id = '')
     $xoopsTpl->assign('next_op', $op);
     $xoopsTpl->assign('arr_year', get_all_year());
     //引入日期
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
     $cal = new My97DatePicker();
     $cal->render();
 
@@ -300,7 +300,7 @@ function insert_kw_club_info($type = '')
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -376,7 +376,7 @@ function kw_club_info_copy($club_year = '', $copy_year = '')
     $sql = 'select * from `' . $xoopsDB->prefix('kw_club_class') . "` where `club_year`='$copy_year' order by `class_id` ";
     $result = $xoopsDB->query($sql) or web_error($sql);
     $arr = [];
-    while ($arr = $xoopsDB->fetchArray($result)) {
+    while (false !== ($arr = $xoopsDB->fetchArray($result))) {
         $sql_copy = 'insert into `' . $xoopsDB->prefix('kw_club_class') . "` (
         `club_year`,
         `class_num`,
@@ -438,7 +438,7 @@ function update_kw_club_info($club_id = '')
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -552,7 +552,7 @@ function cate_form($type, $cate_id = '')
     $xoopsTpl->assign($type . '_op', $op);
 
     //加入Token安全機制
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     $token      = new XoopsFormHiddenToken();
     $token_form = $token->render();
     $xoopsTpl->assign($type . '_token', $token_form);
@@ -561,7 +561,7 @@ function cate_form($type, $cate_id = '')
     if (!file_exists(TADTOOLS_PATH . '/formValidator.php')) {
         redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
-    include_once TADTOOLS_PATH . '/formValidator.php';
+    require_once TADTOOLS_PATH . '/formValidator.php';
     $formValidator = new formValidator('.myForm', true);
     $formValidator->render();
 }
@@ -573,7 +573,7 @@ function insert_cate($type)
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -610,7 +610,7 @@ function update_cate($type, $cate_id = '')
 
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -665,8 +665,8 @@ function get_club_teacher()
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
-        $member_handler = xoops_gethandler('member');
-        $user_arr       = $member_handler->getUsersByGroup($groupid);
+        $memberHandler = xoops_getHandler('member');
+        $user_arr       = $memberHandler->getUsersByGroup($groupid);
     }
 
     $sql = 'select uid, uname, name from ' . $xoopsDB->prefix('users') . ' order by uname';
@@ -674,7 +674,7 @@ function get_club_teacher()
 
     $myts    = MyTextSanitizer::getInstance();
     $user_ok = $user_yet = '';
-    while ($all = $xoopsDB->fetchArray($result)) {
+    while (false !== ($all = $xoopsDB->fetchArray($result))) {
         foreach ($all as $k => $v) {
             $$k = $v;
         }
@@ -688,7 +688,7 @@ function get_club_teacher()
         }
     }
     //加入Token安全機制
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     $token = new XoopsFormHiddenToken();
     $xoopsTpl->assign('teacher_token', $token->render());
     $xoopsTpl->assign('user_arr', implode(',', $user_arr));
@@ -701,7 +701,7 @@ function save_club_teacher($users_uid)
 {
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
-        $error = implode('<br />', $GLOBALS['xoopsSecurity']->getErrors());
+        $error = implode('<br>', $GLOBALS['xoopsSecurity']->getErrors());
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
@@ -710,15 +710,15 @@ function save_club_teacher($users_uid)
 
     //列出群組中有哪些人
     if ($groupid) {
-        $member_handler = xoops_gethandler('member');
-        $user_arr       = $member_handler->getUsersByGroup($groupid);
+        $memberHandler = xoops_getHandler('member');
+        $user_arr       = $memberHandler->getUsersByGroup($groupid);
         //先從群組移除
-        $member_handler->removeUsersFromGroup($groupid, $user_arr);
+        $memberHandler->removeUsersFromGroup($groupid, $user_arr);
         //再加入群組
         if (is_array($users)) {
-            $member_handler = xoops_gethandler('member');
+            $memberHandler = xoops_getHandler('member');
             foreach ($users as $uid) {
-                $member_handler->addUserToGroup($groupid, $uid);
+                $memberHandler->addUserToGroup($groupid, $uid);
             }
         }
     }
