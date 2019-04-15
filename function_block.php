@@ -95,7 +95,7 @@ if (!function_exists('club_class_list')) {
 
             return $block;
         }
-        $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
+        $uid = $xoopsUser ? $xoopsUser->uid() : '';
         $xoopsTpl->assign('uid', $uid);
 
         //取得社團期別陣列

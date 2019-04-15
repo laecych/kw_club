@@ -83,7 +83,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             $element->setName($elementName);
         }
 
-        switch ((int)($element->columns)) {
+        switch ((int)$element->columns) {
             case 0:
                 return $this->renderCheckedInline($element, 'checkbox', $elementId, $elementName);
             case 1:
@@ -260,7 +260,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
 
         if (empty($element->skipPreview)) {
             if (empty($GLOBALS['xoTheme'])) {
-                $element->js .= implode('', file(XOOPS_ROOT_PATH . '/class/textsanitizer/image/image.js'));
+                $element->js .= file_get_contents(XOOPS_ROOT_PATH . '/class/textsanitizer/image/image.js');
             } else {
                 $GLOBALS['xoTheme']->addScript('/class/textsanitizer/image/image.js', ['type' => 'text/javascript']);
             }
@@ -596,7 +596,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
         $elementName = $element->getName();
         $elementId   = $elementName;
 
-        switch ((int)($element->columns)) {
+        switch ((int)$element->columns) {
             case 0:
                 return $this->renderCheckedInline($element, 'radio', $elementId, $elementName);
             case 1:

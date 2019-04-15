@@ -367,7 +367,7 @@ function class_show($class_id = '')
         redirect_header('index.php', 3, _MD_KWCLUB_NEED_CLASS_ID);
     }
 
-    $uid = ($xoopsUser) ? $xoopsUser->uid() : '';
+    $uid = $xoopsUser ? $xoopsUser->uid() : '';
     $xoopsTpl->assign('uid', $uid);
 
     $myts = MyTextSanitizer::getInstance();
