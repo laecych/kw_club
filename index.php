@@ -228,7 +228,7 @@ function check_class_date($reg_uid, $class_id)
     }
 
     if ($check_class > 0) {
-        return ture;
+        return true;
     }
 
     return false;
