@@ -235,9 +235,9 @@ function get_ip()
             array_unshift($ips, $ip);
             $ip = false;
         }
-        for ($i = 0; $i < count($ips); $i++) {
+        foreach ($ips as $i => $iValue) {
             if (!preg_match("#^(10|172\.16|192\.168)\.#i", $ips[$i])) {
-                $ip = $ips[$i];
+                $ip = $iValue;
                 break;
             }
         }
