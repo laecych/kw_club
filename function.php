@@ -266,7 +266,7 @@ function mk_club_json($class_id)
 {
     global $xoopsDB, $TadUpFiles;
     if (empty($class_id)) {
-        return flase;
+        return false;
     }
     $myts = MyTextSanitizer::getInstance();
 
