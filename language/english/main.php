@@ -71,8 +71,13 @@ define('_MD_KWCLUB_REG_ISREG', 'Result');
 define('_MD_KWCLUB_REG_ISFEE', 'Paid');
 define('_MD_KWCLUB_REG_IP', 'IP');
 
-define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now！');
-
+define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now!');
+//by tad
+if ($_SESSION['isclubAdmin']) {
+define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
+} else {
+define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
+}
 define('_MD_KWCLUB_SELECT_YEAR', 'Please choose the period of the club：');
 define('_MD_KWCLUB_EMPTY_YEAR', 'There is no clubs period');
 define('_MD_KWCLUB', 'Registration');
@@ -118,11 +123,16 @@ define('_MD_KWCLUB_TEACHER_TITLE', 'Teacher');
 define('_MD_KWCLUB_TEACHER_DESCS', 'Introduce');
 define('_MD_KWCLUB_TEACHER_SORT', 'order');
 define('_MD_KWCLUB_TEACHER_ENABLE', 'status');
+define('_MD_KWCLUB_TEACHER_TITLE', 'Social Teacher');
+define('_MD_KWCLUB_TEACHER_DESCS', 'Teacher Profile');
+define('_MD_KWCLUB_TEACHER_SORT', 'Sort');
+define('_MD_KWCLUB_TEACHER_ENABLE', 'Status');
 
-define('_MD_KWCLUB_ADMIN_GROUP', '社團管理');
-define('_MD_KWCLUB_TEACHER_GROUP', '社團老師');
-define('_MD_KWCLUB_GROUP_NOTE', '：為社團報名模組用，勿刪，勿修改');
+define('_MD_KWCLUB_ADMIN_GROUP', 'Society Management');
+define('_MD_KWCLUB_TEACHER_GROUP', 'Social Teacher');
+define('_MD_KWCLUB_GROUP_NOTE', ': for community registration module, do not delete, do not modify ');
 
+define('_MD_KWCLUB_SETUP_TEACHER', 'Society teacher setting');
 define('_MD_KWCLUB_SORTBY_REG_NAME', 'order by name');
 define('_MD_KWCLUB_SORTBY_REG_DATETIME', 'order by register');
 define('_MD_KWCLUB_SORTBY_CLASS_TITLE', 'order by class name');
@@ -131,22 +141,22 @@ define('_MD_KWCLUB_SORTBY_REG_GRADE', 'order by grade');
 define('_MD_KWCLUB_TODAY', 'Today');
 define('_MD_KWCLUB_IS_BACKUP', 'waiting list');
 
-define('_MD_KWCLUB_PAY_PDF', '社團報名繳費單');
-define('_MD_KWCLUB_TOTAL_PAY', '總學費金額：');
-define('_MD_KWCLUB_OTHER_PAY', '額外加收：');
-define('_MD_KWCLUB_SIGN', 'Sign：');
-define('_MD_KWCLUB_PAY_TOTAL', '總繳費金額');
+define('_MD_KWCLUB_PAY_PDF', 'Society Registration Bills');
+define('_MD_KWCLUB_TOTAL_PAY', 'Total tuition fee:');
+define('_MD_KWCLUB_OTHER_PAY', 'Additional plus:');
+define('_MD_KWCLUB_SIGN', 'Sign:');
+define('_MD_KWCLUB_PAY_TOTAL', 'Total Contribution Amount');
 
-define('_MD_KWCLUB_NEED_CATE_ID', '沒有指定的編號');
-define('_MD_KWCLUB_NEED_CLASS_ID', '沒有指定的社團課程編號');
-define('_MD_KWCLUB_CLASS_SAME_TIME', 'Error！Conflict, please confirm again！');
+define('_MD_KWCLUB_NEED_CATE_ID', 'No specified number');
+define('_MD_KWCLUB_NEED_CLASS_ID', 'The specified community course number is not available');
+define('_MD_KWCLUB_CLASS_SAME_TIME', 'Error!Conflict, please confirm again!');
 
-define('_MD_KWCLUB_OFFICIALLY_ENROLL', '正取');
-define('_MD_KWCLUB_CANDIDATE', '備取');
-define('_MD_KWCLUB_APPLY_SUCCESS', 'Sucessful！');
-define('_MD_KWCLUB_REPEAT_APPLY', 'Error！Repeat！');
+define('_MD_KWCLUB_OFFICIALLY_ENROLL', 'Enroll');
+define('_MD_KWCLUB_CANDIDATE', 'Preserve');
+define('_MD_KWCLUB_APPLY_SUCCESS', 'Sucessful!');
+define('_MD_KWCLUB_REPEAT_APPLY', 'Error!Repeat!');
 
-define('_MD_KWCLUB_SURE_CANCEL_APPLY', 'Are you sure to cancel？');
+define('_MD_KWCLUB_SURE_CANCEL_APPLY', 'Are you sure to cancel?');
 define('_MD_KWCLUB_CANCEL', 'Cancel');
 define('_MD_KWCLUB_CANCEL_APPLY', 'Yes！');
 define('_MD_KWCLUB_DELETE_APPLY', 'Cancel');
@@ -165,34 +175,34 @@ define('_MD_KWCLUB_GRADE10', '10');
 define('_MD_KWCLUB_GRADE11', '11');
 define('_MD_KWCLUB_GRADE12', '12');
 
-define('_MD_KWCLUB_YEAR_TEXT_00', '暑假');
-define('_MD_KWCLUB_YEAR_TEXT_01', '第一學期');
-define('_MD_KWCLUB_YEAR_TEXT_11', '寒假');
-define('_MD_KWCLUB_YEAR_TEXT_02', '第二學期');
+define('_MD_KWCLUB_YEAR_TEXT_00', 'Summer vacation');
+define('_MD_KWCLUB_YEAR_TEXT_01', 'First semester');
+define('_MD_KWCLUB_YEAR_TEXT_11', 'Winter holiday');
+define('_MD_KWCLUB_YEAR_TEXT_02', 'Second semester');
 
 define('_MD_KWCLUB_KINDERGARTEN', 'kindergarten');
 define('_MD_KWCLUB_KG', 'kid');
 
 define('_MD_KWCLUB_GRADE', 'Grade');
-define('_MD_KWCLUB_G', '年');
+define('_MD_KWCLUB_G', 'Year');
 define('_MD_KWCLUB_CLASS', 'Class');
 define('_MD_KWCLUB_CLICK_TO_EDIT', 'click to edit');
-define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', '上表中有標<span class="editable">藍色底線</span>者，可直接點擊編輯修改');
-define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', '管理員可直接點擊簡介進行修改');
+define('_MD_KWCLUB_CLICK_TO_EDIT_DESC', 'There is a <span class="editable">blue bottom line</span> in the above table, you can directly click Edit to modify ');
+define('_MD_KWCLUB_CLICK_BIO_TO_EDIT_DESC', 'Administrator can click on the introduction to modify directly');
 
-define('_MD_KWCLUB_APPLY_EXCEL', '社團報名統計表');
-define('_MD_KWCLUB_TOTAL', '共');
+define('_MD_KWCLUB_APPLY_EXCEL', 'Society Registration Statistics Table');
+define('_MD_KWCLUB_TOTAL', 'total');
 define('_MD_KWCLUB_REGISTER_DATA', 'Registration');
 define('_MD_KWCLUB_REGISTER_LIST', 'Registration list');
 
-define('_MD_KWCLUB_NEED_REG_SN', '錯誤！無報名編號');
-define('_MD_KWCLUB_NOT_REG_TIME', '目前不是報名時間喔！<br>報名期間為');
-define('_MD_KWCLUB_SCHOOL_YEAR', '學年度');
+define('_MD_KWCLUB_NEED_REG_SN', 'Error! No registration number');
+define('_MD_KWCLUB_NOT_REG_TIME', 'Currently not the registration time!<br>The registration period is ');
+define('_MD_KWCLUB_SCHOOL_YEAR', 'School Year');
 
-define('_MD_KWCLUB_FREE_APPLY', '自由報名');
-define('_MD_KWCLUB_FREE_APPLY_DESC', '（不登入可報名）');
-define('_MD_KWCLUB_LOGIN_APPLY', '登入報名');
-define('_MD_KWCLUB_LOGIN_APPLY_DESC', '（須安裝單位名冊模組，上傳報名者相關資料）');
+define('_MD_KWCLUB_FREE_APPLY', 'Free registration');
+define('_MD_KWCLUB_FREE_APPLY_DESC', '(Do not log in to register)');
+define('_MD_KWCLUB_LOGIN_APPLY', 'Login Registration');
+define('_MD_KWCLUB_LOGIN_APPLY_DESC', '(The unit roster module must be installed, upload the relevant information of the applicant)');
 
 define('_MD_KWCLUB_W0', 'Sun');
 define('_MD_KWCLUB_W1', 'Mon');
@@ -207,7 +217,7 @@ define('_MD_KWCLUB_W', 'Every <span class="text_g">%s</span> Time ');
 // <{$smarty.const._MD_KWCLUB_W|sprintf:$data.class_week}>
 define('_MD_KWCLUB_WEEK', 'Week ');
 
-define('_MD_KWCLUB_NOT_EMPTY_CLASS', 'Warning！！This course has already registered for students and cannot be deleted！');
+define('_MD_KWCLUB_NOT_EMPTY_CLASS', 'Warning!! This course has already registered for students and cannot be deleted!');
 
 define('_MD_KWCLUB_ALL_USERS', 'All users');
 define('_MD_KWCLUB_PICKED_USERS', 'Selected users');
@@ -253,15 +263,15 @@ define('_MD_KWCLUB_APPLY_CLASS', 'Sign up「%s」');
 define('_MD_KWCLUB_APPLY_NOTE', 'Please be sure to fill in the correct information! Otherwise the admission will be cancelled!');
 
 define('_MD_KWCLUB_KEYIN', 'Please fill in');
-define('_MD_KWCLUB_CHECK_OK', 'Information is correct and the registration is confirmed！');
+define('_MD_KWCLUB_CHECK_OK', 'Information is correct and the registration is confirmed!');
 define('_MD_KWCLUB_MYCLASS', 'Check out my clubs');
 
-define('_MD_KWCLUB_NOT_FOUND', 'There is no any  %s registrations! ）');
+define('_MD_KWCLUB_NOT_FOUND', 'There is no any  %s registrations! )');
 // <{$smarty.const._MD_KWCLUB_NOT_FOUND|sprintf:$reg_uid}>
 
 define('_MD_KWCLUB_CLASS_ENABLE', 'OPEN');
 define('_MD_KWCLUB_CLASS_UNABLE', 'CLOSE');
-define('_MD_KWCLUB_CLASS_UNDONE', '尚未報名完成');
+define('_MD_KWCLUB_CLASS_UNDONE', 'Not yet registered');
 define('_MD_KWCLUB_CLASS_ENABLE_DESC', 'Click to alter the status becomes OPEN');
 define('_MD_KWCLUB_CLASS_UNABLE_DESC', 'Click to alter the status becomes Close');
 define('_MD_KWCLUB_CLASS_BLANK', 'Undecided');
@@ -277,15 +287,15 @@ define('_MD_KWCLUB_NUMBER_OF_RECRUITED', 'Recruit');
 define('_MD_KWCLUB_NUMBER_OF_APPLICANTS', 'Registed');
 define('_MD_KWCLUB_FULL', 'Full');
 define('_MD_KWCLUB_AFTER_REGISTRATION', 'Alternate registration');
-define('_MD_KWCLUB_EDIT_TAECHER_NOTE', '欲修改教師名單，請至<a href="config.php#setupTab2" target="_blank">社團老師設定</a>頁面設定');
+define('_MD_KWCLUB_EDIT_TAECHER_NOTE', 'To change the list of teachers, go to <a href="config.php#setupTab2" target="_blank">social teacher settings</a> page setting');
 
-define('_MD_KWCLUB_EDIT_CATE_NOTE', '欲修改社團類型，請至<a href="config.php#setupTab3" target="_blank">社團類型設定</a>頁面設定');
-define('_MD_KWCLUB_EDIT_PLACE_NOTE', '欲修改上課地點，請至<a href="config.php#setupTab4" target="_blank">上課地點設定</a>頁面設定');
+define('_MD_KWCLUB_EDIT_CATE_NOTE', 'To change the community type, go to <a href="config.php#setupTab3" target="_blank">social type setting</a> page setting');
+define('_MD_KWCLUB_EDIT_PLACE_NOTE', 'To modify the class location, please go to <a href="config.php#setupTab4" target="_blank">class setting</a> page setting');
 
-define('_MD_KWCLUB_SIGNUP_STATUS', '報名於 %s，從 %s，報名編號：%s');
+define('_MD_KWCLUB_SIGNUP_STATUS', 'Register at %s, from %s, registration number: %s');
 // <{$smarty.const._MD_KWCLUB_SIGNUP_STATUS|sprintf:$data.reg_datetime:$data.reg_ip:$data.reg_sn}>
-define('_MD_KWCLUB_OVER_END_TIME', '超過報名截止時間或已繳費即停止報名及修改');
-define('_MD_KWCLUB_SIGNUP_FOR_STU', '幫學生報名');
+define('_MD_KWCLUB_OVER_END_TIME', 'Stop the registration deadline or the payment has been stopped and the application is modified');
+define('_MD_KWCLUB_SIGNUP_FOR_STU', 'Help students sign up');
 define('_MD_KWCLUB_PID_WRONG', 'Invalid');
 define('_MD_KWCLUB_GC_WRONG', 'Grage or Class Error');
 
@@ -295,8 +305,8 @@ define('_MD_KWCLUB_TXTUNLOCK', 'Unlocked');
 define('_MD_KWCLUB_CAPTCHA_ERROR', 'Error');
 define('_MD_KWCLUB_CAPTCHA', 'Verification');
 
-define('_MD_KWCLUB_TEACHER_DESC', "<a href=../../edituser.php?op=avatarform'>點此可上傳照片</a>，<a href='../../edituser.php'>點此可編輯「個人介紹」</a>。");
+define('_MD_KWCLUB_TEACHER_DESC', "<a href=../../edituser.php?op=avatarform'>Click here to upload photos</a>, <a href='../../edituser.php '> Click here to edit 'Personal Introduction'</a>.");
 
 define('_MD_KWCLUB_REG_PARENT', ' Parent Name');
 define('_MD_KWCLUB_REG_TEL', ' Phone Number');
-define('_MD_KWCLUB_LANGUAGE', '中文');
+define('_MD_KWCLUB_LANGUAGE', 'English');
