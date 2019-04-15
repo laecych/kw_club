@@ -562,7 +562,7 @@ function pid_check($cardid)
 
     //驗證男女性別
     $gender = mb_substr($cardid, 1, 1); //取性別位置
-    if ('1' != $gender && '2' != $gender && 'A' != $gender && 'B' != $gender && 'C' != $gender && 'D' != $gender) {
+    if ('1' != $gender && '2' != $gender && 'A' !== $gender && 'B' !== $gender && 'C' !== $gender && 'D' !== $gender) {
         return false;
     }//驗證性別
 

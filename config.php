@@ -155,7 +155,7 @@ function kw_club_info_list()
         }
 
         //將是/否選項轉換為圖示
-        $club_enable_pic = 1 == $club_enable ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_ENABLE_1 . '" title="' . _MD_KWCLUB_ENABLE_1 . '">' : '<img src="'
+        $club_enable_pic = (1 == $club_enable) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_ENABLE_1 . '" title="' . _MD_KWCLUB_ENABLE_1 . '">' : '<img src="'
                                                                                                                                                                                       . XOOPS_URL
                                                                                                                                                                                       . '/modules/kw_club/images/no.gif" alt="'
                                                                                                                                                                                       . _MD_KWCLUB_ENABLE_0
@@ -352,7 +352,7 @@ function insert_kw_club_info($type = '')
     //複製期別的所有社團
     $copy_year = $myts->addSlashes($_POST['copy_year']);
 
-    if ('copy' == $type && !empty($club_year) && !empty($copy_year)) {
+    if ('copy' === $type && !empty($club_year) && !empty($copy_year)) {
         kw_club_info_copy($club_year, $copy_year);
     }
 

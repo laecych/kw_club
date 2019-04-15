@@ -120,7 +120,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
 
     if (is_dir($class_dir) && $dh = opendir($class_dir)) {
         while (false !== ($file = readdir($dh))) {
-            if ('.' != $file && '..' != $file) {
+            if ('.' !== $file && '..' !== $file) {
                 $file_name = str_replace('.json', '', $file);
                 //if (!in_array($file_name, $arr_num)) {
                 array_push($arr_num, $file_name);

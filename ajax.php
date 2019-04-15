@@ -89,8 +89,8 @@ function update_reg($id, $value, $reg_sn)
     $sql  = 'update ' . $xoopsDB->prefix('kw_club_reg') . " set `{$col}`='{$val}' where `reg_sn`='{$reg_sn}'";
     $xoopsDB->queryF($sql);
 
-    if ('reg_grade' == $col) {
-        if (_MD_KWCLUB_KG == $val) {
+    if ('reg_grade' === $col) {
+        if (_MD_KWCLUB_KG === $val) {
             $value = _MD_KWCLUB_KINDERGARTEN;
         } else {
             $value = $val . _MD_KWCLUB_G;

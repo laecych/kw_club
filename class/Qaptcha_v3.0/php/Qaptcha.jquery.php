@@ -5,7 +5,7 @@ $aResponse['error']   = false;
 $_SESSION['iQaptcha'] = false;
 
 if (isset($_POST['action'])) {
-    if ('qaptcha' == htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8')) {
+    if ('qaptcha' === htmlentities($_POST['action'], ENT_QUOTES, 'UTF-8')) {
         $_SESSION['iQaptcha'] = true;
         if ($_SESSION['iQaptcha']) {
             echo jsonencode($aResponse);

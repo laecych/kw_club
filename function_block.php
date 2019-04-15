@@ -77,13 +77,13 @@ if (!function_exists('club_class_list')) {
             $sweet_alert_obj = new sweet_alert();
             $sweet_alert_obj->render('delete_class_func', 'club.php?op=delete_class&class_id=', 'class_id');
         } else {
-            if ('return' == $mode) {
+            if ('return' === $mode) {
                 return;
             }
             $xoopsTpl->assign('error', _MD_KWCLUB_NEED_CONFIG);
         }
 
-        if ('return' == $mode) {
+        if ('return' === $mode) {
             $block['arr_year']  = $arr_year;
             $block['club_info'] = $club_info;
             $block['club_year'] = $club_year;
@@ -189,7 +189,7 @@ if (!function_exists('chk_time')) {
         $club_end_date_ts   = empty($club_end_date) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
 
         if (($only_end and $club_end_date_ts < $today) or ($club_start_date_ts > $today || $club_end_date_ts < $today)) {
-            if ('return' == $mode) {
+            if ('return' === $mode) {
                 return false;
             }
             if ($only_end) {
@@ -284,7 +284,7 @@ if (!function_exists('get_innerteacher_all')) {
             $user           = $memberHandler->getUser($uid);
             $user_avatar    = $user->user_avatar();
             $teacher['bio'] = $teacher['bio'];
-            $teacher['pic'] = ('blank.gif' != $user_avatar) ? XOOPS_URL . '/uploads/' . $user_avatar : XOOPS_URL . '/uploads/avatars/blank.gif';
+            $teacher['pic'] = ('blank.gif' !== $user_avatar) ? XOOPS_URL . '/uploads/' . $user_avatar : XOOPS_URL . '/uploads/avatars/blank.gif';
 
             $arr_teacher[$uid] = $teacher;
         }

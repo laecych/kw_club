@@ -63,11 +63,11 @@ function reg_list($club_year = '', $review = 'reg_sn')
     $xoopsTpl->assign('review', $review);
 
     //取得排序語法
-    if ('grade' == $review) {
+    if ('grade' === $review) {
         $order = 'ORDER BY a.`reg_grade`, a.`reg_class`';
-    } elseif ('class_id' == $review) {
+    } elseif ('class_id' === $review) {
         $order = 'ORDER BY b.`class_id`, a.`reg_grade`,a.`reg_class`';
-    } elseif ('reg_uid' == $review) {
+    } elseif ('reg_uid' === $review) {
         $order = 'ORDER BY a.`reg_uid`, b.`class_id`';
     } else {
         $order = 'ORDER BY a.`reg_sn`';
