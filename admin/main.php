@@ -35,7 +35,7 @@ function get_club_admin()
     //列出群組中有哪些人
     if ($groupid) {
         $memberHandler = xoops_getHandler('member');
-        $user_arr       = $memberHandler->getUsersByGroup($groupid);
+        $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
 
     $sql = 'select uid,uname,name from ' . $xoopsDB->prefix('users') . ' order by uname';
@@ -79,7 +79,7 @@ function save_club_admin($users_uid)
     //列出群組中有哪些人
     if ($groupid) {
         $memberHandler = xoops_getHandler('member');
-        $user_arr       = $memberHandler->getUsersByGroup($groupid);
+        $user_arr      = $memberHandler->getUsersByGroup($groupid);
         //先從群組移除
         $memberHandler->removeUsersFromGroup($groupid, $user_arr);
         //再加入群組

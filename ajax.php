@@ -108,7 +108,7 @@ function keyman($keyman)
     //列出群組中有哪些人
     if ($groupid) {
         $memberHandler = xoops_getHandler('member');
-        $user_arr       = $memberHandler->getUsersByGroup($groupid);
+        $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
 
     $where = !empty($keyman) ? "where name like '%{$keyman}%' or uname like '%{$keyman}%' or email like '%{$keyman}%'" : '';

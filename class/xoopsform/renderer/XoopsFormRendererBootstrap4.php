@@ -685,11 +685,11 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
     public function renderFormTextDateSelect(XoopsFormTextDateSelect $element)
     {
         static $included = false;
-//        if (file_exists(XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php')) {
-//            require_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php';
-//        } else {
-//            require_once XOOPS_ROOT_PATH . '/language/english/calendar.php';
-//        }
+        //        if (file_exists(XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php')) {
+        //            require_once XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/calendar.php';
+        //        } else {
+        //            require_once XOOPS_ROOT_PATH . '/language/english/calendar.php';
+        //        }
 
         xoops_loadLanguage('calendar');
 
