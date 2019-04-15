@@ -2,6 +2,8 @@
 //載入XOOPS主設定檔（必要）
 require_once dirname(dirname(__DIR__)) . '/mainfile.php';
 
+xoops_loadLanguage('main', basename(__DIR__));
+
 //載入自訂的共同函數檔
 require_once __DIR__ . '/function.php';
 if ($xoopsUser) {
