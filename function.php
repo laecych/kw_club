@@ -107,7 +107,6 @@ function get_club_class($class_id = '')
 
     if (empty($class_id)) {
         return false;
-        exit;
     }
 
     $sql = 'select * from `' . $xoopsDB->prefix('kw_club_class') . "`  where `class_id` = '{$class_id}'";
