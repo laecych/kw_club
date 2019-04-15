@@ -270,6 +270,7 @@ if (!function_exists('get_innerteacher_all')) {
     function get_innerteacher_all()
     {
         global $xoopsDB;
+        /* @var XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         //開課教師
         $groupid = group_id_from_name(_MD_KWCLUB_TEACHER_GROUP);

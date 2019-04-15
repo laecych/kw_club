@@ -665,6 +665,7 @@ function get_club_teacher()
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
+        /* @var XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
@@ -710,12 +711,14 @@ function save_club_teacher($users_uid)
 
     //列出群組中有哪些人
     if ($groupid) {
+        /* @var XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
         //先從群組移除
         $memberHandler->removeUsersFromGroup($groupid, $user_arr);
         //再加入群組
         if (is_array($users)) {
+            /* @var XoopsMemberHandler $memberHandler */
             $memberHandler = xoops_getHandler('member');
             foreach ($users as $uid) {
                 $memberHandler->addUserToGroup($groupid, $uid);

@@ -34,6 +34,7 @@ function get_club_admin()
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
+        /* @var XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
