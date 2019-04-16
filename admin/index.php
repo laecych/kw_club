@@ -16,12 +16,12 @@
  * @author       作者
  * @version      $Id $
  **/
-require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+
 require __DIR__ . '/header.php';
 
 $adminObject = \Xmf\Module\Admin::getInstance();
 
-$adminObject->displayNavigation('index.php');
+$adminObject->displayNavigation(basename(__FILE__));
 $adminObject->displayIndex();
 
 require __DIR__ . '/footer.php';
