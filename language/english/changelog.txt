@@ -1,7 +1,36 @@
+Kw Club Community Registration Module 1.3 (2018/12/25 Released)
+====================================================
+1. Added English language interface.
+2. Modify support for Boostrap 4.
+3. When registering, the amendment can also be registered without the grade.
+4. New registration grades from kindergarten to 12th grade.
+5. Amend the "Parental Contact Number" without a *, force the applicant to be "required" and only enter numbers.
 
 
-XOOPS2.5 Demo modules 1.0 （2018/03/10 release）
-===========================================
-1.fix xoops_version.php
-2.add $xoopsTpl
-3.add bootstrap
+Kw Club Community Registration Module 1.2 (released from 2018/12/07)
+====================================================
+1. Revise the function period, you can customize the period name.
+2. After the end of each period, the next period of the community can use the "copy period" to save time for the new club, but remember to change the class time of each club.
+3. At the time of registration, the residence permit can be entered in addition to the identity card number (foreign students can enter the residence permit number).
+4. The community teacher will add the settings by the registration setting interface, no need to add from the member, enter the teacher name in the field. The teacher's profile is revised together. Reminder: Community teachers will lose the ability to add their own community courses. If you do not want to fix this function, please do not update this version of the community registration module.
+5. Fix the bug that enabled the close community button.
+6. Amend the "Parental Contact Number" without a * and force the applicant to "required".
+7. Amend the noun of the registration interface to change the applicant to a student.
+8. Added English language system
+
+Kw Club Community Registration Module 1.1 (2018/08/20 Released)
+====================================================
+1. Fix the problem with es_timetable and tad_timeline
+2. If the correction is full, there will still be a message in "Alternate Registration"
+3. Cancellation of restrictions on unmanageable clubs during non-registration periods
+4. Change to adaptive form
+5. Open to students to display the list of applications
+6. Fix problems that still occur when the class is closed
+7. When the new community is used to apply the community information, the annual will also be set as the old year.
+8. Fix the problem that the registration method shows the error.
+9. Registration to join the parent's name and contact information
+10. Join the block
+
+Kw Club Community Registration Module 1.0 (released from 2018/08/03)
+====================================================
+Official release

@@ -10,9 +10,9 @@ function snews_search($queryarray, $andor, $limit, $offset, $userid)
         }
         $queryarray = $arr;
     }
-    $sql = "SELECT `class_id`,`class_title`,`class_uid` FROM " . $xoopsDB->prefix("kw_club_class") . " WHERE 1";
-    if ($userid != 0) {
-        $sql .= " AND uid=" . $userid . " ";
+    $sql = 'SELECT `class_id`,`class_title`,`class_uid` FROM ' . $xoopsDB->prefix('kw_club_class') . ' WHERE 1';
+    if (0 != $userid) {
+        $sql .= ' AND uid=' . $userid . ' ';
     }
     if (is_array($queryarray) && $count = count($queryarray)) {
         $sql .= " AND ((`class_title` LIKE '%{$queryarray[0]}%'  OR `class_desc` LIKE '%{$queryarray[0]}%' )";
@@ -20,19 +20,20 @@ function snews_search($queryarray, $andor, $limit, $offset, $userid)
             $sql .= " $andor ";
             $sql .= "(`class_title` LIKE '%{$queryarray[$i]}%' OR  `class_desc` LIKE '%{$queryarray[$i]}%' )";
         }
-        $sql .= ") ";
+        $sql .= ') ';
     }
-    $sql .= "ORDER BY  `class_datetime` DESC";
+    $sql    .= 'ORDER BY  `class_datetime` DESC';
     $result = $xoopsDB->query($sql, $limit, $offset);
-    $ret    = array();
+    $ret    = [];
     $i      = 0;
-    while ($myrow = $xoopsDB->fetchArray($result)) {
-        $ret[$i]['image'] = "images/text-lines.png";
-        $ret[$i]['link']  = "index.php?class_id=" . $myrow['class_id'];
+    while (false !== ($myrow = $xoopsDB->fetchArray($result))) {
+        $ret[$i]['image'] = 'images/text-lines.png';
+        $ret[$i]['link']  = 'index.php?class_id=' . $myrow['class_id'];
         $ret[$i]['title'] = $myrow['class_title'];
         $ret[$i]['time']  = strtotime($myrow['class_datetime']);
         $ret[$i]['uid']   = $myrow['class_uid'];
         $i++;
     }
+
     return $ret;
 }

@@ -160,10 +160,10 @@
             <div class="form-check form-check-inline">   
           
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked<{/if}>>
                         <label class="form-check-label" for="reg_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
                     <{else}>
-                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked="checked"<{/if}>>
+                        <input type='radio' name='reg_grade' id="reg_grade<{$v}>" class="validate[required]" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if $gname == $reg_grade}>checked<{/if}>>
                         <label class="form-check-label" for="reg_grade<{$v}>"><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}></label>
                     <{/if}>
                     
@@ -180,7 +180,7 @@
         <div class="col-sm-10">
             <{foreach from = $school_class key=v item=cname}>
             <div class="form-check form-check-inline">
-                <input type='radio' name='reg_class' id="reg_class<{$v}>" class="validate[required]" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked="checked"<{/if}>>
+                <input type='radio' name='reg_class' id="reg_class<{$v}>" class="validate[required]" title='<{$cname}>' value='<{$cname}>' <{if $cname == $reg_class}>checked<{/if}>>
                 <label class="form-check-label" for="reg_class<{$v}>"> <{$cname}> </label>
             </div>
             <{/foreach}>

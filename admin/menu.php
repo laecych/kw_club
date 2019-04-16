@@ -1,5 +1,5 @@
 <?php
-$adminmenu = array();
+$adminmenu = [];
 $i         = 1;
 
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_HOME;
@@ -11,7 +11,7 @@ $i++;
 $adminmenu[$i]['title'] = _MI_KWCLUB_SETUP_ADMIN;
 $adminmenu[$i]['link']  = 'admin/main.php';
 $adminmenu[$i]['desc']  = _MI_KWCLUB_SETUP_ADMIN;
-$adminmenu[$i]['icon']  = "images/admin/button.png";
+$adminmenu[$i]['icon']  = 'images/admin/button.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_ABOUT;

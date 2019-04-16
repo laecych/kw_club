@@ -46,7 +46,7 @@ INSERT INTO `kw_club_place` (`place_id`, `place_title`, `place_desc`, `place_sor
 CREATE TABLE `kw_club_teacher` (
   `teacher_id` smallint(6) unsigned NOT NULL auto_increment COMMENT '教師編號',
   `teacher_title` varchar(255) NOT NULL default '' COMMENT '教師標題',
-  `teacher_desc` text NOT NULL default '' COMMENT '教師簡介',
+  `teacher_desc` text NOT NULL COMMENT '教師簡介',
   `teacher_sort` smallint(6) unsigned NOT NULL default '0' COMMENT '教師排序',
   `teacher_enable` enum('1','0') NOT NULL default '1' COMMENT '狀態',
 PRIMARY KEY  (`teacher_id`)
@@ -63,10 +63,10 @@ CREATE TABLE `kw_club_class` (
   `class_title` varchar(255) NOT NULL DEFAULT '' COMMENT '社團名稱',
   `teacher_id` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '開課教師',
   `class_week` varchar(255) NOT NULL DEFAULT '0' COMMENT '上課星期',
-  `class_date_open` date NOT NULL DEFAULT '0000-00-00' COMMENT '上課起始日',
-  `class_date_close` date NOT NULL DEFAULT '0000-00-00' COMMENT '上課終止日',
-  `class_time_start` time NOT NULL DEFAULT '00:00:00' COMMENT '起始時間',
-  `class_time_end` time NOT NULL DEFAULT '00:00:00' COMMENT '終止時間',
+  `class_date_open` date NOT NULL NULL DEFAULT NULL COMMENT '上課起始日',
+  `class_date_close` date NOT NULL NULL DEFAULT NULL COMMENT '上課終止日',
+  `class_time_start` time NOT NULL NULL DEFAULT NULL COMMENT '起始時間',
+  `class_time_end` time NOT NULL NULL DEFAULT NULL COMMENT '終止時間',
   `place_id` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '上課地點',
   `class_grade` varchar(255) NOT NULL DEFAULT '' COMMENT '招收對象',
   `class_member` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '招收人數',

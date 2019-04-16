@@ -1,9 +1,9 @@
 <?php
-include_once "header.php";
+require_once __DIR__ . '/header.php';
 require_once TADTOOLS_PATH . '/tcpdf/tcpdf.php';
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 
-$pdf = new TCPDF("P", "mm", "A4");
+$pdf = new TCPDF('P', 'mm', 'A4');
 $pdf->setPrintHeader(false); //不要頁首
 $pdf->setPrintFooter(false); //不要頁尾
 $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM); //設定自動分頁
@@ -35,7 +35,6 @@ foreach ($reg_all as $reg_uid => $reg) {
     $money = $fee = 0;
 
     foreach ($reg['data'] as $class_id => $data) {
-
         $reg_name     = $myts->htmlSpecialChars($data['reg_name']);
         $class_title  = $myts->htmlSpecialChars($data['class_title']);
         $class_money  = $myts->htmlSpecialChars($data['class_money']);
@@ -51,7 +50,7 @@ foreach ($reg_all as $reg_uid => $reg) {
         $pdf->MultiCell(45, $height, $reg_datetime, 1, 'C', false, 1, '', '', false, 0, false, false, $height, 'M', true);
 
         $money += $class_money;
-        $fee += $class_fee;
+        $fee   += $class_fee;
         // $pdf->Cell(50, $height, $username, 1, 0,'C',0,'',1);
         // $pdf->Cell(36, $height, $snews['update_time'], 1, 1,'C',0,'',1);
     }

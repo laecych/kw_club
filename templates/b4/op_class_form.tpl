@@ -103,7 +103,7 @@
         <div class="col-sm-10">
             <{foreach from = $c_week key=v item=wname}>
             <div class="form-check form-check-inline">
-                <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$v}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked="checked"<{/if}>>
+                <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$v}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked<{/if}>>
                 <label class="form-check-label" for="class_week<{$v}>"><{$smarty.const._MD_KWCLUB_WEEK}><{$wname}> </label>
             </div>
                
@@ -118,10 +118,10 @@
             <{foreach from = $grade_name_arr key=v item=gname}>
             <div class="form-check form-check-inline">
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
-                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked="checked"<{/if}>>
+                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>>
                         <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
                     <{else}>
-                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked="checked"<{/if}>>
+                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>>
                         <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}></label>
                     <{/if}>
             </div>

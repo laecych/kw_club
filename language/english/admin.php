@@ -1,52 +1,53 @@
 <?php
-include_once "../../tadtools/language/{$xoopsConfig['language']}/admin_common.php";
-define("_TAD_NEED_TADTOOLS", "Need modules/tadtools. You can download tadtools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
 
-define('_MA_KWCLUB_CLASS_YEAR', '社團年度');
-define('_MA_KWCLUB_CLASS_NUM', '社團編號');
-define('_MA_KWCLUB_CATE_ID', '社團類型');
-define('_MA_KWCLUB_CLASS_TITLE', '社團名稱');
-define('_MA_KWCLUB_TEACHER_ID', '開課教師');
-define('_MA_KWCLUB_TEACHER_TITLE', '開課教師');
-define('_MA_KWCLUB_CLASS_WEEK', '上課星期');
-define('_MA_KWCLUB_CLASS_GRADE', '招收對象');
-define('_MA_KWCLUB_CLASS_DATE_OPEN', '上課起始日');
-define('_MA_KWCLUB_CLASS_DATE_CLOSE', '上課終止日');
-define('_MA_KWCLUB_CLASS_TIME_START', '起始時間');
-define('_MA_KWCLUB_CLASS_TIME_END', '終止時間');
-define('_MA_KWCLUB_PLACE_ID', '上課地點');
-define('_MA_KWCLUB_CLASS_MENBER', '招收人數');
-define('_MA_KWCLUB_CLASS_MONEY', '社團學費');
-define('_MA_KWCLUB_CLASS_FEE', '額外費用');
-define('_MA_KWCLUB_CLASS_NOTE', '社團備註');
-define('_MA_KWCLUB_CLASS_DATE_START', '報名起始');
-define('_MA_KWCLUB_CLASS_DATE_END', '報名終止');
-define('_MA_KWCLUB_CLASS_ISOPEN', '是否啟用');
-define('_MA_KWCLUB_CLASS_DESC', '社團簡介');
-define('_MA_KWCLUB_CLASS_ID', '流水號');
-define('_MA_KWCLUB_CLASS_REGNUM', '報名人數');
-define('_MA_KWCLUB_CLASS_ISCHECKED', '是否開班');
+xoops_loadLanguage('admin_common', 'tadtools');
+define('_TAD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
+
+define('_MA_KWCLUB_CLASS_YEAR', 'Social Year');
+define('_MA_KWCLUB_CLASS_NUM', 'Club Number');
+define('_MA_KWCLUB_CATE_ID', 'Club Type');
+define('_MA_KWCLUB_CLASS_TITLE', 'Club Name');
+define('_MA_KWCLUB_TEACHER_ID', 'Starting Teacher');
+define('_MA_KWCLUB_TEACHER_TITLE', 'Starting Teacher');
+define('_MA_KWCLUB_CLASS_WEEK', 'Class week');
+define('_MA_KWCLUB_CLASS_GRADE', 'Enrollee');
+define('_MA_KWCLUB_CLASS_DATE_OPEN', 'Class Start Date');
+define('_MA_KWCLUB_CLASS_DATE_CLOSE', 'Class End Date');
+define('_MA_KWCLUB_CLASS_TIME_START', 'Start time');
+define('_MA_KWCLUB_CLASS_TIME_END', 'Termination time');
+define('_MA_KWCLUB_PLACE_ID', 'Class location');
+define('_MA_KWCLUB_CLASS_MENBER', 'Number of recruits');
+define('_MA_KWCLUB_CLASS_MONEY', 'Corporate Tuition');
+define('_MA_KWCLUB_CLASS_FEE', 'Additional Fees');
+define('_MA_KWCLUB_CLASS_NOTE', 'Club Notes');
+define('_MA_KWCLUB_CLASS_DATE_START', 'Registration start');
+define('_MA_KWCLUB_CLASS_DATE_END', 'Registration terminated');
+define('_MA_KWCLUB_CLASS_ISOPEN', 'Is it enabled');
+define('_MA_KWCLUB_CLASS_DESC', 'Club Profile');
+define('_MA_KWCLUB_CLASS_ID', 'Streaming Number');
+define('_MA_KWCLUB_CLASS_REGNUM', 'Number of applicants');
+define('_MA_KWCLUB_CLASS_ISCHECKED', 'Whether to start');
 
 //kw_club_cate-edit
-define('_MA_KWCLUB_CATE_TITLE', '標題');
-define('_MA_KWCLUB_CATE_SORT', '排序');
-define('_MA_KWCLUB_CATE_DESC', '說明');
-define('_MA_KWCLUB_CATE_ENABLE', '狀態');
-define('_MA_KWCLUB_CATE', '編號');
+define('_MA_KWCLUB_CATE_TITLE', 'Title');
+define('_MA_KWCLUB_CATE_SORT', 'Sort');
+define('_MA_KWCLUB_CATE_DESC', 'Description');
+define('_MA_KWCLUB_CATE_ENABLE', 'Status');
+define('_MA_KWCLUB_CATE', 'Number');
 
 //kw_club_reg-edit
-define('_MA_KWCLUB_REG_YEAR', '報名年度');
-define('_MA_KWCLUB_REG_NAME', '報名者姓名');
-define('_MA_KWCLUB_REG_GRADE', '報名者年級');
-define('_MA_KWCLUB_REG_CLASS', '報名者班級');
-define('_MA_KWCLUB_REG_SN', '報名編號');
-define('_MA_KWCLUB_REG_UID', '身分證號');
-define('_MA_KWCLUB_REG_DATETIME', '報名日期');
-define('_MA_KWCLUB_REG_ISREG', '結果');
-define('_MA_KWCLUB_REG_ISFEE', '是否繳費');
+define('_MA_KWCLUB_REG_YEAR', 'Registration Year');
+define('_MA_KWCLUB_REG_NAME', 'Register Name');
+define('_MA_KWCLUB_REG_GRADE', 'Enrollee grade');
+define('_MA_KWCLUB_REG_CLASS', 'Enrollee Class');
+define('_MA_KWCLUB_REG_SN', 'Registration Number');
+define('_MA_KWCLUB_REG_UID', 'identity number');
+define('_MA_KWCLUB_REG_DATETIME', 'registration date');
+define('_MA_KWCLUB_REG_ISREG', 'Result');
+define('_MA_KWCLUB_REG_ISFEE', 'Do you pay');
 
-define('_MA_KWCLUB_ADD_CLUB', '新增社團（有開課權限者）');
-define('_MA_KWCLUB_ADM_CLUB', '管理社團（負責社團報名業務者）');
-define('_MA_KWCLUB_SETUP_ADMIN', '社團管理設定');
+define('_MA_KWCLUB_ADD_CLUB', 'Add a community (with permission to start class)');
+define('_MA_KWCLUB_ADM_CLUB', 'Management Club (responsible for community registration business)');
+define('_MA_KWCLUB_SETUP_ADMIN', 'Club Management Settings');
 
 //define('MA_XXX' , 'English');

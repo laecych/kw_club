@@ -1,16 +1,18 @@
 <?php
-// if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = "tchinese_utf8";
-// } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-//     $_SESSION['language'] = $_REQUEST['language'];
-// }
+ if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+     $_SESSION['language'] = "english";
+ } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+     $_SESSION['language'] = $_REQUEST['language'];
+ }
 
-// if ($_SESSION['language'] == "english") {
-//     include_once "../../modules/kw_club/language/english/modinfo.php";
-// }
-//include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
+ if ($_SESSION['language'] === "english") {
+     require_once __DIR__ . "/modinfo.php";
+ }
+require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
 
-// include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo.php";
+// require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo.php";
+
+xoops_loadLanguage('modinfo_common', 'tadtools');
 
 define('_MI_KWCLUB_NAME', 'Club Registration System');
 define('_MI_KWCLUB_AUTHOR', 'Club Registration System');
@@ -18,27 +20,27 @@ define('_MI_KWCLUB_CREDITS', '');
 define('_MI_KWCLUB_DESC', 'Club Registration System');
 define('_MI_KWCLUB_AUTHOR_WEB', 'https://github.com/laecych');
 
-define('_MI_KWCLUB_NAME', '社團報名系統');
-define('_MI_KWCLUB_AUTHOR', '社團報名系統');
-define('_MI_KWCLUB_CREDITS', '');
-define('_MI_KWCLUB_DESC', '國小社團報名系統');
-define('_MI_KWCLUB_AUTHOR_WEB', 'https://github.com/laecych');
+//define('_MI_KWCLUB_NAME', 'Club Registration System');
+//define('_MI_KWCLUB_AUTHOR', 'Club Registration System');
+//define('_MI_KWCLUB_CREDITS', '');
+//define('_MI_KWCLUB_DESC', 'National Small Community Registration System');
+//define('_MI_KWCLUB_AUTHOR_WEB', 'https://github.com/laecych');
 
-define('_MI_KWCLUB_SMNAME2', '教師簡介');
-define('_MI_KWCLUB_SMNAME3', '我的社團');
-define('_MI_KWCLUB_SMNAME4', '報名統計');
+define('_MI_KWCLUB_SMNAME2', 'Teacher Profile');
+define('_MI_KWCLUB_SMNAME3', 'My Club');
+define('_MI_KWCLUB_SMNAME4', 'Registration Statistics');
 
-define('_MI_KW_CLUB_SHOW_BLOCK_NAME', '社團報名系統區塊');
-define('_MI_KW_CLUB_SHOW_BLOCK_DESC', '社團報名系統區塊區塊 (kw_club_show)');
+define('_MI_KW_CLUB_SHOW_BLOCK_NAME', 'Club Registration System Block');
+define('_MI_KW_CLUB_SHOW_BLOCK_DESC', 'Club Registration System Block Block (kw_club_show)');
 
-define('_MI_KWCLUB_ADMIN_GROUP', '社團管理');
-define('_MI_KWCLUB_TEACHER_GROUP', '社團老師');
-define('_MI_KWCLUB_GROUP_NOTE', '：為社團報名模組用，勿刪，勿修改');
-define('_MI_KWCLUB_SETUP_ADMIN', '社團管理設定');
-define('_MI_KWCLUB_SETUP_TEACHER', '社團老師設定');
+define('_MI_KWCLUB_ADMIN_GROUP', 'Club Management');
+define('_MI_KWCLUB_TEACHER_GROUP', 'Social Teacher');
+define('_MI_KWCLUB_GROUP_NOTE', ': For community registration module, do not delete, do not modify ');
+define('_MI_KWCLUB_SETUP_ADMIN', 'Management');
+define('_MI_KWCLUB_SETUP_TEACHER', 'Club teacher setting');
 define('_MI_KWCLUB_SCHOOL_GRADE', 'Set up grade');
-define('_MI_KWCLUB_SCHOOL_GRADE_DESC', '設定學校可報名的年級');
-define('_MI_KWCLUB_SCHOOL_GK0', 'kindergarten');
+define('_MI_KWCLUB_SCHOOL_GRADE_DESC', 'Set the grade that the school can register');
+define('_MI_KWCLUB_SCHOOL_GK0', 'Kindergarten');
 define('_MI_KWCLUB_SCHOOL_GK1', 'Grade 1');
 define('_MI_KWCLUB_SCHOOL_GK2', 'Grade 2');
 define('_MI_KWCLUB_SCHOOL_GK3', 'Grade 3');
@@ -67,5 +69,5 @@ define('_MI_KWCLUB_SCHOOL_GV11', '11');
 define('_MI_KWCLUB_SCHOOL_GV12', '12');
 
 define('_MI_KWCLUB_SCHOOL_CLASS', 'Set up class');
-define('_MI_KWCLUB_SCHOOL_CLASS_DESC', '設定學校可報名的班級名稱（請用 ; 隔開）');
+define('_MI_KWCLUB_SCHOOL_CLASS_DESC', 'Set the class name that the school can register (please use ; separate)');
 define('_MI_KWCLUB_SCHOOL_CLASS_DEFAULT', 'class 1;class 2;class 3;class 4');

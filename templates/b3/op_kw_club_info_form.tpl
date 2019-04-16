@@ -28,10 +28,10 @@
         </label>
         <div class="col-sm-4">
             <label class="radio-inline">
-                <input type="radio" name="club_enable" id="club_enable_1" value="1" <{if $club_enable == "1"}>checked="checked"<{/if}>><{$smarty.const._YES}>
+                <input type="radio" name="club_enable" id="club_enable_1" value="1" <{if $club_enable == "1"}>checked<{/if}>><{$smarty.const._YES}>
             </label>
             <label class="radio-inline">
-                <input type="radio" name="club_enable" id="club_enable_0" value="0" <{if $club_enable != "1"}>checked="checked"<{/if}>><{$smarty.const._NO}>
+                <input type="radio" name="club_enable" id="club_enable_0" value="0" <{if $club_enable != "1"}>checked<{/if}>><{$smarty.const._NO}>
             </label>
         </div>
     </div>

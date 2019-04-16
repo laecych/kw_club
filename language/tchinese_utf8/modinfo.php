@@ -1,15 +1,16 @@
 <?php
 
 if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-    $_SESSION['language'] = "tchinese_utf8";
-} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+    $_SESSION['language'] = 'tchinese_utf8';
+} elseif (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
     $_SESSION['language'] = $_REQUEST['language'];
 }
 
-if ($_SESSION['language'] == "english") {
-    include_once XOOPS_ROOT_PATH . "/modules/kw_club/language/english/modinfo.php";
+if ('english' === $_SESSION['language']) {
+    require_once XOOPS_ROOT_PATH . '/modules/kw_club/language/english/modinfo.php';
 }
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+xoops_loadLanguage('modinfo_common', 'tadtools');
+
 // define("_MI_XXX_ADMENU1", "主管理頁");
 // define("_MI_XXX_ADMENU1_DESC", "後台主管理頁");
 
