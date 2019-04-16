@@ -216,7 +216,7 @@ function check_class_date($reg_uid, $class_id)
             $class_week_reg = explode('、', $class_reg['class_week']);
             $class_week_new = explode('、', $class_new['class_week']);
             foreach ($class_week_new as &$value) {
-                if (in_array($value, $class_week_reg, true)) {
+                if (in_array($value, $class_week_reg)) {
                     // check the time repeat
                     if (!(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start']))
                         && !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))) {

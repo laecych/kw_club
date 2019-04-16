@@ -116,7 +116,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             $ret .= '<div class="form-check form-check-inline  m-2">';
             $ret .= "<input class='form-check-input' type='" . $type . "' name='{$elementName}' id='{$elementId}{$idSuffix}' title='" . htmlspecialchars(strip_tags($name), ENT_QUOTES) . "' value='" . htmlspecialchars($value, ENT_QUOTES) . "'";
 
-            if (is_array($elementValue) ? in_array($value, $elementValue, true) : $value == $elementValue) {
+            if (is_array($elementValue) ? in_array($value, $elementValue) : $value == $elementValue) {
                 $ret .= ' checked';
             }
             $ret .= $element->getExtra() . '>';
@@ -150,7 +150,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             $ret .= '<label>';
             $ret .= "<input type='" . $type . "' name='{$elementName}' id='{$elementId}{$idSuffix}' title='" . htmlspecialchars(strip_tags($name), ENT_QUOTES) . "' value='" . htmlspecialchars($value, ENT_QUOTES) . "'";
 
-            if (is_array($elementValue) ? in_array($value, $elementValue, true) : $value == $elementValue) {
+            if (is_array($elementValue) ? in_array($value, $elementValue) : $value == $elementValue) {
                 $ret .= ' checked';
             }
             $ret .= $element->getExtra() . '>' . $name . $element->getDelimeter();
@@ -184,7 +184,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
             $ret .= '<div class="form-check m-2">';
             $ret .= "<input class='form-check-input' type='" . $type . "' name='{$elementName}' id='{$elementId}{$idSuffix}' title='" . htmlspecialchars(strip_tags($name), ENT_QUOTES) . "' value='" . htmlspecialchars($value, ENT_QUOTES) . "'";
 
-            if (is_array($elementValue) ? in_array($value, $elementValue, true) : $value == $elementValue) {
+            if (is_array($elementValue) ? in_array($value, $elementValue) : $value == $elementValue) {
                 $ret .= ' checked';
             }
             $ret .= $element->getExtra() . '>';
@@ -627,7 +627,7 @@ class XoopsFormRendererBootstrap4 implements XoopsFormRendererInterface
         }
         foreach ($ele_options as $value => $name) {
             $ret .= '<option value="' . htmlspecialchars($value, ENT_QUOTES) . '"';
-            if (count($ele_value) > 0 && in_array($value, $ele_value, true)) {
+            if (count($ele_value) > 0 && in_array($value, $ele_value)) {
                 $ret .= ' selected';
             }
             $ret .= '>' . $name . '</option>';

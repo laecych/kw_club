@@ -50,7 +50,7 @@ class XoopsLoad
             ];
         }
         $name = mb_strtolower($name);
-        if (in_array($type, ['core', 'class'], true) && array_key_exists($name, $deprecated)) {
+        if (in_array($type, ['core', 'class']) && array_key_exists($name, $deprecated)) {
             if (isset($GLOBALS['xoopsLogger'])) {
                 $GLOBALS['xoopsLogger']->addDeprecated("xoops_load('{$name}') is deprecated, use xoops_load('{$deprecated[$name]}')");
             } else {

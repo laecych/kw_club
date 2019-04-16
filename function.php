@@ -365,7 +365,7 @@ function isclub($group_name = '')
         if ($groupid) {
             $groups = $xoopsUser->getGroups();
             var_dump($groups);
-            if (in_array($groupid, $groups, true)) {
+            if (in_array($groupid, $groups)) {
                 return true;
             }
         }

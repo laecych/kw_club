@@ -682,7 +682,7 @@ function get_club_teacher()
         $name  = $myts->htmlSpecialChars($name);
         $uname = $myts->htmlSpecialChars($uname);
         $name  = empty($name) ? '' : " ({$name})";
-        if (!empty($user_arr) and in_array($uid, $user_arr, true)) {
+        if (!empty($user_arr) and in_array($uid, $user_arr)) {
             $user_ok .= "<option value=\"$uid\">{$uid} {$name} {$uname} </option>";
         } else {
             $user_yet .= "<option value=\"$uid\">{$uid} {$name} {$uname} </option>";

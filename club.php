@@ -133,7 +133,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     }
     //自動設定課程編號
     $num = 1;
-    while (in_array($num, $arr_num, true)) {
+    while (in_array($num, $arr_num)) {
         $num++;
     }
 
