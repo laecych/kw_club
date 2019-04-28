@@ -5,6 +5,7 @@
  */
 spl_autoload_register(static function ($class) {
     // project-specific namespace prefix
+//    $prefix = 'XoopsModules\\' . 'Kwclub';
     $prefix = 'XoopsModules\\' . ucfirst(basename(dirname(__DIR__)));
 
     // base directory for the namespace prefix

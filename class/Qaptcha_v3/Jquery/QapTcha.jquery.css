@@ -4,7 +4,7 @@
 .QapTcha {
 	padding:10px;
 	border:1px solid #F4F4F4;
-	background:url('../images/bg_QapTcha.png') repeat;
+	background:url('../assets/images/bg_QapTcha.png') repeat;
 	margin-top:10px;
 }
 .QapTcha .clr{clear:both}
@@ -12,14 +12,14 @@
 .QapTcha #bgSlider {
 	width:202px;
 	height:22px;
-	background:transparent url('../images/sprites.png') no-repeat 0 -22px;
+	background:transparent url('../assets/images/sprites.png') no-repeat 0 -22px;
 	float:left
 }
 
 .QapTcha #Slider {
 	width:48px;
 	height:22px;
-	background:transparent url('../images/sprites.png') no-repeat -32px 0;
+	background:transparent url('../assets/images/sprites.png') no-repeat -32px 0;
 	cursor:e-resize
 }
 
@@ -27,7 +27,7 @@
 	float:left;
 	width:16px;
 	height:16px;
-	background:transparent url('../images/sprites.png') no-repeat 0 0;
+	background:transparent url('../assets/images/sprites.png') no-repeat 0 0;
 	margin-top:3px;
 	margin-left:10px;
 }

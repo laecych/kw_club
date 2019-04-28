@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Kw_club\Qaptcha3\Php;
+
 require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/../mainfile.php';
 
 $aResponse['error']   = false;
@@ -22,6 +25,10 @@ if (isset($_POST['action'])) {
     echo jsonencode($aResponse);
 }
 
+/**
+ * @param bool $a
+ * @return bool|float|string
+ */
 function jsonencode($a = false)
 {
     if (null === $a) {

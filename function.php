@@ -10,6 +10,11 @@ require_once XOOPS_ROOT_PATH . '/modules/tadtools/tad_function.php';
 require_once __DIR__ . '/function_block.php';
 
 //以流水號取得某筆資料
+/**
+ * @param $cate_id
+ * @param $type
+ * @return array|false|void
+ */
 function get_cate($cate_id, $type)
 {
     global $xoopsDB;
@@ -29,6 +34,10 @@ function get_cate($cate_id, $type)
 }
 
 //取得所有報名者的uid
+/**
+ * @param $club_year
+ * @return array
+ */
 function get_reg_uid_all($club_year)
 {
     global $xoopsDB;
@@ -82,6 +91,9 @@ function get_reg_uid_all($club_year)
 }
 
 //取得的所有社團編號(已存在的社團)
+/**
+ * @return array|bool
+ */
 function get_club_class_num()
 {
     global $xoopsDB;
@@ -103,6 +115,10 @@ function get_club_class_num()
 }
 
 //以流水號取得某筆社團資料
+/**
+ * @param string $class_id
+ * @return array|bool|false
+ */
 function get_club_class($class_id = '')
 {
     global $xoopsDB;
@@ -119,6 +135,9 @@ function get_club_class($class_id = '')
 }
 
 //以class_id取得多筆kw_club_reg資料(報名人數)
+/**
+ * @param string $class_id
+ */
 function check_class_reg($class_id = '')
 {
     global $xoopsDB;
@@ -134,6 +153,10 @@ function check_class_reg($class_id = '')
 }
 
 //以流水號取得某筆kw_club_reg報名資料
+/**
+ * @param string $reg_sn
+ * @return array|false|void
+ */
 function get_reg($reg_sn = '')
 {
     global $xoopsDB;
@@ -150,6 +173,9 @@ function get_reg($reg_sn = '')
 }
 
 //取得所有社團資料陣列
+/**
+ * @return array|string
+ */
 function get_club_class_all()
 {
     global $xoopsDB;
@@ -172,6 +198,9 @@ function get_club_class_all()
 }
 
 //取得學期
+/**
+ * @return mixed
+ */
 function get_semester()
 {
     global $semester_name_arr, $xoopsDB;
@@ -225,6 +254,9 @@ function get_semester()
     return $semester;
 }
 
+/**
+ * @return mixed
+ */
 function get_ip()
 {
     $ip = '';
@@ -263,6 +295,10 @@ function get_ip()
 //     return $ip;
 // }
 
+/**
+ * @param $class_id
+ * @return bool
+ */
 function mk_club_json($class_id)
 {
     global $xoopsDB, $TadUpFiles;
@@ -283,6 +319,10 @@ function mk_club_json($class_id)
 }
 
 //取得某一篇js_class
+/**
+ * @param $class_num
+ * @return bool|mixed
+ */
 function js_class($class_num)
 {
     global $xoopsDB, $xoopsTpl;
@@ -298,6 +338,9 @@ function js_class($class_num)
 }
 
 //列出所有kw_club_cate資料
+/**
+ * @param $type
+ */
 function cate_list($type)
 {
     global $xoopsDB, $xoopsTpl;
@@ -328,6 +371,9 @@ function cate_list($type)
 }
 
 //刪除reg某筆資料資料
+/**
+ * @return mixed
+ */
 function delete_reg()
 {
     global $xoopsDB;
@@ -356,6 +402,10 @@ function delete_reg()
 }
 
 //判斷身份
+/**
+ * @param string $group_name
+ * @return bool
+ */
 function isclub($group_name = '')
 {
     global $xoopsUser;
@@ -375,6 +425,13 @@ function isclub($group_name = '')
 }
 
 //取得報名資料
+/**
+ * @param        $club_year
+ * @param string $class_id
+ * @param string $order
+ * @param bool   $show_PageBar
+ * @return array
+ */
 function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageBar = false)
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
@@ -436,9 +493,9 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
     $all_reg = [];
     while (false !== ($all = $xoopsDB->fetchArray($result))) {
         //將是/否選項轉換為圖示
-        $all['reg_isfee_pic'] = 1 == $all['reg_isfee'] ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_PAID . '" title="' . _MD_KWCLUB_PAID . '">' : '<img src="'
+        $all['reg_isfee_pic'] = 1 == $all['reg_isfee'] ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _MD_KWCLUB_PAID . '" title="' . _MD_KWCLUB_PAID . '">' : '<img src="'
                                                                                                                                                                                         . XOOPS_URL
-                                                                                                                                                                                        . '/modules/kw_club/images/no.gif" alt="'
+                                                                                                                                                                                        . '/modules/kw_club/assets/images/no.gif" alt="'
                                                                                                                                                                                         . _MD_KWCLUB_NOT_PAY
                                                                                                                                                                                         . '" title="'
                                                                                                                                                                                         . _MD_KWCLUB_NOT_PAY

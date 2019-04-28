@@ -118,7 +118,7 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/assets/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
 
@@ -149,15 +149,15 @@ function kw_club_info_list()
         }
 
         //將 uid 編號轉換成使用者姓名（或帳號）
-        $uid_name = XoopsUser::getUnameFromId($club_uid, 1);
+        $uid_name = \XoopsUser::getUnameFromId($club_uid, 1);
         if (empty($uid_name)) {
-            $uid_name = XoopsUser::getUnameFromId($club_uid, 0);
+            $uid_name = \XoopsUser::getUnameFromId($club_uid, 0);
         }
 
         //將是/否選項轉換為圖示
-        $club_enable_pic = (1 == $club_enable) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _MD_KWCLUB_ENABLE_1 . '" title="' . _MD_KWCLUB_ENABLE_1 . '">' : '<img src="'
+        $club_enable_pic = (1 == $club_enable) ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _MD_KWCLUB_ENABLE_1 . '" title="' . _MD_KWCLUB_ENABLE_1 . '">' : '<img src="'
                                                                                                                                                                                       . XOOPS_URL
-                                                                                                                                                                                      . '/modules/kw_club/images/no.gif" alt="'
+                                                                                                                                                                                      . '/modules/kw_club/assets/images/no.gif" alt="'
                                                                                                                                                                                       . _MD_KWCLUB_ENABLE_0
                                                                                                                                                                                       . '" title="'
                                                                                                                                                                                       . _MD_KWCLUB_ENABLE_0
@@ -208,6 +208,9 @@ function kw_club_info_list()
 }
 
 //kw_club_info編輯表單
+/**
+ * @param string $club_id
+ */
 function kw_club_info_form($club_id = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $semester_name_arr;
@@ -271,7 +274,7 @@ function kw_club_info_form($club_id = '')
 
     //加入Token安全機制
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    $token      = new XoopsFormHiddenToken();
+    $token      = new \XoopsFormHiddenToken();
     $token_form = $token->render();
     $xoopsTpl->assign('type', $_REQUEST['type']);
     $xoopsTpl->assign('token_form', $token_form);
@@ -294,6 +297,10 @@ function kw_club_info_form($club_id = '')
 }
 
 //新增資料到kw_club_info中
+/**
+ * @param string $type
+ * @return int
+ */
 function insert_kw_club_info($type = '')
 {
     global $xoopsDB, $xoopsUser;
@@ -360,6 +367,11 @@ function insert_kw_club_info($type = '')
 }
 
 //複製kw_club_info整的期別和社團內容
+/**
+ * @param string $club_year
+ * @param string $copy_year
+ * @return mixed
+ */
 function kw_club_info_copy($club_year = '', $copy_year = '')
 {
     global $xoopsDB, $xoopsUser;
@@ -432,6 +444,10 @@ function kw_club_info_copy($club_year = '', $copy_year = '')
 }
 
 //更新kw_club_info某一筆資料
+/**
+ * @param string $club_id
+ * @return int|string
+ */
 function update_kw_club_info($club_id = '')
 {
     global $xoopsDB, $xoopsUser;
@@ -480,6 +496,9 @@ function update_kw_club_info($club_id = '')
 }
 
 //刪除kw_club_info某筆資料資料
+/**
+ * @param string $club_id
+ */
 function delete_kw_club_info($club_id = '')
 {
     global $xoopsDB;
@@ -501,6 +520,10 @@ function delete_kw_club_info($club_id = '')
 }
 
 //以流水號取得某筆kw_club_info資料
+/**
+ * @param string $club_id
+ * @return array|false|void
+ */
 function get_kw_club_info($club_id = '')
 {
     global $xoopsDB;
@@ -518,6 +541,10 @@ function get_kw_club_info($club_id = '')
 }
 
 //kw_club_cate編輯表單
+/**
+ * @param        $type
+ * @param string $cate_id
+ */
 function cate_form($type, $cate_id = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsUser;
@@ -553,7 +580,7 @@ function cate_form($type, $cate_id = '')
 
     //加入Token安全機制
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    $token      = new XoopsFormHiddenToken();
+    $token      = new \XoopsFormHiddenToken();
     $token_form = $token->render();
     $xoopsTpl->assign($type . '_token', $token_form);
 
@@ -567,6 +594,10 @@ function cate_form($type, $cate_id = '')
 }
 
 //新增資料到kw_club_cate中
+/**
+ * @param $type
+ * @return int
+ */
 function insert_cate($type)
 {
     global $xoopsDB, $xoopsTpl;
@@ -604,6 +635,11 @@ function insert_cate($type)
 }
 
 //更新kw_club_cate某一筆資料
+/**
+ * @param        $type
+ * @param string $cate_id
+ * @return string
+ */
 function update_cate($type, $cate_id = '')
 {
     global $xoopsDB, $xoopsTpl;
@@ -633,6 +669,10 @@ function update_cate($type, $cate_id = '')
 }
 
 //刪除kw_club_cate某筆資料資料
+/**
+ * @param        $type
+ * @param string $cate_id
+ */
 function delete_cate($type, $cate_id = '')
 {
     global $xoopsDB;
@@ -647,6 +687,10 @@ function delete_cate($type, $cate_id = '')
 }
 
 //自動取得kw_club_cate的最新排序
+/**
+ * @param $type
+ * @return mixed
+ */
 function kw_club_max_sort($type)
 {
     global $xoopsDB;
@@ -665,7 +709,7 @@ function get_club_teacher()
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
-        /* @var XoopsMemberHandler $memberHandler */
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
@@ -690,7 +734,7 @@ function get_club_teacher()
     }
     //加入Token安全機制
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    $token = new XoopsFormHiddenToken();
+    $token = new \XoopsFormHiddenToken();
     $xoopsTpl->assign('teacher_token', $token->render());
     $xoopsTpl->assign('user_arr', implode(',', $user_arr));
     $xoopsTpl->assign('user_ok', $user_ok);
@@ -698,6 +742,9 @@ function get_club_teacher()
 }
 
 //儲存社團老師
+/**
+ * @param $users_uid
+ */
 function save_club_teacher($users_uid)
 {
     //XOOPS表單安全檢查
@@ -711,14 +758,14 @@ function save_club_teacher($users_uid)
 
     //列出群組中有哪些人
     if ($groupid) {
-        /* @var XoopsMemberHandler $memberHandler */
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
         //先從群組移除
         $memberHandler->removeUsersFromGroup($groupid, $user_arr);
         //再加入群組
         if (is_array($users)) {
-            /* @var XoopsMemberHandler $memberHandler */
+            /* @var \XoopsMemberHandler $memberHandler */
             $memberHandler = xoops_getHandler('member');
             foreach ($users as $uid) {
                 $memberHandler->addUserToGroup($groupid, $uid);
@@ -728,6 +775,10 @@ function save_club_teacher($users_uid)
 }
 
 //改變啟用狀態
+/**
+ * @param $club_id
+ * @param $club_enable
+ */
 function update_enable($club_id, $club_enable)
 {
     global $xoopsDB;

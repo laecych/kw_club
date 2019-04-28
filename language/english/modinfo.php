@@ -1,12 +1,12 @@
 <?php
  if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-     $_SESSION['language'] = "english";
+     $_SESSION['language'] = 'english';
  } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
      $_SESSION['language'] = $_REQUEST['language'];
  }
 
- if ($_SESSION['language'] === "english") {
-     require_once __DIR__ . "/modinfo.php";
+ if ('english' === $_SESSION['language']) {
+     require_once __DIR__ . '/modinfo.php';
  }
 require_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$_SESSION['language']}/modinfo.php";
 
@@ -30,13 +30,14 @@ define('_MI_KWCLUB_SMNAME2', 'Teacher Profile');
 define('_MI_KWCLUB_SMNAME3', 'My Club');
 define('_MI_KWCLUB_SMNAME4', 'Registration Statistics');
 
-define('_MI_KW_CLUB_SHOW_BLOCK_NAME', 'Club Registration System Block');
-define('_MI_KW_CLUB_SHOW_BLOCK_DESC', 'Club Registration System Block Block (kw_club_show)');
+define('_MI_KWCLUB_SHOW_BLOCK_NAME', 'Club Registration System Block');
+define('_MI_KWCLUB_SHOW_BLOCK_DESC', 'Club Registration System Block Block (kw_club_show)');
 
 define('_MI_KWCLUB_ADMIN_GROUP', 'Club Management');
 define('_MI_KWCLUB_TEACHER_GROUP', 'Social Teacher');
 define('_MI_KWCLUB_GROUP_NOTE', ': For community registration module, do not delete, do not modify ');
 define('_MI_KWCLUB_SETUP_ADMIN', 'Management');
+
 define('_MI_KWCLUB_SETUP_TEACHER', 'Club teacher setting');
 define('_MI_KWCLUB_SCHOOL_GRADE', 'Set up grade');
 define('_MI_KWCLUB_SCHOOL_GRADE_DESC', 'Set the grade that the school can register');
@@ -71,3 +72,15 @@ define('_MI_KWCLUB_SCHOOL_GV12', '12');
 define('_MI_KWCLUB_SCHOOL_CLASS', 'Set up class');
 define('_MI_KWCLUB_SCHOOL_CLASS_DESC', 'Set the class name that the school can register (please use ; separate)');
 define('_MI_KWCLUB_SCHOOL_CLASS_DEFAULT', 'class 1;class 2;class 3;class 4');
+
+//Help
+define('_MI_KWCLUB_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_KWCLUB_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_KWCLUB_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_KWCLUB_OVERVIEW', 'Overview');
+//help multi-page
+define('_MI_KWCLUB_DISCLAIMER', 'Disclaimer');
+define('_MI_KWCLUB_LICENSE', 'License');
+define('_MI_KWCLUB_SUPPORT', 'Support');
+
+define('_MI_KWCLUB_SETUP_ADMENU3', 'Stats');

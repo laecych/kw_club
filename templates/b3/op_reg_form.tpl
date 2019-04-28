@@ -1,13 +1,13 @@
-<link rel='stylesheet' type='text/css' href='class/Qaptcha_v3.0/jquery/QapTcha.jquery.css' media='screen'>
-<script type='text/javascript' src='class/Qaptcha_v3.0/jquery/jquery.ui.touch.js'></script>
-<script type='text/javascript' src='class/Qaptcha_v3.0/jquery/QapTcha.jquery.js'></script>
+<link rel='stylesheet' type='text/css' href='class/Qaptcha3/jquery/QapTcha.jquery.css' media='screen'>
+<script type='text/javascript' src='class/Qaptcha3/jquery/jquery.ui.touch.js'></script>
+<script type='text/javascript' src='class/Qaptcha3/jquery/QapTcha.jquery.js'></script>
 
 <script type='text/javascript'>
     $(document).ready(function(){
         $('.QapTcha').QapTcha({
             disabledSubmit:true ,
             autoRevert:true ,
-            PHPfile:'class/Qaptcha_v3.0/php/Qaptcha.jquery.php',
+            PHPfile:'class/Qaptcha3/php/Qaptcha.jquery.php',
             txtLock:'<{$smarty.const._MD_KWCLUB_TXTLOCK}>' ,
             txtUnlock:'<{$smarty.const._MD_KWCLUB_TXTUNLOCK}>'
             });

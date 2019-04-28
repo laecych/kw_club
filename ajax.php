@@ -30,6 +30,10 @@ switch ($op) {
 }
 
 //以身份證號自動取得姓名
+/**
+ * @param $reg_uid
+ * @return mixed
+ */
 function search_reg_uid($reg_uid)
 {
     global $xoopsDB;
@@ -44,6 +48,11 @@ function search_reg_uid($reg_uid)
     return $reg_name;
 }
 
+/**
+ * @param $value
+ * @param $uid
+ * @return mixed
+ */
 function update_bio($value, $uid)
 {
     global $xoopsDB;
@@ -60,6 +69,12 @@ function update_bio($value, $uid)
     return $value;
 }
 
+/**
+ * @param $id
+ * @param $value
+ * @param $reg_sn
+ * @return string|void
+ */
 function update_reg($id, $value, $reg_sn)
 {
     global $xoopsDB;
@@ -100,6 +115,10 @@ function update_reg($id, $value, $reg_sn)
     return $value;
 }
 
+/**
+ * @param $keyman
+ * @return string
+ */
 function keyman($keyman)
 {
     global $xoopsDB;
@@ -107,7 +126,7 @@ function keyman($keyman)
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
-        /* @var XoopsMemberHandler $memberHandler */
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }

@@ -1,13 +1,21 @@
 <?php
 
+use XoopsModules\Kw_club;
+
+
 $GLOBALS['xoopsOption']['template_main'] = 'kw_club_adm_main.tpl';
-require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/admin_header.php';
 require_once dirname(__DIR__) . '/function.php';
 
 /*-----------執行動作判斷區----------*/
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op        = system_CleanVars($_REQUEST, 'op', '', 'string');
 $users_uid = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
+
+/**
+ * @var xos_opal_Theme
+ */
+$xoTheme  = $xoopsThemeFactory->createInstance(array('contentTemplate' => @$xoopsOption['template_main']));
 
 switch ($op) {
     case 'save_club_admin':
@@ -22,9 +30,12 @@ switch ($op) {
 }
 
 /*-----------秀出結果區--------------*/
+if (!isset($xoTheme)) {
+    $xoTheme = &$GLOBALS['xoTheme'];
+}
 $xoopsTpl->assign('op', $op);
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm3.css');
-require_once __DIR__ . '/footer.php';
+require_once __DIR__ . '/admin_footer.php';
 
 //設定社團管理員
 function get_club_admin()
@@ -34,7 +45,7 @@ function get_club_admin()
     $user_arr = [];
     //列出群組中有哪些人
     if ($groupid) {
-        /* @var XoopsMemberHandler $memberHandler */
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
@@ -59,7 +70,7 @@ function get_club_admin()
     }
     //加入Token安全機制
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    $token = new XoopsFormHiddenToken();
+    $token = new \XoopsFormHiddenToken();
     $xoopsTpl->assign('admin_token', $token->render());
     $xoopsTpl->assign('user_arr', implode(',', $user_arr));
     $xoopsTpl->assign('user_ok', $user_ok);
@@ -67,6 +78,9 @@ function get_club_admin()
 }
 
 //儲存社團管理員
+/**
+ * @param $users_uid
+ */
 function save_club_admin($users_uid)
 {
     //XOOPS表單安全檢查

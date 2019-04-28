@@ -16,18 +16,40 @@
  * @author       作者
  * @version      $Id $
  **/
-require dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 
-xoops_loadLanguage('main', $xoopsModule->getVar('dirname'));
+use XoopsModules\Kw_club;
+
+include dirname(__DIR__) . '/preloads/autoloader.php';
+
+require  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+//require  dirname(__DIR__) . '/include/common.php';
+
+/** @var Kw_club\Helper $helper */
+$helper = Kw_club\Helper::getInstance();
+
+/** @var \Xmf\Module\Admin $adminObject */
+$adminObject = \Xmf\Module\Admin::getInstance();
+
+require_once XOOPS_ROOT_PATH . '/header.php';
+
+// Load language files
+$helper->loadLanguage('admin');
+$helper->loadLanguage('modinfo');
+$helper->loadLanguage('common');
+$helper->loadLanguage('main');
 
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
     require_once XOOPS_ROOT_PATH . '/class/template.php';
-    $xoopsTpl = new XoopsTpl();
+    $xoopsTpl = new \XoopsTpl();
 }
 
-xoops_cp_header();
 
+
+
+
+//xoops_cp_header();
+//global $xoTheme;
 // Define Stylesheet and JScript
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/css/admin.css');
+//$xoTheme->addStylesheet(XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . 'assets/css/admin.css');
 //$xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
 //$xoTheme->addScript("browse.php?modules/" . $xoopsModule->getVar("dirname") . "/js/admin.js");

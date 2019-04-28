@@ -1,21 +1,28 @@
 <?php
 
-use XoopsModules\Kv_club\Utility;
+use XoopsModules\Tadtools;
+use XoopsModules\Kw_club;
 
+/**
+ * @param $module
+ * @param $old_version
+ * @return bool
+ */
 function xoops_module_update_kw_club(&$module, $old_version)
 {
     global $xoopsDB;
 
-    Utility::mk_group(_MI_KWCLUB_ADMIN_GROUP, _MI_KWCLUB_ADMIN_GROUP . _MI_KWCLUB_GROUP_NOTE);
-    Utility::mk_group(_MI_KWCLUB_TEACHER_GROUP, _MI_KWCLUB_TEACHER_GROUP . _MI_KWCLUB_GROUP_NOTE);
-    if (Utility::chk_chk1()) {
-        Utility::go_update1();
+    Kw_club\Utility::mk_group(_MI_KWCLUB_ADMIN_GROUP, _MI_KWCLUB_ADMIN_GROUP . _MI_KWCLUB_GROUP_NOTE);
+    Kw_club\Utility::mk_group(_MI_KWCLUB_TEACHER_GROUP, _MI_KWCLUB_TEACHER_GROUP . _MI_KWCLUB_GROUP_NOTE);
+    if (method_exists('\XoopsModules\Kw_club\Utility', 'chk_chk1')) {
+        Kw_club\Utility::go_update1();
     }
-    Utility::go_update2();
-    Utility::go_update3();
+//    Tadtools\Utility::go_update2();
+//    Tadtools\Utility::go_update3();
+
     //新增檔案欄位
-    if (Utility::chk_fc_tag()) {
-        Utility::go_fc_tag();
+    if (method_exists('\XoopsModules\Kw_club\Utility', 'chk_fc_tag')) {
+        Kw_club\Utility::go_fc_tag();
     }
 
     return true;

@@ -18,7 +18,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access.');
 /**
  * Class Tad_tvCorePreload
  */
-class Kv_clubCorePreload extends XoopsPreloadItem
+class Kw_clubCorePreload extends \XoopsPreloadItem
 {
     // to add PSR-4 autoloader
 

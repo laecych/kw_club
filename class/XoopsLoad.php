@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Kw_club;
+
 /**
  * Xoops Autoload class
  *

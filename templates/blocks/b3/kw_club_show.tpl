@@ -1,5 +1,5 @@
 <link href="<{$xoops_url}>/modules/tadtools/css/vtable.css" media="all" rel="stylesheet">
-<link href="<{$xoops_url}>/modules/kw_club/css/module.css" media="all" rel="stylesheet">
+<link href="<{$xoops_url}>/modules/kw_club/assets/css/module.css" media="all" rel="stylesheet">
 
 <{if $block.club_year}>
     <div class="row">
@@ -105,7 +105,7 @@
                         <!--起始時間-->
                         <div>
                             <!--上課星期-->
-                            <{if $data.class_week==_MB_KWCLUB_ALL_WEEK}>
+                            <{if $data.class_week==_MD_KWCLUB_ALL_WEEK}>
                                 <{$smarty.const._MB_KWCLUB_1_5}>
                             <{else}>
                                 <{$smarty.const._MB_KWCLUB_W|sprintf:$data.class_week}>

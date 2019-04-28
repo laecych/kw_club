@@ -63,19 +63,24 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/assets/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/
 
+/**
+ * @param string $class_id
+ * @param string $club_year
+ * @param string $class_num
+ */
 function class_form($class_id = '', $club_year = '', $class_num = '')
 {
     global $xoopsTpl, $xoopsUser, $xoopsModuleConfig, $grade_name_arr;
 
     //安全性表單
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-    $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
+    $token = new \XoopsFormHiddenToken('XOOPS_TOKEN', 360);
     $xoopsTpl->assign('token', $token->render());
 
     //引入日期
@@ -269,6 +274,9 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
 }
 
 //新增資料到kw_club_class中
+/**
+ * @return int
+ */
 function insert_class()
 {
     global $xoopsDB, $xoopsUser;
@@ -374,6 +382,10 @@ function insert_class()
 }
 
 //更新kw_club_class某一筆資料
+/**
+ * @param string $class_id
+ * @return int|string
+ */
 function update_class($class_id = '')
 {
     global $xoopsDB, $xoopsUser;
@@ -452,6 +464,9 @@ function update_class($class_id = '')
 }
 
 // 刪除kw_club_class某筆資料資料
+/**
+ * @param $class_id
+ */
 function delete_class($class_id)
 {
     global $xoopsDB, $xoopsUser;
@@ -479,6 +494,11 @@ function delete_class($class_id)
     }
 }
 
+/**
+ * @param        $class_id
+ * @param string $ischecked
+ * @return mixed
+ */
 function class_ischecked($class_id, $ischecked = '')
 {
     global $xoopsDB;
