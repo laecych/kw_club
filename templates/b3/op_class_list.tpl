@@ -93,7 +93,7 @@
                     <li class="vcell"><{$smarty.const._MD_KWCLUB_CLASS_TITLE}></li>
                     <li class="vm w2">
                         <!--社團編號-->
-                        <span class="badge alert-info"><{$data.class_num}></span>
+                        <span class="badge alert-info"></span>
 
                         <{if $smarty.session.isclubAdmin}>
                             <a href="index.php?op=update_enable&class_enable=<{if $data.class_isopen==1}>0<{else}>1<{/if}>&class_id=<{$data.class_id}>" data-toggle="tooltip" data-placement="top" title="<{$smarty.const._MD_KWCLUB_CLICK_TO}><{if $data.class_isopen==1}><{$smarty.const._MD_KWCLUB_ENABLE_0}><{else}><{$smarty.const._MD_KWCLUB_ENABLE_1}><{/if}>">
