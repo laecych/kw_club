@@ -263,7 +263,7 @@ define('_MD_KWCLUB_KEYIN', '請輸入');
 define('_MD_KWCLUB_CHECK_OK', '以上資料無誤，確定報名！');
 define('_MD_KWCLUB_MYCLASS', '查詢我報名過的社團');
 
-define('_MD_KWCLUB_NOT_FOUND', '中，查無任何 %s 的報名資料）');
+define('_MD_KWCLUB_NOT_FOUND', '中，查無任何 %s 的報名資料');
 
 // <{$smarty .const._MD_KWCLUB_NOT_FOUND | sprintf:$reg_uid}>
 
