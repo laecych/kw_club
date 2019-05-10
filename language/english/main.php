@@ -1,18 +1,17 @@
 <?php
 
- if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-     $_SESSION['language'] = "english";
- } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-     $_SESSION['language'] = $_REQUEST['language'];
- }
+if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+    $_SESSION['language'] = "english";
+} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+    $_SESSION['language'] = $_REQUEST['language'];
+}
 
- if ($_SESSION['language'] === "tchinese_utf8") {
-     require_once dirname(__DIR__) . "/tchinese_utf8/main.php";
- }
+if ($_SESSION['language'] === "tchinese_utf8") {
+    require_once dirname(__DIR__) . "/tchinese_utf8/main.php";
+}
 
 xoops_loadLanguage('main', 'tadtools');
 define('_MD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
-
 
 //Front and back language
 // define('_MD_KWCLUB_CLASS_ID', '社團ID');
@@ -159,6 +158,7 @@ define('_MD_KWCLUB_SURE_CANCEL_APPLY', 'Are you sure to cancel?');
 define('_MD_KWCLUB_CANCEL', 'Cancel');
 define('_MD_KWCLUB_CANCEL_APPLY', 'Yes！');
 define('_MD_KWCLUB_DELETE_APPLY', 'Cancel');
+define('_MD_KWCLUB_DELETE_NOT', 'Disable');
 
 define('_MD_KWCLUB_GRADE0', 'Kid');
 define('_MD_KWCLUB_GRADE1', '1');

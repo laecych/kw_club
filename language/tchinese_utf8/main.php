@@ -74,9 +74,9 @@ define('_MD_KWCLUB_REG_IP', 'IP');
 
 //by tad
 if ($_SESSION['isclubAdmin']) {
-define('_MD_KWCLUB_NEED_CONFIG', '目前沒有可報名的社團期別，<a href="config.php?op=kw_club_info_form"> 請先進行社團報名期別設定</a>後，再新增課程！');
+    define('_MD_KWCLUB_NEED_CONFIG', '目前沒有可報名的社團期別，<a href="config.php?op=kw_club_info_form"> 請先進行社團報名期別設定</a>後，再新增課程！');
 } else {
-define('_MD_KWCLUB_NEED_CONFIG', '目前沒有可報名的社團期別，請通知管理員，進行社團報名期別設定！');
+    define('_MD_KWCLUB_NEED_CONFIG', '目前沒有可報名的社團期別，請通知管理員，進行社團報名期別設定！');
 }
 
 define('_MD_KWCLUB_SELECT_YEAR', '請選擇社團期別：');
@@ -158,6 +158,7 @@ define('_MD_KWCLUB_SURE_CANCEL_APPLY', '確定要取消嗎？');
 define('_MD_KWCLUB_CANCEL', '取消');
 define('_MD_KWCLUB_CANCEL_APPLY', '是！含淚取消報名！');
 define('_MD_KWCLUB_DELETE_APPLY', '取消報名');
+define('_MD_KWCLUB_DELETE_NOT', '無法取消');
 
 define('_MD_KWCLUB_GRADE0', '幼');
 define('_MD_KWCLUB_GRADE1', '一');
@@ -251,7 +252,7 @@ define('_MD_KWCLUB_PAGEBAR_TOTAL', '（共 %s 筆）');
 define('_MD_KWCLUB_APPLY_RESULT', '的報名結果');
 define('_MD_KWCLUB_MY_ALL_CLASS', '的報名社團列表');
 
-define('_MD_KWCLUB_PAY_STATUS', "總共 % s 元，已繳 < span style = 'color: green' >%s </span > 元，未繳 <span style = 'color: red' >%s </span > 元");
+define('_MD_KWCLUB_PAY_STATUS', "總共 % s 元，已繳 <span style = 'color: green'> %s </span > 元，未繳 <span style = 'color: red' > %s </span > 元");
 // <{$smarty.const._MD_KWCLUB_PAY_STATUS | sprintf:$money:$in_money:$un_money}>
 
 define('_MD_KWCLUB_APPLY_CLASS', '報名「%s」');
