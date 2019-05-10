@@ -110,11 +110,12 @@
 
                     <!-- 功能 -->
                     <li class="vm w1 text-center">
-                    <{if !($today > $data.end_date) || !$data.reg_isfee}>
-                          <{$smarty.const._MD_KWCLUB_DELETE_NOT}>
+                    <{if !($today > $data.end_date) && !$data.reg_isfee}>
+                         <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-xs" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                     <{else}>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
-                            <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
+                        <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                <{$smarty.const._MD_KWCLUB_DELETE_NOT}></a>
                     <{/if}>
                     </li>
                 </ul>
