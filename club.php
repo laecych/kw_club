@@ -223,8 +223,8 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $xoopsTpl->assign('class_date_end', $class_date_end);
 
     //設定 class_ischecked 欄位的預設值
-    // $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
-    // $xoopsTpl->assign('class_ischecked', $class_ischecked);
+//     $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
+//     $xoopsTpl->assign('class_ischecked', $class_ischecked);
 
     //設定 class_isopen 欄位的預設值
     $class_isopen = !isset($DBV['class_isopen']) ? '1' : $DBV['class_isopen'];

@@ -1,10 +1,14 @@
 <{if $class_id==""}>
-    <h2><{$smarty.const._MD_KWCLUB_ADD_CLUB}><small> <span class="club_year"><{$club_year}></span> (<span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>)</small></h2>
+    <h2><{$smarty.const._MD_KWCLUB_ADD_CLUB}>
+        <small><span class="club_year"><{$club_year}></span> (<span style="color:rgb(190, 63, 4);"><{$smarty.session.club_start_date|date_format:"%Y/%m/%d %H:%M"}> ~ <{$smarty.session.club_end_date|date_format:"%Y/%m/%d %H:%M"}></span>)</small>
+    </h2>
 <{else}>
-    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}><small> <span class="club_year"><{$club_year}></span></small></h2>
+    <h2><{$smarty.const._TAD_EDIT}><{$class_title}><{$smarty.const._MD_KWCLUB_CLUB}>
+        <small><span class="club_year"><{$club_year}></span></small>
+    </h2>
 <{/if}>
 
-<form  name="classform" id="classform" action="club.php" method="post" enctype = "multipart/form-data">
+<form name="classform" id="classform" action="club.php" method="post" enctype="multipart/form-data">
 
     <!-- 社團編號 -->
     <div class="form-group row">
@@ -17,11 +21,11 @@
                         <{if $class_num==$id}>
                             <option value="<{$id}>" selected><{$id}>_<{$arr_n}></option>
                         <{else}>
-                            <option value="<{$id}>" ><{$id}>_<{$arr_n}></option>
+                            <option value="<{$id}>"><{$id}>_<{$arr_n}></option>
                         <{/if}>
                     <{/foreach}>
                 <{else}>
-                    <option value="<{$class_num}>" ><{$smarty.const._MD_KWCLUB_MODIFY_CLUB}></option>
+                    <option value="<{$class_num}>"><{$smarty.const._MD_KWCLUB_MODIFY_CLUB}></option>
                 <{/if}>
             </select>
 
@@ -85,7 +89,7 @@
         <div class="col-sm-5">
             <select class="form-control validate[required]" size="1" name="place_id" id="place_id" title="">
                 <{foreach from=$arr_place key="id"  item="arr_p" }><!--老師-->
-                    <option value="<{$id}>" <{if $place_id==$id}>selected<{/if}>><{$arr_p}></option>
+                <option value="<{$id}>" <{if $place_id==$id}>selected<{/if}>><{$arr_p}></option>
                 <{/foreach}>
             </select>
         </div>
@@ -102,11 +106,10 @@
         <label for="class_week" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_WEEK}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
             <{foreach from = $c_week key=v item=wname}>
-            <div class="form-check form-check-inline">
-                <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$v}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked<{/if}>>
-                <label class="form-check-label" for="class_week<{$v}>"><{$smarty.const._MD_KWCLUB_WEEK}><{$wname}> </label>
-            </div>
-               
+                <div class="form-check form-check-inline">
+                    <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$v}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked<{/if}>>
+                    <label class="form-check-label" for="class_week<{$v}>"><{$smarty.const._MD_KWCLUB_WEEK}><{$wname}> </label>
+                </div>
             <{/foreach}>
         </div>
     </div>
@@ -116,7 +119,7 @@
         <label for="class_grade" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_GRADE}><span class="caption-required">*</span></label>
         <div class="col-sm-10">
             <{foreach from = $grade_name_arr key=v item=gname}>
-            <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline">
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
                         <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>>
                         <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_KINDERGARTEN}></label>
@@ -124,7 +127,7 @@
                         <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>>
                         <label class="form-check-label" for="class_grade<{$v}>"><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}></label>
                     <{/if}>
-            </div>
+                </div>
             <{/foreach}>
         </div>
     </div>
@@ -155,12 +158,12 @@
     <div class="form-group row">
         <label for="class_date_open" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_DATE_OPEN}><span class="caption-required">*</span></label>
         <div class="col-sm-2">
-            <input class = "form-control validate[required]" type="text" name="class_date_open" id="class_date_open" size="30" maxlength="25" value="<{$class_date_open}>"
-            onclick="WdatePicker({minDate:'<{$smarty.session.club_end_date}>' })"  >
+            <input class="form-control validate[required]" type="text" name="class_date_open" id="class_date_open" size="30" maxlength="25" value="<{$class_date_open}>"
+                   onclick="WdatePicker({minDate:'<{$smarty.session.club_end_date}>' })">
         </div>
         <label for="class_date_close" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_DATE_CLOSE}><span class="caption-required">*</span></label>
         <div class="col-sm-2">
-            <input class = "form-control validate[required]" type="text" name="class_date_close" id="class_date_close" size="30" maxlength="25" value="<{$class_date_close}>"  onclick="WdatePicker({minDate:'#F{$dp.$D(\'class_date_open\',{d:1});}'})" >
+            <input class="form-control validate[required]" type="text" name="class_date_close" id="class_date_close" size="30" maxlength="25" value="<{$class_date_close}>" onclick="WdatePicker({minDate:'#F{$dp.$D(\'class_date_open\',{d:1});}'})">
         </div>
     </div>
 
@@ -168,12 +171,12 @@
     <div class="form-group row">
         <label for="class_date_open" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_TIME_START}><span class="caption-required">*</span></label>
         <div class="col-sm-2">
-            <input class = "form-control validate[required]" type="text" name="class_time_start" id="class_time_start" size="30" maxlength="25" value="<{$class_time_start}>"
-            onclick="WdatePicker({dateFmt:'HH:mm', minTime:'07:00:00', maxTime:'17:30:00' })" >
+            <input class="form-control validate[required]" type="text" name="class_time_start" id="class_time_start" size="30" maxlength="25" value="<{$class_time_start}>"
+                   onclick="WdatePicker({dateFmt:'HH:mm', minTime:'07:00:00', maxTime:'17:30:00' })">
         </div>
         <label for="class_date_close" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_TIME_END}><span class="caption-required">*</span></label>
         <div class="col-sm-2">
-            <input class = "form-control validate[required]" type="text" name="class_time_end" id="class_time_end" size="30" maxlength="25" value="<{$class_time_end}>"   onclick="WdatePicker({dateFmt:'HH:mm', minTime:'#F{$dp.$D(\'class_time_start\')}',maxTime:'21:30:00'})"  >
+            <input class="form-control validate[required]" type="text" name="class_time_end" id="class_time_end" size="30" maxlength="25" value="<{$class_time_end}>" onclick="WdatePicker({dateFmt:'HH:mm', minTime:'#F{$dp.$D(\'class_time_start\')}',maxTime:'21:30:00'})">
         </div>
     </div>
 
@@ -191,14 +194,14 @@
             <label for="class_isopen" class="col-sm-2 col-form-label text-sm-right"><{$smarty.const._MD_KWCLUB_CLASS_ISOPEN}><span class="caption-required">*</span></label>
             <div class="col-sm-10">
                 <div class="form-check form-check-inline">
-                    <input  class="form-check-input" type='radio' name='class_isopen' id='class_isopen1' title='<{$smarty.const._YES}>' value='1' <{if $class_isopen!='0'}>checked<{/if}>>
+                    <input class="form-check-input" type='radio' name='class_isopen' id='class_isopen1' title='<{$smarty.const._YES}>' value='1' <{if $class_isopen!='0'}>checked<{/if}>>
                     <label class="form-check-label" for="class_isopen1"><{$smarty.const._YES}></label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type='radio' name='class_isopen' id='class_isopen2' title='<{$smarty.const._NO}>' value='0' <{if $class_isopen=='0'}>checked<{/if}>>
                     <label class="form-check-label" for="class_isopen2"><{$smarty.const._NO}></label>
                 </div>
-               
+
             </div>
         </div>
     <{else}>
@@ -219,7 +222,7 @@
     <{else}>
         <input type="hidden" name="op" value="insert_class">
     <{/if}>
-    <input type="hidden" name="club_year"  value="<{$club_year}>">
+    <input type="hidden" name="club_year" value="<{$club_year}>">
     <{$token}>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right"> </label>
