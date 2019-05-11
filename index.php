@@ -289,11 +289,12 @@ function myclass($reg_uid = '', $club_year = '')
             }
             $money += $class_pay;
 
-            if (!isset($reg_name)) {
-                $reg_name = $data['reg_name'];
-            }
+            // if (!isset($reg_name)) {
+            //     $reg_name = $data['reg_name'];
+            // }
+            $reg_name = $data['reg_name'];
         }
-
+       
         $xoopsTpl->assign('today', time());
         $xoopsTpl->assign('reg_name', $reg_name);
         $xoopsTpl->assign('money', $money);

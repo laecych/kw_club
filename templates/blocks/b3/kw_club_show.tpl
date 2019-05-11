@@ -66,7 +66,7 @@
                     <li class="vcell"><{$smarty.const._MB_KWCLUB_CLASS_TITLE}></li>
                     <li class="vm w2">
                         <!--社團編號-->
-                        <span class="badge alert-info"><{$data.class_num}></span>
+                        <span class="badge alert-info"></span>
 
                         <{if $smarty.session.isclubAdmin}>
                             <{$data.class_isopen}>

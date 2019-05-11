@@ -13,7 +13,7 @@
         </div>   
     </div>
 
-<form action="index.php" method="post" id="myForm" class="myForm " role="form" style="margin: 20px auto 50px;">
+    <form action="index.php" method="post" id="myForm" class="myForm " role="form" style="margin: 20px auto 50px;">
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon3"><{$smarty.const._MD_KWCLUB_SELECT_YEAR}></span>
         <select name="club_year" class="form-control">
@@ -108,20 +108,21 @@
                         <{/if}>
                     </li>
 
+                    <!-- 功能 -->
                     <li class="vm w1 text-center">
-                    <{if !($today> $data.end_date) || !$data.reg_isfee}>
-                        <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-sm" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-times-circle" aria-hidden="true"></i>
-                            <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
+                    <{if !($today > $data.end_date) && !$data.reg_isfee}>
+                         <a href="javascript:delete_reg_func(<{$data.reg_sn}>);" class="btn btn-danger btn-xs" <{if !$can_operate}>data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled<{/if}>><i class="fa fa-times-circle" aria-hidden="true"></i>
+                        <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
                     <{else}>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
-                            <{$smarty.const._MD_KWCLUB_DELETE_APPLY}></a>
+                        <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="<{$smarty.const._MD_KWCLUB_OVER_END_TIME}>" disabled><i class="fa fa-times-circle" aria-hidden="true"></i>
+                                <{$smarty.const._MD_KWCLUB_DELETE_NOT}></a>
                     <{/if}>
                     </li>
                 </ul>
             <{/foreach}>
         </div>
         <div class="text-right" style="margin-bottom:30px;">
-            <{$smarty.const._MD_KWCLUB_PAY_TOTAL}><{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$money:$in_money:$un_money}>
+            <{$smarty.const._MD_KWCLUB_PAY_TOTAL}> <{$smarty.const._MD_KWCLUB_PAY_STATUS|sprintf:$money:$in_money:$un_money}>
         </div>
     <{else}>
         <div class="alert alert-danger">
