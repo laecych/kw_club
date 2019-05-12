@@ -872,9 +872,9 @@ class XoopsFormRendererBootstrap4 implements \XoopsFormRendererInterface
     /**
      * Support for themed addBreak
      *
-     * @param \XoopsModules\Kw_club\Xoopsform\Renderer\XoopsThemeForm $form
-     * @param string                                                  $extra pre-rendered content for break row
-     * @param string                                                  $class class for row
+     * @param \XoopsThemeForm $form
+     * @param string          $extra pre-rendered content for break row
+     * @param string          $class class for row
      */
     public function addThemeFormBreak(\XoopsThemeForm $form, $extra, $class)
     {
