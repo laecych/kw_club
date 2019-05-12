@@ -40,7 +40,7 @@ foreach (array_keys($configurator->uploadFolders) as $i) {
 $adminObject->displayNavigation(basename(__FILE__));
 
 //check for latest release
-$newRelease = $utility->checkVerModule($helper);
+$newRelease = $utility::checkVerModule($helper);
 if (!empty($newRelease)) {
     $adminObject->addItemButton($newRelease[0], $newRelease[1], 'download', 'style="color : Red"');
 }

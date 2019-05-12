@@ -86,7 +86,7 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     //引入日期
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
     $cal = new My97DatePicker();
-    $cal->render();
+    $cal::render();
 
     if (!$_SESSION['isclubAdmin'] && !$_SESSION['isclubUser']) {
         redirect_header('index.php', 3, _MD_KWCLUB_FORBBIDEN);

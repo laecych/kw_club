@@ -284,7 +284,7 @@ function kw_club_info_form($club_id = '')
     //引入日期
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/cal.php';
     $cal = new My97DatePicker();
-    $cal->render();
+    $cal::render();
 
     // $arr_num = array();
     // for ($i = 0; $i <= 10; $i++) {
