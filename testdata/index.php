@@ -13,8 +13,8 @@
  * @since           2.5.9
  * @author          Michael Beck (aka Mamba)
  */
-use XoopsModules\xxxxx;
-use XoopsModules\xxxxx\Common;
+use XoopsModules\Kw_club;
+use XoopsModules\Kw_club\Common;
 
 require dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 include dirname(__DIR__) . '/preloads/autoloader.php';
@@ -35,8 +35,8 @@ function loadSampleData()
 {
     $moduleDirName = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    $helper = xxxxx\Helper::getInstance();
-    $utility = new xxxxx\Utility();
+    $helper = Kw_club\Helper::getInstance();
+    $utility = new Kw_club\Utility();
     $configurator = new Common\Configurator();
     // Load language files
     $helper->loadLanguage('admin');
