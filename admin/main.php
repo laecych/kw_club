@@ -15,7 +15,7 @@ $users_uid = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
 /**
  * @var xos_opal_Theme
  */
-$xoTheme  = $xoopsThemeFactory->createInstance(array('contentTemplate' => @$xoopsOption['template_main']));
+$xoTheme  = $xoopsThemeFactory->createInstance(['contentTemplate' => @$xoopsOption['template_main']]);
 
 switch ($op) {
     case 'save_club_admin':
