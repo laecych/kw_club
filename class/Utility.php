@@ -1,6 +1,6 @@
 <?php
 
-namespace XoopsModules\Kv_club;
+namespace XoopsModules\Kw_club;
 
 /*
  Utility Class Definition
@@ -21,6 +21,9 @@ namespace XoopsModules\Kv_club;
  * @author       Mamba <mambax7@gmail.com>
  */
 
+use XoopsModules\Kw_club;
+use XoopsModules\Kw_club\Common;
+
 require_once dirname(__DIR__) . '/function.php';
 
 /**
@@ -28,6 +31,11 @@ require_once dirname(__DIR__) . '/function.php';
  */
 class Utility
 {
+
+    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
+    use Common\ServerStats; // getServerStats Trait
+    use Common\FilesManagement; // Files Management Trait
+
 
     //============================
     //
@@ -307,6 +315,9 @@ class Utility
     //
     // */    
 
+    /**
+     * @param $name
+     */
     public static function rm_group($name)
     {
         /* @var \XoopsMemberHandler $memberHandler */
@@ -316,6 +327,11 @@ class Utility
         $memberHandler->insertGroup($group);
     }
 
+    /**
+     * @param string $name
+     * @param string $description
+     * @return int
+     */
     public static function mk_group($name = '', $description = '')
     {
         global $xoopsDB;

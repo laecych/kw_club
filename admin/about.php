@@ -16,12 +16,13 @@
  * @since
  * @author       XOOPS Development Team
  */
-require __DIR__ . '/header.php';
+require_once __DIR__ . '/admin_header.php';
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+//$adminObject = \Xmf\Module\Admin::getInstance();
+xoops_cp_header();
 
 $adminObject->displayNavigation(basename(__FILE__));
 $adminObject::setPaypal('xoopsfoundation@gmail.com');
 $adminObject->displayAbout(false);
 
-require __DIR__ . '/footer.php';
+require_once __DIR__ . '/footer.php';

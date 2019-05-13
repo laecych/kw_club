@@ -10,6 +10,10 @@ $grade_name_arr    = [_MD_KWCLUB_GRADE0, _MD_KWCLUB_GRADE1, _MD_KWCLUB_GRADE2, _
 
 //列出所有社團資料
 if (!function_exists('club_class_list')) {
+    /**
+     * @param string $club_year
+     * @param string $mode
+     */
     function club_class_list($club_year = '', $mode = '')
     {
         global $xoopsDB, $xoopsUser, $xoopsTpl, $today;
@@ -60,11 +64,11 @@ if (!function_exists('club_class_list')) {
                 $all_class_content[$i]['class_pay']        = $class_money + $class_fee;
                 $all_class_content[$i]['class_regnum']     = (int)$class_regnum;
                 $all_class_content[$i]['class_note']       = $myts->htmlSpecialChars($class_note);
-                $all_class_content[$i]['class_date_start'] = $myts->htmlSpecialChars($class_date_start);
-                $all_class_content[$i]['class_date_end']   = $myts->htmlSpecialChars($class_date_end);
+                $all_class_content[$i]['class_date_start'] = isset($class_date_start) ? $myts->htmlSpecialChars($class_date_start) : '';
+                $all_class_content[$i]['class_date_end']   = isset($class_date_end) ? $myts->htmlSpecialChars($class_date_end): '';
                 $all_class_content[$i]['class_ischecked']  = (int)$class_ischecked;
                 $all_class_content[$i]['class_isopen']     = (int)$class_isopen;
-                $all_class_content[$i]['class_isopen_pic'] = $class_isopen ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+                $all_class_content[$i]['class_isopen_pic'] = $class_isopen ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
                 $all_class_content[$i]['class_desc']       = $myts->displayTarea($class_desc, 1, 1, 0, 1, 0);
                 $all_class_content[$i]['class_uid']        = (int)$class_uid;
                 //是否報名額滿
@@ -120,6 +124,10 @@ if (!function_exists('club_class_list')) {
 
 //將期別編號轉為文字
 if (!function_exists('club_year_text')) {
+    /**
+     * @param string $club_year
+     * @return string
+     */
     function club_year_text($club_year = '')
     {
         global $semester_name_arr;
@@ -133,6 +141,10 @@ if (!function_exists('club_year_text')) {
 
 //取得社團開課所有期別
 if (!function_exists('get_all_year')) {
+    /**
+     * @param bool $only_enable
+     * @return array
+     */
     function get_all_year($only_enable = true)
     {
         global $xoopsDB;
@@ -151,6 +163,10 @@ if (!function_exists('get_all_year')) {
 
 //從json中取得社團期別資料（會在header.php中讀取）
 if (!function_exists('get_club_info')) {
+    /**
+     * @param string $club_year
+     * @return array|false
+     */
     function get_club_info($club_year = '')
     {
         global $xoopsDB, $xoopsTpl;
@@ -185,11 +201,18 @@ if (!function_exists('get_club_info')) {
 
 //檢查是否為報名時間
 if (!function_exists('chk_time')) {
+    /**
+     * @param string $mode
+     * @param bool   $only_end
+     * @param string $club_start_date
+     * @param string $club_end_date
+     * @return bool
+     */
     function chk_time($mode = '', $only_end = false, $club_start_date = '', $club_end_date = '')
     {
         $today              = time();
-        $club_start_date_ts = empty($club_start_date) ? $_SESSION['club_start_date_ts'] : strtotime($club_start_date);
-        $club_end_date_ts   = empty($club_end_date) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
+        $club_start_date_ts = (empty($club_start_date) && isset($_SESSION['club_start_date_ts'])) ? $_SESSION['club_start_date_ts'] : strtotime($club_start_date);
+        $club_end_date_ts   = (empty($club_end_date) && isset($_SESSION['club_end_date_ts'])) ? $_SESSION['club_end_date_ts'] : strtotime($club_end_date);
 
         if (($only_end and $club_end_date_ts < $today) or ($club_start_date_ts > $today || $club_end_date_ts < $today)) {
             if ('return' === $mode) {
@@ -208,6 +231,9 @@ if (!function_exists('chk_time')) {
 
 //取得所有社團類型陣列
 if (!function_exists('get_cate_all')) {
+    /**
+     * @return mixed
+     */
     function get_cate_all()
     {
         global $xoopsDB;
@@ -232,6 +258,9 @@ if (!function_exists('get_cate_all')) {
 
 //取得所有社團地點陣列
 if (!function_exists('get_place_all')) {
+    /**
+     * @return mixed
+     */
     function get_place_all()
     {
         global $xoopsDB;
@@ -255,6 +284,9 @@ if (!function_exists('get_place_all')) {
 
 //取得所有社團老師陣列
 if (!function_exists('get_teacher_all')) {
+    /**
+     * @return mixed
+     */
     function get_teacher_all()
     {
         global $xoopsDB;
@@ -270,10 +302,13 @@ if (!function_exists('get_teacher_all')) {
 
 //取得所有社團老師陣列
 if (!function_exists('get_innerteacher_all')) {
+    /**
+     * @return array
+     */
     function get_innerteacher_all()
     {
         global $xoopsDB;
-        /* @var XoopsMemberHandler $memberHandler */
+        /* @var \XoopsMemberHandler $memberHandler */
         $memberHandler = xoops_getHandler('member');
         //開課教師
         $groupid = group_id_from_name(_MD_KWCLUB_TEACHER_GROUP);
@@ -298,6 +333,10 @@ if (!function_exists('get_innerteacher_all')) {
 
 //根據名稱找群組編號
 if (!function_exists('group_id_from_name')) {
+    /**
+     * @param string $group_name
+     * @return mixed
+     */
     function group_id_from_name($group_name = '')
     {
         global $xoopsDB;

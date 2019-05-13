@@ -41,12 +41,16 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/assets/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------功能函數區--------------*/
 //列出所有kw_club_reg資料
+/**
+ * @param string $club_year
+ * @param string $review
+ */
 function reg_list($club_year = '', $review = 'reg_sn')
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
@@ -81,6 +85,9 @@ function reg_list($club_year = '', $review = 'reg_sn')
 }
 
 //列出繳費模式
+/**
+ * @param string $club_year
+ */
 function reg_uid($club_year = '')
 {
     global $xoopsDB, $xoopsTpl;
@@ -107,6 +114,10 @@ function reg_uid($club_year = '')
 }
 
 //改變繳費狀態
+/**
+ * @param $reg_sn
+ * @param $reg_isfee
+ */
 function update_reg_isfee($reg_sn, $reg_isfee)
 {
     global $xoopsDB;

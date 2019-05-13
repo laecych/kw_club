@@ -1,6 +1,14 @@
 <?php
 //搜尋程式
 
+/**
+ * @param $queryarray
+ * @param $andor
+ * @param $limit
+ * @param $offset
+ * @param $userid
+ * @return array
+ */
 function snews_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB;

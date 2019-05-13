@@ -55,11 +55,11 @@
         </select>
     </div>
     <div class="col-sm-1 text-center">
-        <img src="<{$xoops_url}>/modules/kw_club/images/right.png" onclick="tmt.spry.linkedselect.util.moveOptions('adm_repository', 'adm_destination');getOptions('adm_destination','users_uid');"><br>
-        <img src="<{$xoops_url}>/modules/kw_club/images/left.png" onclick="tmt.spry.linkedselect.util.moveOptions('adm_destination' , 'adm_repository');getOptions('adm_destination','users_uid');"><br><br>
+        <img src="<{$xoops_url}>/modules/kw_club/assets/images/right.png" onclick="tmt.spry.linkedselect.util.moveOptions('adm_repository', 'adm_destination');getOptions('adm_destination','users_uid');"><br>
+        <img src="<{$xoops_url}>/modules/kw_club/assets/images/left.png" onclick="tmt.spry.linkedselect.util.moveOptions('adm_destination' , 'adm_repository');getOptions('adm_destination','users_uid');"><br><br>
 
-        <img src="<{$xoops_url}>/modules/kw_club/images/up.png" onclick="tmt.spry.linkedselect.util.moveOptionUp('adm_destination');getOptions('adm_destination','users_uid');"><br>
-        <img src="<{$xoops_url}>/modules/kw_club/images/down.png" onclick="tmt.spry.linkedselect.util.moveOptionDown('adm_destination');getOptions('adm_destination','users_uid');">
+        <img src="<{$xoops_url}>/modules/kw_club/assets/images/up.png" onclick="tmt.spry.linkedselect.util.moveOptionUp('adm_destination');getOptions('adm_destination','users_uid');"><br>
+        <img src="<{$xoops_url}>/modules/kw_club/assets/images/down.png" onclick="tmt.spry.linkedselect.util.moveOptionDown('adm_destination');getOptions('adm_destination','users_uid');">
     </div>
     <div class="col-sm-5">
         <select id="adm_destination" size="10"" multiple="multiple" tmt:linkedselect="true" class="form-control">

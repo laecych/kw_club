@@ -24,8 +24,8 @@ define('_MI_KWCLUB_SMNAME2', '教師簡介');
 define('_MI_KWCLUB_SMNAME3', '我的社團');
 define('_MI_KWCLUB_SMNAME4', '報名統計');
 
-define('_MI_KW_CLUB_SHOW_BLOCK_NAME', '社團報名系統區塊');
-define('_MI_KW_CLUB_SHOW_BLOCK_DESC', '社團報名系統區塊區塊 (kw_club_show)');
+define('_MI_KWCLUB_SHOW_BLOCK_NAME', '社團報名系統區塊');
+define('_MI_KWCLUB_SHOW_BLOCK_DESC', '社團報名系統區塊區塊 (kw_club_show)');
 
 define('_MI_KWCLUB_ADMIN_GROUP', '社團管理');
 define('_MI_KWCLUB_TEACHER_GROUP', '社團老師');
@@ -65,3 +65,13 @@ define('_MI_KWCLUB_SCHOOL_GV12', '十二');
 define('_MI_KWCLUB_SCHOOL_CLASS', '班級設定');
 define('_MI_KWCLUB_SCHOOL_CLASS_DESC', '設定學校可報名的班級名稱（請用 ; 隔開）');
 define('_MI_KWCLUB_SCHOOL_CLASS_DEFAULT', '1班;2班;3班;4班');
+
+//Help
+define('_MI_KWCLUB_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_KWCLUB_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_KWCLUB_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_KWCLUB_OVERVIEW', 'Overview');
+//help multi-page
+define('_MI_KWCLUB_DISCLAIMER', 'Disclaimer');
+define('_MI_KWCLUB_LICENSE', 'License');
+define('_MI_KWCLUB_SUPPORT', 'Support');

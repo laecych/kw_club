@@ -1,14 +1,14 @@
 <?php
 
-if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
-    $_SESSION['language'] = "english";
-} else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
-    $_SESSION['language'] = $_REQUEST['language'];
-}
+ if (!isset($_SESSION['language']) && empty($_REQUEST['language'])) {
+     $_SESSION['language'] = 'english';
+ } else if (isset($_SESSION['language']) && !empty($_REQUEST['language'])) {
+     $_SESSION['language'] = $_REQUEST['language'];
+ }
 
-if ($_SESSION['language'] === "tchinese_utf8") {
-    require_once dirname(__DIR__) . "/tchinese_utf8/main.php";
-}
+ if ('tchinese_utf8' === $_SESSION['language']) {
+     require_once dirname(__DIR__) . '/tchinese_utf8/main.php';
+ }
 
 xoops_loadLanguage('main', 'tadtools');
 define('_MD_NEED_TADTOOLS', "This module needs TadTools module. You can download TadTools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
@@ -37,10 +37,10 @@ define('_MD_KWCLUB_CLASS_MONEY', 'Club tuition');
 define('_MD_KWCLUB_CLASS_FEE', 'Additional charges');
 define('_MD_KWCLUB_CLASS_NOTE', 'Remarks');
 define('_MD_KWCLUB_CLASS_REGNUM', 'Number of applicants');
-define('_MD_KWCLUB_CLASS_REGNUM_FULL', 'Applicants is full！');
+define('_MD_KWCLUB_CLASS_REGNUM_FULL', 'Registration is full!');
 define('_MD_KWCLUB_CLASS_REG', 'Apply');
-define('_MD_KWCLUB_CLASS_DATE_START', 'Registration start');
-define('_MD_KWCLUB_CLASS_DATE_END', 'Registration Termination');
+define('_MD_KWCLUB_CLASS_DATE_START', 'Registration Start');
+define('_MD_KWCLUB_CLASS_DATE_END', 'Registration End');
 define('_MD_KWCLUB_CLASS_ISOPEN', 'Active');
 define('_MD_KWCLUB_CLASS_ISCHECKED', 'Confirm');
 define('_MD_KWCLUB_CLASS_DESC', 'Club introduce');
@@ -75,18 +75,18 @@ define('_MD_KWCLUB_REG_IP', 'IP');
 
 //define('_MD_KWCLUB_NEED_CONFIG', 'There is no clubs now!');
 //by tad
-if ($_SESSION['isclubAdmin']) {
+if (isset($_SESSION['isclubAdmin'])) {
     define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no registration period for the community, <a href="config.php?op=kw_club_info_form">Please set up the club registration period</a> first, then add the course!');
 } else {
     define('_MD_KWCLUB_NEED_CONFIG', 'There is currently no community period to be registered, please inform the administrator to set the club registration period!');
 }
-define('_MD_KWCLUB_SELECT_YEAR', 'Please choose the period of the club：');
-define('_MD_KWCLUB_EMPTY_YEAR', 'There is no clubs period');
+define('_MD_KWCLUB_SELECT_YEAR', 'Please choose the time period of the club：');
+define('_MD_KWCLUB_EMPTY_YEAR', 'There is no club registration');
 define('_MD_KWCLUB', 'Registration');
 define('_MD_KWCLUB_LIST', 'List');
 define('_MD_KWCLUB_APPLY_DATE', 'Registration period');
 define('_MD_KWCLUB_APPLY_FROM_TO', 'To');
-define('_MD_KWCLUB_EMPTY_CLUB', 'There is no class clubs！');
+define('_MD_KWCLUB_EMPTY_CLUB', 'There is no class clubs!');
 define('_MD_KWCLUB_FORBBIDEN', 'Error! No Permission');
 define('_MD_KWCLUB_INFO_SETUP', 'Set up Registeration');
 define('_MD_KWCLUB_YEAR', 'Club period');
@@ -100,26 +100,26 @@ define('_MD_KWCLUB_NEED_CLUB_YEAR', 'Error！unknow club period');
 define('_MD_KWCLUB_START_DATE', 'Registration start date');
 define('_MD_KWCLUB_END_DATE', 'Registration end date');
 define('_MD_KWCLUB_ISFREE', 'Registration type');
-define('_MD_KWCLUB_UID', 'author');
+define('_MD_KWCLUB_UID', 'Author');
 define('_MD_KWCLUB_DATETIME', 'Time seting');
-define('_MD_KWCLUB_ENABLE', 'is active');
-define('_MD_KWCLUB_ENABLE_1', 'active');
-define('_MD_KWCLUB_ENABLE_0', 'close');
+define('_MD_KWCLUB_ENABLE', 'Is active');
+define('_MD_KWCLUB_ENABLE_1', 'Activate');
+define('_MD_KWCLUB_ENABLE_0', 'Deactivate');
 
-define('_MD_KWCLUB_ID', 'number');
-define('_MD_KWCLUB_Y', 'period');
-define('_MD_KWCLUB_CLUB', 'club');
-define('_MD_KWCLUB_PICK_CLUB', 'pick up club');
+define('_MD_KWCLUB_ID', 'ID Number');
+define('_MD_KWCLUB_Y', 'Period');
+define('_MD_KWCLUB_CLUB', 'Club');
+define('_MD_KWCLUB_PICK_CLUB', 'Select a club');
 define('_MD_KWCLUB_ADD_CLASS', 'Add class');
-define('_MD_KWCLUB_MODIFY_CLUB', 'edit class');
+define('_MD_KWCLUB_MODIFY_CLUB', 'Edit class');
 
 define('_MD_KWCLUB_SELECT', 'Please choose');
 define('_MD_KWCLUB_SETUP', 'Set up');
 
-define('_MD_KWCLUB_PLACE_TITLE', 'place');
-define('_MD_KWCLUB_PLACE_DESC', 'describe');
-define('_MD_KWCLUB_PLACE_SORT', 'order');
-define('_MD_KWCLUB_PLACE_ENABLE', 'status');
+define('_MD_KWCLUB_PLACE_TITLE', 'Location');
+define('_MD_KWCLUB_PLACE_DESC', 'Description');
+define('_MD_KWCLUB_PLACE_SORT', 'Order');
+define('_MD_KWCLUB_PLACE_ENABLE', 'Status');
 
 define('_MD_KWCLUB_TEACHER_TITLE', 'Teacher');
 define('_MD_KWCLUB_TEACHER_DESCS', 'Teacher Profile');
@@ -128,13 +128,13 @@ define('_MD_KWCLUB_TEACHER_ENABLE', 'Status');
 
 define('_MD_KWCLUB_ADMIN_GROUP', 'Club Management');
 define('_MD_KWCLUB_TEACHER_GROUP', 'Social Teacher');
-define('_MD_KWCLUB_GROUP_NOTE', ': for community registration module, do not delete, do not modify ');
+define('_MD_KWCLUB_GROUP_NOTE', ': For community registration module, do not delete, do not modify ');
 
 define('_MD_KWCLUB_SETUP_TEACHER', 'Club teacher setting');
-define('_MD_KWCLUB_SORTBY_REG_NAME', 'order by name');
-define('_MD_KWCLUB_SORTBY_REG_DATETIME', 'order by register');
-define('_MD_KWCLUB_SORTBY_CLASS_TITLE', 'order by class name');
-define('_MD_KWCLUB_SORTBY_REG_GRADE', 'order by grade');
+define('_MD_KWCLUB_SORTBY_REG_NAME', 'Order by name');
+define('_MD_KWCLUB_SORTBY_REG_DATETIME', 'Order by register');
+define('_MD_KWCLUB_SORTBY_CLASS_TITLE', 'Order by class name');
+define('_MD_KWCLUB_SORTBY_REG_GRADE', 'Order by grade');
 
 define('_MD_KWCLUB_TODAY', 'Today');
 define('_MD_KWCLUB_IS_BACKUP', 'waiting list');
@@ -156,7 +156,7 @@ define('_MD_KWCLUB_REPEAT_APPLY', 'Error!Repeat!');
 
 define('_MD_KWCLUB_SURE_CANCEL_APPLY', 'Are you sure to cancel?');
 define('_MD_KWCLUB_CANCEL', 'Cancel');
-define('_MD_KWCLUB_CANCEL_APPLY', 'Yes！');
+define('_MD_KWCLUB_CANCEL_APPLY', 'Yes!');
 define('_MD_KWCLUB_DELETE_APPLY', 'Cancel');
 define('_MD_KWCLUB_DELETE_NOT', 'Disable');
 

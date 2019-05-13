@@ -60,13 +60,16 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('op', $op);
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/css/module.css');
+$xoTheme->addStylesheet(XOOPS_URL . '/modules/kw_club/assets/css/module.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/vtable.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
 
 /*-----------function區--------------*/
 
 //報名表單
+/**
+ * @param string $class_id
+ */
 function reg_form($class_id = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $xoopsModuleConfig;
@@ -89,7 +92,7 @@ function reg_form($class_id = '')
 
         //安全性表單
         require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-        $token = new XoopsFormHiddenToken('XOOPS_TOKEN', 360);
+        $token = new \XoopsFormHiddenToken('XOOPS_TOKEN', 360);
         $xoopsTpl->assign('reg_token', $token->render());
 
         //套用formValidator驗證機制
@@ -192,6 +195,11 @@ function insert_reg()
     }
 }
 
+/**
+ * @param $reg_uid
+ * @param $class_id
+ * @return bool
+ */
 function check_class_date($reg_uid, $class_id)
 {
     global $xoopsDB;
@@ -216,7 +224,7 @@ function check_class_date($reg_uid, $class_id)
             $class_week_reg = explode('、', $class_reg['class_week']);
             $class_week_new = explode('、', $class_new['class_week']);
             foreach ($class_week_new as &$value) {
-                if (in_array($value, $class_week_reg, true)) {
+                if (in_array($value, $class_week_reg)) {
                     // check the time repeat
                     if (!(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start']))
                         && !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))) {
@@ -235,6 +243,10 @@ function check_class_date($reg_uid, $class_id)
 }
 
 // 我的社團
+/**
+ * @param string $reg_uid
+ * @param string $club_year
+ */
 function myclass($reg_uid = '', $club_year = '')
 {
     global $xoopsDB, $xoopsTpl;
@@ -308,6 +320,9 @@ function myclass($reg_uid = '', $club_year = '')
 }
 
 //顯示某一個社團
+/**
+ * @param string $class_id
+ */
 function class_showjson($class_id = '')
 {
     global $xoopsTpl, $today;
@@ -362,6 +377,9 @@ function class_showjson($class_id = '')
 }
 
 //以流水號秀出某筆kw_club_class資料內容
+/**
+ * @param string $class_id
+ */
 function class_show($class_id = '')
 {
     global $xoopsDB, $xoopsUser, $xoopsTpl, $today;
@@ -407,7 +425,7 @@ function class_show($class_id = '')
     $place_arr   = get_cate($place_id, 'place');
 
     //將是/否選項轉換為圖示
-    $class_isopen_pic = (1 == $class_isopen) ? '<img src="' . XOOPS_URL . '/modules/kw_club/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+    $class_isopen_pic = (1 == $class_isopen) ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
     //過濾讀出的變數值
     $class_num   = $myts->htmlSpecialChars($class_num);
@@ -445,8 +463,12 @@ function class_show($class_id = '')
     $xoopsTpl->assign('class_fee', $class_fee);
     $xoopsTpl->assign('class_regnum', $class_regnum);
     $xoopsTpl->assign('class_note', $class_note);
-    $xoopsTpl->assign('class_date_start', $class_date_start);
-    $xoopsTpl->assign('class_date_end', $class_date_end);
+    if (isset($class_date_start)) {
+        $xoopsTpl->assign('class_date_start', $class_date_start);
+    }
+    if (isset($class_date_end)) {
+        $xoopsTpl->assign('class_date_end', $class_date_end);
+    }
     $xoopsTpl->assign('class_ischecked', $class_ischecked);
     $xoopsTpl->assign('class_isopen', $class_isopen);
     $xoopsTpl->assign('class_isopen_pic', $class_isopen_pic);
@@ -478,6 +500,9 @@ function class_show($class_id = '')
 }
 
 //教師列表
+/**
+ * @param string $club_year
+ */
 function teacher_list($club_year = '')
 {
     global $xoopsTpl, $xoopsDB;
@@ -516,6 +541,10 @@ function teacher_list($club_year = '')
     }
 }
 
+/**
+ * @param $cardid
+ * @return bool
+ */
 function pid_check($cardid)
 {
     //先將字母數字存成陣列
@@ -630,6 +659,10 @@ function pid_check($cardid)
 // }
 
 //改變啟用狀態
+/**
+ * @param $class_id
+ * @param $class_enable
+ */
 function update_class_enable($class_id, $class_enable)
 {
     global $xoopsDB;

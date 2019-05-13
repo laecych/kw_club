@@ -1,12 +1,12 @@
 CREATE TABLE `kw_club_info` (
   `club_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水號',
   `club_year` varchar(255) NOT NULL  default '' COMMENT '社團年度',
-  `club_start_date` datetime NOT NULL COMMENT '報名起始日',
-  `club_end_date` datetime NOT NULL COMMENT '報名終止日',
+  `club_start_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '報名起始日',
+  `club_end_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '報名終止日',
   `club_isfree` enum('1','0') NOT NULL DEFAULT '0' COMMENT '報名方式',
   `club_backup_num` tinyint(3) unsigned NOT NULL DEFAULT '2' COMMENT '候補人數',
   `club_uid` mediumint(9) unsigned NOT NULL COMMENT '設定者',
-  `club_datetime` datetime NOT NULL  COMMENT '設定時間',
+  `club_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP  ON UPDATE CURRENT_TIMESTAMP COMMENT '設定時間',
   `club_enable` enum('1','0') NOT NULL  DEFAULT '1'  COMMENT '是否啟用',
    PRIMARY KEY (`club_id`),
   UNIQUE KEY `club_year` (`club_year`)
@@ -78,7 +78,7 @@ CREATE TABLE `kw_club_class` (
   `class_isopen` enum('1','0') NOT NULL DEFAULT '1' COMMENT '是否啟用',
   `class_desc` text NOT NULL COMMENT '社團簡介',
   `class_uid` mediumint(9) unsigned NOT NULL COMMENT '發佈者',
-  `class_datetime` datetime NOT NULL COMMENT '發佈時間',
+  `class_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '發佈時間',
   `class_ip` varchar(255) NOT NULL COMMENT '發佈ip',
   PRIMARY KEY (`class_id`),
   UNIQUE KEY `club_year_class_num` (`club_year`,`class_num`)
@@ -94,7 +94,7 @@ CREATE TABLE `kw_club_reg` (
   `reg_class` varchar(255) NOT NULL COMMENT '報名者班級',
   `reg_parent` varchar(255) NOT NULL COMMENT '報名者家長',
   `reg_tel` varchar(255) NOT NULL COMMENT '家長聯絡電話',
-  `reg_datetime` datetime NOT NULL COMMENT '報名日期',
+  `reg_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '報名日期',
   `reg_isreg` enum('正取','備取') NOT NULL  DEFAULT '正取' COMMENT '是否候補',
   `reg_isfee` enum('1','0') NOT NULL  DEFAULT '0' COMMENT '是否繳費',
   `reg_ip` varchar(255) NOT NULL default '' COMMENT '報名ip',
@@ -116,7 +116,7 @@ CREATE TABLE `kw_club_files_center` (
   `original_filename` varchar(255) NOT NULL default '' COMMENT '檔案名稱',
   `hash_filename` varchar(255) NOT NULL default '' COMMENT '加密檔案名稱',
   `sub_dir` varchar(255) NOT NULL default '' COMMENT '檔案子路徑',
-  `upload_date` datetime NOT NULL COMMENT '上傳時間',
+  `upload_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP  ON UPDATE CURRENT_TIMESTAMPCOMMENT '上傳時間',
   `uid` mediumint(8) unsigned NOT NULL default 0 COMMENT '上傳者',
   `tag` varchar(255) NOT NULL default '' COMMENT '註記',
   PRIMARY KEY (`files_sn`)

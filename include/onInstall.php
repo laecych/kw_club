@@ -1,8 +1,12 @@
 <?php
 
 use XoopsModules\Tadtools;
-use XoopsModules\Kv_club\Utility;
+use XoopsModules\Kw_club\Utility;
 
+/**
+ * @param $module
+ * @return bool
+ */
 function xoops_module_install_kw_club(&$module)
 {
     Utility::mk_group(_MI_KWCLUB_ADMIN_GROUP, _MI_KWCLUB_ADMIN_GROUP . _MI_KWCLUB_GROUP_NOTE);
