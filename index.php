@@ -141,10 +141,10 @@ function insert_reg()
         }
 
         //驗正是否通過
-        if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
-        } else {
-            redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
-        }
+        // if (isset($_POST['iQapTcha']) && empty($_POST['iQapTcha']) && isset($_SESSION['iQaptcha']) && $_SESSION['iQaptcha']) {
+        // } else {
+        //     redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_CAPTCHA_ERROR);
+        // }
     }
     //檢查身分證字號或居留證
     $reg_uid = $myts->addSlashes($_POST['reg_uid']);

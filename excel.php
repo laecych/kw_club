@@ -92,10 +92,22 @@ $objActSheet->getProtection()->setFormatCells(true);
 $objActSheet->getProtection()->setPassword('1234');
 
 $title = iconv('UTF-8', 'Big5', $club_year . _MD_KWCLUB_APPLY_EXCEL);
+// header('Content-Type: application/vnd.ms-excel');
+// header('Content-Disposition: attachment;filename=' . $title . '.xlsx');
+// header('Cache-Control: max-age=0');
+//jill's export
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename=' . $title . '.xls');
+header('Content-Disposition: attachment;filename=' . $title . '.xlsx');
 header('Cache-Control: max-age=0');
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+// 避免excel下載錯誤訊息
+for ($i = 0; $i < ob_get_level(); $i++) {
+    ob_end_flush();
+}
+ob_implicit_flush(1);
+ob_clean();
+
+// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->setPreCalculateFormulas(false);
 $objWriter->save('php://output');
 exit;

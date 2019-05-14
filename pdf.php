@@ -26,11 +26,11 @@ foreach ($reg_all as $reg_uid => $reg) {
 
     $height = 10;
     //標題
-    $pdf->MultiCell(60, $height, _MD_KWCLUB_CLASS_TITLE, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-    $pdf->MultiCell(25, $height, _MD_KWCLUB_REG_NAME, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-    $pdf->MultiCell(25, $height, _MD_KWCLUB_CLASS_MONEY, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-    $pdf->MultiCell(25, $height, _MD_KWCLUB_CLASS_FEE, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-    $pdf->MultiCell(45, $height, _MD_KWCLUB_REG_DATETIME, 1, 'C', false, 1, '', '', false, 0, false, false, $height, 'M', true);
+    $pdf->MultiCell(60, $height, _MD_KWCLUB_CLASS_TITLE, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+    $pdf->MultiCell(25, $height, _MD_KWCLUB_REG_NAME, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+    $pdf->MultiCell(25, $height, _MD_KWCLUB_CLASS_MONEY, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+    $pdf->MultiCell(25, $height, _MD_KWCLUB_CLASS_FEE, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+    $pdf->MultiCell(45, $height, _MD_KWCLUB_REG_DATETIME, 1, 'C', 0, 1, '', '', false, 0, false, false, 0);
 
     $money = $fee = 0;
 
@@ -43,11 +43,11 @@ foreach ($reg_all as $reg_uid => $reg) {
         $reg_isfee    = $myts->htmlSpecialChars($data['reg_money']);
         $reg_datetime = $myts->htmlSpecialChars($data['reg_datetime']);
 
-        $pdf->MultiCell(60, $height, $class_title, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-        $pdf->MultiCell(25, $height, $reg_name, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-        $pdf->MultiCell(25, $height, $class_money, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-        $pdf->MultiCell(25, $height, $class_fee, 1, 'C', false, 0, '', '', false, 0, false, false, $height, 'M', true);
-        $pdf->MultiCell(45, $height, $reg_datetime, 1, 'C', false, 1, '', '', false, 0, false, false, $height, 'M', true);
+        $pdf->MultiCell(60, $height, $class_title, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+        $pdf->MultiCell(25, $height, $reg_name, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+        $pdf->MultiCell(25, $height, $class_money, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+        $pdf->MultiCell(25, $height, $class_fee, 1, 'C', 0, 0, '', '', false, 0, false, false, 0);
+        $pdf->MultiCell(45, $height, $reg_datetime, 1, 'C', 0, 1, '', '', false, 0, false, false, 0);
 
         $money += $class_money;
         $fee   += $class_fee;

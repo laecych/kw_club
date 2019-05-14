@@ -436,9 +436,9 @@ function get_club_class_reg($club_year, $class_id = '', $order = '', $show_PageB
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
 
-    //預設排序
+    //預設排序依報名時間
     if (empty($order)) {
-        $order = 'ORDER BY a.`reg_uid`, b.`class_id`';
+        $order = 'ORDER BY a.`reg_datetime`, b.`class_id`';
     }
 
     $myts = MyTextSanitizer::getInstance();

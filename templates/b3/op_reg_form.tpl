@@ -204,14 +204,15 @@ function studIdNumberIdentify(idNumber) {
         </div>
     </div>
 
-    <div class="form-group">
+    <!--拉驗證-->
+    <!-- <div class="form-group">
         <label class="col-sm-2 control-label">
             <{$smarty.const._MD_KWCLUB_CAPTCHA}>
         </label>
         <div class="col-sm-10">
             <div class='QapTcha'></div>
         </div>
-    </div>
+    </div> -->
 
 
 
