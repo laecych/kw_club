@@ -97,9 +97,11 @@ $title = iconv('UTF-8', 'Big5', $club_year . _MD_KWCLUB_APPLY_EXCEL);
 // header('Cache-Control: max-age=0');
 //jill's export
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-header('Content-Type: application/vnd.ms-excel');
+// header('Content-Type: application/vnd.ms-excel');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename=' . $title . '.xlsx');
 header('Cache-Control: max-age=0');
+
 // 避免excel下載錯誤訊息
 for ($i = 0; $i < ob_get_level(); $i++) {
     ob_end_flush();
