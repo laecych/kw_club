@@ -17,9 +17,9 @@
  * @version      $Id $
  **/
 
-use XoopsModules\Kw_club;
-use XoopsModules\Kw_club\Common;
-
+//  
+// use XoopsModules\Kw_club;
+// use XoopsModules\Kw_club\Common;
 
 require __DIR__ . '/admin_header.php';
 
@@ -29,37 +29,37 @@ $moduleDirName = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 //check or upload folders
-$configurator = new \XoopsModules\Kw_club\Common\Configurator();
-$utility =  new \XoopsModules\Kw_club\Utility();
-foreach (array_keys($configurator->uploadFolders) as $i) {
-    $utility::createFolder($configurator->uploadFolders[$i]);
-    $adminObject->addConfigBoxLine($configurator->uploadFolders[$i], 'folder');
-}
+// $configurator = new Configurator();
+// $utility =  new Utility();
+// foreach (array_keys($configurator->uploadFolders) as $i) {
+//     $utility::createFolder($configurator->uploadFolders[$i]);
+//     $adminObject->addConfigBoxLine($configurator->uploadFolders[$i], 'folder');
+// }
 
 
-$adminObject->displayNavigation(basename(__FILE__));
+// $adminObject->displayNavigation(basename(__FILE__));
 
-//check for latest release
-$newRelease = $utility::checkVerModule($helper);
-if (!empty($newRelease)) {
-    $adminObject->addItemButton($newRelease[0], $newRelease[1], 'download', 'style="color : Red"');
-}
+// //check for latest release
+// $newRelease = $utility::checkVerModule($helper);
+// if (!empty($newRelease)) {
+//     $adminObject->addItemButton($newRelease[0], $newRelease[1], 'download', 'style="color : Red"');
+// }
 
-//------------- Test Data ----------------------------
-if ($helper->getConfig('displaySampleButton')) {
-    xoops_loadLanguage('admin/modulesadmin', 'system');
-    require  dirname(__DIR__) . '/testdata/index.php';
-    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
-    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
-    //    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
+// //------------- Test Data ----------------------------
+// if ($helper->getConfig('displaySampleButton')) {
+//     xoops_loadLanguage('admin/modulesadmin', 'system');
+//     require  dirname(__DIR__) . '/testdata/index.php';
+//     $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
+//     $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
+//     //    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
 
-    $adminObject->displayButton('left', '');
-}
-//------------- End Test Data ----------------------------
+//     $adminObject->displayButton('left', '');
+// }
+// //------------- End Test Data ----------------------------
 
-$adminObject->displayIndex();
+// $adminObject->displayIndex();
 
-echo $utility::getServerStats();
+// echo $utility::getServerStats();
 
 require __DIR__ . '/admin_footer.php';
 //xoops_cp_footer();

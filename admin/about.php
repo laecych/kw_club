@@ -25,4 +25,4 @@ $adminObject->displayNavigation(basename(__FILE__));
 $adminObject::setPaypal('xoopsfoundation@gmail.com');
 $adminObject->displayAbout(false);
 
-require_once __DIR__ . '/footer.php';
+require __DIR__ . '/admin_footer.php';
