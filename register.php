@@ -9,10 +9,10 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op        = system_CleanVars($_REQUEST, 'op', '', 'string');
-$class_id  = system_CleanVars($_REQUEST, 'class_id', '', 'int');
-$reg_sn    = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
-$review    = system_CleanVars($_REQUEST, 'review', 'reg_sn', 'string');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$class_id = system_CleanVars($_REQUEST, 'class_id', '', 'int');
+$reg_sn = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
+$review = system_CleanVars($_REQUEST, 'review', 'reg_sn', 'string');
 $club_year = system_CleanVars($_REQUEST, 'club_year', $_SESSION['club_year'], 'string');
 $reg_isfee = system_CleanVars($_REQUEST, 'reg_isfee', '', 'int');
 
@@ -20,7 +20,7 @@ switch ($op) {
     case 'delete_reg':
         delete_reg();
         // header("location: {$_SERVER['PHP_SELF']}");
-        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
+        header("location: " . \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     case 'reg_uid':
@@ -28,14 +28,14 @@ switch ($op) {
         break;
     case 'update_reg_isfee':
         update_reg_isfee($reg_sn, $reg_isfee);
-        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
+        header("location: " . \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     default:
         reg_list($club_year, $review);
         $op = 'reg_list';
         break;
-    /*---判斷動作請貼在上方---*/
+        /*---判斷動作請貼在上方---*/
 }
 
 /*-----------秀出結果區--------------*/

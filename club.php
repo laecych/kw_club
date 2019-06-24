@@ -36,17 +36,17 @@ switch ($op) {
 
     case 'class_enable':
         class_ischecked($class_id, 1);
-        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
+        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     case 'class_unable':
         class_ischecked($class_id, 0);
-        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
+        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     case 'class_blank':
         class_ischecked($class_id, '');
-        header("location: {\Xmf\Request::getString('HTTP_REFERER', '', 'SERVER')}");
+        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     default:
