@@ -286,7 +286,7 @@ define('_MD_KWCLUB_NUMBER_OF_RECRUITED', '招收');
 define('_MD_KWCLUB_NUMBER_OF_APPLICANTS', '已報');
 define('_MD_KWCLUB_FULL', '滿');
 define('_MD_KWCLUB_AFTER_REGISTRATION', '候補報名中...');
-define('_MD_KWCLUB_EDIT_TAECHER_NOTE', '欲修改教師名單，請至<a href="config . php#setupTab2" target="_blank">社團老師設定</a>頁面設定');
+define('_MD_KWCLUB_EDIT_TAECHER_NOTE', '欲修改教師名單，請至<a href="config.php#setupTab2" target="_blank">社團老師設定</a>頁面設定');
 
 define('_MD_KWCLUB_EDIT_CATE_NOTE', '欲修改社團類型，請至<a href="config.php#setupTab3" target="_blank">社團類型設定</a>頁面設定');
 define('_MD_KWCLUB_EDIT_PLACE_NOTE', '欲修改上課地點，請至<a href="config.php#setupTab4" target="_blank">上課地點設定</a>頁面設定');
