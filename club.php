@@ -17,13 +17,13 @@ $club_year  = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 $class_num  = system_CleanVars($_REQUEST, 'class_num', '', 'int');
 
 switch ($op) {
-    //新增資料
+        //新增資料
     case 'insert_class':
         $class_id = insert_class();
         header("location: index.php?class_id=$class_id");
         exit;
 
-    //更新資料
+        //更新資料
     case 'update_class':
         update_class($class_id);
         header("location: index.php?class_id=$class_id");
@@ -36,17 +36,17 @@ switch ($op) {
 
     case 'class_enable':
         class_ischecked($class_id, 1);
-        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
+        header("location: " . \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     case 'class_unable':
         class_ischecked($class_id, 0);
-        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
+        header("location: " . \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     case 'class_blank':
         class_ischecked($class_id, '');
-        header("location: ". \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
+        header("location: " . \Xmf\Request::getString('HTTP_REFERER', '', 'SERVER'));
         exit;
 
     default:
@@ -223,8 +223,8 @@ function class_form($class_id = '', $club_year = '', $class_num = '')
     $xoopsTpl->assign('class_date_end', $class_date_end);
 
     //設定 class_ischecked 欄位的預設值
-//     $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
-//     $xoopsTpl->assign('class_ischecked', $class_ischecked);
+    //     $class_ischecked = !isset($DBV['class_ischecked']) ? "" : $DBV['class_ischecked'];
+    //     $xoopsTpl->assign('class_ischecked', $class_ischecked);
 
     //設定 class_isopen 欄位的預設值
     $class_isopen = !isset($DBV['class_isopen']) ? '1' : $DBV['class_isopen'];
@@ -299,13 +299,13 @@ function insert_class()
 
     $myts = MyTextSanitizer::getInstance();
 
-    $class_id         = (int)$_POST['class_id'];
+    $class_id         = (int) $_POST['class_id'];
     $club_year        = $myts->addSlashes($_POST['club_year']);
-    $class_num        = (int)$_POST['class_num'];
+    $class_num        = (int) $_POST['class_num'];
     $class_title      = $myts->addSlashes($_POST['class_title']);
-    $cate_id          = (int)$_POST['cate_id'];
-    $teacher_id       = (int)$_POST['teacher_id'];
-    $place_id         = (int)$_POST['place_id'];
+    $cate_id          = (int) $_POST['cate_id'];
+    $teacher_id       = (int) $_POST['teacher_id'];
+    $place_id         = (int) $_POST['place_id'];
     $class_week_arr   = $_POST['class_week'];
     $class_grade_arr  = $_POST['class_grade'];
     $class_week       = implode('、', $class_week_arr);
@@ -314,11 +314,11 @@ function insert_class()
     $class_date_close = $myts->addSlashes($_POST['class_date_close']);
     $class_time_start = $myts->addSlashes($_POST['class_time_start']);
     $class_time_end   = $myts->addSlashes($_POST['class_time_end']);
-    $class_member     = (int)$_POST['class_member'];
-    $class_money      = (int)$_POST['class_money'];
-    $class_fee        = (int)$_POST['class_fee'];
+    $class_member     = (int) $_POST['class_member'];
+    $class_money      = (int) $_POST['class_money'];
+    $class_fee        = (int) $_POST['class_fee'];
     $class_note       = $myts->addSlashes($_POST['class_note']);
-    $class_isopen     = (int)$_POST['class_isopen'];
+    $class_isopen     = (int) $_POST['class_isopen'];
     $class_desc       = $myts->addSlashes($_POST['class_desc']);
     $uid              = $xoopsUser->uid();
     $today            = date('Y-m-d H:i:s');
@@ -408,13 +408,13 @@ function update_class($class_id = '')
 
     $myts = MyTextSanitizer::getInstance();
 
-    $class_id         = (int)$_POST['class_id'];
+    $class_id         = (int) $_POST['class_id'];
     $club_year        = $myts->addSlashes($_POST['club_year']);
-    $class_num        = (int)$_POST['class_num'];
+    $class_num        = (int) $_POST['class_num'];
     $class_title      = $myts->addSlashes($_POST['class_title']);
-    $cate_id          = (int)$_POST['cate_id'];
-    $teacher_id       = (int)$_POST['teacher_id'];
-    $place_id         = (int)$_POST['place_id'];
+    $cate_id          = (int) $_POST['cate_id'];
+    $teacher_id       = (int) $_POST['teacher_id'];
+    $place_id         = (int) $_POST['place_id'];
     $class_week_arr   = $_POST['class_week'];
     $class_week       = implode('、', $class_week_arr);
     $class_grade_arr  = $_POST['class_grade'];
@@ -423,11 +423,11 @@ function update_class($class_id = '')
     $class_date_close = $myts->addSlashes($_POST['class_date_close']);
     $class_time_start = $myts->addSlashes($_POST['class_time_start']);
     $class_time_end   = $myts->addSlashes($_POST['class_time_end']);
-    $class_member     = (int)$_POST['class_member'];
-    $class_money      = (int)$_POST['class_money'];
-    $class_fee        = (int)$_POST['class_fee'];
+    $class_member     = (int) $_POST['class_member'];
+    $class_money      = (int) $_POST['class_money'];
+    $class_fee        = (int) $_POST['class_fee'];
     $class_note       = $myts->addSlashes($_POST['class_note']);
-    $class_isopen     = (int)$_POST['class_isopen'];
+    $class_isopen     = (int) $_POST['class_isopen'];
     $class_desc       = $myts->addSlashes($_POST['class_desc']);
     $uid              = $xoopsUser->uid();
     $today            = date('Y-m-d H:i:s');

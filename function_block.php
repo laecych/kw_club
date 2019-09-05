@@ -44,9 +44,9 @@ if (!function_exists('club_class_list')) {
                     $$k = $v;
                 }
 
-                $all_class_content[$i]['class_id']         = (int)$class_id;
+                $all_class_content[$i]['class_id']         = (int) $class_id;
                 $all_class_content[$i]['club_year']        = $myts->htmlSpecialChars($club_year);
-                $all_class_content[$i]['class_num']        = (int)$class_num;
+                $all_class_content[$i]['class_num']        = (int) $class_num;
                 $all_class_content[$i]['class_title']      = $myts->htmlSpecialChars($class_title);
                 $all_class_content[$i]['class_week']       = $myts->htmlSpecialChars($class_week);
                 $all_class_content[$i]['class_grade']      = $myts->htmlSpecialChars($class_grade);
@@ -55,22 +55,22 @@ if (!function_exists('club_class_list')) {
                 $all_class_content[$i]['class_time_start'] = $myts->htmlSpecialChars($class_time_start);
                 $all_class_content[$i]['class_time_end']   = $myts->htmlSpecialChars($class_time_end);
                 $all_class_content[$i]['cate_id']          = $myts->htmlSpecialChars($all_cate_arr[$cate_id]);
-                $all_class_content[$i]['teacher_id']       = (int)$teacher_id;
+                $all_class_content[$i]['teacher_id']       = (int) $teacher_id;
                 $all_class_content[$i]['teacher_id_title'] = $myts->htmlSpecialChars($all_teacher_arr[$teacher_id]);
                 $all_class_content[$i]['place_id']         = $myts->htmlSpecialChars($all_place_arr[$place_id]);
-                $all_class_content[$i]['class_member']     = (int)$class_member;
-                $all_class_content[$i]['class_money']      = (int)$class_money;
-                $all_class_content[$i]['class_fee']        = (int)$class_fee;
+                $all_class_content[$i]['class_member']     = (int) $class_member;
+                $all_class_content[$i]['class_money']      = (int) $class_money;
+                $all_class_content[$i]['class_fee']        = (int) $class_fee;
                 $all_class_content[$i]['class_pay']        = $class_money + $class_fee;
-                $all_class_content[$i]['class_regnum']     = (int)$class_regnum;
+                $all_class_content[$i]['class_regnum']     = (int) $class_regnum;
                 $all_class_content[$i]['class_note']       = $myts->htmlSpecialChars($class_note);
                 $all_class_content[$i]['class_date_start'] = isset($class_date_start) ? $myts->htmlSpecialChars($class_date_start) : '';
-                $all_class_content[$i]['class_date_end']   = isset($class_date_end) ? $myts->htmlSpecialChars($class_date_end): '';
-                $all_class_content[$i]['class_ischecked']  = (int)$class_ischecked;
-                $all_class_content[$i]['class_isopen']     = (int)$class_isopen;
+                $all_class_content[$i]['class_date_end']   = isset($class_date_end) ? $myts->htmlSpecialChars($class_date_end) : '';
+                $all_class_content[$i]['class_ischecked']  = (int) $class_ischecked;
+                $all_class_content[$i]['class_isopen']     = (int) $class_isopen;
                 $all_class_content[$i]['class_isopen_pic'] = $class_isopen ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
                 $all_class_content[$i]['class_desc']       = $myts->displayTarea($class_desc, 1, 1, 0, 1, 0);
-                $all_class_content[$i]['class_uid']        = (int)$class_uid;
+                $all_class_content[$i]['class_uid']        = (int) $class_uid;
                 //是否報名額滿
                 $all_class_content[$i]['is_full'] = (($class_member + $club_info['club_backup_num']) <= $class_regnum) ? true : false;
                 $i++;

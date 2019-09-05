@@ -46,7 +46,7 @@ define('_MB_KWCLUB_CLASS_BLANK_DESC', '點擊按鈕後，狀態改成空白');
 define('_MB_KWCLUB_OVER_END_TIME', '超過報名截止時間即停止報名及修改');
 
 define('_MB_KWCLUB_FULL_REGISTRATION', '報名額滿');
-
+define('_MB_KWCLUB_FULL', '滿');
 define('_MB_KWCLUB_SIGNUP_TO_MAKE_UP', '我要報名候補');
 
 define('_MB_KWCLUB_SIGNUP', '我要報名');

@@ -118,7 +118,7 @@ function insert_reg()
 
     $myts = MyTextSanitizer::getInstance();
 
-    $class_id  = (int)$_POST['class_id'];
+    $class_id  = (int) $_POST['class_id'];
     $class     = get_club_class($class_id);
     $club_year = $class['club_year'];
 
@@ -166,11 +166,11 @@ function insert_reg()
     $reg_grade  = $myts->addSlashes($_POST['reg_grade']);
     $reg_class  = $myts->addSlashes($_POST['reg_class']);
     $reg_parent = $myts->addSlashes($_POST['reg_parent']);
-    $reg_tel    = (int)$myts->addSlashes($_POST['reg_tel']);
+    $reg_tel    = (int) $myts->addSlashes($_POST['reg_tel']);
     $reg_isreg  = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
     $reg_ip     = get_ip();
 
-    $sql = 'INSERT INTO `' . $xoopsDB->prefix('kw_club_reg') . "` (
+    $sql = " INSERT INTO `" . $xoopsDB->prefix('kw_club_reg') . "` (
         `class_id`,`reg_uid`, `reg_name`, `reg_grade`, `reg_class`, `reg_parent`, `reg_tel`, `reg_isreg`, `reg_datetime`,  `reg_ip`) VALUES
         (
             '{$class_id}',
@@ -210,15 +210,17 @@ function check_class_date($reg_uid, $class_id)
     $year        = $_SESSION['club_year'];
     $sql         = 'select a.* from `' . $xoopsDB->prefix('kw_club_reg') . '`  as a
     join `' . $xoopsDB->prefix('kw_club_class') . "` as b on a.`class_id` = b.`class_id`
-    where a.`reg_uid`='{$reg_uid}' and b.`club_year` = '{$year}'";
+    where a.`reg_uid`='{$reg_uid}' and b.`club_year` = '{$year}' ";
 
     $result = $xoopsDB->query($sql) or web_error($sql);
     while (false !== ($arr = $xoopsDB->fetchArray($result))) {
         $class_reg = get_club_class($arr['class_id']);
         //check the date repeat
 
-        if (!(strtotime($class_reg['class_date_close']) < strtotime($class_new['class_date_open']))
-            && !(strtotime($class_reg['class_date_open']) > strtotime($class_new['class_date_close']))) {
+        if (
+            !(strtotime($class_reg['class_date_close']) < strtotime($class_new['class_date_open']))
+            && !(strtotime($class_reg['class_date_open']) > strtotime($class_new['class_date_close']))
+        ) {
             //check the week repeat
 
             $class_week_reg = explode('、', $class_reg['class_week']);
@@ -226,8 +228,10 @@ function check_class_date($reg_uid, $class_id)
             foreach ($class_week_new as &$value) {
                 if (in_array($value, $class_week_reg)) {
                     // check the time repeat
-                    if (!(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start']))
-                        && !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))) {
+                    if (
+                        !(strtotime($class_reg['class_time_end']) < strtotime($class_new['class_time_start']))
+                        && !(strtotime($class_reg['class_time_start']) > strtotime($class_new['class_time_end']))
+                    ) {
                         $check_class++;
                     }
                 }
@@ -294,7 +298,7 @@ function myclass($reg_uid = '', $club_year = '')
             // }
             $reg_name = $data['reg_name'];
         }
-       
+
         $xoopsTpl->assign('today', time());
         $xoopsTpl->assign('reg_name', $reg_name);
         $xoopsTpl->assign('money', $money);
@@ -581,7 +585,7 @@ function pid_check($cardid)
     //檢查字元長度
     if (10 != mb_strlen(trim($cardid))) {
         return false;
-    }//長度不對
+    } //長度不對
 
     //驗證英文字母正確性
     $alpha = mb_substr($cardid, 0, 1); //英文字母
@@ -596,7 +600,7 @@ function pid_check($cardid)
     $gender = mb_substr($cardid, 1, 1); //取性別位置
     if ('1' != $gender && '2' != $gender && 'A' !== $gender && 'B' !== $gender && 'C' !== $gender && 'D' !== $gender) {
         return false;
-    }//驗證性別
+    } //驗證性別
 
     //N2x8+N3x7+N4x6+N5x5+N6x4+N7x3+N8x2+N9+N10
     if ('' == $err) {

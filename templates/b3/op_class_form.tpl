@@ -104,7 +104,8 @@
         <div class="col-sm-10">
             <{foreach from = $c_week key=v item=wname}>
                 <label class="checkbox-inline">
-                    <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$v}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked<{/if}>{$smarty.const._MD_KWCLUB_WEEK}><{$wname}>
+                    <input type='checkbox' name='class_week[]' id="class_week<{$v}>" title='<{$wname}>' value='<{$wname}>' <{if in_array($wname,$class_week)}>checked<{/if}> >
+                    <{$smarty.const._MD_KWCLUB_WEEK}><{$wname}>
                 </label>
             <{/foreach}>
         </div>
@@ -119,7 +120,7 @@
                     <{if $gname==$smarty.const._MD_KWCLUB_KG}>
                         <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$smarty.const._MD_KWCLUB_KINDERGARTEN}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>><{$smarty.const._MD_KWCLUB_KINDERGARTEN}>
                     <{else}>
-                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>><{$smarty.const._MD_KWCLUB_GRADE}> <{$gname}>
+                        <input type='checkbox' name='class_grade[]' id="class_grade<{$v}>" title='<{$gname}><{$smarty.const._MD_KWCLUB_GRADE}>' value='<{$gname}>' <{if in_array($gname,$class_grade)}>checked<{/if}>><{$gname}><{$smarty.const._MD_KWCLUB_GRADE}> 
                     <{/if}>
                 </label>
             <{/foreach}>
