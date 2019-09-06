@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Kw Club module
  *
@@ -24,9 +25,9 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => 1.5,
+    'version'             => 1.4,
     'module_status'       => 'Beta 1',
-    'release_date'        => '2019/05/16',
+    'release_date'        => '2019/09/06',
     'name'                => _MI_KWCLUB_NAME,
     'description'         => _MI_KWCLUB_DESC,
     'official'            => 0,
