@@ -40,4 +40,3 @@ define('_MB_KWCLUB_SIGNUP_TO_MAKE_UP', 'I want to sign up for an alternate');
 define('_MB_KWCLUB_SIGNUP', 'I want to sign up');
 //define('_MB_KWCLUB_NON_REGISTRATION_TIME', 'Now non-registration time');
 define('_MB_KWCLUB_EMPTY_CLUB', 'There has been no new community added in this period!');
-
