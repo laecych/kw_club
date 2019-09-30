@@ -259,7 +259,7 @@ function myclass($reg_uid = '', $club_year = '')
     $xoopsTpl->assign('club_year', $club_year);
     $xoopsTpl->assign('language', $_SESSION['language']);
     // $xoopsTpl->assign('club_year_text', club_year_text($club_year));
-    $reg_name = $arr_reg = '';
+    $reg_name = '';
     $total = 0;
 
     //取得社團期別陣列
@@ -277,7 +277,7 @@ function myclass($reg_uid = '', $club_year = '')
         where a.`reg_uid` = '{$reg_uid}'  and b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $total = $xoopsDB->getRowsNum($result);
-
+        $arr_reg = '';
         while (false !== ($data = $xoopsDB->fetchArray($result))) {
             $data['end_date'] = strtotime($data['club_end_date']);
 
