@@ -25,8 +25,8 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => 1.4,
-    'module_status'       => 'Beta 1',
+    'version'             => 1.6,
+    'module_status'       => 'release',
     'release_date'        => '2019/09/06',
     'name'                => _MI_KWCLUB_NAME,
     'description'         => _MI_KWCLUB_DESC,

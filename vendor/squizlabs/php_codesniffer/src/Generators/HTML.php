@@ -18,7 +18,6 @@ use PHP_CodeSniffer\Config;
 class HTML extends Generator
 {
 
-
     /**
      * Generates the documentation for a standard.
      *
@@ -45,8 +44,7 @@ class HTML extends Generator
 
         echo $content;
 
-    }//end generate()
-
+    } //end generate()
 
     /**
      * Print the header of the HTML page.
@@ -56,20 +54,20 @@ class HTML extends Generator
     protected function printHeader()
     {
         $standard = $this->ruleset->name;
-        echo '<html>'.PHP_EOL;
-        echo ' <head>'.PHP_EOL;
-        echo "  <title>$standard Coding Standards</title>".PHP_EOL;
+        echo '<html>' . PHP_EOL;
+        echo ' <head>' . PHP_EOL;
+        echo "  <title>$standard Coding Standards</title>" . PHP_EOL;
         echo '  <style>
                     body {
                         background-color: #FFFFFF;
-                        font-size: 14px;
+                        font-size: 0.9em;
                         font-family: Arial, Helvetica, sans-serif;
                         color: #000000;
                     }
 
                     h1 {
                         color: #666666;
-                        font-size: 20px;
+                        font-size: 1.25em;
                         font-weight: bold;
                         margin-top: 0px;
                         background-color: #E6E7E8;
@@ -79,7 +77,7 @@ class HTML extends Generator
 
                     h2 {
                         color: #00A5E3;
-                        font-size: 16px;
+                        font-size: 1em;
                         font-weight: normal;
                         margin-top: 50px;
                     }
@@ -94,7 +92,7 @@ class HTML extends Generator
 
                     .code-comparison-title, .code-comparison-code {
                         font-family: Arial, Helvetica, sans-serif;
-                        font-size: 12px;
+                        font-size: 0.8em;
                         color: #000000;
                         vertical-align: top;
                         padding: 4px;
@@ -118,19 +116,18 @@ class HTML extends Generator
                         text-align: center;
                         width: 100%;
                         margin-top: 30px;
-                        font-size: 12px;
+                        font-size: 0.8em;
                     }
 
                     .tag-line a {
                         color: #000000;
                     }
-                </style>'.PHP_EOL;
-        echo ' </head>'.PHP_EOL;
-        echo ' <body>'.PHP_EOL;
-        echo "  <h1>$standard Coding Standards</h1>".PHP_EOL;
+                </style>' . PHP_EOL;
+        echo ' </head>' . PHP_EOL;
+        echo ' <body>' . PHP_EOL;
+        echo "  <h1>$standard Coding Standards</h1>" . PHP_EOL;
 
-    }//end printHeader()
-
+    } //end printHeader()
 
     /**
      * Print the table of contents for the standard.
@@ -141,21 +138,20 @@ class HTML extends Generator
      */
     protected function printToc()
     {
-        echo '  <h2>Table of Contents</h2>'.PHP_EOL;
-        echo '  <ul class="toc">'.PHP_EOL;
+        echo '  <h2>Table of Contents</h2>' . PHP_EOL;
+        echo '  <ul class="toc">' . PHP_EOL;
 
         foreach ($this->docFiles as $file) {
             $doc = new \DOMDocument();
             $doc->load($file);
             $documentation = $doc->getElementsByTagName('documentation')->item(0);
-            $title         = $this->getTitle($documentation);
-            echo '   <li><a href="#'.str_replace(' ', '-', $title)."\">$title</a></li>".PHP_EOL;
+            $title = $this->getTitle($documentation);
+            echo '   <li><a href="#' . str_replace(' ', '-', $title) . "\">$title</a></li>" . PHP_EOL;
         }
 
-        echo '  </ul>'.PHP_EOL;
+        echo '  </ul>' . PHP_EOL;
 
-    }//end printToc()
-
+    } //end printToc()
 
     /**
      * Print the footer of the HTML page.
@@ -168,16 +164,15 @@ class HTML extends Generator
         // don't have their timezone set.
         $errorLevel = error_reporting(0);
         echo '  <div class="tag-line">';
-        echo 'Documentation generated on '.date('r');
-        echo ' by <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHP_CodeSniffer '.Config::VERSION.'</a>';
-        echo '</div>'.PHP_EOL;
+        echo 'Documentation generated on ' . date('r');
+        echo ' by <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHP_CodeSniffer ' . Config::VERSION . '</a>';
+        echo '</div>' . PHP_EOL;
         error_reporting($errorLevel);
 
-        echo ' </body>'.PHP_EOL;
-        echo '</html>'.PHP_EOL;
+        echo ' </body>' . PHP_EOL;
+        echo '</html>' . PHP_EOL;
 
-    }//end printFooter()
-
+    } //end printFooter()
 
     /**
      * Process the documentation for a single sniff.
@@ -191,8 +186,8 @@ class HTML extends Generator
     public function processSniff(\DOMNode $doc)
     {
         $title = $this->getTitle($doc);
-        echo '  <a name="'.str_replace(' ', '-', $title).'" />'.PHP_EOL;
-        echo "  <h2>$title</h2>".PHP_EOL;
+        echo '  <a name="' . str_replace(' ', '-', $title) . '" />' . PHP_EOL;
+        echo "  <h2>$title</h2>" . PHP_EOL;
 
         foreach ($doc->childNodes as $node) {
             if ($node->nodeName === 'standard') {
@@ -202,8 +197,7 @@ class HTML extends Generator
             }
         }
 
-    }//end processSniff()
-
+    } //end processSniff()
 
     /**
      * Print a text block found in a standard.
@@ -221,10 +215,9 @@ class HTML extends Generator
         $content = str_replace('&lt;em&gt;', '<em>', $content);
         $content = str_replace('&lt;/em&gt;', '</em>', $content);
 
-        echo "  <p class=\"text\">$content</p>".PHP_EOL;
+        echo "  <p class=\"text\">$content</p>" . PHP_EOL;
 
-    }//end printTextBlock()
-
+    } //end printTextBlock()
 
     /**
      * Print a code comparison block found in a standard.
@@ -238,33 +231,32 @@ class HTML extends Generator
         $codeBlocks = $node->getElementsByTagName('code');
 
         $firstTitle = $codeBlocks->item(0)->getAttribute('title');
-        $first      = trim($codeBlocks->item(0)->nodeValue);
-        $first      = str_replace('<?php', '&lt;?php', $first);
-        $first      = str_replace("\n", '</br>', $first);
-        $first      = str_replace(' ', '&nbsp;', $first);
-        $first      = str_replace('<em>', '<span class="code-comparison-highlight">', $first);
-        $first      = str_replace('</em>', '</span>', $first);
+        $first = trim($codeBlocks->item(0)->nodeValue);
+        $first = str_replace('<?php', '&lt;?php', $first);
+        $first = str_replace("\n", '</br>', $first);
+        $first = str_replace(' ', '&nbsp;', $first);
+        $first = str_replace('<em>', '<span class="code-comparison-highlight">', $first);
+        $first = str_replace('</em>', '</span>', $first);
 
         $secondTitle = $codeBlocks->item(1)->getAttribute('title');
-        $second      = trim($codeBlocks->item(1)->nodeValue);
-        $second      = str_replace('<?php', '&lt;?php', $second);
-        $second      = str_replace("\n", '</br>', $second);
-        $second      = str_replace(' ', '&nbsp;', $second);
-        $second      = str_replace('<em>', '<span class="code-comparison-highlight">', $second);
-        $second      = str_replace('</em>', '</span>', $second);
+        $second = trim($codeBlocks->item(1)->nodeValue);
+        $second = str_replace('<?php', '&lt;?php', $second);
+        $second = str_replace("\n", '</br>', $second);
+        $second = str_replace(' ', '&nbsp;', $second);
+        $second = str_replace('<em>', '<span class="code-comparison-highlight">', $second);
+        $second = str_replace('</em>', '</span>', $second);
 
-        echo '  <table class="code-comparison">'.PHP_EOL;
-        echo '   <tr>'.PHP_EOL;
-        echo "    <td class=\"code-comparison-title\">$firstTitle</td>".PHP_EOL;
-        echo "    <td class=\"code-comparison-title\">$secondTitle</td>".PHP_EOL;
-        echo '   </tr>'.PHP_EOL;
-        echo '   <tr>'.PHP_EOL;
-        echo "    <td class=\"code-comparison-code\">$first</td>".PHP_EOL;
-        echo "    <td class=\"code-comparison-code\">$second</td>".PHP_EOL;
-        echo '   </tr>'.PHP_EOL;
-        echo '  </table>'.PHP_EOL;
+        echo '  <table class="code-comparison">' . PHP_EOL;
+        echo '   <tr>' . PHP_EOL;
+        echo "    <td class=\"code-comparison-title\">$firstTitle</td>" . PHP_EOL;
+        echo "    <td class=\"code-comparison-title\">$secondTitle</td>" . PHP_EOL;
+        echo '   </tr>' . PHP_EOL;
+        echo '   <tr>' . PHP_EOL;
+        echo "    <td class=\"code-comparison-code\">$first</td>" . PHP_EOL;
+        echo "    <td class=\"code-comparison-code\">$second</td>" . PHP_EOL;
+        echo '   </tr>' . PHP_EOL;
+        echo '  </table>' . PHP_EOL;
 
-    }//end printCodeComparisonBlock()
+    } //end printCodeComparisonBlock()
 
-
-}//end class
+} //end class

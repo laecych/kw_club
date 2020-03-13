@@ -1,9 +1,9 @@
 span.number_b{
-    font-family: Arial, Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif; 
+    font-family: Arial, Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif;
     color:rgb(29, 26, 196);
 }
 span.number_o{
-    font-family: Arial, Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif; 
+    font-family: Arial, Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif;
     color:rgb(168, 31, 7);
 }
 span.text_g{
@@ -11,7 +11,7 @@ span.text_g{
     color:rgb(12, 87, 18);
 }
 span.circle{
-    font-size: 12px;
+    font-size: 0.8em;
     font-family: 新細明體;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
