@@ -2,7 +2,6 @@
 
 use XoopsModules\Kw_club;
 
-
 $GLOBALS['xoopsOption']['template_main'] = 'kw_club_adm_main.tpl';
 require_once __DIR__ . '/admin_header.php';
 require_once dirname(__DIR__) . '/function.php';
@@ -15,7 +14,7 @@ $users_uid = system_CleanVars($_REQUEST, 'users_uid', '', 'string');
 /**
  * @var xos_opal_Theme
  */
-$xoTheme  = $xoopsThemeFactory->createInstance(['contentTemplate' => @$xoopsOption['template_main']]);
+$xoTheme = $xoopsThemeFactory->createInstance(['contentTemplate' => @$xoopsOption['template_main']]);
 
 switch ($op) {
     case 'save_club_admin':
@@ -50,7 +49,7 @@ function get_club_admin()
         $user_arr      = $memberHandler->getUsersByGroup($groupid);
     }
 
-    $sql = 'select uid,uname,name from ' . $xoopsDB->prefix('users') . ' order by uname';
+    $sql    = 'select uid,uname,name from ' . $xoopsDB->prefix('users') . ' order by uname';
     $result = $xoopsDB->query($sql) or web_error($sql);
 
     $myts    = MyTextSanitizer::getInstance();

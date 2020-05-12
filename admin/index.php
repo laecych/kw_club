@@ -17,27 +17,26 @@
  * @version      $Id $
  **/
 
-//  
+//
 // use XoopsModules\Kw_club;
 // use XoopsModules\Kw_club\Common;
 
 require __DIR__ . '/admin_header.php';
 
 xoops_cp_header();
-$adminObject = \Xmf\Module\Admin::getInstance();
-$moduleDirName = basename(dirname(__DIR__));
+$adminObject        = \Xmf\Module\Admin::getInstance();
+$moduleDirName      = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 //check or upload folders
 // $configurator = new Configurator();
-// $utility =  new Utility();
+// $utility      = new Utility();
 // foreach (array_keys($configurator->uploadFolders) as $i) {
 //     $utility::createFolder($configurator->uploadFolders[$i]);
 //     $adminObject->addConfigBoxLine($configurator->uploadFolders[$i], 'folder');
 // }
 
-
-// $adminObject->displayNavigation(basename(__FILE__));
+$adminObject->displayNavigation(basename(__FILE__));
 
 // //check for latest release
 // $newRelease = $utility::checkVerModule($helper);
@@ -57,7 +56,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 // }
 // //------------- End Test Data ----------------------------
 
-// $adminObject->displayIndex();
+$adminObject->displayIndex();
 
 // echo $utility::getServerStats();
 

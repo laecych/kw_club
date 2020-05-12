@@ -29,9 +29,9 @@
             </li>
 
             <li class="vm w4">
-                <pre style="white-space: pre-wrap; background: transparent; border: none; padding: 2px;" id="bio_<{$uid}>"><{$tea.teacher_desc}><{$uid.bio}></pre>
+                <pre style="white-space: pre-wrap; background: transparent; border: none; padding: 2px;" id="bio_<{$uid}>" title="<{$smarty.const._MD_KWCLUB_CLICK_TO_EDIT}>"><{$tea.teacher_desc}><{$uid.bio}></pre>
             </li>
-    
+
         </ul>
 <{/foreach}>
 </div>

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/header.php';
-require_once TADTOOLS_PATH . '/PHPExcel.php'; //引入 PHPExcel 物件庫
-require_once TADTOOLS_PATH . '/PHPExcel/IOFactory.php'; //引入 PHPExcel_IOFactory 物件庫
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/vendor/phpoffice/phpexcel/Classes/PHPExcel.php'; //引入 PHPExcel 物件庫
+require_once XOOPS_ROOT_PATH . '/modules/tadtools/vendor/phpoffice/phpexcel/Classes/PHPExcel/IOFactory.php'; //引入PHPExcel_IOFactory 物件庫
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
 // $club_year_text = club_year_text($club_year);
@@ -18,8 +18,8 @@ $objPHPExcel->getDefaultStyle()->getFont()->setName('Microsoft JhengHei')->setSi
 $i = 1;
 $objActSheet->mergeCells("A{$i}:L{$i}")->setCellValue('A1', $club_year . _MD_KWCLUB_APPLY_EXCEL);
 
-$objActSheet->getStyle('A:L')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)//垂直置中
-            ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); //水平置中
+$objActSheet->getStyle('A:L')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER) //垂直置中
+    ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); //水平置中
 $objActSheet->getStyle('D:E')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT); //水平靠右
 $objActSheet->getStyle('C')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER)->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT); //水平靠左
 
@@ -92,12 +92,8 @@ $objActSheet->getProtection()->setFormatCells(true);
 $objActSheet->getProtection()->setPassword('1234');
 
 $title = iconv('UTF-8', 'Big5', $club_year . _MD_KWCLUB_APPLY_EXCEL);
-// header('Content-Type: application/vnd.ms-excel');
-// header('Content-Disposition: attachment;filename=' . $title . '.xlsx');
-// header('Cache-Control: max-age=0');
-//jill's export
+
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-// header('Content-Type: application/vnd.ms-excel');
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename=' . $title . '.xlsx');
 header('Cache-Control: max-age=0');
@@ -109,7 +105,6 @@ for ($i = 0; $i < ob_get_level(); $i++) {
 ob_implicit_flush(1);
 ob_clean();
 
-// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->setPreCalculateFormulas(false);
 $objWriter->save('php://output');
 exit;

@@ -6,14 +6,14 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------執行動作判斷區----------*/
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op           = system_CleanVars($_REQUEST, 'op', '', 'string');
-$class_id     = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
+$class_id = system_CleanVars($_REQUEST, 'class_id', '0', 'int');
 $class_enable = system_CleanVars($_REQUEST, 'class_enable', '', 'int');
-$cate_id      = system_CleanVars($_REQUEST, 'cate_id', '0', 'int');
-$uid          = system_CleanVars($_REQUEST, 'uid', '', 'string');
-$club_year    = system_CleanVars($_REQUEST, 'club_year', '', 'string');
-$reg_sn       = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
-$reg_uid      = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
+$cate_id = system_CleanVars($_REQUEST, 'cate_id', '0', 'int');
+$uid = system_CleanVars($_REQUEST, 'uid', '', 'string');
+$club_year = system_CleanVars($_REQUEST, 'club_year', '', 'string');
+$reg_sn = system_CleanVars($_REQUEST, 'reg_sn', '', 'int');
+$reg_uid = system_CleanVars($_REQUEST, 'reg_uid', '', 'string');
 
 $today = date('Y-m-d');
 switch ($op) {
@@ -118,8 +118,8 @@ function insert_reg()
 
     $myts = MyTextSanitizer::getInstance();
 
-    $class_id  = (int) $_POST['class_id'];
-    $class     = get_club_class($class_id);
+    $class_id = (int) $_POST['class_id'];
+    $class = get_club_class($class_id);
     $club_year = $class['club_year'];
 
     //檢查是否設定期別
@@ -162,13 +162,13 @@ function insert_reg()
         redirect_header("index.php?op=reg_form&class_id={$class_id}", 3, _MD_KWCLUB_GC_WRONG);
     }
 
-    $reg_name   = $myts->addSlashes($_POST['reg_name']);
-    $reg_grade  = $myts->addSlashes($_POST['reg_grade']);
-    $reg_class  = $myts->addSlashes($_POST['reg_class']);
+    $reg_name = $myts->addSlashes($_POST['reg_name']);
+    $reg_grade = $myts->addSlashes($_POST['reg_grade']);
+    $reg_class = $myts->addSlashes($_POST['reg_class']);
     $reg_parent = $myts->addSlashes($_POST['reg_parent']);
-    $reg_tel    = (int) $myts->addSlashes($_POST['reg_tel']);
-    $reg_isreg  = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
-    $reg_ip     = get_ip();
+    $reg_tel = (int) $myts->addSlashes($_POST['reg_tel']);
+    $reg_isreg = $class['class_member'] > $class['class_regnum'] ? _MD_KWCLUB_OFFICIALLY_ENROLL : _MD_KWCLUB_CANDIDATE;
+    $reg_ip = get_ip();
 
     $sql = " INSERT INTO `" . $xoopsDB->prefix('kw_club_reg') . "` (
         `class_id`,`reg_uid`, `reg_name`, `reg_grade`, `reg_class`, `reg_parent`, `reg_tel`, `reg_isreg`, `reg_datetime`,  `reg_ip`) VALUES
@@ -204,11 +204,11 @@ function check_class_date($reg_uid, $class_id)
 {
     global $xoopsDB;
 
-    $arr_reg     = [];
+    $arr_reg = [];
     $check_class = 0;
-    $class_new   = get_club_class($class_id);
-    $year        = $_SESSION['club_year'];
-    $sql         = 'select a.* from `' . $xoopsDB->prefix('kw_club_reg') . '`  as a
+    $class_new = get_club_class($class_id);
+    $year = $_SESSION['club_year'];
+    $sql = 'select a.* from `' . $xoopsDB->prefix('kw_club_reg') . '`  as a
     join `' . $xoopsDB->prefix('kw_club_class') . "` as b on a.`class_id` = b.`class_id`
     where a.`reg_uid`='{$reg_uid}' and b.`club_year` = '{$year}' ";
 
@@ -266,22 +266,22 @@ function myclass($reg_uid = '', $club_year = '')
     $xoopsTpl->assign('arr_year', get_all_year());
 
     if (empty($reg_uid)) {
-        $arr_reg = '';
+        $arr_reg = [];
     } else {
         $money = $in_money = $un_money = 0;
 
         $myts = MyTextSanitizer::getInstance();
-        $sql  = 'select a.*, b.*, c.`club_end_date` from `' . $xoopsDB->prefix('kw_club_reg') . '` as a
+        $sql = 'select a.*, b.*, c.`club_end_date` from `' . $xoopsDB->prefix('kw_club_reg') . '` as a
         join `' . $xoopsDB->prefix('kw_club_class') . '` as b on a.`class_id` = b.`class_id`
         join `' . $xoopsDB->prefix('kw_club_info') . "` as c on b.`club_year` = c.`club_year`
         where a.`reg_uid` = '{$reg_uid}'  and b.`club_year`='{$club_year}'";
         $result = $xoopsDB->query($sql) or web_error($sql);
         $total = $xoopsDB->getRowsNum($result);
-        $arr_reg = '';
+        $arr_reg = [];
         while (false !== ($data = $xoopsDB->fetchArray($result))) {
             $data['end_date'] = strtotime($data['club_end_date']);
 
-            $class_pay         = $data['class_money'] + $data['class_fee'];
+            $class_pay = $data['class_money'] + $data['class_fee'];
             $data['class_pay'] = $class_pay;
 
             $arr_reg[] = $data;
@@ -345,9 +345,9 @@ function class_showjson($class_id = '')
     }
 
     // 取得分類資料()
-    $cate_arr    = get_cate($all['cate_id'], 'cate');
+    $cate_arr = get_cate($all['cate_id'], 'cate');
     $teacher_arr = get_teacher_all();
-    $place_arr   = get_cate($all['place_id'], 'place');
+    $place_arr = get_cate($all['place_id'], 'place');
 
     $xoopsTpl->assign('class_id', $all['class_id']);
     $xoopsTpl->assign('club_year', $all['club_year']);
@@ -424,26 +424,26 @@ function class_show($class_id = '')
     $xoopsTpl->assign('club_info', $club_info);
 
     //取得分類資料()
-    $cate_arr    = get_cate($cate_id, 'cate');
+    $cate_arr = get_cate($cate_id, 'cate');
     $teacher_arr = get_teacher_all();
-    $place_arr   = get_cate($place_id, 'place');
+    $place_arr = get_cate($place_id, 'place');
 
     //將是/否選項轉換為圖示
     $class_isopen_pic = (1 == $class_isopen) ? '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="' . XOOPS_URL . '/modules/kw_club/assets/images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
     //過濾讀出的變數值
-    $class_num   = $myts->htmlSpecialChars($class_num);
+    $class_num = $myts->htmlSpecialChars($class_num);
     $class_title = $myts->htmlSpecialChars($class_title);
 
-    $class_member     = $myts->htmlSpecialChars($class_member);
-    $class_money      = $myts->htmlSpecialChars($class_money);
-    $class_fee        = $myts->htmlSpecialChars($class_fee);
-    $class_note       = $myts->htmlSpecialChars($class_note);
-    $class_date_open  = $myts->htmlSpecialChars($class_date_open);
+    $class_member = $myts->htmlSpecialChars($class_member);
+    $class_money = $myts->htmlSpecialChars($class_money);
+    $class_fee = $myts->htmlSpecialChars($class_fee);
+    $class_note = $myts->htmlSpecialChars($class_note);
+    $class_date_open = $myts->htmlSpecialChars($class_date_open);
     $class_date_close = $myts->htmlSpecialChars($class_date_close);
     $class_time_start = $myts->htmlSpecialChars($class_time_start);
-    $class_time_end   = $myts->htmlSpecialChars($class_time_end);
-    $class_desc       = $myts->displayTarea($class_desc, 1, 1, 0, 1, 0);
+    $class_time_end = $myts->htmlSpecialChars($class_time_end);
+    $class_desc = $myts->displayTarea($class_desc, 1, 1, 0, 1, 0);
 
     $xoopsTpl->assign('class_id', $class_id);
     $xoopsTpl->assign('club_year', $club_year);
@@ -515,7 +515,7 @@ function teacher_list($club_year = '')
     $result = $xoopsDB->query($sql) or web_error($sql);
     $teachers_arr = [];
     while (false !== ($data = $xoopsDB->fetchArray($result))) {
-        $id                = $data['teacher_id'];
+        $id = $data['teacher_id'];
         $teachers_arr[$id] = $data;
     }
     $xoopsTpl->assign('teachers', $teachers_arr);
@@ -525,15 +525,15 @@ function teacher_list($club_year = '')
     $result = $xoopsDB->query($sql) or web_error($sql);
     $tea_class = [];
     while (false !== ($class = $xoopsDB->fetchArray($result))) {
-        $uid                        = $class['teacher_id'];
-        $class_id                   = $class['class_id'];
+        $uid = $class['teacher_id'];
+        $class_id = $class['class_id'];
         $tea_class[$uid][$class_id] = $class;
     }
     $xoopsTpl->assign('tea_class', $tea_class);
 
     if ($_SESSION['isclubAdmin']) {
         require_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
-        $file      = 'save.php';
+        $file = 'save.php';
         $jeditable = new jeditable();
         //此處加入欲直接點擊編輯的欄位設定
         $file = 'ajax.php';
@@ -604,8 +604,8 @@ function pid_check($cardid)
 
     //N2x8+N3x7+N4x6+N5x5+N6x4+N7x3+N8x2+N9+N10
     if ('' == $err) {
-        $i  = 8;
-        $j  = 1;
+        $i = 8;
+        $j = 1;
         $ms = 0;
         //先算 N2x8 + N3x7 + N4x6 + N5x5 + N6x4 + N7x3 + N8x2
         while ($i >= 2) {

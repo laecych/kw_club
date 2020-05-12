@@ -100,7 +100,7 @@ function update_reg($id, $value, $reg_sn)
     }
 
     $myts = MyTextSanitizer::getInstance();
-    $val  = $myts->htmlSpecialChars($value);
+    $val  = $myts->htmlSpecialChars(strip_tags($value));
     $sql  = 'update ' . $xoopsDB->prefix('kw_club_reg') . " set `{$col}`='{$val}' where `reg_sn`='{$reg_sn}'";
     $xoopsDB->queryF($sql);
 
