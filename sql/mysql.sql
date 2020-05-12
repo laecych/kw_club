@@ -59,11 +59,7 @@ CREATE TABLE `kw_club_files_center` (
   `original_filename` varchar(255) NOT NULL DEFAULT '' COMMENT '檔案名稱',
   `hash_filename` varchar(255) NOT NULL DEFAULT '' COMMENT '加密檔案名稱',
   `sub_dir` varchar(255) NOT NULL DEFAULT '' COMMENT '檔案子路徑',
-<<<<<<< HEAD
   `upload_date` datetime NOT NULL COMMENT '上傳時間',
-=======
-  `upload_date` datetime NOT NULL COMMENT '上傳時間',
->>>>>>> bddd4aaa9a281fb2704e69acef0efbc413081143
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '上傳者',
   `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '註記',
   PRIMARY KEY (`files_sn`)
