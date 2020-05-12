@@ -62,7 +62,7 @@ CREATE TABLE `kw_club_files_center` (
 <<<<<<< HEAD
   `upload_date` datetime NOT NULL COMMENT '上傳時間',
 =======
-  `upload_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '上傳時間',
+  `upload_date` datetime NOT NULL COMMENT '上傳時間',
 >>>>>>> bddd4aaa9a281fb2704e69acef0efbc413081143
   `uid` mediumint(8) unsigned NOT NULL DEFAULT '0' COMMENT '上傳者',
   `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '註記',
